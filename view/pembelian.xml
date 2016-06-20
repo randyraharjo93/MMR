@@ -177,7 +177,7 @@
 			<field name="name">mmr.pembeliansj.list</field>
 			<field name="model">mmr.pembeliansj</field>
 			<field name="arch" type="xml">
-				<tree string="Pembelian SJ" version="7.0" default_order="status">
+				<tree string="Pembelian SJ" version="7.0" default_order="tanggalterbit">
 					<field name="nomorsj" />
 					<field name="tanggalterbit"/>
 					<field name="gudang" />
@@ -263,13 +263,101 @@
 				</form>
 			</field>
 		</record>
+
+		<record id="mmr_pembeliansj_list_no_edit" model="ir.ui.view">
+			<field name="name">mmr.pembeliansj.list.no.edit</field>
+			<field name="model">mmr.pembeliansj</field>
+			<field name="arch" type="xml">
+				<tree string="Pembelian SJ" version="7.0" default_order="tanggalterbit" create="false" edit="false">
+					<field name="nomorsj" />
+					<field name="tanggalterbit"/>
+					<field name="gudang" />
+					<field name="pembeliansjdetil" />
+					<field name="disetujui" />
+					<field name="dibuat" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="mmr_pembeliansj_form_no_edit" model="ir.ui.view">
+			<field name="name">mmr.pembeliansj.form.no.edit</field>
+			<field name="model">mmr.pembeliansj</field>
+			<field name="arch" type="xml">
+				<form string="Pembelian SJ" version="7.0" create="false" edit="false">
+					<group >
+						<group string="Informasi Dasar">
+							<field name="id" attrs="{'invisible':True}"/>
+							<field name="idpo"/>
+							<field name="nomorsj" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="tanggalterbit" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="gudang" attrs="{'readonly':[('disetujui','!=',False)]}" options="{'no_create': True, 'no_open':True}"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="List Barang">
+							<field name="pembeliansjdetil" context="{'ijin': True}" attrs="{'readonly':[('disetujui','!=',False)]}">
+								<tree create="true" edit="true" delete="true" default_order="tanggal">
+									<field name="merk" />
+									<field name="namaproduk"/>
+									<field name="satuan"/>
+									<field name="debit" string="Jumlah"/>
+									<field name="kadaluarsa"/>
+									<field name="lot"/>
+									<field name="notes" />
+								</tree>
+								<form string="Stok" version="7.0">
+									<group>
+										<group string="Informasi Dasar">
+											<field name="idpembeliansj" attrs="{'invisible':True}"/>
+											<field name="tanggal" attrs="{'invisible':True}"/>
+											<field name="gudang" attrs="{'invisible':True}"/>
+											<field name="idpembelianpo" attrs="{'invisible':True}"/>
+											<field name="produk" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string="Jumlah" attrs="{'invisible':[('idpembelianpo','=',False),('debit','=',False)],'required':[('idpembelianpo','!=',False)]}" />
+											<field name="kadaluarsa"/>
+											<field name="lot"/>
+											<field name="kredit" attrs="{'invisible':True}" />
+											<field name="saldo" attrs="{'invisible':True}"/>
+										</group>
+										<group string="Informasi Produk">
+											<field name="merk" />
+											<field name="namaproduk" />
+											<field name="satuan" />
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Notes">
+							<field name="notes" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</page>	
+					</notebook>
+					<group string="Informasi Otoritas" groups="MMR.otoritas">
+						<group>
+							<field name="dibuat" />
+							<field name="waktu"  groups="MMR.otoritas" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/>
+							<field name="diedit" />
+						</group>
+						<group>
+							<field name="disetujui" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
 		
 		-----------PembelianFaktur----------
 		<record id="mmr_pembelianfaktur_list" model="ir.ui.view">
 			<field name="name">mmr.pembelianfaktur.list</field>
 			<field name="model">mmr.pembelianfaktur</field>
 			<field name="arch" type="xml">
-				<tree string="Pembelian Faktur" version="7.0" default_order="status">
+				<tree string="Pembelian Faktur" version="7.0" default_order="tanggalterbit">
 					<field name="nomorfaktur" />
 					<field name="tanggalterbit"/>
 					<field name="disetujui" />

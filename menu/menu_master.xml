@@ -25,6 +25,25 @@
 			<field name="context">{'group_by': 'waktu'}</field>
 			<field name="limit">9999</field>
 		</record>
+
+		<record id="multi_action_master_mmr_pembeliansj" model="ir.actions.act_window">
+			<field name="name">SJPembelian</field>
+			<field name="res_model">mmr.pembeliansj</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_ids" eval="[(0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_pembeliansj_list_no_edit')}), (0, 0, {'sequence': 2, 'view_mode': 'form', 'view_id': ref('MMR.mmr_pembeliansj_form_no_edit')})]"/>
+			<field name="context">{'group_by': 'tanggalterbit'}</field>
+			<field name="limit">9999</field>
+		</record>
+
+		<record id="multi_action_master_mmr_pembelianfaktur" model="ir.actions.act_window">
+			<field name="name">FakturPembelian</field>
+			<field name="res_model">mmr.pembelianfaktur</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'group_by': 'tanggalterbit'}</field>
+			<field name="limit">9999</field>
+		</record>
 		
 		<record id="multi_action_master_mmr_syaratpembayaran" model="ir.actions.act_window">
 			<field name="name">Syarat Pembayaran</field>
@@ -290,7 +309,9 @@
 			
 			<menuitem id="mmr_menu_pembelian" name="Pembelian" parent="mmr_menu_utama" sequence="4" />
 				<menuitem id="multi_menu_master_pembelianpo" action="multi_action_master_mmr_pembelianpo" name="PO Pembelian" parent="mmr_menu_pembelian" sequence="1" />
-				<menuitem id="multi_menu_master_pembayaranpembelian" action="multi_action_master_mmr_pembayaranpembelian" name="Pembayaran Pembelian" parent="mmr_menu_pembelian" sequence="2" groups="MMR.akunting"/>
+				<menuitem id="multi_menu_master_pembeliansj" action="multi_action_master_mmr_pembeliansj" name="SJ Pembelian" parent="mmr_menu_pembelian" sequence="2" />
+				<menuitem id="multi_menu_master_pembelianfaktur" action="multi_action_master_mmr_pembelianfaktur" name="Faktur Pembelian" parent="mmr_menu_pembelian" sequence="3" />
+				<menuitem id="multi_menu_master_pembayaranpembelian" action="multi_action_master_mmr_pembayaranpembelian" name="Pembayaran Pembelian" parent="mmr_menu_pembelian" sequence="4" groups="MMR.akunting"/>
 		
 			<menuitem id="mmr_menu_penjualan" name="Penjualan" parent="mmr_menu_utama" sequence="5" />
 				<menuitem id="multi_menu_master_penjualanpo" action="multi_action_master_mmr_penjualanpo" name="PO Penjualan" parent="mmr_menu_penjualan" sequence="1" />
