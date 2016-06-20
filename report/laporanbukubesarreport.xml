@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp> 
+    <data>
+    	---------------------Buku Besar-----------------------------------
+        <template id="laporanbukubesar_report" >
+       	 	<t t-call="report.html_container">
+       			 <t t-foreach="docs" t-as="o">
+       			 	<div class="page"> 
+       			 		<h2 style="text-align:center">LAPORAN BUKU BESAR</h2>
+		           		<h5 style="text-align:center"> Periode : <span t-field="o.bulan"/>, <span t-field="o.tahun"/></h5>
+		           		<br/>
+		           		<style>
+						      tr:nth-of-type(odd) {
+						      background-color:#f4f4f4;
+						    }
+						</style>
+						<t t-foreach="o.jurnal" t-as="jurnaldetil">
+							<h5 style="text-align:center"> Nomor Akun : <span t-field="jurnaldetil.nomorakun"/>, <span t-field="jurnaldetil.namaakun"/></h5>
+							<table class="col-xs-12" >
+			           			<tr style="border-bottom: 3px solid black">
+	                 		   			<th>Tanggal</th>
+	                 		   			<th>Sumber</th>
+	                 		   			<th>Debit</th>
+	                 		   			<th>Kredit</th>
+	                 		   		</tr>
+			           			<t t-foreach="jurnaldetil.akundetil" t-as="jurnaldetil2">
+				           			<tr>
+				           				<td style="width:15%"> <span t-esc="jurnaldetil2.tanggal"/> </td>
+				           				<td style="width:45%"> <span t-esc="jurnaldetil2.sumber"/> </td>
+				           				<td style="width:20%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil2.debit)"/> </td>
+				           				<td style="width:20%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil2.kredit)"/> </td>
+				           			</tr>
+				           		</t>	
+			           		</table>	
+			           	</t>	
+		            </div>	
+        		</t>
+    		</t>  
+        </template>
+    </data>
+
+</openerp>

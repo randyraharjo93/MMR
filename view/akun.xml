@@ -1,0 +1,764 @@
+<openerp>
+	<data>
+		
+		-----------akun----------
+		<record id="mmr_akun_list" model="ir.ui.view">
+			<field name="name">mmr.akun.list</field>
+			<field name="model">mmr.akun</field>
+			<field name="arch" type="xml" >
+				<tree string="Neraca Lajur" version="7.0" default_order="nomorakun" >
+					<field name="idakunparent" />
+					<field name="nomorakun" />
+					<field name="namaakun" />
+					<field name="debit" />
+					<field name="kredit"/>
+					<field name="normaldi"/>
+					<field name="notes"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_akun_form" model="ir.ui.view">
+			<field name="name">mmr.akun.form</field>
+			<field name="model">mmr.akun</field>
+			<field name="arch" type="xml">
+				<form string="Neraca Lajur" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="idakunparent" />
+							<field name="normaldi"/>
+							<field name="nomorakun" />
+							<field name="namaakun" />
+						</group>
+						<group string="Saldo">
+							<field name="debit" />
+							<field name="kredit"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="History">
+							<field name="akundetil">
+								<tree string="Akun Detil" version="7.0" create="false" edit="false" delete="false">
+									<field name="idakun" />
+									<field name="tanggal" />
+									<field name="write_date" groups="MMR.akunting"/>
+									<field name="sumber" />
+									<field name="debit" />
+									<field name="kredit"/>
+									<field name="notes"/>
+								</tree>
+							</field>	
+						</page>	
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------akun detil----------
+		<record id="mmr_akundetil_list" model="ir.ui.view">
+			<field name="name">mmr.akundetil.list</field>
+			<field name="model">mmr.akundetil</field>
+			<field name="arch" type="xml">
+				<tree string="Akun Detil" version="7.0">
+					<field name="idakun" />
+					<field name="tanggal" />
+					<field name="write_date" groups="MMR.akunting"/>
+					<field name="sumber" />
+					<field name="debit" />
+					<field name="kredit"/>
+					<field name="notes"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_akundetil_form" model="ir.ui.view">
+			<field name="name">mmr.akundetil.form</field>
+			<field name="model">mmr.akundetil</field>
+			<field name="arch" type="xml">
+				<form string="Akun Detil" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="idakun" />
+							<field name="tanggal" />
+							<field name="sumber"/>
+							<field name="sumberpembelianfaktur"   attrs="{'invisible':[('sumberpembelianfaktur','=',False)]}"/>
+							<field name="sumberpenjualanfaktur"  attrs="{'invisible':[('sumberpenjualanfaktur','=',False)]}"/>
+							<field name="sumberpembayaranpembelian"  attrs="{'invisible':[('sumberpembayaranpembelian','=',False)]}"/>
+							<field name="sumberpembayaranpenjualan"  attrs="{'invisible':[('sumberpembayaranpenjualan','=',False)]}"/>
+							<field name="sumberkegiatanakunting"  attrs="{'invisible':[('sumberkegiatanakunting','=',False)]}"/>
+							<field name="sumberbiaya"  attrs="{'invisible':[('sumberbiaya','=',False)]}"/>
+							<field name="sumberinventaris"  attrs="{'invisible':[('sumberinventaris','=',False)]}"/>
+						</group>
+						<group string="Saldo">
+							<field name="debit" />
+							<field name="kredit"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+					<group string="Informasi Otoritas">
+						<field name="write_date" groups="MMR.otoritas"/>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		-----------Jurnal Penyesuaian----------
+		<record id="mmr_jurnalpenyesuaian_list" model="ir.ui.view">
+			<field name="name">mmr.jurnalpenyesuaian.list</field>
+			<field name="model">mmr.jurnalpenyesuaian</field>
+			<field name="arch" type="xml" >
+				<tree string="Jurnal Penyesuaian" version="7.0" default_order="tanggal desc" colors="red:status!='Normal'">
+					<field name="status" />
+					<field name="bulan" />
+					<field name="tahun" />
+					<field name="notes"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_jurnalpenyesuaian_form" model="ir.ui.view">
+			<field name="name">mmr.jurnalpenyesuaian.form</field>
+			<field name="model">mmr.jurnalpenyesuaian</field>
+			<field name="arch" type="xml">
+				<form string="Jurnal Penyesuaian" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="status" />
+						<field name="bulan" on_change="onchange_tanggal(bulan,tahun)"/>
+						<field name="tahun" on_change="onchange_tanggal(bulan,tahun)"/>
+						<field name="tanggal" attrs="{'invisible':True}"/>
+					</group>
+					<notebook>
+						<page string="Jurnal">
+							<field name="akunterkena">
+								<tree >
+									<field name="idakun" />
+									<field name="debit" string = "Debit"/>
+									<field name="kredit" string = "Kredit"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Akun Detil" version="7.0">
+									<group>
+										<group string="Informasi Dasar dan Saldo">
+											<field name="idakun" string = "Nama Akun" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string = "Debit"/>
+											<field name="kredit" string = "Kredit"/>
+										</group>
+										<group class="oe_edit_only" string="Ubah Manual">
+											<field name="isidebit" class="oe_edit_only"/>
+											<field name="isikredit" class="oe_edit_only"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+					<group>
+						<group groups="MMR.otoritas" string="Informasi Otoritas">
+							<field name="create_uid" groups="MMR.otoritas" string="Dibuat"/>
+							<field name="write_uid" groups="MMR.otoritas" string="Diedit"/>
+							<field name="write_date" groups="MMR.otoritas" string="Waktu Edit Terakhir"/>
+						</group>
+					</group>	
+				</form>
+			</field>
+		</record>
+		
+				-----------Jurnal Penutup----------
+		<record id="mmr_jurnalpenutup_list" model="ir.ui.view">
+			<field name="name">mmr.jurnalpenutup.list</field>
+			<field name="model">mmr.jurnalpenutup</field>
+			<field name="arch" type="xml" >
+				<tree string="Jurnal Penutup" version="7.0" default_order="tanggal" colors="red:status!='Normal'">
+					<field name="status" />
+					<field name="bulan" />
+					<field name="tahun" />
+					<field name="notes"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_jurnalpenutup_form" model="ir.ui.view">
+			<field name="name">mmr.jurnalpenutup.form</field>
+			<field name="model">mmr.jurnalpenutup</field>
+			<field name="arch" type="xml">
+				<form string="Jurnal Penutup" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="bulan" on_change="onchange_tanggal(bulan,tahun)"/>
+						<field name="tahun" on_change="onchange_tanggal(bulan,tahun)"/>
+						<field name="tanggal" attrs="{'invisible':True}"/>
+						<field name="status" />
+					</group>
+					<notebook>
+						<page string="Jurnal">
+							<field name="akunterkena">
+								<tree >
+									<field name="idakun" />
+									<field name="debit" string = "Debit"/>
+									<field name="kredit" string = "Kredit"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Akun Detil" version="7.0">
+									<group>
+										<group string="Informasi Dasar dan Saldo">
+											<field name="idakun" string = "Nama Akun" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string = "Debit"/>
+											<field name="kredit" string = "Kredit"/>
+										</group>
+										<group class="oe_edit_only" string="Ubah Manual">
+											<field name="isidebit" class="oe_edit_only"/>
+											<field name="isikredit" class="oe_edit_only"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+					<group>
+						<group groups="MMR.otoritas" string="Informasi Otoritas">
+							<field name="create_uid" groups="MMR.otoritas" string="Dibuat"/>
+							<field name="write_uid" groups="MMR.otoritas" string="Diedit"/>
+							<field name="write_date" groups="MMR.otoritas" string="Waktu Edit Terakhir"/>
+						</group>
+					</group>	
+				</form>
+			</field>
+		</record>
+		
+		-----------Laporan Jurnal----------
+		<record id="mmr_laporanjurnal_list" model="ir.ui.view">
+			<field name="name">mmr.laporanjurnal.list</field>
+			<field name="model">mmr.laporanjurnal</field>
+			<field name="arch" type="xml" >
+				<tree string="Laporan Jurnal" version="7.0" >
+					<field name="modellaporan" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_laporanjurnal_form" model="ir.ui.view">
+			<field name="name">mmr.laporanjurnal.form</field>
+			<field name="model">mmr.laporanjurnal</field>
+			<field name="arch" type="xml">
+				<form string="Laporan Jurnal" version="7.0" >
+					<header>
+						<button name="%(laporanlr_qweb_report)d" string="Print Laporan L/R" type="action" attrs="{'invisible':[('modellaporan','!=','labarugi')]}"/>
+						<button name="%(laporanneraca_qweb_report)d" string="Print Laporan Neraca" type="action" attrs="{'invisible':[('modellaporan','!=','neraca')]}"/>
+						<button name="%(laporanneracalajur_qweb_report)d" string="Print Laporan Neraca Lajur" type="action" attrs="{'invisible':[('modellaporan','!=','neracalajur')]}"/>
+						<button name="%(laporanneracalajurpenyesuaian_qweb_report)d" string="Print Laporan Neraca Lajur Penyesuaian" type="action" attrs="{'invisible':[('modellaporan','!=','jurnalpenyesuaian')]}"/>
+						<button name="%(laporanneracalajurdisesuaikan_qweb_report)d" string="Print Laporan Neraca Lajur Disesuaikan" type="action" attrs="{'invisible':[('modellaporan','!=','neracadisesuaikan')]}"/>
+						<button name="%(laporanneracalajurpenutup_qweb_report)d" string="Print Laporan Neraca Lajur Penutup" type="action" attrs="{'invisible':[('modellaporan','!=','jurnalpenutup')]}"/>
+						<button name="%(laporanbukubesar_qweb_report)d" string="Print Laporan Buku Besar" type="action" attrs="{'invisible':[('modellaporan','!=','bukubesar')]}"/>
+					</header>
+					<group string="Informasi Dasar">
+						<field name="bulan" />
+						<field name="tahun" />
+						<field name="modellaporan" string="Model Print"/>
+					</group>
+					<notebook>
+						<page string="Jurnal">
+							<group style="background-color:#e5f2ff">
+								<group>
+								</group>
+								<group>
+									<group>
+										Debit : <field name="jurnaldebit"/>
+									</group>
+									<group>
+										Kredit : <field name="jurnalkredit"/>
+									</group>
+								</group>
+							</group>
+							<field name="jurnal">
+								<tree string="Jurnal" version="7.0" create="false" edit="false" delete="false" default_order="nomorakun">
+									<field name="idakunparent" />
+									<field name="nomorakun" />
+									<field name="namaakun" />
+									<field name="debit" />
+									<field name="kredit" />
+									<field name="normaldi" />
+								</tree> 
+								<form string="Jurnal" version="7.0" >
+									<group>
+										<group string="Informasi Dasar">
+											<field name="idakunparent"/>
+											<field name="nomorakun"/>
+											<field name="namaakun"/>
+											<field name="normaldi"/>
+										</group>
+										<group string="Informasi Saldo">
+											<field name="debit"/>
+											<field name="kredit"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="History">
+											<field name="akundetil">
+												<tree string="History" version="7.0" create="false" edit="false" delete="false" default_order="tanggal">
+													<field name="tanggal" />
+													<field name="sumber" />
+													<field name="debit" />
+													<field name="kredit" />
+												</tree> 
+												<form string="Aturan Akun" version="7.0" >
+													<group>
+														<group string="Informasi Dasar">
+															<field name="tanggal"/>
+															<field name="sumber"/>
+														</group>
+														<group string="Informasi Saldo">
+															<field name="debit"/>
+															<field name="kredit"/>
+														</group>
+													</group>
+												</form>
+											</field>	
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>
+						<page string="Jurnal Penyesuaian">
+							<group style="background-color:#e5f2ff">
+								<group>
+								</group>
+								<group>
+									<group>
+										Debit : <field name="jurnalpenyesuaiandebit"/>
+									</group>
+									<group>
+										Kredit : <field name="jurnalpenyesuaiankredit"/>
+									</group>
+								</group>
+							</group>
+							<field name="jurnalpenyesuaian">
+								<tree string="Jurnal" version="7.0" create="false" edit="false" delete="false" default_order="nomorakun">
+									<field name="idakunparent" />
+									<field name="nomorakun" />
+									<field name="namaakun" />
+									<field name="debit" />
+									<field name="kredit" />
+									<field name="normaldi" />
+								</tree> 
+								<form string="Jurnal" version="7.0" >
+									<group>
+										<group string="Informasi Dasar">
+											<field name="idakunparent"/>
+											<field name="nomorakun"/>
+											<field name="namaakun"/>
+											<field name="normaldi"/>
+										</group>
+										<group string="Informasi Saldo">
+											<field name="debit"/>
+											<field name="kredit"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="History">
+											<field name="akundetil">
+												<tree string="History" version="7.0" create="false" edit="false" delete="false" default_order="tanggal">
+													<field name="tanggal" />
+													<field name="sumber" />
+													<field name="debit" />
+													<field name="kredit" />
+												</tree> 
+												<form string="Aturan Akun" version="7.0" >
+													<group>
+														<group string="Informasi Dasar">
+															<field name="tanggal"/>
+															<field name="sumber"/>
+														</group>
+														<group string="Informasi Saldo">
+															<field name="debit"/>
+															<field name="kredit"/>
+														</group>
+													</group>
+												</form>
+											</field>	
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Jurnal Disesuaikan">
+							<group style="background-color:#e5f2ff">
+								<group>
+								</group>
+								<group>
+									<group>
+										Debit : <field name="jurnaldisesuaikandebit"/>
+									</group>
+									<group>
+										Kredit : <field name="jurnaldisesuaikankredit"/>
+									</group>
+								</group>
+							</group>
+							<field name="jurnaldisesuaikan">
+								<tree string="Jurnal" version="7.0" create="false" edit="false" delete="false" default_order="nomorakun">
+									<field name="idakunparent" />
+									<field name="nomorakun" />
+									<field name="namaakun" />
+									<field name="debit" />
+									<field name="kredit" />
+									<field name="normaldi" />
+								</tree> 
+								<form string="Jurnal" version="7.0" >
+									<group>
+										<group string="Informasi Dasar">
+											<field name="idakunparent"/>
+											<field name="nomorakun"/>
+											<field name="namaakun"/>
+											<field name="normaldi"/>
+										</group>
+										<group string="Informasi Saldo">
+											<field name="debit"/>
+											<field name="kredit"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="History">
+											<field name="akundetil">
+												<tree string="History" version="7.0" create="false" edit="false" delete="false" default_order="tanggal">
+													<field name="tanggal" />
+													<field name="sumber" />
+													<field name="debit" />
+													<field name="kredit" />
+												</tree> 
+												<form string="Aturan Akun" version="7.0" >
+													<group>
+														<group string="Informasi Dasar">
+															<field name="tanggal"/>
+															<field name="sumber"/>
+														</group>
+														<group string="Informasi Saldo">
+															<field name="debit"/>
+															<field name="kredit"/>
+														</group>
+													</group>
+												</form>
+											</field>	
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>
+						<page string="Jurnal Penutup">
+							<group style="background-color:#e5f2ff">
+								<group>
+								</group>
+								<group>
+									<group>
+										Debit : <field name="jurnalpenutupdebit"/>
+									</group>
+									<group>
+										Kredit : <field name="jurnalpenutupkredit"/>
+									</group>
+								</group>
+							</group>
+							<field name="jurnalpenutup">
+								<tree string="Jurnal" version="7.0" create="false" edit="false" delete="false" default_order="nomorakun">
+									<field name="idakunparent" />
+									<field name="nomorakun" />
+									<field name="namaakun" />
+									<field name="debit" />
+									<field name="kredit" />
+									<field name="normaldi" />
+								</tree> 
+								<form string="Jurnal" version="7.0" >
+									<group>
+										<group string="Informasi Dasar">
+											<field name="idakunparent"/>
+											<field name="nomorakun"/>
+											<field name="namaakun"/>
+											<field name="normaldi"/>
+										</group>
+										<group string="Informasi Saldo">
+											<field name="debit"/>
+											<field name="kredit"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="History">
+											<field name="akundetil">
+												<tree string="History" version="7.0" create="false" edit="false" delete="false" default_order="tanggal">
+													<field name="tanggal" />
+													<field name="sumber" />
+													<field name="debit" />
+													<field name="kredit" />
+												</tree> 
+												<form string="Aturan Akun" version="7.0" >
+													<group>
+														<group string="Informasi Dasar">
+															<field name="tanggal"/>
+															<field name="sumber"/>
+														</group>
+														<group string="Informasi Saldo">
+															<field name="debit"/>
+															<field name="kredit"/>
+														</group>
+													</group>
+												</form>
+											</field>	
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Aturan Akun---------
+		<record id="mmr_aturanakun_list" model="ir.ui.view">
+			<field name="name">mmr.aturanakun.list</field>
+			<field name="model">mmr.aturanakun</field>
+			<field name="arch" type="xml">
+				<tree string="Aturan Akun" version="7.0">
+					<field name="namaaturan"/>
+					<field name="model" />
+					<field name="aturanakundetil" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_aturanakun_form" model="ir.ui.view">
+			<field name="name">mmr.aturanakun.form</field>
+			<field name="model">mmr.aturanakun</field>
+			<field name="arch" type="xml">
+				<form string="Aturan Akun" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="namaaturan"/>
+						<field name="model" options="{'no_create': True, 'no_open':True}"/>
+					</group>
+					<notebook>
+						<page string="Detil Aturan">
+							<field name="aturanakundetil" />
+						</page>	
+						<page string="Notes">
+							<field name="notes" />
+						</page>	
+					</notebook>
+					<group>
+						<group groups="MMR.otoritas" string="Informasi Otoritas">
+							<field name="create_uid" groups="MMR.otoritas" string="Dibuat"/>
+							<field name="write_uid" groups="MMR.otoritas" string="Diedit"/>
+							<field name="write_date" groups="MMR.otoritas" string="Waktu Edit Terakhir"/>
+						</group>
+					</group>	
+				</form>
+			</field>
+		</record>
+		
+		-----------Aturan Akun Detil---------
+		<record id="mmr_aturanakundetil_list" model="ir.ui.view">
+			<field name="name">mmr.aturanakundetil.list</field>
+			<field name="model">mmr.aturanakundetil</field>
+			<field name="arch" type="xml">
+				<tree string="Aturan Akun Detil" version="7.0">
+					<field name="field"/>
+					<field name="noakun" />
+					<field name="debitkredit" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_aturanakundetil_form" model="ir.ui.view">
+			<field name="name">mmr.aturanakundetil.form</field>
+			<field name="model">mmr.aturanakundetil</field>
+			<field name="arch" type="xml">
+				<form string="Aturan Akun Detil" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="idaturanakun"  attrs="{'invisible':True}"/>
+						<field name="model"  attrs="{'invisible':True}" />
+						<field name="field" widget="selection"/>
+						<field name="noakun" options="{'no_create': True, 'no_open':True}"/>
+						<field name="debitkredit" />
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		-----------Kegiatan Akunting---------
+		<record id="mmr_kegiatanakunting_list" model="ir.ui.view">
+			<field name="name">mmr.kegiatanakunting.list</field>
+			<field name="model">mmr.kegiatanakunting</field>
+			<field name="arch" type="xml">
+				<tree string="Kegiatan Akunting" version="7.0" colors="red:status!='Normal'" default_order="tanggal desc">
+					<field name="status" />
+					<field name="tanggal"/>
+					<field name="detilkejadian" />
+					<field name="akunterkena" />
+					<field name="disetujui" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_kegiatanakunting_form" model="ir.ui.view">
+			<field name="name">mmr.kegiatanakunting.form</field>
+			<field name="model">mmr.kegiatanakunting</field>
+			<field name="arch" type="xml">
+				<form string="Kegiatan Akunting" version="7.0" >
+					<header class="oe_read_only">
+						<button name="setuju" class="oe_highlight" string="Setuju" type="object" groups="MMR.kepalakeuangan" attrs="{'invisible':[('disetujui','!=',False)]}"/>
+						<button name="revisi" class="oe_highlight" string="Revisi" type="object" groups="MMR.otoritas" attrs="{'invisible':[('disetujui','=',False)]}"/>
+					</header>
+					<group>
+						<group string="Informasi Dasar">
+							<field name="tanggal" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="detilkejadian" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="status" />
+						</group>
+					</group>
+					<notebook>
+						<page string="Jurnal">
+							<field name="akunterkena" attrs="{'readonly':[('disetujui','!=',False)]}">
+								<tree >
+									<field name="idakun" />
+									<field name="debit" string = "Debit"/>
+									<field name="kredit" string = "Kredit"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Akun Detil" version="7.0">
+									<group>
+										<group string="Informasi Dasar dan Saldo">
+											<field name="idakun" string = "Nama Akun" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string = "Debit"/>
+											<field name="kredit" string = "Kredit"/>
+										</group>
+										<group class="oe_edit_only" string="Ubah Manual">
+											<field name="isidebit" class="oe_edit_only"/>
+											<field name="isikredit" class="oe_edit_only"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Notes" >
+							<field name="notes" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</page>	
+					</notebook>
+					<group groups="MMR.otoritas" string="Informasi Otoritas">
+						<field name="create_uid" groups="MMR.otoritas" string="Dibuat"/>
+						<field name="write_uid" groups="MMR.otoritas" string="Diedit"/>
+						<field name="write_date" groups="MMR.otoritas" string="Waktu Edit Terakhir"/>
+						<field name="disetujui" />
+					</group>
+				</form>
+			</field>
+		</record>
+				
+				-----------Biaya---------
+		<record id="mmr_biaya_list" model="ir.ui.view">
+			<field name="name">mmr.biaya.list</field>
+			<field name="model">mmr.biaya</field>
+			<field name="arch" type="xml">
+				<tree string="Biaya" version="7.0" colors="red:status!='Normal'" default_order="tanggal desc">
+					<field name="status" />
+					<field name="tanggal"/>
+					<field name="detilkejadian" />
+					<field name="jumlahbiaya" />
+					<field name="akunterkena" />
+					<field name="disetujui" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_biaya_form" model="ir.ui.view">
+			<field name="name">mmr.biaya.form</field>
+			<field name="model">mmr.biaya</field>
+			<field name="arch" type="xml">
+				<form string="Biaya" version="7.0" >
+					<header class="oe_read_only">
+						<button name="setuju" class="oe_highlight" string="Setuju" type="object" groups="MMR.akunting" attrs="{'invisible':[('disetujui','!=',False)]}"/>
+						<button name="revisi" class="oe_highlight" string="Revisi" type="object" groups="MMR.otoritas" attrs="{'invisible':[('disetujui','=',False)]}"/>
+					</header>
+					<group>
+						<group string="Informasi Dasar">
+							<field name="namamodel" attrs="{'invisible':True}"/>
+							<field name="trigger" attrs="{'invisible':True}"/>
+							<field name="tanggal" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="detilkejadian" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="jumlahbiaya" on_change="onchange_jumlahbiaya()" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="status" />
+						</group>
+						<group string="Informasi Akunting">
+							<field name="aturanakun" attrs="{'readonly':[('disetujui','!=',False)]}" options="{'no_create': True, 'no_open':True}"/>
+							<field name="akunotomatis" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Jurnal">
+							<field name="akunterkena" attrs="{'readonly':[('disetujui','!=',False)]}">
+								<tree >
+									<field name="idakun" />
+									<field name="debit" string = "Debit"/>
+									<field name="kredit" string = "Kredit"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Akun Detil" version="7.0">
+									<group>
+										<group string="Informasi Dasar dan Saldo">
+											<field name="idakun" string = "Nama Akun" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string = "Debit"/>
+											<field name="kredit" string = "Kredit"/>
+										</group>
+										<group class="oe_edit_only" string="Ubah Manual">
+											<field name="isidebit" class="oe_edit_only"/>
+											<field name="isikredit" class="oe_edit_only"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Notes">
+							<field name="notes" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</page>	
+					</notebook>
+					<group>
+						<group groups="MMR.otoritas" string="Informasi Otoritas">
+							<field name="create_uid" groups="MMR.otoritas" string="Dibuat"/>
+							<field name="write_uid" groups="MMR.otoritas" string="Diedit"/>
+							<field name="write_date" groups="MMR.otoritas" string="Waktu Edit Terakhir"/>
+							<field name="disetujui" />
+						</group>
+					</group>	
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

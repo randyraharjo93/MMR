@@ -1,0 +1,185 @@
+<openerp>
+	<data>
+		
+		-----------SMART----------
+		<record id="mmr_smart_list" model="ir.ui.view">
+			<field name="name">mmr.smart.list</field>
+			<field name="model">mmr.smart</field>
+			<field name="arch" type="xml">
+				<tree string="Smart" version="7.0">
+					<field name="status" />
+					<field name="pekerjaan" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_smart_form" model="ir.ui.view">
+			<field name="name">mmr.smart.form</field>
+			<field name="model">mmr.smart</field>
+			<field name="arch" type="xml">
+				<form string="Smart" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="status" />
+						<field name="targetomzet" string ="Pencapaian Omzet Rayon Anda" widget="progressbar" style="background-color:#996699" groups="MMR.sales"/>
+						<field name="milik" />
+					</group>
+					<notebook>
+						<page string="Pekerjaan">
+							<field name="pekerjaan">
+								<tree string="Pekerjaan" version="7.0" >
+									<field name="pekerjaanmilik" groups="MMR.otoritas"/>
+									<field name="sumber" />
+									<field name="deskripsi" />
+								</tree>
+								<form string="Pekerjaan" version="7.0" >
+									<group string="Informasi Pekerjaan">
+										<field name="pekerjaanmilik" groups="MMR.otoritas"/>
+										<field name="sumber" />
+										<field name="deskripsi" />
+									</group>
+								</form>
+							</field>	
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+	
+			-----------Lupakan Pekerjaan----------
+		<record id="mmr_lupakanpekerjaan_list" model="ir.ui.view">
+			<field name="name">mmr.lupakanpekerjaan.list</field>
+			<field name="model">mmr.lupakanpekerjaan</field>
+			<field name="arch" type="xml">
+				<tree string="Lupakan Pekerjaan" version="7.0">
+					<field name="write_date" string="Tanggal Pembuatan"/>
+					<field name="sumber" />
+					<field name="deskripsi" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_lupakanpekerjaan_form" model="ir.ui.view">
+			<field name="name">mmr.lupakanpekerjaan.form</field>
+			<field name="model">mmr.lupakanpekerjaan</field>
+			<field name="arch" type="xml">
+				<form string="Lupakan Pekerjaan" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="sumber" />
+						<field name="deskripsi" />	
+					</group>
+				</form>
+			</field>
+		</record>
+		
+			-----------Tambah Pekerjaan----------
+		<record id="mmr_tambahpekerjaan_list" model="ir.ui.view">
+			<field name="name">mmr.tambahpekerjaan.list</field>
+			<field name="model">mmr.tambahpekerjaan</field>
+			<field name="arch" type="xml">
+				<tree string="Tambah Pekerjaan" version="7.0">
+					<field name="write_date" string="Tanggal Pembuatan"/>
+					<field name="sumber" />
+					<field name="deskripsi" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_tambahpekerjaan_form" model="ir.ui.view">
+			<field name="name">mmr.tambahpekerjaan.form</field>
+			<field name="model">mmr.tambahpekerjaan</field>
+			<field name="arch" type="xml">
+				<form string="Tambah Pekerjaan" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="sumber" />
+						<field name="deskripsi" />	
+					</group>
+				</form>
+			</field>
+		</record>
+		
+					-----------Auto Delete----------
+		<record id="mmr_autodelete_list" model="ir.ui.view">
+			<field name="name">mmr.autodelete.list</field>
+			<field name="model">mmr.autodelete</field>
+			<field name="arch" type="xml">
+				<tree string="Auto Delete" version="7.0">
+					<field name="bulan" />
+					<field name="tahun" />
+					<field name="deleted" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_autodelete_form" model="ir.ui.view">
+			<field name="name">mmr.autodelete.form</field>
+			<field name="model">mmr.autodelete</field>
+			<field name="arch" type="xml">
+				<form string="Auto Delete" version="7.0" >
+					<header>
+						<button name="autodelete" attrs="{'invisible':[('deleted','!=',False)]}" class="oe_read_only oe_highlight" string="Delete" type="object" groups="MMR.otoritas" confirm="Warning! Data yang dihapus tidak dapat dikembalikan! Yakin melanjutkan penghapusan data? ( Sudahkah anda membackup data bulan tersebut? )"/>
+					</header>
+					<group string="Informasi Dasar">
+						<field name="bulan" />
+						<field name="tahun" />	
+						<field name="preview" />
+						<field name="deleted" />
+					</group>
+					<notebook>
+						<page string="Data Dihapus">
+							<field name="datadihapus">
+							</field>	
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+	
+				-----------Cetak Backup----------
+		<record id="mmr_cetakbackup_form" model="ir.ui.view">
+			<field name="name">mmr.cetakbackup.form</field>
+			<field name="model">mmr.cetakbackup</field>
+			<field name="arch" type="xml">
+				<form string="Cetak Backup" version="7.0" >
+					<header>
+						<button name="%(cetakbackup_qweb_report)d" string="Print Data" groups="MMR.otoritas" type="action"/>
+					</header>
+					<group string="Informasi Dasar">
+						<field name="starttanggal" />
+						<field name="endtanggal" />	
+						<field name="jenis" />
+						<field name="saldoawal" />
+					</group>
+					<notebook>
+						<page string="Buku Pembelian">
+							<field name="fakturbelidetil">
+							</field>	
+						</page>
+						<page string="Buku Penjualan">
+							<field name="fakturjualdetil">
+							</field>	
+						</page>
+						<page string="Stok">
+							<field name="stok">
+								<tree create="false">
+									<field name="merk" />
+									<field name="namaproduk" />
+								</tree>
+							</field>	
+						</page>				
+						<page string="Kas">
+							<field name="kas">
+								<tree create="false">
+									<field name="tanggal" />
+									<field name="sumber" />
+									<field name="debit" />
+									<field name="kredit" />
+								</tree>
+							</field>	
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+				
+	</data>
+</openerp>

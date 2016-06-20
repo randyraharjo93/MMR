@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp> 
+    <data>
+    	---------------------Cetak Backup-----------------------------------
+        <template id="cetakbackup_report" >
+       	 	<t t-call="report.html_container">
+       			 <t t-foreach="docs" t-as="o">
+	           		<t t-call="report.external_layout" >
+	           			<div class="page">
+	           				<t t-if = "o.jenis == 'pembelian'">
+		           				<h2 style="text-align:center">BUKU PEMBELIAN</h2>
+				           		<h5 style="text-align:center"> Periode : <span t-field="o.starttanggal"/> - <span t-field="o.endtanggal"/></h5>
+				           		<br/>
+				           		<style>
+								      tr:nth-of-type(odd) {
+								      background-color:#f4f4f4;
+								    }
+								</style>	
+								<t t-set="nfaktur" t-value="0"/> 		           		
+				           		<table class="col-xs-12" style="font-size: 70%">
+				           			<tr style="border-bottom: 3px solid black">
+	                 		   			<th style="border: 1px solid;">Tgl</th>
+	                 		   			<th style="border: 1px solid;">No Faktur</th>
+	                 		   			<th style="border: 1px solid;">No Faktur Pajak</th>
+	                 		   			<th style="border: 1px solid;">Supplier</th>
+	                 		   			<th style="border: 1px solid;">Produk</th>
+	                 		   			<th style="border: 1px solid; text-align:center">Jumlah</th>
+	                 		   			<th style="border: 1px solid;">Satuan</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Harga</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Bruto</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Diskon</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Diskon(%)</th>
+	                 		   			<th style="border: 1px solid; text-align:right">HPP</th>
+	                 		   			<th style="border: 1px solid; text-align:right">PPN Masukan</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Netto</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Jatuh Tempo</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Total Bayar</th>
+	                 		   		</tr>
+				           			<t t-foreach="o.fakturbelidetil" t-as="jurnaldetil">
+				           				<t t-if="nfaktur == jurnaldetil.idpembelianfaktur.nomorfaktur">
+						           			<tr>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpembelianfaktur.tanggalterbit"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpembelianfaktur.nomorfaktur"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpembelianfaktur.nofakturpajak"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpembelianfaktur.supplier.kode"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.merk.merk"/> <span t-esc="jurnaldetil.namaproduk.namaproduk"/> </td>
+						           				<td style="border: 1px solid; text-align:center"> <span t-esc="'{0:,.0f}'.format(jurnaldetil.debit)"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.satuan.satuan"/> (@ <span t-esc="jurnaldetil.satuan.isi"/>) </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.harga)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.bruto)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.bruto - jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.0f}'.format(jurnaldetil.diskon)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.netto - jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.netto)"/> </td>
+						           				<td style="border: 1px solid"> <span t-esc="jurnaldetil.idpembelianfaktur.jatuhtempo"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> - </td>
+						           			</tr>
+					           			</t>
+					           			<t t-if="nfaktur != jurnaldetil.idpembelianfaktur.nomorfaktur">
+						           			<tr style="border-top:thin solid #000000">
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpembelianfaktur.tanggalterbit"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpembelianfaktur.nomorfaktur"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpembelianfaktur.nofakturpajak"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpembelianfaktur.supplier.kode"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.merk.merk"/> <span t-esc="jurnaldetil.namaproduk.namaproduk"/> </td>
+						           				<td style="border: 1px solid; text-align:center"> <span t-esc="'{0:,.0f}'.format(jurnaldetil.debit)"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.satuan.satuan"/> (@ <span t-esc="jurnaldetil.satuan.isi"/>) </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.harga)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.bruto)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.bruto - jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.0f}'.format(jurnaldetil.diskon)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.netto - jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.netto)"/> </td>
+						           				<td style="border: 1px solid"> <span t-esc="jurnaldetil.idpembelianfaktur.jatuhtempo"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.idpembelianfaktur.totalbayar)"/> </td>
+						           			</tr>
+						           			<t t-set="nfaktur" t-value="jurnaldetil.idpembelianfaktur.nomorfaktur"/> 
+					           			</t>
+					           		</t>	
+				           		</table>
+			           		</t>
+			           		
+			           		<t t-if = "o.jenis == 'penjualan'">
+		           				<h2 style="text-align:center">BUKU PENJUALAN</h2>
+				           		<h5 style="text-align:center"> Periode : <span t-field="o.starttanggal"/> - <span t-field="o.endtanggal"/></h5>
+				           		<br/>
+				           		<style>
+								      tr:nth-of-type(odd) {
+								      background-color:#f4f4f4;
+								    }
+								</style>	
+								<t t-set="nfaktur" t-value="0"/> 
+				           		<table class="col-xs-12" style="font-size: 70%">
+				           			<tr style="border-bottom: 3px solid black; margin-bottom: 2px">
+				           				<th style="border: 1px solid;">Teknisi (P)</th>
+				           				<th style="border: 1px solid;">Code A</th>
+				           				<th style="border: 1px solid; text-align:center">Rayon</th>
+	                 		   			<th style="border: 1px solid;">Tgl</th>
+	                 		   			<th style="border: 1px solid;">No SuratJalan</th>
+	                 		   			<th style="border: 1px solid;">No Faktur</th>
+	                 		   			<th style="border: 1px solid;">No Faktur Pajak</th>
+	                 		   			<th style="border: 1px solid;">B/C/K/L/P/R</th>
+	                 		   			<th style="border: 1px solid;">Customer</th>
+	                 		   			<th style="border: 1px solid;">Kota</th>
+	                 		   			<th style="border: 1px solid;">Produk</th>
+	                 		   			<th style="border: 1px solid; text-align:center">Jumlah</th>
+	                 		   			<th style="border: 1px solid;">Satuan</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Harga</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Bruto</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Diskon</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Diskon (%)</th>
+	                 		   			<th style="border: 1px solid; text-align:right">HPP</th>
+	                 		   			<th style="border: 1px solid; text-align:right">PPN Masukan</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Netto</th>
+	                 		   			<th style="border: 1px solid">Jatuh Tempo</th>
+	                 		   			<th style="border: 1px solid; text-align:right">Total Bayar</th>
+	                 		   		</tr>
+				           			<t t-foreach="o.fakturjualdetil" t-as="jurnaldetil">
+				           				<t t-if="nfaktur == jurnaldetil.idpenjualanfaktur.nomorfaktur">
+						           			<tr>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.teknisi"/> </td>
+						           				<td style="border: 1px solid;"> - </td>
+						           				<td style="border: 1px solid;text-align:center"> <span t-esc="jurnaldetil.idpenjualanfaktur.rayon.kode"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.tanggalterbit"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.penjualansj.nomorsj"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.nomorfaktur"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.nofakturpajak"/> </td>
+						           				<td style="border: 1px solid;"> - </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.customer.kode"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.kota.nama"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.merk.merk"/> <span t-esc="jurnaldetil.namaproduk.namaproduk"/> </td>
+						           				<td style="border: 1px solid; text-align:center"> <span t-esc="'{0:,.0f}'.format(jurnaldetil.jumlah)"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.satuan.satuan"/> (@ <span t-esc="jurnaldetil.satuan.isi"/>) </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.harga)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(jurnaldetil.jumlah * jurnaldetil.harga,2))"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(jurnaldetil.jumlah * jurnaldetil.harga,2) - jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.0f}'.format(jurnaldetil.diskon)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.hppembelian + round(jurnaldetil.hppembelian*10/100,2) - jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.hppembelian + round(jurnaldetil.hppembelian*10/100,2))"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="jurnaldetil.idpenjualanfaktur.jatuhtempo"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> - </td>
+						           			</tr>
+						           		</t>	
+						           		<t t-if="nfaktur != jurnaldetil.idpenjualanfaktur.nomorfaktur">
+						           			<tr>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.teknisi"/> </td>
+						           				<td style="border: 1px solid;"> - </td>
+						           				<td style="border: 1px solid;text-align:center"> <span t-esc="jurnaldetil.idpenjualanfaktur.rayon.kode"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.tanggalterbit"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.penjualansj.nomorsj"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.nomorfaktur"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.nofakturpajak"/> </td>
+						           				<td style="border: 1px solid;"> - </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.customer.kode"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.idpenjualanfaktur.kota.nama"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.merk.merk"/> <span t-esc="jurnaldetil.namaproduk.namaproduk"/> </td>
+						           				<td style="border: 1px solid; text-align:center"> <span t-esc="'{0:,.0f}'.format(jurnaldetil.jumlah)"/> </td>
+						           				<td style="border: 1px solid;"> <span t-esc="jurnaldetil.satuan.satuan"/> (@ <span t-esc="jurnaldetil.satuan.isi"/>) </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.harga)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(jurnaldetil.jumlah * jurnaldetil.harga,2))"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(jurnaldetil.jumlah * jurnaldetil.harga,2) - jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.0f}'.format(jurnaldetil.diskon)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.hppembelian + round(jurnaldetil.hppembelian*10/100,2) - jurnaldetil.hppembelian)"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.hppembelian + round(jurnaldetil.hppembelian*10/100,2))"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="jurnaldetil.idpenjualanfaktur.jatuhtempo"/> </td>
+						           				<td style="border: 1px solid; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.idpenjualanfaktur.totalbayar)"/> </td>
+						           			</tr>
+						           			<t t-set="nfaktur" t-value="jurnaldetil.idpenjualanfaktur.nomorfaktur"/> 
+						           		</t>	
+					           		</t>	
+				           		</table>
+			           		</t>
+			           		
+			           		<t t-if = "o.jenis == 'stok'">
+		           				<h2 style="text-align:center">BUKU STOK</h2>
+				           		<h5 style="text-align:center"> Periode : <span t-field="o.starttanggal"/> - <span t-field="o.endtanggal"/></h5>
+				           		<br/>
+				           		<style>
+								      tr:nth-of-type(odd) {
+								      background-color:#f4f4f4;
+								    }
+								</style>	
+								<t t-set="merk" t-value="0"/>
+								<t t-foreach="o.stok" t-as="produk">	
+									<t t-if="len(produk.laporanstokdetil) > 0">
+										<t t-if="produk.merk.merk != merk">
+											<h3 style="text-align:center" class="col-xs-12"> <span t-esc="produk.merk.merk"/> </h3>
+											<t t-set="merk" t-value="produk.merk.merk"/>
+										</t>
+										<h5 style="text-align:center" class="col-xs-12"> <span t-field="produk.merk"/> - <span t-field="produk.namaproduk"/> - <span t-field="produk.satuan"/> </h5>	
+						           		<table class=" col-xs-12" style="page-break-inside: avoid !important; font-size: 100%; border: 1px solid black; margin:0 0 5px 0; align: center">
+						           			<tr style="border-bottom: 3px solid black">
+			                 		   			<th style="border: 1px solid; text-align:center; width: 10%">Tgl</th>
+			                 		   			<th style="border: 1px solid; width: 20%">Sumber</th>
+			                 		   			<th style="border: 1px solid; width: 10%">Kadaluarsa</th>
+			                 		   			<th style="border: 1px solid; text-align:center; width: 10%">Debit</th>
+			                 		   			<th style="border: 1px solid; text-align:center; width: 10%">Kredit</th>
+			                 		   			<th style="border: 1px solid; text-align:center; width: 10%">Saldo</th>
+			                 		   			<th style="border: 1px solid; text-align:right; width: 15%">HPP</th>
+			                 		   			<th style="border: 1px solid; text-align:right; width: 15%">Nilai</th>
+			                 		   		</tr>
+						           			<t t-foreach="produk.laporanstokdetil" t-as="stok">
+							           			<tr style="border-top:thin solid #000000">
+							           				<td style="text-align:center; width: 10%"> <span t-esc="stok.tanggal"/> </td>
+							           				<td style="border: 1px solid; width: 20%"> <span t-esc="stok.sumber"/> </td>
+							           				<td style="border: 1px solid; width: 10%"> <span t-esc="stok.kadaluarsa"/> </td>
+							           				<td style="border: 1px solid; text-align:center; width: 10%"> <span t-esc="'{0:,.0f}'.format(stok.debit)"/> </td>
+							           				<td style="border: 1px solid; text-align:center; width: 10%"> <span t-esc="'{0:,.0f}'.format(stok.kredit)"/> </td>
+							           				<td style="border: 1px solid; text-align:center; width: 10%"> <span t-esc="'{0:,.0f}'.format(stok.saldo)"/> </td>
+							           				<td style="border: 1px solid; text-align:right; width: 15%"> <span t-esc="'{0:,.2f}'.format(stok.hargasetelahdiskon)"/> </td>
+							           				<td style="border: 1px solid; text-align:right; width: 15%"> <span t-esc="'{0:,.2f}'.format(stok.nilai)"/> </td>
+							           			</tr>
+							           		</t>	
+						           		</table>
+						           	</t>
+					           	</t>	
+			           		</t>
+			           		
+			           		<t t-if = "o.jenis == 'kasbesar' or o.jenis == 'kaskecil' or o.jenis == 'kasbank' or o.jenis == 'kaslab'">
+			           			<t t-if = "o.jenis == 'kasbesar'">
+		           					<h2 style="text-align:center">KAS BESAR</h2>
+		           				</t>
+		           				<t t-if = "o.jenis == 'kaskecil'">
+		           					<h2 style="text-align:center">KAS KECIL</h2>
+		           				</t>
+		           				<t t-if = "o.jenis == 'kasbank'">
+		           					<h2 style="text-align:center">KAS BANK</h2>
+		           				</t>
+		           				<t t-if = "o.jenis == 'kaslab'">
+		           					<h2 style="text-align:center">KAS LAB</h2>
+		           				</t>
+				           		<h5 style="text-align:center"> Periode : <span t-field="o.starttanggal"/> - <span t-field="o.endtanggal"/></h5>
+				           		<br/>
+				           		<style>
+								      tr:nth-of-type(odd) {
+								      background-color:#f4f4f4;
+								    }
+								</style>	
+			           			<t t-set="saldoawal" t-value="o.saldoawal"/>
+				           		<table class=" col-xs-12" style="font-size: 100%; border: 1px solid black; margin:0 0 5px 0; align: center">
+				           			<tr style="border-bottom: 3px solid black">
+	                 		   			<th>Tgl</th>
+	                 		   			<th>Sumber</th>
+	                 		   			<th style="text-align:right">Debit</th>
+	                 		   			<th style="text-align:right">Kredit</th>
+	                 		   			<th style="text-align:right">Saldo</th>
+	                 		   		</tr>
+	                 		   		<tr style="border-top:thin solid #000000">
+					           				<td> - </td>
+					           				<td> Saldo Awal </td>
+					           				<td style="text-align:right"> 0 </td>
+					           				<td style="text-align:right"> 0 </td>
+					           				<td style="text-align:right"> <span t-esc="'{0:,.2f}'.format(saldoawal)"/> </td>
+					           			</tr>
+				           			<t t-foreach="o.kas" t-as="akundetil">
+				           				<t t-set="saldoawal" t-value="saldoawal+akundetil.debit-akundetil.kredit"/>
+					           			<tr style="border-top:thin solid #000000">
+					           				<td> <span t-esc="akundetil.tanggal"/> </td>
+					           				<td> <span t-esc="akundetil.sumber"/> </td>
+					           				<td style="text-align:right"> <span t-esc="'{0:,.2f}'.format(akundetil.debit)"/> </td>
+					           				<td style="text-align:right"> <span t-esc="'{0:,.2f}'.format(akundetil.kredit)"/> </td>
+					           				<td style="text-align:right"> <span t-esc="'{0:,.2f}'.format(saldoawal)"/> </td>       	
+					           			</tr>
+					           		</t>	
+				           		</table>
+			           		</t>
+			           	</div>	
+	            	</t>	
+        		</t>
+    		</t>  
+        </template>
+    </data>
+
+</openerp>

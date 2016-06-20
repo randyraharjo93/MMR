@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp> 
+    <data>
+        <report id="po_pembelian_qweb_report"
+                string="Print PO"
+                model="mmr.pembelianpo"
+                report_type = "qweb-pdf"
+                file="MMR.popembelian_report"
+                name="MMR.popembelian_report" 
+                menu="False"/>   
+                
+        <report id="po_pembeliantanpaharga_qweb_report"
+                string="Print PO Tanpa Harga"
+                model="mmr.pembelianpo"
+                report_type = "qweb-pdf"
+                file="MMR.popembeliantanpaharga_report"
+                name="MMR.popembeliantanpaharga_report" 
+                menu="False"/>           
+        
+        <report id="sj_penjualan_qweb_report"
+                string="Print SJ"
+                model="mmr.penjualansj"
+                report_type = "qweb-pdf"
+                file="MMR.sjpenjualan_report"
+                name="MMR.sjpenjualan_report" 
+                menu="False"/>   
+        
+        <report id="faktur_penjualan_qweb_report"
+                string="Print Faktur"
+                model="mmr.penjualanfaktur"
+                report_type = "qweb-pdf"
+                file="MMR.fakturpenjualan_report"
+                name="MMR.fakturpenjualan_report" 
+                menu="False"/>   
+                
+        <report id="laporanlr_qweb_report"
+                string="Print Laporan Laba Rugi"
+                model="mmr.laporanjurnal"
+                report_type = "qweb-pdf"
+                file="MMR.laporanlr_report"
+                name="MMR.laporanlr_report" 
+                menu="False"/>    
+        
+        <report id="laporanneraca_qweb_report"
+                string="Print Laporan Neraca"
+                model="mmr.laporanjurnal"
+                report_type = "qweb-pdf"
+                file="MMR.laporanneraca_report"
+                name="MMR.laporanneraca_report" 
+                menu="False"/>  
+        
+        <report id="laporanneracalajur_qweb_report"
+                string="Print Laporan Neraca Lajur"
+                model="mmr.laporanjurnal"
+                report_type = "qweb-pdf"
+                file="MMR.laporanneracalajur_report"
+                name="MMR.laporanneracalajur_report" 
+                menu="False"/>
+        
+        <report id="laporanneracalajurpenyesuaian_qweb_report"
+                string="Print Laporan Neraca Lajur Penyesuaian"
+                model="mmr.laporanjurnal"
+                report_type = "qweb-pdf"
+                file="MMR.laporanneracalajurpenyesuaian_report"
+                name="MMR.laporanneracalajurpenyesuaian_report" 
+                menu="False"/>     
+        
+        <report id="laporanneracalajurdisesuaikan_qweb_report"
+                string="Print Laporan Neraca Lajur Disesuaikan"
+                model="mmr.laporanjurnal"
+                report_type = "qweb-pdf"
+                file="MMR.laporanneracalajurdisesuaikan_report"
+                name="MMR.laporanneracalajurdisesuaikan_report" 
+                menu="False"/>
+                  
+        <report id="laporanneracalajurpenutup_qweb_report"
+                string="Print Laporan Neraca Lajur Penutup"
+                model="mmr.laporanjurnal"
+                report_type = "qweb-pdf"
+                file="MMR.laporanneracalajurpenutup_report"
+                name="MMR.laporanneracalajurpenutup_report" 
+                menu="False"/>  
+                
+        <report id="laporanbukubesar_qweb_report"
+                string="Print Laporan Buku Besar"
+                model="mmr.laporanjurnal"
+                report_type = "qweb-pdf"
+                file="MMR.laporanbukubesar_report"
+                name="MMR.laporanbukubesar_report" 
+                menu="False"/>  
+             
+        <report id="cetakbackup_qweb_report"
+                string="Print Data"
+                model="mmr.cetakbackup"
+                report_type = "qweb-pdf"
+                file="MMR.cetakbackup_report"
+                name="MMR.cetakbackup_report" 
+                menu="False"/>                                                                 
+    </data>
+</openerp>

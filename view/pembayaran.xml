@@ -1,0 +1,279 @@
+<openerp>
+	<data>
+		-----------Pembayaran Pembelian----------
+		<record id="mmr_pembayaranpembelian_list" model="ir.ui.view">
+			<field name="name">mmr.pembayaranpembelian.list</field>
+			<field name="model">mmr.pembayaranpembelian</field>
+			<field name="arch" type="xml">
+				<tree string="Pembayaran Pembelian" version="7.0" colors="red:disetujui==False" default_order="tanggalbayar desc">
+					<field name="status" />
+					<field name="supplier" />
+					<field name="tanggalbayar" />
+					<field name="metode" />
+					<field name="hutang" />
+					<field name="bayartotal" string="Total Pembayaran"/>
+					<field name="disetujui" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_pembayaranpembelian_form" model="ir.ui.view">
+			<field name="name">mmr.pembayaranpembelian.form</field>
+			<field name="model">mmr.pembayaranpembelian</field>
+			<field name="arch" type="xml">
+				<form string="Pembayaran Pembelian" version="7.0" >
+					<header class="oe_read_only">
+						<button name="setuju" class="oe_highlight" string="Setuju" type="object" groups="MMR.kepalakeuangan" attrs="{'invisible':[('disetujui','!=',False)]}"/>
+						<button name="revisi" class="oe_highlight" string="Revisi" type="object" groups="MMR.otoritas" attrs="{'invisible':[('disetujui','=',False)]}"/>
+					</header>
+					<group>
+						<group string="Informasi Dasar">
+							<field name="trigger" attrs="{'invisible':True}"/>
+							<field name="namamodel"  attrs="{'invisible':True}"/>
+							<field name="supplier" attrs="{'readonly':[('disetujui','!=',False)]}" options="{'no_create': True, 'no_open':True}"/>
+							<field name="tanggalbayar" attrs="{'readonly':[('disetujui','!=',False)]}" />
+							<field name="metode" attrs="{'readonly':[('disetujui','!=',False)]}" on_change="onchange_metode(metode)"/>
+							<field name="tujuanrekening" options="{'no_create': True, 'no_open':True}" attrs="{'invisible':[('metode','!=','transfer')], 'readonly':[('disetujui','!=',False)]}"/>
+							<field name="tujuancp" options="{'no_create': True, 'no_open':True}" attrs="{'invisible':['|',('metode','=','transfer'),('metode','=',False)], 'readonly':[('disetujui','!=',False)]}"/>
+							<field name="status" />
+						</group>
+						<group string="Informasi Akunting">
+							<field name="hutang" />
+							<field name="bayar" />
+							<field name="kelebihan" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="kekurangan" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="biayatransfer" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="biayalain" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="bayartotal" />
+							<field name="aturanakun" attrs="{'required':True, 'readonly':[('disetujui','!=',False)]}" options="{'no_create': True, 'no_open':True}"/>
+							<field name="akunotomatis" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="List Faktur">
+							<field name="pembayaranpembeliandetil" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</page>	
+						<page string="Jurnal">
+							<field name="akunterkena" attrs="{'readonly':[('disetujui','!=',False)]}">
+								<tree >
+									<field name="idakun" />
+									<field name="debit" string = "Debit"/>
+									<field name="kredit" string = "Kredit"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Akun Detil" version="7.0">
+									<group>
+										<group string="Informasi Dasar dan Saldo">
+											<field name="idakun" string = "Nama Akun" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string = "Debit"/>
+											<field name="kredit" string = "Kredit"/>
+										</group>
+										<group class="oe_edit_only" string="Ubah Manual">
+											<field name="isidebit" class="oe_edit_only"/>
+											<field name="isikredit" class="oe_edit_only"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>
+						<page string="Foto Bukti" attrs="{'readonly':[('disetujui','!=',False)]}">
+							<field name="bukti" widget="image" class="oe_avatar" />
+						</page>	
+						<page string="Notes" attrs="{'readonly':[('disetujui','!=',False)]}">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+					<group groups="MMR.otoritas" string="Informasi Otoritas">
+						<group >
+							<field name="create_uid" attrs="{'readonly':[('disetujui','!=',False)]}" string="Dibuat"/>
+							<field name="write_date" attrs="{'readonly':[('disetujui','!=',False)]}" groups="MMR.otoritas"/>
+							<field name="diedit"/>
+						</group>
+						<group>
+							<field name="disetujui" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		-----------Pembayaran Pembelian Detil----------
+		<record id="mmr_pembayaranpembeliandetil_list" model="ir.ui.view">
+			<field name="name">mmr.pembayaranpembeliandetil.list</field>
+			<field name="model">mmr.pembayaranpembeliandetil</field>
+			<field name="arch" type="xml">
+				<tree string="Pembayaran Pembelian Detil" version="7.0">
+					<field name="idfakturpembelian" />
+					<field name="hutang" />
+					<field name="bayar" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_pembayaranpembeliandetil_form" model="ir.ui.view">
+			<field name="name">mmr.pembayaranpembeliandetil.form</field>
+			<field name="model">mmr.pembayaranpembeliandetil</field>
+			<field name="arch" type="xml">
+				<form string="Pembayaran Pembelian Detil" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="supplier" attrs="{'invisible':True}"/>
+						<field name="idfakturpembelian" options="{'no_create': True}"/>
+						<field name="hutang" />
+						<field name="totalbayar" />
+						<field name="bayar" />
+					</group>
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Pembayaran Penjualan----------
+		<record id="mmr_pembayaranpenjualan_list" model="ir.ui.view">
+			<field name="name">mmr.pembayaranpenjualan.list</field>
+			<field name="model">mmr.pembayaranpenjualan</field>
+			<field name="arch" type="xml">
+				<tree string="Pembayaran Penjualan" version="7.0" colors="red:disetujui==False" default_order="tanggalbayar desc">
+					<field name="status" />
+					<field name="customer" />
+					<field name="tanggalbayar" />
+					<field name="metode" />
+					<field name="hutang" />
+					<field name="bayartotal" string="Total Pembayaran"/>
+					<field name="disetujui" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_pembayaranpenjualan_form" model="ir.ui.view">
+			<field name="name">mmr.pembayaranpenjualan.form</field>
+			<field name="model">mmr.pembayaranpenjualan</field>
+			<field name="arch" type="xml">
+				<form string="Pembayaran Penjualan" version="7.0" >
+					<header class="oe_read_only">
+						<button name="setuju" class="oe_highlight" string="Setuju" type="object" groups="MMR.kepalakeuangan" attrs="{'invisible':[('disetujui','!=',False)]}"/>
+						<button name="revisi" class="oe_highlight" string="Revisi" type="object" groups="MMR.otoritas" attrs="{'invisible':[('disetujui','=',False)]}"/>
+					</header>
+					<group>
+						<group string="Informasi Dasar">
+							<field name="trigger" attrs="{'invisible':True}"/>
+							<field name="namamodel"  attrs="{'invisible':True}"/>
+							<field name="customer" attrs="{'readonly':[('disetujui','!=',False)]}" options="{'no_create': True, 'no_open':True}"/>
+							<field name="tanggalbayar" attrs="{'readonly':[('disetujui','!=',False)]}" />
+							<field name="metode" attrs="{'readonly':[('disetujui','!=',False)]}" on_change="onchange_metode(metode)"/>
+							<field name="tujuanrekening" options="{'no_create': True, 'no_open':True}" attrs="{ 'invisible':[('metode','!=','transfer')], 'readonly':[('disetujui','!=',False)]}"/>
+							<field name="tujuancp" options="{'no_create': True, 'no_open':True}" attrs="{'invisible':['|',('metode','=','transfer'),('metode','=',False)], 'readonly':[('disetujui','!=',False)]}"/>
+							<field name="status" />
+						</group>
+						<group string="Informasi Akunting">
+							<field name="hutang" />
+							<field name="bayar" />
+							<field name="kelebihan" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="kekurangan" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="biayatransfer" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="biayalain" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="bayartotal" />
+							<field name="aturanakun" attrs="{'required':True, 'readonly':[('disetujui','!=',False)]}" options="{'no_create': True, 'no_open':True}"/>
+							<field name="akunotomatis" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="List Faktur">
+							<field name="pembayaranpenjualandetil" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</page>	
+						<page string="Jurnal">
+							<field name="akunterkena" attrs="{'readonly':[('disetujui','!=',False)]}">
+								<tree >
+									<field name="idakun" />
+									<field name="debit" string = "Debit"/>
+									<field name="kredit" string = "Kredit"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Akun Detil" version="7.0">
+									<group>
+										<group string="Informasi Dasar dan Saldo">
+											<field name="idakun" string = "Nama Akun" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string = "Debit"/>
+											<field name="kredit" string = "Kredit"/>
+										</group>
+										<group class="oe_edit_only" string="Ubah Manual">
+											<field name="isidebit" class="oe_edit_only"/>
+											<field name="isikredit" class="oe_edit_only"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>
+						<page string="Foto Bukti" attrs="{'readonly':[('disetujui','!=',False)]}">
+							<field name="bukti" widget="image" class="oe_avatar" />
+						</page>	
+						<page string="Notes" attrs="{'readonly':[('disetujui','!=',False)]}">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+					<group groups="MMR.otoritas" string="Informasi Otoritas">
+						<group>
+							<field name="create_uid" attrs="{'readonly':[('disetujui','!=',False)]}" string="Dibuat"/>
+							<field name="write_date" attrs="{'readonly':[('disetujui','!=',False)]}" groups="MMR.otoritas"/>
+							<field name="diedit"/>
+						</group>
+						<group>
+							<field name="disetujui" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		-----------Pembayaran Penjualan Detil----------
+		<record id="mmr_pembayaranpenjualandetil_list" model="ir.ui.view">
+			<field name="name">mmr.pembayaranpenjualandetil.list</field>
+			<field name="model">mmr.pembayaranpenjualandetil</field>
+			<field name="arch" type="xml">
+				<tree string="Pembayaran Penjualan Detil" version="7.0">
+					<field name="idfakturpenjualan" />
+					<field name="hutang" />
+					<field name="bayar" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_pembayaranpenjualandetil_form" model="ir.ui.view">
+			<field name="name">mmr.pembayaranpenjualandetil.form</field>
+			<field name="model">mmr.pembayaranpenjualandetil</field>
+			<field name="arch" type="xml">
+				<form string="Pembayaran Penjualan Detil" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="customer" attrs="{'invisible':True}"/>
+						<field name="idfakturpenjualan" options="{'no_create': True}"/>
+						<field name="hutang" />
+						<field name="totalbayar" />
+						<field name="bayar" />
+					</group>
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

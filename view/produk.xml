@@ -1,0 +1,343 @@
+<openerp>
+	<data>
+		
+		-----------Merk----------
+		<record id="mmr_merk_list" model="ir.ui.view">
+			<field name="name">mmr.merk.list</field>
+			<field name="model">mmr.merk</field>
+			<field name="arch" type="xml">
+				<tree string="Merk" version="7.0">
+					<field name="merk" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_merk_form" model="ir.ui.view">
+			<field name="name">mmr.merk.form</field>
+			<field name="model">mmr.merk</field>
+			<field name="arch" type="xml">
+				<form string="Merk" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="merk" />
+						<field name="notes" />
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		-----------Satuan----------
+		
+		<record id="mmr_satuan_list" model="ir.ui.view">
+			<field name="name">mmr.satuan.list</field>
+			<field name="model">mmr.satuan</field>
+			<field name="arch" type="xml">
+				<tree string="Satuan" version="7.0">
+					<field name="satuan" />
+					<field name="isi" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_satuan_form" model="ir.ui.view">
+			<field name="name">mmr.satuan.form</field>
+			<field name="model">mmr.satuan</field>
+			<field name="arch" type="xml">
+				<form string="Satuan" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="satuan" />
+						<field name="isi" />
+					</group>
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Kategori----------
+		
+		<record id="mmr_kategori_list" model="ir.ui.view">
+			<field name="name">mmr.kategori.list</field>
+			<field name="model">mmr.kategori</field>
+			<field name="arch" type="xml">
+				<tree string="Kategori" version="7.0">
+					<field name="kategori" />
+					<field name="listproduk" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_kategori_form" model="ir.ui.view">
+			<field name="name">mmr.kategori.form</field>
+			<field name="model">mmr.kategori</field>
+			<field name="arch" type="xml">
+				<form string="Kategori" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="kategori" />
+					</group>
+					<notebook>
+						<page string="List Produk">
+							<field name="listproduk"/>
+						</page>	
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Produk----------
+		
+		<record id="mmr_produk_list" model="ir.ui.view">
+			<field name="name">mmr.produk.list</field>
+			<field name="model">mmr.produk</field>
+			<field name="arch" type="xml">
+				<tree string="Produk" version="7.0" colors="red:warning==True">
+					<field name="warning" />
+					<field name="merk" />
+					<field name="namaproduk" />
+					<field name="satuan" />
+					<field name="kategori" />
+					<field name="jumlah" />
+					<field name="nilai" groups="MMR.akunting"/>
+					<field name="hargajualterendah" string="Min Harga Jual" groups="MMR.akunting"/>
+					<field name="notes" />
+					<field name="trigger" attrs="{'invisible':True}" string=""/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_produk_form" model="ir.ui.view">
+			<field name="name">mmr.produk.form</field>
+			<field name="model">mmr.produk</field>
+			<field name="arch" type="xml">
+				<form string="Produk" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="trigger" attrs="{'invisible':True}"/>
+							<field name="merk" />
+							<field name="namaproduk" />
+							<field name="satuan" />
+							<field name="kategori" />
+							<field name="bataskadaluarsa" />
+							<field name="gambar" widget="image" class="oe_avatar" />
+						</group>
+						<group string="Informasi Stok dan Akunting">	
+							<field name="jumlah" />
+							<field name="nilai" groups="MMR.akunting"/>
+							<field name="hargajualterendah" groups="MMR.akunting"/>
+							<field name="minimalstok" />
+							<field name="warning" />
+							<field name="pengumuman" groups="MMR.otoritas"/>
+						</group>
+					</group>			
+					<notebook>
+						<page string="Daftar Harga Beli">
+							<field name="daftarhargasupplier" groups="MMR.akunting"/>
+						</page>	
+						<page string="Kartu Stok">
+							<field name="stok">
+								<tree default_order="tanggal desc">
+									<field name="tanggal" />
+									<field name="gudang" />
+									<field name="kadaluarsa"/>
+									<field name="lot"/>
+									<field name="debit"/>
+									<field name="kredit"/>
+									<field name="saldo"/>
+									<field name="stokkhusus"/>
+									<field name="notes" />
+								</tree>
+								<form string="Stok" version="7.0" create="false" edit="false" delete="false">
+									<group>
+										<group>
+											<group string="Informasi Dasar">
+												<field name="idpembelianpo" attrs="{'invisible':[('idpembeliansj','=',False)]}"/>
+												<field name="idpembeliansj" attrs="{'invisible':True}"/>
+												<field name="produk" options="{'no_create': True, 'no_open':True}" attrs="{'invisible':True}"/>
+												<field name="tanggal"/>
+												<field name="gudang" />
+												<field name="kadaluarsa"/>
+												<field name="lot"/>
+												<field name="stokkhusus"/>
+											</group>
+										</group>
+										<group>
+											<group string="Informasi Saldo">
+												<field name="debit" />
+												<field name="kredit" />
+												<field name="saldo" />
+											</group>
+											<group string="Informasi Akunting"  groups="MMR.akunting">
+												<field name="harga"/>
+												<field name="bruto"/>
+												<field name="diskon"/>
+												<field name="hppembelian"/>
+												<field name="pajak"/>
+												<field name="netto"/>
+											</group>
+										</group>	
+									</group>
+									<notebook>
+										<page string="Stok Keluar">
+											<field name="stokkeluar">
+												<tree string="Stok Keluar" version="7.0">
+													<field name="idpenjualanpo" string="PO Penjualan"/>
+													<field name="customer"/>
+													<field name="tanggal"/>
+													<field name="jumlah"/>
+													<field name="harga" groups="MMR.akunting"/>
+													<field name="bruto" groups="MMR.akunting"/>
+													<field name="diskon" groups="MMR.akunting"/>
+													<field name="hppembelian" groups="MMR.akunting"/>
+													<field name="pajak" groups="MMR.akunting"/>
+													<field name="netto" groups="MMR.akunting"/>
+													<field name="notes"/>
+												</tree>
+												<form string="Stok Keluar" version="7.0" >
+													<group>
+														<group string="Informasi Dasar">
+															<field name="idpenjualansj" attrs="{'invisible':True}"/>
+															<field name="idpenjualanpo" string="PO Penjualan"/>
+															<field name="customer"/>
+															<field name="tanggal"/>
+															<field name="jumlah"/>
+														</group>
+														<group string="Informasi Akunting" groups="MMR.akunting">
+															<field name="harga"/>
+															<field name="bruto"/>
+															<field name="diskon"/>
+															<field name="hppembelian"/>
+															<field name="pajak"/>
+															<field name="netto"/>
+														</group>
+													</group>
+													<notebook>
+														<page string="Notes">
+															<field name="notes"/>
+														</page>	
+													</notebook>
+												</form>
+											</field>
+										</page>	
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>
+						<page string="Sisa Stok">
+							<field name="sisastok"/>
+						</page>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+	
+	
+		-----------Inventaris----------
+		
+		<record id="mmr_inventaris_list" model="ir.ui.view">
+			<field name="name">mmr.inventaris.list</field>
+			<field name="model">mmr.inventaris</field>
+			<field name="arch" type="xml">
+				<tree string="Inventaris" version="7.0">
+					<field name="nama" />
+					<field name="tanggal" />
+					<field name="nilai" groups="MMR.akunting"/>
+					<field name="nilaiakhir" groups="MMR.akunting"/>
+					<field name="nomorakunpenyusutan"/>
+					<field name="susutper" />
+					<field name="nilaisusut" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_inventaris_form" model="ir.ui.view">
+			<field name="name">mmr.inventaris.form</field>
+			<field name="model">mmr.inventaris</field>
+			<field name="arch" type="xml">
+				<form string="Inventaris" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="nama" />
+							<field name="tanggal" />
+							<field name="nilai" groups="MMR.akunting"/>
+							<field name="nilaiakhir" groups="MMR.akunting"/>
+						</group>
+						<group string="Informasi Penyusutan">
+							<field name="nomorakunpenyusutan" options="{'no_create': True, 'no_open':True}"/>
+							<field name="susutper" />
+							<field name="nilaisusut" />
+						</group>
+					</group>
+					<notebook>
+						<page string="Jurnal">
+							<field name="akunterkena" groups="MMR.akunting">
+								<tree >
+									<field name="idakun" />
+									<field name="debit" />
+									<field name="kredit"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Akun Detil" version="7.0">
+									<group>
+										<group string="Informasi Dasar">
+											<field name="idakun" string = "Nama Akun" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string = "Debit"/>
+											<field name="kredit" string = "Kredit"/>
+										</group>
+										<group string="Ubah Manual">
+											<field name="isidebit" class="oe_edit_only"/>
+											<field name="isikredit" class="oe_edit_only"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Penyusutan">
+							<field name="penyusutan" groups="MMR.akunting">
+								<tree >
+									<field name="tanggal" />
+									<field name="jumlah"/>
+								</tree>
+								<form string="Penyusutan" version="7.0">
+									<group>
+									<field name="tanggal" string="Tanggal" />
+									<field name="jumlah" string="Jumlah" />
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+				
+	</data>
+</openerp>

@@ -1,0 +1,19 @@
+<openerp>
+    <data>
+        
+        <!-- Cron job untuk hapus pengumuman -->
+        <record forcecreate="True" id="ir_cron_hapus_pengumuman" model="ir.cron">
+            <field name="name">Hapus Pengumuman</field>
+            <field eval="True" name="active" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall" />
+            <field eval="'mmr.produk'" name="model" />
+            <field eval="'_hapus_pengumuman'" name="function" />
+            <field eval="'()'" name="args" />
+        </record>
+        
+    </data>
+</openerp>

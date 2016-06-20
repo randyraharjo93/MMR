@@ -1,0 +1,367 @@
+<openerp>
+	<data>
+		
+		-----------Gudang----------
+		<record id="mmr_gudang_list" model="ir.ui.view">
+			<field name="name">mmr.gudang.list</field>
+			<field name="model">mmr.gudang</field>
+			<field name="arch" type="xml">
+				<tree string="Gudang" version="7.0">
+					<field name="nama" />
+					<field name="alamat" />
+					<field name="telp" />
+					<field name="jumlah"/>
+					<field name="nilai" groups="MMR.akunting"/>
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_gudang_form" model="ir.ui.view">
+			<field name="name">mmr.gudang.form</field>
+			<field name="model">mmr.gudang</field>
+			<field name="arch" type="xml">
+				<form string="Gudang" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="nama" />
+							<field name="alamat" />
+							<field name="telp" />
+						</group>
+						<group string="Informasi Saldo dan Akunting">
+							<field name="jumlah"/>
+							<field name="nilai" string="Nilai Saat Ini" groups="MMR.akunting"/>
+						</group>
+					</group>
+					<group>
+						<group>
+						</group>
+						<group string="Cek Nilai per-Bulan"  groups="MMR.akunting">
+							<field name="bulan"/>
+							<field name="tahun"/>
+							<field name="nilaibulan"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Stok----------
+		<record id="mmr_stok_list" model="ir.ui.view">
+			<field name="name">mmr.stok.list</field>
+			<field name="model">mmr.stok</field>
+			<field name="arch" type="xml">
+				<tree string="Stok" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+					<field name="tanggal" />
+					<field name="gudang" />
+					<field name="merk" />
+					<field name="namaproduk"/>
+					<field name="satuan"/>
+					<field name="kadaluarsa"/>
+					<field name="lot"/>
+					<field name="debit"/>
+					<field name="kredit"/>
+					<field name="saldo"/>
+					<field name="stokkhusus"/>
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_stok_form" model="ir.ui.view">
+			<field name="name">mmr.stok.form</field>
+			<field name="model">mmr.stok</field>
+			<field name="arch" type="xml">
+				<form string="Stok" version="7.0" create="false" edit="false" delete="false">
+					<group>
+						<group>
+							<group string="Informasi Dasar">
+								<field name="idpembelianpo" attrs="{'invisible':[('idpembeliansj','=',False)]}"/>
+								<field name="idpembeliansj" attrs="{'invisible':True}"/>
+								<field name="produk" options="{'no_create': True, 'no_open':True}" attrs="{'invisible':True}"/>
+								<field name="tanggal"/>
+								<field name="gudang" />
+								<field name="kadaluarsa"/>
+								<field name="lot"/>
+								<field name="stokkhusus"/>
+							</group>
+							<group string="Informasi Produk">
+								<field name="merk" />
+								<field name="namaproduk" />
+								<field name="satuan" />
+							</group>
+						</group>
+						<group>
+							<group string="Informasi Saldo">
+								<field name="debit" />
+								<field name="kredit" />
+								<field name="saldo" />
+							</group>
+							<group string="Informasi Akunting"  groups="MMR.akunting">
+								<field name="harga"/>
+								<field name="bruto"/>
+								<field name="diskon"/>
+								<field name="hppembelian"/>
+								<field name="pajak"/>
+								<field name="netto"/>
+							</group>
+						</group>	
+					</group>
+					<notebook>
+						<page string="Stok Keluar">
+							<field name="stokkeluar">
+								<tree string="Stok Keluar" version="7.0">
+									<field name="idpenjualanpo" string="PO Penjualan"/>
+									<field name="customer"/>
+									<field name="tanggal"/>
+									<field name="jumlah"/>
+									<field name="harga" groups="MMR.akunting"/>
+									<field name="bruto" groups="MMR.akunting"/>
+									<field name="diskon" groups="MMR.akunting"/>
+									<field name="hppembelian" groups="MMR.akunting"/>
+									<field name="pajak" groups="MMR.akunting"/>
+									<field name="netto" groups="MMR.akunting"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Stok Keluar" version="7.0" >
+									<group>
+										<group string="Informasi Dasar">
+											<field name="idpenjualansj" attrs="{'invisible':True}"/>
+											<field name="idpenjualanpo" string="PO Penjualan"/>
+											<field name="customer"/>
+											<field name="tanggal"/>
+											<field name="jumlah"/>
+										</group>
+										<group string="Informasi Akunting" groups="MMR.akunting">
+											<field name="harga"/>
+											<field name="bruto"/>
+											<field name="diskon"/>
+											<field name="hppembelian"/>
+											<field name="pajak"/>
+											<field name="netto"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Stok keluar----------
+		<record id="mmr_stokkeluar_list" model="ir.ui.view">
+			<field name="name">mmr.stokkeluar.list</field>
+			<field name="model">mmr.stokkeluar</field>
+			<field name="arch" type="xml">
+				<tree string="Stok Keluar" version="7.0">
+					<field name="idstok" />
+					<field name="idpenjualansj"/>
+					<field name="customer"/>
+					<field name="jumlah"/>
+					<field name="kadaluarsa"/>
+					<field name="lot"/>
+					<field name="notes"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_stokkeluar_form" model="ir.ui.view">
+			<field name="name">mmr.stokkeluar.form</field>
+			<field name="model">mmr.stokkeluar</field>
+			<field name="arch" type="xml">
+				<form string="Stok Keluar" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="pilihanproduk" on_change="onchange_pilihanproduk(pilihanproduk)"/>
+						<field name="idstok"/>
+						<field name="idpenjualansj"/>
+						<field name="idpenjualanpo" />
+						<field name="customer"/>
+						<field name="jumlah"/>
+						<field name="kadaluarsa"/>
+						<field name="lot"/>
+					</group>
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Sisa Stok----------
+		<record id="mmr_sisastok_list" model="ir.ui.view">
+			<field name="name">mmr.sisastok.list</field>
+			<field name="model">mmr.sisastok</field>
+			<field name="arch" type="xml">
+				<tree string="Sisa Stok" version="7.0" create="false" edit="false" delete="false">
+					<field name="gudang" />
+					<field name="kadaluarsa"/>
+					<field name="saldo"/>
+					<field name="warning"/>
+					<field name="stokkhusus"/>
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_sisastok_form" model="ir.ui.view">
+			<field name="name">mmr.sisastok.form</field>
+			<field name="model">mmr.sisastok</field>
+			<field name="arch" type="xml">
+				<form string="Sisa Stok" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="gudang" />
+						<field name="namaproduk"/>
+						<field name="kadaluarsa"/>
+						<field name="saldo"/>
+						<field name="warning"/>
+						<field name="stokkhusus"/>
+					</group>
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+				-----------Laporan Stok----------
+		<record id="mmr_laporanstok_form" model="ir.ui.view">
+			<field name="name">mmr.laporanstok.form</field>
+			<field name="model">mmr.laporanstok</field>
+			<field name="arch" type="xml">
+				<form string="Laporan Stok" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="merk" options="{'no_create': True, 'no_open':True}"/>
+						<field name="namaproduk" options="{'no_create': True, 'no_open':True}"/>
+						<field name="satuan"/>
+					</group>
+					<notebook>
+						<page string="Kartu Stok">
+							<field name="laporanstokdetil">
+								<tree version="7.0" create="false" edit="false" delete="false">
+										<field name="tanggal" />
+										<field name="gudang" />
+										<field name="sumber" />
+										<field name="suppliercustomer" />
+										<field name="kadaluarsa"/>
+										<field name="lot"/>
+										<field name="debit"/>
+										<field name="kredit"/>
+										<field name="saldo"/>
+										<field name="hargasetelahdiskon" groups="MMR.akunting"/>
+										<field name="nilai" groups="MMR.akunting"/>
+										<field name="stokkhusus"/>
+										<field name="notes" />
+									</tree>
+									<form version="7.0" create="false" edit="false" delete="false">
+										<group>
+											<group string = "Informasi Dasar">
+												<field name="tanggal" />
+												<field name="gudang" />
+												<field name="sumber" />
+												<field name="suppliercustomer" />
+												<field name="kadaluarsa"/>
+												<field name="lot"/>
+												<field name="debit"/>
+												<field name="kredit"/>
+												<field name="saldo"/>
+												<field name="stokkhusus"/>
+											</group>
+											<group string = "Informasi Akunting" groups="MMR.akunting">
+												<field name="harga"/>
+												<field name="bruto"/>
+												<field name="diskon"/>
+												<field name="hppembelian"/>
+												<field name="hargasetelahdiskon"/>
+												<field name="nilai"/>
+											</group>
+											<notebook>
+												<page string="Notes">
+													<field name="notes"/>
+												</page>	
+											</notebook>
+										</group>
+									</form>
+								</field>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Tukar Kadaluarsa Stok----------
+		<record id="mmr_tukarkadaluarsastok_list" model="ir.ui.view">
+			<field name="name">mmr.tukarkadaluarsastok.list</field>
+			<field name="model">mmr.tukarkadaluarsastok</field>
+			<field name="arch" type="xml">
+				<tree string="Tukar Kadaluarsa Stok" version="7.0">
+					<field name="tanggal"/>
+					<field name="merk"/>
+					<field name="namaproduk"/>
+					<field name="satuan" />
+					<field name="gudang"/>
+					<field name="kadaluarsa"/>
+					<field name="lot"/>
+					<field name="kadaluarsabaru" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_tukarkadaluarsastok_form" model="ir.ui.view">
+			<field name="name">mmr.tukarkadaluarsastok.form</field>
+			<field name="model">mmr.tukarkadaluarsastok</field>
+			<field name="arch" type="xml">
+				<form string="Tukar Kadaluarsa Stok" version="7.0" >
+					<group>
+						<group string="Informasi Produk">
+							<field name="merk" options="{'no_create': True, 'no_open':True}"/>
+							<field name="namaproduk" options="{'no_create': True, 'no_open':True}"/>
+							<field name="idstok" options="{'no_create': True, 'no_open':True}" on_change="onchange_idstok(idstok)"/>
+							<field name="satuan"/>
+							<field name="debit" attrs="{'readonly':True}"/>
+							<field name="tanggal" attrs="{'readonly':True}"/>
+							<field name="idpembelianpo" attrs="{'readonly':True}"/>
+							<field name="gudang" options="{'no_create': True, 'no_open':True}" attrs="{'readonly':True}"/>
+							<field name="lot" attrs="{'readonly':True}"/>
+							<field name="harga" groups="MMR.akunting" attrs="{'readonly':True}"/>
+							<field name="diskon" groups="MMR.akunting" attrs="{'readonly':True}"/>
+							<field name="stokkhusus" attrs="{'readonly':True}"/>
+						</group>
+						<group string="Ubah Kadaluarsa">
+							<field name="kadaluarsa" on_change="onchange_idstok(idstok)"/>
+							<field name="kadaluarsabaru"/>
+						</group>
+					</group>	
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+					<group string="Informasi Otoritas" groups="MMR.otoritas">
+						<field name="create_uid" attrs="{'readonly':True}" string="Pembuat"/> 
+						<field name="create_date" attrs="{'readonly':True}" string="Waktu Pembuatan"/> 
+					</group>
+				</form>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

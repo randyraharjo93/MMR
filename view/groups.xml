@@ -1,0 +1,47 @@
+<openerp>
+	<data>
+		<record model="res.groups" id="akunting">
+       	 	<field name="name">Akunting</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="admin">
+       	 	<field name="name">Admin</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="normal">
+       	 	<field name="name">Normal</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="otoritas">
+       	 	<field name="name">Otoritas</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="gudang">
+       	 	<field name="name">Gudang</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="kepalaakunting">
+       	 	<field name="name">Kepala Akunting</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="kepalakeuangan">
+       	 	<field name="name">Kepala Keuangan</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="keuangan">
+       	 	<field name="name">Keuangan</field>
+    	</record>
+    	
+    	<record model="res.groups" id="kepalasales">
+       	 	<field name="name">Kepala Sales</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="sales">
+       	 	<field name="name">Sales</field>
+    	</record>	
+    	
+    	<record model="res.groups" id="kasir">
+       	 	<field name="name">Kasir</field>
+    	</record>	
+	</data>
+</openerp>

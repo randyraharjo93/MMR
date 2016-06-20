@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp> 
+    <data>
+    	---------------------Laporan L/R-----------------------------------
+        <template id="laporanneracalajur_report" >
+       	 	<t t-call="report.html_container">
+       			 <t t-foreach="docs" t-as="o">
+	           		<t t-call="report.external_layout" >
+	           			<div class="page" style="font-size: 115%;">
+			           		<h2 style="text-align:center">LAPORAN NERACA LAJUR</h2>
+			           		<h5 style="text-align:center"> Periode : <span t-field="o.bulan"/>, <span t-field="o.tahun"/></h5>
+			           		<br/>
+			           		<style>
+							      tr:nth-of-type(odd) {
+							      background-color:#f4f4f4;
+							    }
+							</style>			           		
+			           		<table class="col-xs-12" >
+			           			<tr style="border-bottom: 3px solid black">
+	                 		   			<th>Nomor Akun</th>
+	                 		   			<th>Nama Akun</th>
+	                 		   			<th>Debit</th>
+	                 		   			<th>Kredit</th>
+	                 		   		</tr>
+			           			<t t-foreach="o.jurnal" t-as="jurnaldetil">
+				           			<tr>
+				           				<td style="width:15%"> <span t-esc="jurnaldetil.nomorakun"/> </td>
+				           				<td style="width:45%"> <span t-esc="jurnaldetil.namaakun"/> </td>
+				           				<td style="width:20%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.debit)"/> </td>
+				           				<td style="width:20%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.kredit)"/> </td>
+				           			</tr>
+				           		</t>	
+			           		</table>
+			           		
+			           		<table class="col-xs-12" >
+			           			<tr>
+			           				<td style="width:80%; text-align:right; border-top:thin solid #000000"> <b><span t-esc="o.jurnaldebit"/></b> </td>
+			           				<td style="width:20%; text-align:right; border-top:thin solid #000000"> <b><span t-esc="o.jurnalkredit"/></b> </td>
+			           			</tr>
+			           		</table>
+			           	</div>	
+	            	</t>	
+        		</t>
+    		</t>  
+        </template>
+    </data>
+
+</openerp>

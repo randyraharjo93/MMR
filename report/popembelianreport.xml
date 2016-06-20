@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp> 
+    <data>
+    	---------------------PO PEMBELIAN-----------------------------------
+        <template id="popembelian_report" >
+       	 	<t t-call="report.html_container">
+       			 <t t-foreach="docs" t-as="o">
+           			 <t t-call="report.external_layout">
+           			 	 <t t-set="pembelianpodetil" t-value="o.pembelianpodetil"/>
+           			 	 <t t-set="idx" t-value="0"/> 
+               			 <div class="page"> <br/>
+               			 	<t t-foreach="len(pembelianpodetil)/15+1" t-as="page">
+		            			<h2 style="margin-top:-6px;text-align: center">Purchase Order</h2>
+		                 		<p class="col-xs-4">
+		                 			Tanggal: <span t-field="o.waktu"/>  <br/> 
+		                 			Syarat Pembayaran: <span t-field="o.syaratpembayaran.lama"/> Hari 
+		                 		</p> 
+		                 		<p class="col-xs-4" style="text-align: center">
+		                 			<b>Nomor PO: <span t-field="o.nomorpo"/></b> 
+		                 		</p>
+		                 		<p class="col-xs-4" style="text-align: right">
+		                 			Kepada: <br/>
+		                 			<span t-field="o.supplier.nama"/> <br/> 
+		                 			<span t-field="o.supplier.alamat"/>
+		                 		</p>
+	                 		   	<table style="width:100%; border: 3px solid black">
+	                 		   		<tr style="border-bottom: 3px solid black;">
+	                 		   			<th style="border-right: 1px solid black">Merk</th>
+	                 		   			<th style="border-right: 1px solid black">Produk</th>
+	                 		   			<th style="border-right: 1px solid black">Satuan</th>
+	                 		   			<th style="border-right: 1px solid black">Jumlah</th>
+	                 		   			<th style="border-right: 1px solid black">Harga</th>
+	                 		   			<th style="border-right: 1px solid black">Diskon%</th>
+	                 		   			<th style="border-right: 1px solid black">Pajak%</th>
+	                 		   			<th>Netto</th>
+	                 		   		</tr>
+		                 		   	<t t-foreach="[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" t-as="perpembelianpodetil">
+		                 		   		<t t-if="len(pembelianpodetil) > page*15+idx">
+			                 		   		<tr style="border-bottom: 1px solid black" >
+			                   					<td style="border-right: 1px solid black"><span t-field="pembelianpodetil[page*15+idx].merk"/></td>
+			                   					<td style="border-right: 1px solid black"><span t-field="pembelianpodetil[page*15+idx].namaproduk"/></td>
+			                   					<td style="border-right: 1px solid black"><span t-field="pembelianpodetil[page*15+idx].satuan"/></td>
+			                   					<td style="border-right: 1px solid black; text-align: center"><span t-field="pembelianpodetil[page*15+idx].jumlah"/></td>
+			                   					<td style="border-right: 1px solid black; text-align: right"><span t-field="pembelianpodetil.harga"/></td>
+			                   					<td style="border-right: 1px solid black; text-align: center"><span t-esc="int(pembelianpodetil.diskon)"/></td>
+			                   					<td style="border-right: 1px solid black; text-align: center"><span t-esc="int(pembelianpodetil.pajak)"/></td>
+			                   					<td style="text-align: right"><span t-field="pembelianpodetil.netto"/></td>
+			                   				</tr>
+		                   				</t>
+		                   				<t t-if="page*15+idx >= len(pembelianpodetil)">
+			                 		   		<tr style="border-bottom: 1px solid black" >
+			                   					<td style="border-right: 1px solid black">-</td>
+			                   					<td style="border-right: 1px solid black"></td>
+			                   					<td style="border-right: 1px solid black"></td>
+			                   					<td style="border-right: 1px solid black"></td>
+			                   					<td style="border-right: 1px solid black"></td>
+			                   					<td style="border-right: 1px solid black"></td>
+			                   					<td style="border-right: 1px solid black"></td>
+			                 		   			<td></td>
+			                   				</tr>
+		                   				</t>
+		                   				<t t-set="idx" t-value="idx+1"/>		
+		                            </t>
+		                        </table> 
+		                        <t t-if="page == len(pembelianpodetil)/15">
+			                        <p class="col-xs-4 col-xs-offset-8" style="text-align: right">
+				                        <b>Bruto:</b> <span t-field="o.bruto"/> <br/>
+				                        <b>Diskon:</b> <span t-field="o.diskon"/> <br/>
+				                        <b>Pajak:</b> <span t-field="o.pajak"/> <br/>
+				                        <b>Netto:</b> <span t-field="o.netto"/> <br/>
+			                        </p>
+		                        </t>
+		                        <t t-if="o.notes != False">
+			                        <div style="border: 1px solid; min-height: 5%;">
+			                        	<p>
+			                        		Extra Notes: <br/>
+			                        		<span t-field="o.notes"/>
+			                        	</p>
+			                        </div>
+			                    </t>
+		                        <b>CATATAN:</b><br/>
+	                         	<ol style="text-align: left; margin-left:5px">
+	                         		<li>Semua pesanan dari perusahaan kami harus berupa surat pesanan yang ditandandatangi.</li>
+	                         		<li>Kami berhak menolak barang yang periode tanggal kadaluarsa nya singkat, jumlah tidak sesuai dan kemasan yang rusak.</li>
+	                         		<li>PO berlaku hanya 1 (satu) minggu dari tanggal PO, setelah 1 (satu) minggu dinyatakan tidak berlaku lagi, atau pengiriman harus konfirmasi terlebih dahulu.</li>
+	                         		<li>Harap KONFIRMASI apabila ada barang kosong / Exp Pendek (Kurang dari 1 Tahun)</li>
+	                         		<li>Tempo Pembayaran berlaku setelah barang diterima</li>
+	                         		<li>Faktur Harap Dimasukkan kedalam amplop tertutup</li>
+	                         		<li>Pengiriman harap menyesuaikan instruksi dari kami</li>
+	                         	</ol>	
+		                        
+		                        <p t-if="o.dibuat != false" class="col-xs-2 col-xs-offset-5" style="text-align: center">Pembuat,<br/><br/><br/><br/></p>
+		                        
+		                        <p t-if="o.disetujui != false" class="col-xs-2 col-xs-offset-3" style="text-align: center">Mengetahui,<br/><br/><br/><br/></p>
+		                        
+		                        <p t-if="o.dibuat != false" class="col-xs-2 col-xs-offset-5" style="text-align: center"><span t-field="o.dibuat"/></p>
+		                        <p t-if="o.dibuat == false" class="col-xs-2 col-xs-offset-5" style="text-align: center"></p>
+		                        
+		                        <p t-if="o.disetujui != false" class="col-xs-2 col-xs-offset-3" style="text-align: center"><span t-field="o.disetujui"/></p>
+		                        <p t-if="o.disetujui == false" class="col-xs-2 col-xs-offset-3" style="text-align: center"></p>
+		                        
+		                        <p class="col-xs-12" style="text-align: center; border-bottom: 3px solid black">--PO ini SAH apabila <span style="font-family: Times New Roman; font-size: 105%;" >t</span>erdapat NAMA TERANG pada bagian Pembuat DAN Mengetahui--</p>
+                				<span style="text-align: center;">Page </span><span style="text-align: center;" class="page" /> <t t-esc="page+1"/> of <span style="text-align: center;" class="topage" /> <t t-esc="len(pembelianpodetil)/15+1"/>
+                				<p style="page-break-after:always;">   </p>
+                			</t>
+                		</div>
+            		</t>
+        		</t>
+    		</t>  
+        </template>
+    </data>
+
+</openerp>

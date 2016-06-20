@@ -1,0 +1,262 @@
+<openerp>
+	<data>
+		
+		-----------Sales----------
+		<record id="mmr_sales_list" model="ir.ui.view">
+			<field name="name">mmr.sales.list</field>
+			<field name="model">mmr.sales</field>
+			<field name="arch" type="xml">
+				<tree string="Sales" version="7.0">
+					<field name="userid" />
+					<field name="nama" />
+					<field name="listrayon" />
+					<field name="pencapaian" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_sales_form" model="ir.ui.view">
+			<field name="name">mmr.sales.form</field>
+			<field name="model">mmr.sales</field>
+			<field name="arch" type="xml">
+				<form string="Sales" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="userid" options="{'no_create': True, 'no_open':True}"/>
+							<field name="nama" />
+						</group>
+						<group string="Informasi Marketing">
+							<field name="pencapaian" groups="MMR.sales"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="List Penjualan">
+							<field name="listpopenjualan">
+								<tree string="Penjualan PO" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+									<field name="status" />
+									<field name="nomorpo" />
+									<field name="tanggal" />
+									<field name="customer" />
+									<field name="bruto" groups="MMR.akunting"/>					
+									<field name="diskon" groups="MMR.akunting"/>
+									<field name="hppembelian" groups="MMR.akunting"/>
+									<field name="pajak" groups="MMR.akunting"/>
+									<field name="netto" groups="MMR.akunting"/>
+									<field name="dibuat" />
+									<field name="diedit" />
+									<field name="disetujui" />
+									<field name="notes" />
+								</tree>
+							</field>	
+						</page>	
+						<page string="Rayon">
+							<field name="listrayon" />
+						</page>
+						<page string="Laporan">
+							<field name="laporansales">
+								<tree string="Laporan Sales" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+									<field name="tanggal" />
+									<field name="customer" />
+									<field name="rayon" />
+									<field name="kota" />
+									<field name="laporan"/>					
+								</tree>
+							</field>	
+						</page>	
+						<page string="Notes">
+							<field name="notes" />
+						</page>
+					</notebook>		
+				</form>
+			</field>
+		</record>
+
+		-----------Laporan Sales----------
+		<record id="mmr_laporansales_list" model="ir.ui.view">
+			<field name="name">mmr.laporansales.list</field>
+			<field name="model">mmr.laporansales</field>
+			<field name="arch" type="xml">
+				<tree string="Laporan Sales" version="7.0">
+					<field name="sales" />
+					<field name="customer" />
+					<field name="rayon" />
+					<field name="kota" />
+					<field name="tanggal" />
+					<field name="laporan" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_laporansales_form" model="ir.ui.view">
+			<field name="name">mmr.laporansales.form</field>
+			<field name="model">mmr.laporansales</field>
+			<field name="arch" type="xml">
+				<form string="Laporan Sales" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="sales" on_change="onchange_sales(sales)" options="{'no_create': True, 'no_open':True}"/>
+							<field name="tanggal" />
+						</group>
+						<group string="Informasi Customer">
+							<field name="customer" options="{'no_create': True, 'no_open':True}" on_change="onchange_customer(customer)"/>
+							<field name="rayon" attrs="{'invisible':True}"/>
+							<field name="kota" attrs="{'invisible':True}"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Laporan">
+							<field name="laporan"/>
+						</page>	
+					</notebook>	
+					<group string="Informasi Otoritas" groups="MMR.otoritas">
+						<field name="create_uid" string="Dibuat"/>
+						<field name="write_uid" string="Diedit"/>
+						<field name="write_date" string="Waktu Pembuatan"/>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		-----------Laporan Marketing----------
+		<record id="mmr_laporanmarketing_list" model="ir.ui.view">
+			<field name="name">mmr.laporanmarketing.list</field>
+			<field name="model">mmr.laporanmarketing</field>
+			<field name="arch" type="xml">
+				<tree string="Laporan Marketing" version="7.0">
+					<field name="customer" />
+					<field name="rayon" />
+					<field name="kota" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_laporanmarketing_form" model="ir.ui.view">
+			<field name="name">mmr.laporanmarketing.form</field>
+			<field name="model">mmr.laporanmarketing</field>
+			<field name="arch" type="xml">
+				<form string="Laporan Marketing" version="7.0" >
+					<group string="Filter Berdasarkan">
+						<group>
+							<field name="customer" options="{'no_create': True, 'no_open':True}"/>
+							<field name="rayon" options="{'no_create': True, 'no_open':True}"/>
+							<field name="kota" options="{'no_create': True, 'no_open':True}"/>
+							<field name="teknisi"/>
+							<field name="trigger" attrs="{'invisible':True}"/>
+						</group>
+						<group>
+							<field name="starttanggal"/>
+							<field name="endtanggal" />
+							<field name="load"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Penjualan Faktur">
+							<field name="penjualanfaktur">
+								<tree string="Penjualan Faktur" version="7.0" create="false" edit="false" delete="false" default_order="tanggalterbit desc">
+									<field name="nomorfaktur"/>
+									<field name="nofakturpajak"/>
+									<field name="teknisi"/>
+									<field name="status"/>
+									<field name="tanggalterbit"/>
+									<field name="customer"/>
+									<field name="rayon"/>
+									<field name="kota"/>
+									<field name="bruto"/>
+									<field name="diskon"/>
+									<field name="hppembelian"/>
+									<field name="pajak"/>
+									<field name="netto"/>
+								</tree>
+							</field>
+						</page>	
+						<page string="Penjualan PO">
+							<field name="penjualanpo">
+								<tree string="Penjualan PO" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+									<field name="nomorpo"/>
+									<field name="status"/>
+									<field name="tanggal"/>
+									<field name="sales"/>
+									<field name="customer"/>
+									<field name="rayon"/>
+									<field name="kota"/>
+									<field name="hppembelian"/>
+								</tree>
+							</field>
+						</page>	
+						<page string="Penjualan Retur">
+							<field name="penjualanretur">
+								<tree string="Penjualan PO" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+									<field name="status" />
+									<field name="teknisi" />
+									<field name="jurnalretur" />
+									<field name="jurnalpembayaranretur" />
+									<field name="nomorretur" />
+									<field name="tanggalterbit" />
+									<field name="idpopenjualan" />
+									<field name="idpopembelian" />
+									<field name="disetujui" />
+									<field name="notes" />
+								</tree>
+							</field>
+						</page>	
+						<page string="Grafik Penjualan">
+							<group style="background-color:#e5f2ff">
+								<p style="color:red">Wajib Menentukan Start dan End terlebih dahulu! Batas Maksimal Grafik adalah 1 Tahun, Pastikan Anda Telah Memilih Range Bulan dengan Benar</p>
+							</group>
+							<group style="background-color:#e5f2ff">
+								<field name="berdasarkan" string="Pilih Berdasarkan"/>
+								<field name="berdasarkantampilan" string="Berdasarkan"/>
+							</group>
+							<field name="grafikpenjualan">
+								<tree string="Grafik Penjualan" version="7.0" create="false" edit="false" delete="false" default_order="berdasarkan desc">
+									<field name="berdasarkan" string=" "/>
+									<field name="1"/>
+									<field name="2"/>
+									<field name="3"/>
+									<field name="4"/>
+									<field name="5"/>
+									<field name="6"/>
+									<field name="7"/>
+									<field name="8"/>
+									<field name="9"/>
+									<field name="10"/>
+									<field name="11"/>
+									<field name="0"/>
+									<field name="jumlah"/>
+									<field name="rerata"/>
+								</tree>
+								<form string="Grafik Penjualan" version="7.0" >
+									<group string="Informasi Filter">
+										<field name="berdasarkan" string="Berdasarkan"/>
+										<field name="jumlah"/>
+										<field name="rerata"/>
+									</group>
+									<group string="Informasi Pencapaian">
+										<group>
+											<field name="1"/>
+											<field name="2"/>
+											<field name="3"/>
+											<field name="4"/>
+											<field name="5"/>
+											<field name="6"/>
+										</group>
+										<group>
+											<field name="7"/>
+											<field name="8"/>
+											<field name="9"/>
+											<field name="10"/>
+											<field name="11"/>
+											<field name="0"/>
+										</group>
+									</group>
+								</form>
+							</field>
+						</page>	
+					</notebook>	
+				</form>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

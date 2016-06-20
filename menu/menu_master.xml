@@ -1,0 +1,324 @@
+<openerp>
+	<data>
+	
+		<record id="multi_action_master_mmr_supplier" model="ir.actions.act_window">
+			<field name="name">Supplier</field>
+			<field name="res_model">mmr.supplier</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_produk" model="ir.actions.act_window">
+			<field name="name">Produk</field>
+			<field name="res_model">mmr.produk</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_pembelianpo" model="ir.actions.act_window">
+			<field name="name">POPembelian</field>
+			<field name="res_model">mmr.pembelianpo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'group_by': 'waktu'}</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_syaratpembayaran" model="ir.actions.act_window">
+			<field name="name">Syarat Pembayaran</field>
+			<field name="res_model">mmr.syaratpembayaran</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_kategori" model="ir.actions.act_window">
+			<field name="name">Kategori</field>
+			<field name="res_model">mmr.kategori</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_gudang" model="ir.actions.act_window">
+			<field name="name">Gudang</field>
+			<field name="res_model">mmr.gudang</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_stok" model="ir.actions.act_window">
+			<field name="name">Stok</field>
+			<field name="res_model">mmr.stok</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_tukarkadaluarsastok" model="ir.actions.act_window">
+			<field name="name">Tukar Kadaluarsa Stok</field>
+			<field name="res_model">mmr.tukarkadaluarsastok</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_laporanstok" model="ir.actions.act_window">
+			<field name="name">Kartu Stok</field>
+			<field name="res_model">mmr.laporanstok</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_akun" model="ir.actions.act_window">
+			<field name="name">Neraca Lajur</field>
+			<field name="res_model">mmr.akun</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_aturanakun" model="ir.actions.act_window">
+			<field name="name">Aturan Akun</field>
+			<field name="res_model">mmr.aturanakun</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_pembayaranpembelian" model="ir.actions.act_window">
+			<field name="name">Pembayaran Pembelian</field>
+			<field name="res_model">mmr.pembayaranpembelian</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'group_by': 'tanggalbayar'}</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_kegiatanakunting" model="ir.actions.act_window">
+			<field name="name">Kegiatan Akunting</field>
+			<field name="res_model">mmr.kegiatanakunting</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'group_by': 'tanggal'}</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_biaya" model="ir.actions.act_window">
+			<field name="name">Biaya</field>
+			<field name="res_model">mmr.biaya</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'group_by': 'tanggal'}</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_inventaris" model="ir.actions.act_window">
+			<field name="name">Inventaris</field>
+			<field name="res_model">mmr.inventaris</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+	
+		<record id="multi_action_master_mmr_customer" model="ir.actions.act_window">
+			<field name="name">Customer</field>
+			<field name="res_model">mmr.customer</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_rayon" model="ir.actions.act_window">
+			<field name="name">Rayon</field>
+			<field name="res_model">mmr.rayon</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_kota" model="ir.actions.act_window">
+			<field name="name">Kota</field>
+			<field name="res_model">mmr.kota</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_sales" model="ir.actions.act_window">
+			<field name="name">Sales</field>
+			<field name="res_model">mmr.sales</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_penjualanpo" model="ir.actions.act_window">
+			<field name="name">POPenjualan</field>
+			<field name="res_model">mmr.penjualanpo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'group_by': 'tanggal'}</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_pembayaranpenjualan" model="ir.actions.act_window">
+			<field name="name">Pembayaran Penjualan</field>
+			<field name="res_model">mmr.pembayaranpenjualan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'group_by': 'tanggalbayar'}</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_jurnalpenyesuaian" model="ir.actions.act_window">
+			<field name="name">Jurnal Penyesuaian</field>
+			<field name="res_model">mmr.jurnalpenyesuaian</field>
+			<field name="view_type">form</field>
+			<field name="limit">9999</field>
+			<field name="view_mode">tree,form</field>
+		</record>	
+		
+		<record id="multi_action_master_mmr_jurnalpenutup" model="ir.actions.act_window">
+			<field name="name">Jurnal Penutup</field>
+			<field name="res_model">mmr.jurnalpenutup</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>		
+		
+		<record id="multi_action_master_mmr_laporanjurnal" model="ir.actions.act_window">
+			<field name="name">Laporan Jurnal</field>
+			<field name="res_model">mmr.laporanjurnal</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="limit">9999</field>
+		</record>	
+		
+		<record id="multi_action_master_mmr_laporansales" model="ir.actions.act_window">
+			<field name="name">Laporan Sales</field>
+			<field name="res_model">mmr.laporansales</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>	
+		
+		<record id="multi_action_master_mmr_smart" model="ir.actions.act_window">
+			<field name="name">Assistance</field>
+			<field name="res_model">mmr.smart</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="limit">9999</field>
+		</record>	
+		
+		<record id="multi_action_master_mmr_abaikanpekerjaan" model="ir.actions.act_window">
+			<field name="name">Abaikan Pekerjaan</field>
+			<field name="res_model">mmr.lupakanpekerjaan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('write_uid','=',uid)]</field>
+			<field name="limit">9999</field>
+		</record>	
+		
+		<record id="multi_action_master_mmr_tambahpekerjaan" model="ir.actions.act_window">
+			<field name="name">Tambah Pekerjaan</field>
+			<field name="res_model">mmr.tambahpekerjaan</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('write_uid','=',uid)]</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_laporanmarketing" model="ir.actions.act_window">
+			<field name="name">Laporan Marketing</field>
+			<field name="res_model">mmr.laporanmarketing</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_penjualanretur" model="ir.actions.act_window">
+			<field name="name">Penjualan Retur</field>
+			<field name="res_model">mmr.penjualanretur</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_autodelete" model="ir.actions.act_window">
+			<field name="name">Auto Delete</field>
+			<field name="res_model">mmr.autodelete</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<record id="multi_action_master_mmr_cetakbackup" model="ir.actions.act_window">
+			<field name="name">Cetak Backup</field>
+			<field name="res_model">mmr.cetakbackup</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="limit">9999</field>
+		</record>
+		
+		<menuitem id="mmr_menu_utama" name="Home" sequence="1" groups="base.group_user"/>
+		
+			<menuitem id="mmr_menu_smart" name="Assistance" parent="mmr_menu_utama" sequence="1" />
+				<menuitem id="multi_menu_master_abaikanpekerjaan" action="multi_action_master_mmr_abaikanpekerjaan" name="Abaikan Pekerjaan" parent="mmr_menu_smart" sequence="1" />
+				<menuitem id="multi_menu_master_tambahpekerjaan" action="multi_action_master_mmr_tambahpekerjaan" name="Tambah Pekerjaan" parent="mmr_menu_smart" sequence="2" />
+				<menuitem id="multi_menu_master_smart" action="multi_action_master_mmr_smart" name="Assistance" parent="mmr_menu_smart" sequence="3" />
+			
+			<menuitem id="mmr_menu_akunting" name="Akunting" parent="mmr_menu_utama" sequence="2" groups="MMR.akunting"/>
+				<menuitem id="multi_menu_master_akun" action="multi_action_master_mmr_akun" name="Neraca Lajur" parent="mmr_menu_akunting" sequence="1" />
+				<menuitem id="multi_menu_master_jurnalpenyesuaian" action="multi_action_master_mmr_jurnalpenyesuaian" name="Jurnal Penyesuaian" parent="mmr_menu_akunting" sequence="2" />
+				<menuitem id="multi_menu_master_jurnalpenutup" action="multi_action_master_mmr_jurnalpenutup" name="Jurnal Penutup" parent="mmr_menu_akunting" sequence="3" />
+				<menuitem id="multi_menu_master_aturanakun" action="multi_action_master_mmr_aturanakun" name="Aturan Akunting" parent="mmr_menu_akunting" sequence="4"/>
+				<menuitem id="multi_menu_master_kegiatanakunting" action="multi_action_master_mmr_kegiatanakunting" name="Kegiatan Akunting" parent="mmr_menu_akunting" sequence="5"/>
+				<menuitem id="multi_menu_master_biaya" action="multi_action_master_mmr_biaya" name="Biaya" parent="mmr_menu_akunting" sequence="6"/>
+				<menuitem id="multi_menu_master_laporanjurnal" action="multi_action_master_mmr_laporanjurnal" name="Laporan Jurnal" parent="mmr_menu_akunting" sequence="7"/>
+
+			
+			<menuitem id="mmr_menu_produk" name="Produk" parent="mmr_menu_utama" sequence="3" />
+				<menuitem id="multi_menu_master_produk" action="multi_action_master_mmr_produk" name="Produk" parent="mmr_menu_produk" sequence="1" />
+				<menuitem id="multi_menu_master_kategori" action="multi_action_master_mmr_kategori" name="Kategori" parent="mmr_menu_produk" sequence="2" />
+				<menuitem id="multi_menu_master_laporanstok" action="multi_action_master_mmr_laporanstok" name="Kartu Stok" parent="mmr_menu_produk" sequence="3" />
+				<menuitem id="multi_menu_master_stok" action="multi_action_master_mmr_stok" name="Stok" parent="mmr_menu_produk" sequence="4" />
+			
+			<menuitem id="mmr_menu_pembelian" name="Pembelian" parent="mmr_menu_utama" sequence="4" />
+				<menuitem id="multi_menu_master_pembelianpo" action="multi_action_master_mmr_pembelianpo" name="PO Pembelian" parent="mmr_menu_pembelian" sequence="1" />
+				<menuitem id="multi_menu_master_pembayaranpembelian" action="multi_action_master_mmr_pembayaranpembelian" name="Pembayaran Pembelian" parent="mmr_menu_pembelian" sequence="2" groups="MMR.akunting"/>
+		
+			<menuitem id="mmr_menu_penjualan" name="Penjualan" parent="mmr_menu_utama" sequence="5" />
+				<menuitem id="multi_menu_master_penjualanpo" action="multi_action_master_mmr_penjualanpo" name="PO Penjualan" parent="mmr_menu_penjualan" sequence="1" />
+				<menuitem id="multi_menu_master_pembayaranpenjualan" action="multi_action_master_mmr_pembayaranpenjualan" name="Pembayaran Penjualan" parent="mmr_menu_penjualan" sequence="2" groups="MMR.akunting"/>
+				<menuitem id="multi_menu_master_penjualanretur" action="multi_action_master_mmr_penjualanretur" name="Retur Penjualan" parent="mmr_menu_penjualan" sequence="3" groups="MMR.akunting"/>
+
+		
+		<menuitem id="mmr_menu_pengaturan" name="Pengaturan" sequence="2" groups="base.group_user"/>
+		
+			<menuitem id="mmr_menu_partner" name="Partner" parent="mmr_menu_pengaturan" sequence="1" />
+					<menuitem id="multi_menu_master_supplier" action="multi_action_master_mmr_supplier" name="Supplier" parent="mmr_menu_partner" sequence="1" />
+					<menuitem id="multi_menu_master_customer" action="multi_action_master_mmr_customer" name="Customer" parent="mmr_menu_partner" sequence="2" />
+					<menuitem id="multi_menu_master_syaratpembayaran" action="multi_action_master_mmr_syaratpembayaran" name="Syarat Bayar" parent="mmr_menu_partner" sequence="3" />
+					
+			<menuitem id="mmr_menu_marketing" name="Marketing" parent="mmr_menu_pengaturan" sequence="2" />	
+					<menuitem id="multi_menu_master_rayon" action="multi_action_master_mmr_rayon" name="Rayon" parent="mmr_menu_marketing" sequence="1" />
+					<menuitem id="multi_menu_master_kota" action="multi_action_master_mmr_kota" name="Kota" parent="mmr_menu_marketing" sequence="2" />
+					<menuitem id="multi_menu_master_sales" action="multi_action_master_mmr_sales" name="Sales" parent="mmr_menu_marketing" sequence="3" />
+					<menuitem id="multi_menu_master_laporansales" action="multi_action_master_mmr_laporansales" name="Laporan Sales" parent="mmr_menu_marketing" sequence="4" />
+					<menuitem id="multi_menu_master_laporanmarketing" action="multi_action_master_mmr_laporanmarketing" name="Laporan Marketing" parent="mmr_menu_marketing" sequence="5" />
+			
+			<menuitem id="mmr_menu_gudanginventaris" name="Gudang dan Inventaris" parent="mmr_menu_pengaturan" sequence="3" />	
+					<menuitem id="multi_menu_master_gudang" action="multi_action_master_mmr_gudang" name="Gudang" parent="mmr_menu_gudanginventaris" sequence="1" />
+					<menuitem id="multi_menu_master_inventaris" action="multi_action_master_mmr_inventaris" name="Inventaris" parent="mmr_menu_gudanginventaris" sequence="2" />
+
+			<menuitem id="mmr_menu_autodelete" name="Auto Delete" parent="mmr_menu_pengaturan" sequence="4" />	
+					<menuitem id="multi_menu_master_autodelete" action="multi_action_master_mmr_autodelete" name="Auto Delete" parent="mmr_menu_autodelete" sequence="1" groups="MMR.otoritas"/>
+					<menuitem id="multi_menu_master_cetakbackup" action="multi_action_master_mmr_cetakbackup" name="Cetak Backup" parent="mmr_menu_autodelete" sequence="2" groups="MMR.otoritas"/>
+								
+	</data>
+</openerp>

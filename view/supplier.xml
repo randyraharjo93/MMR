@@ -1,0 +1,180 @@
+<openerp>
+	<data>
+		
+		-----------Supplier----------
+		<record id="mmr_supplier_list" model="ir.ui.view">
+			<field name="name">mmr.supplier.list</field>
+			<field name="model">mmr.supplier</field>
+			<field name="arch" type="xml">
+				<tree string="Supplier" version="7.0">
+					<field name="kode" />
+					<field name="nama" />
+					<field name="alamat" />
+					<field name="telp" />
+					<field name="npwp" />
+					<field name="syaratpembayaran" />	
+					<field name="hutang" groups="MMR.akunting"/>
+					<field name="batashutang" groups="MMR.akunting"/>
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_supplier_form" model="ir.ui.view">
+			<field name="name">mmr.supplier.form</field>
+			<field name="model">mmr.supplier</field>
+			<field name="arch" type="xml">
+				<form string="Supplier" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="kode" />
+							<field name="nama" />
+							<field name="telp" />
+							<field name="alamat" />
+						</group>
+						<group string="Informasi Akunting">
+							<field name="npwp" />
+							<field name="syaratpembayaran" />
+							<field name="hutang" groups="MMR.akunting"/>
+							<field name="batashutang" groups="MMR.akunting"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="List Rekening">
+							<field name="listrekening"/>
+						</page>	
+						<page string="List Contact Person">
+							<field name="listcp"/>
+						</page>	
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		-----------Nomor Rekening----------
+		<record id="mmr_nomorrekening_list" model="ir.ui.view">
+			<field name="name">mmr.nomorrekening.list</field>
+			<field name="model">mmr.nomorrekening</field>
+			<field name="arch" type="xml">
+				<tree string="Nomor Rekening" version="7.0">
+					<field name="atasnama" />
+					<field name="bank" />
+					<field name="nomor" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_nomorrekening_form" model="ir.ui.view">
+			<field name="name">mmr.nomorrekening.form</field>
+			<field name="model">mmr.nomorrekening</field>
+			<field name="arch" type="xml">
+				<form string="Nomor Rekening" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="atasnama" />
+						<field name="bank" />
+						<field name="nomor" />
+					</group>
+				</form>
+			</field>
+		</record>
+	
+	-----------Contact Person----------
+		<record id="mmr_cp_list" model="ir.ui.view">
+			<field name="name">mmr.cp.list</field>
+			<field name="model">mmr.cp</field>
+			<field name="arch" type="xml">
+				<tree string="Contact Person" version="7.0">
+					<field name="atasnama" />
+					<field name="telp" />
+					<field name="alamat" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_cp_form" model="ir.ui.view">
+			<field name="name">mmr.cp.form</field>
+			<field name="model">mmr.cp</field>
+			<field name="arch" type="xml">
+				<form string="Contact Person" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="atasnama" />
+						<field name="telp" />
+						<field name="alamat" />
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		-----------Syarat Pembayaran----------
+		<record id="mmr_syaratpembayaran_list" model="ir.ui.view">
+			<field name="name">mmr.syaratpembayaran.list</field>
+			<field name="model">mmr.syaratpembayaran</field>
+			<field name="arch" type="xml">
+				<tree string="Syarat Pembayaran" version="7.0">
+					<field name="nama" />
+					<field name="lama" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_syaratpembayaran_form" model="ir.ui.view">
+			<field name="name">mmr.syaratpembayaran.form</field>
+			<field name="model">mmr.syaratpembayaran</field>
+			<field name="arch" type="xml">
+				<form string="Syarat Pembayaran" version="7.0" >
+					<group string="Informasi Dasar">
+						<field name="nama" />
+						<field name="lama" />
+					</group>
+				</form>
+			</field>
+		</record>
+			
+		-----------Daftar Harga Supplier----------
+		<record id="mmr_daftarhargasupplier_list" model="ir.ui.view">
+			<field name="name">mmr.daftarhargasupplier.list</field>
+			<field name="model">mmr.daftarhargasupplier</field>
+			<field name="arch" type="xml">
+				<tree string="Daftar Harga" version="7.0">
+					<field name="tanggalefektif" />
+					<field name="lebihdari" />
+					<field name="supplier" />
+					<field name="harga" />
+					<field name="diskon" />
+					<field name="netto" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_daftarhargasupplier_form" model="ir.ui.view">
+			<field name="name">mmr.daftarhargasupplier.form</field>
+			<field name="model">mmr.daftarhargasupplier</field>
+			<field name="arch" type="xml">
+				<form string="Daftar Harga" version="7.0" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="supplier"  options="{'no_create': True, 'no_open':True}"/>
+							<field name="lebihdari" />
+							<field name="tanggalefektif" />
+						</group>
+						<group string="Informasi Harga">
+							<field name="harga"/>
+							<field name="diskon"/>
+							<field name="netto"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Notes">
+							<field name="notes"/>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>	
+
+	</data>
+</openerp>

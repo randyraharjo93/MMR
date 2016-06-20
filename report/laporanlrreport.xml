@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp> 
+    <data>
+    	---------------------Laporan L/R-----------------------------------
+        <template id="laporanlr_report" >
+       	 	<t t-call="report.html_container">
+       			 <t t-foreach="docs" t-as="o">
+	           		<t t-call="report.external_layout" >
+	           			<div class="page" style="font-size: 125%;">
+			           		<h2 style="text-align:center">LAPORAN LABA/RUGI</h2>
+			           		<h5 style="text-align:center"> Periode : <span t-field="o.bulan"/>, <span t-field="o.tahun"/></h5>
+			           		<br/>
+			           		<table style="width:100%;" >
+			           			<tr>
+			           				<td style="width:82.5%"> Penjualan : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit),2))"/> </td>
+			           				<td style="width:7.5%; text-align:right"> </td>
+			           			</tr>
+			           		</table>	
+			           		<table style="width:100%; background-color: #f4f4f4" >		
+			           			<tr >
+			           				<td style="width:72.5%"> Diskon Penjualan : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit),2))"/> </td>
+			           				<td style="width:17.5%; text-align:right">  </td>
+			           			</tr>	
+			           		</table>
+			           		<table style="width:100%" >		
+			           			<tr >
+			           				<td style="width:72.5%"> Retur Penjualan : </td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit),2))"/> </td>
+			           				<td style="width:17.5%; text-align:left"> (+) </td>
+			           			</tr>	
+			           		</table>
+			           		<table style="width:100%; background-color: #f4f4f4" >		
+			           			<tr>
+			           				<td style="width:82.5%">  </td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit),2))"/> </td>
+			           				<td style="width:7.5%; text-align:left"> (-) </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:82.5%"> Penjualan Bersih </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)),2))"/> </td>
+			           				<td style="width:7.5%; text-align:left"> </td>
+			           			</tr>
+			           		</table>
+			           		
+			           		<p style="background-color: #f4f4f4"></p>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr>
+			           				<td style="width:72.5%"> Persediaan Awal : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit),2))"/> </td>
+			           				<td style="width:17.5%; text-align:left"> </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%; background-color: #f4f4f4" >		
+			           			<tr>
+			           				<td style="width:62.5%"> Pembelian : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit),2))"/> </td>
+			           				<td style="width:27.5%; text-align:left"> </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%" >		
+			           			<tr>
+			           				<td style="width:52.5%"> Diskon Pembelian : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit),2))"/> </td>
+			           				<td style="width:37.5%; text-align:left"> </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%; background-color: #f4f4f4" >		
+			           			<tr>
+			           				<td style="width:52.5%"> Retur Pembelian : </td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit),2))"/> </td>
+			           				<td style="width:37.5%; text-align:left"> (+) </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%" >		
+			           			<tr>
+			           				<td style="width:62.5%"> </td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit),2))"/> </td>
+			           				<td style="width:27.5%; text-align:left"> (-) </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:72.5%"> Pembelian Bersih : </td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit)),2))"/> </td>
+			           				<td style="width:17.5%; text-align:left"> (+) </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%" >		
+			           			<tr>
+			           				<td style="width:72.5%"> Barang Dagang Siap Dijual : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit))))"/> </td>
+			           				<td style="width:17.5%; text-align:left"> </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%; background-color: #f4f4f4" >		
+			           			<tr>
+			           				<td style="width:72.5%"> Persediaan Akhir : </td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(float(o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.1.05')]).debit))"/> </td>
+			           				<td style="width:17.5%; text-align:left"> (-) </td>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%" >		
+			           			<tr>
+			           				<td style="width:82.5%"> Harga Pokok Penjualan(COGS) : </td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(float(((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.1.05')]).debit)))"/> </td>
+			           				<td style="width:1.5%; text-align:left"> (-) </td>
+			           				<t t-if="((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0"> 
+			           					<td style="width:6%; text-align:right"> <b> <span t-esc="'{0:,.2f}'.format(round(float(((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.1.05')]).debit) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))),2))"/> % </b></td>
+			           				</t>
+			           				<t t-if="not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0"> 
+			           					<td style="width:6%; text-align:right"> <b> -% </b></td>
+			           				</t>
+			           			</tr>
+			           		</table>
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:82.5%"> Laba Bruto : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(float(((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.1.05')]).debit)))"/> </td>
+			           				<td style="width:7.5%; text-align:left">  </td>
+			           			</tr>
+			           		</table>
+			           		
+			           		<br/>
+			           		
+			           		<style>
+							      tr:nth-of-type(even) {
+							      background-color:#f4f4f4;
+							    }
+							</style>
+			           		<p style="background-color: #f4f4f4"><b> Pendapatan Di Luar Usaha </b></p>
+			           		<table style="width:100%" >
+			           			<t t-foreach="o.jurnaldisesuaikan" t-as="jurnaldetil">
+				           			<t t-if="jurnaldetil.idakunparent == 'pendapatandiluarusaha'">	
+					           			<tr>
+					           				<td style="width:40%"> <span t-esc="jurnaldetil.namaakun"/> </td>
+					           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.kredit)"/> </td>
+					           				<td style="width:50%; text-align:right"> </td>
+					           			</tr>
+					           		</t>
+				           		</t>	
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:82.5%"> Total Pendapatan Di Luar Usaha : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')))"/> </td>
+			           				<td style="width:7.5%; text-align:left">  </td>
+			           			</tr>
+			           		</table>
+			           		
+			           		
+			           		<br/>
+			           		
+			           		<t t-set="totalbeban" t-value="sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'biaya') or (jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.4'))"/>
+			           		
+			           		<p style="background-color: #f4f4f4"><b> Biaya Operasional Perusahaan </b></p>
+			           		<table style="width:100%" >
+			           			<t t-foreach="o.jurnaldisesuaikan" t-as="jurnaldetil">
+				           			<t t-if="jurnaldetil.idakunparent == 'biaya' ">	
+					           			<tr>
+					           				<td style="width:40%"> <span t-esc="jurnaldetil.namaakun"/> </td>
+					           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.debit)"/> </td>
+					           				<t t-if="((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0 ">	
+					           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(jurnaldetil.debit * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))),2))"/> % </td>
+					           				</t>
+					           				<t t-if=" not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0 ">	
+					           					<td style="width:7.5%; text-align:right"> - % </td>
+					           				</t>
+					           				<t t-if="totalbeban > 0 ">	
+					           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(jurnaldetil.debit * 100 / totalbeban),2))"/> % </td>
+					           				</t>
+					           				<t t-if="not totalbeban > 0 ">	
+					           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(jurnaldetil.debit * 100 / totalbeban),2))"/> % </td>
+					           				</t>
+					           				<td style="width:10%; text-align:right">  </td>
+					           				<td style="width:7.5%; text-align:right">  </td>
+					           				<td style="width:10%; text-align:right">  </td>
+					           				<td style="width:7.5%; text-align:right">  </td>
+					           			</tr>
+					           		</t>
+				           		</t>	
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:62.5%"> Total Biaya Operasional Perusahaan : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'biaya')))"/> </td>
+			           				<t t-if="((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0 ">	
+										<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'biaya')) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))),2))"/> % </td>			           				
+									</t>
+			           				<t t-if=" not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0 ">	
+			           					<td style="width:7.5%; text-align:right"> - % </td>
+			           				</t>
+			           				<td style="width:17.5%; text-align:left">  </td>
+			           			</tr>
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr>
+			           				<td style="width:62.5%"> </td>
+			           				<td style="width:10%; text-align:right"> </td>
+			           				<t t-if="totalbeban > 0" >
+			           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'biaya')) * 100 / totalbeban),2))"/> % </td>
+			           				</t>
+			           				<t t-if="not totalbeban > 0" >
+			           					<td style="width:7.5%; text-align:right"> - % </td>
+			           				</t>
+			           				<td style="width:17.5%; text-align:left"> </td>
+			           			</tr>
+			           		</table>
+			           		
+			           		<p style="background-color: #f4f4f4"><b> Biaya Di Luar Usaha </b></p>
+			           		<table style="width:100%" >
+			           			<t t-foreach="o.jurnaldisesuaikan" t-as="jurnaldetil">
+				           			<t t-if="jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.4'">	
+					           			<tr>
+					           				<td style="width:40%"> <span t-esc="jurnaldetil.namaakun"/> </td>
+					           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.debit)"/> </td>
+					           				<td style="width:7.5%; text-align:right"> </td>
+					           				<t t-if="totalbeban > 0" >
+					           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(jurnaldetil.debit * 100 / totalbeban),2))"/> % </td>
+					           				</t>
+					           				<t t-if="not totalbeban > 0" >
+					           					<td style="width:7.5%; text-align:right"> - % </td>
+					           				</t>
+					           				<td style="width:10%; text-align:right">  </td>
+					           				<td style="width:7.5%; text-align:right">  </td>
+					           				<td style="width:10%; text-align:right">  </td>
+					           				<td style="width:7.5%; text-align:right">  </td>
+					           			</tr>
+					           		</t>
+				           		</t>	
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:62.5%"> Total Biaya Di Luar Usaha : </td>
+			           				<td style="width:10%; text-align:right"> <span t-esc="'{0:,.2f}'.format(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.4')))"/> </td>
+			           				<t t-if="((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0">
+			           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.4')) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))),2))"/> % </td>
+			           				</t>
+			           				<t t-if="not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0">
+			           					<td style="width:7.5%; text-align:right"> - % </td>
+			           				</t>
+			           				<td style="width:17.5%; text-align:left">  </td>
+			           			</tr>
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr>
+			           				<td style="width:62.5%"> </td>
+			           				<td style="width:10%; text-align:right"> </td>
+			           				<t t-if="totalbeban > 0" >
+			           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.4')) * 100 / totalbeban),2))"/> % </td>
+			           				</t>
+			           				<t t-if="not totalbeban > 0" >
+			           					<td style="width:7.5%; text-align:right"> - % </td>
+			           				</t>
+			           				<td style="width:17.5%; text-align:left"> </td>
+			           			</tr>
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:82.5%"> Total Biaya </td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(totalbeban)"/> </td>
+			           				<td style="width:1.5%; text-align:left"> (-) </td>
+			           				<t t-if="((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0">
+					           				<td style="width:6%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(totalbeban * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))),2))"/> % </td>
+			           				</t>
+			           				<t t-if="not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0">
+					           				<td style="width:6%; text-align:right"> - % </td>
+			           				</t>
+			           			</tr>
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:80%"> Laba / Rugi Bersih Sebelum Pajak</td>
+			           				<td style="width:12.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(float(sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')) + ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.1.05')]).debit) - totalbeban))"/> </td>
+			           				<t t-if="((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0" >
+			           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float((sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')) + ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.1.05')]).debit) - totalbeban) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) ),2))"/> % </td>
+			           				</t>
+			           				<t t-if="not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0" >
+			           					<td style="width:7.5%; text-align:right"> - % </td>
+			           				</t>
+			           			</tr>
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr >
+			           				<td style="width:82.5%"> Pajak Penghasilan Final / 25</td>
+			           				<td style="width:10%; text-align:right; border-bottom: thin solid #000000"> <span t-esc="'{0:,.2f}'.format(float(o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','8.4')]).debit))"/> </td>
+			           				<td style="width:1.5%; text-align:left"> (-) </td>
+			           				<t t-if="((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0" >
+			           					<td style="width:6%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','8.4')]).debit * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))),2))"/> % </td>
+			           				</t>
+			           				<t t-if="not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0" >
+			           					<td style="width:6%; text-align:right"> - % </td>
+			           				</t>
+			           			</tr>
+			           		</table>
+			           		
+			           		<table style="width:100%" >		
+			           			<tr style="background-color: #e5fff2;  font-weight: bold;">
+			           				<td style="width:80%"> Laba / Rugi Bersih Setelah Pajak</td>
+			           				<td style="width:12.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(float(sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')) + ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.1.05')]).debit) - totalbeban - o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','8.4')]).debit))"/> </td>
+			           				<t t-if="((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0" >
+			           					<td style="width:7.5%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(float((sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')) + ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.1.05')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.1')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.2')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.3')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.1.05')]).debit) - totalbeban - o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','8.4')]).debit) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) ),2))"/> % </td>
+			           				</t>
+			           				<t t-if="not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.1')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.3')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.2')]).debit)) > 0" >
+			           					<td style="width:7.5%; text-align:right"> - % </td>
+			           				</t>
+			           			</tr>
+			           		</table>
+			           	</div>	
+	            	</t>	
+        		</t>
+    		</t>  
+        </template>
+    </data>
+
+</openerp>

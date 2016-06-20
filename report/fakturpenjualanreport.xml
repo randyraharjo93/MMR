@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp> 
+    <data>
+    	---------------------FAKTUR PENJUALAN-----------------------------------
+        <template id="fakturpenjualan_report" >
+       	 	<t t-call="report.html_container">
+       			 <t t-foreach="docs" t-as="o">
+       			 	<t t-set="penjualanfakturdetil" t-value="o.cetakfaktur.sorted(key=lambda x: x.namaproduk.namaproduk)"/>
+       			 	<t t-set="idx" t-value="0"/>
+       			 	<div class="page" style="font-family: Lucida Sans"> 
+       			 		<t t-foreach="(len(penjualanfakturdetil)-1)/5+1" t-as="page">
+	            			<h2 style="margin-top:-6px;text-align: center">FAKTUR</h2>
+	                 		<p class="col-xs-4" style="font-size: 110%">
+	                 			Tanggasl: <span t-field="o.tanggalterbit"/>  <br/>
+	                 			PO: <span t-field="o.idpenjualanpo.nomorpo"/> <br/>
+	                 			SJ: <span t-field="o.penjualansj.nomorsj"/> <br/> 
+	                 		</p>
+	                 		<p class="col-xs-4" style="font-size: 127%;text-align: center">
+	                 			<b><span t-field="o.nomorfaktur"/></b><br/>
+	                 			Jatuh Tempo : <span t-field="o.jatuhtempo"/>
+	                 		</p>
+	                 		<p class="col-xs-4" style="text-align: right; font-size: 100%">
+	                 			Kepada: <br/>
+	                 			<span t-field="o.idpenjualanpo.customer.nama"/> <br/> 
+	                 			<span style="font-size: 100%" t-field="o.idpenjualanpo.customer.alamat"/>
+	                 		</p>
+                 		   	<table style="width:100%; font-size: 120%; border: 1px solid black;">
+                 		   		<tr style="border-bottom: 3px solid black;">
+                 		   			<th style="text-align: center; border-right: 1px solid black">Merk</th>
+                 		   			<th style="text-align: center; border-right: 1px solid black">Produk</th>
+                 		   			<th style="text-align: center; border-right: 1px solid black">Jml</th>
+                 		   			<th style="text-align: center; border-right: 1px solid black">Harga</th>
+                 		   			<th style="text-align: center; border-right: 1px solid black">Dsc%</th>
+                 		   			<th style="text-align: center; border-right: 1px solid black">Total</th>
+                 		   		</tr>
+	                 		   	<t t-foreach="[1,2,3,4,5]" t-as="perpenjualanfakturdetil">
+	                 		   		<t t-if="len(penjualanfakturdetil) > page*5+idx">
+		                 		   		<tr>
+		                   					<td style="border-right: 1px solid black"><span t-field="penjualanfakturdetil[page*5+idx].merk"/></td>
+		                   					<td style="border-right: 1px solid black"><span t-field="penjualanfakturdetil[page*5+idx].namaproduk"/></td>
+		                   					<td style="text-align: center; border-right: 1px solid black" ><span t-esc="int(penjualanfakturdetil[page*5+idx].jumlah)"/></td>
+		                   					<td style="text-align: right; border-right: 1px solid black" ><span t-field="penjualanfakturdetil[page*5+idx].harga"/></td>
+		                   					<td style="text-align: center; border-right: 1px solid black" ><span t-esc="int(penjualanfakturdetil[page*5+idx].diskon)"/></td>
+		                   					<td style="text-align: right" ><span t-field="penjualanfakturdetil[page*5+idx].hppembelian"/></td>
+		                   				</tr>
+	                   				</t>
+	                   				<t t-if="page*5+idx >= len(penjualanfakturdetil)">
+		                 		   		<tr >
+		                 		   			<td style="border-right: 1px solid black">-</td>
+		                 		   			<td style="border-right: 1px solid black"></td>
+		                 		   			<td style="border-right: 1px solid black"></td>
+		                 		   			<td style="border-right: 1px solid black"></td>
+		                 		   			<td style="border-right: 1px solid black"></td>
+		                 		   			<td style="border-right: 1px solid black"></td>
+		                   				</tr>
+	                   				</t>	
+	                   				<t t-set="idx" t-value="idx+1"/>
+	                            </t>
+	                            <tr style="border-top: 1px solid black;border-right: 1px solid black">
+	                            	 <td colspan = "3" rowspan = "4" style="border-right: 1px solid black">
+	                            	 	Pembayaran Harap di Transfer ke Rekening ATM<br/>
+			                        	PT. MULTI MEDIKA RAHARJO<br/>
+			                        	BCA KCP PEMUDA SEMARANG<br/>
+			                        	AC NO. 0093112277
+	                        		 </td>
+	                        		 <td colspan = "2" style="border-right: 1px solid black;border-bottom: 1px solid black">
+	                            	 	Sub Total
+	                        		 </td>
+	                        		 <t t-if="page == (len(penjualanfakturdetil)-1)/5">
+		                        		 <td style="border-bottom: 1px solid black; text-align: right">
+		                            	 	<span t-field="o.bruto"/>
+		                        		 </td>
+	                        		 </t>
+	                        		 <t t-if="(len(penjualanfakturdetil)-1)/5 > page">
+		                        		 <td style="border-bottom: 1px solid black; text-align: right">
+		                            	 	-
+		                        		 </td>
+	                        		 </t>
+	                            </tr>
+	                            <tr>
+	                        		 <td colspan = "2" style="border-right: 1px solid black;border-bottom: 1px solid black">
+	                            	 	Disc
+	                        		 </td>
+	                        		 <t t-if="page == (len(penjualanfakturdetil)-1)/5">
+		                        		 <td style="border-bottom: 1px solid black; text-align: right">
+		                            	 	<span t-field="o.diskon"/>
+		                        		 </td>
+	                        		 </t>
+	                        		 <t t-if="(len(penjualanfakturdetil)-1)/5 > page">
+		                        		 <td style="border-bottom: 1px solid black; text-align: right">
+		                            	 	-
+		                        		 </td>
+	                        		 </t>
+	                            </tr>
+	                            <tr>
+	                        		 <td colspan = "2" style="border-right: 1px solid black; border-bottom: 1px solid black">
+	                            	 	PPN 10%
+	                        		 </td>
+	                        		 <t t-if="page == (len(penjualanfakturdetil)-1)/5">
+		                        		 <td style="border-bottom: 1px solid black; text-align: right">
+		                            	 	<span t-field="o.pajak"/>
+		                        		 </td>
+	                        		 </t>
+	                        		 <t t-if="(len(penjualanfakturdetil)-1)/5 > page">
+		                        		 <td style="border-bottom: 1px solid black; text-align: right">
+		                            	 	-
+		                        		 </td>
+	                        		 </t>
+	                            </tr>
+	                            <tr>
+	                        		 <td colspan = "2" style="border-right: 1px solid black; border-bottom: 1px solid black">
+	                            	 	Total Tagihan
+	                        		 </td>
+	                        		 <t t-if="page == (len(penjualanfakturdetil)-1)/5">
+		                        		 <td style="border-bottom: 1px solid black; text-align: right">
+		                            	 	<span t-field="o.netto"/>
+		                        		 </td>
+	                        		 </t>
+	                        		 <t t-if="(len(penjualanfakturdetil)-1)/5 > page">
+		                        		 <td style="border-bottom: 1px solid black; text-align: right">
+		                            	 	-
+		                        		 </td>
+	                        		 </t>
+	                            </tr>
+	                        </table> 
+	                        <br/>
+	                        <p class="col-xs-6" style="text-align: center; font-size: 127%">Tanda Terima,<br/><br/><br/><br/></p>
+	                        <p class="col-xs-6" style="text-align: center; font-size: 127%">Hormat Kami,<br/><br/><br/><br/></p>
+	                        
+	                        <p class="col-xs-12" style="text-align: center; border-bottom: 3px solid black; font-size: 100%">
+	                        	--Faktur ini SAH apabila <span style="font-family: Times New Roman; font-size: 105%;" >t</span>erdapat TANDA TANGAN pada bagian TANDA TERIMA, dan HORMAT KAMI--<br/>
+	                        	--Pembayaran dengan Bilyet Giro/Cek sah setelah kliring / diuangkan--
+	                        </p>
+	                        <span style="text-align: center;">Page </span><span style="text-align: center;" class="page" /> <t t-esc="page+1"/> of <span style="text-align: center;" class="topage" /> <t t-esc="(len(penjualanfakturdetil)-1)/5+1"/>
+	                        <p style="page-break-after:always;">   </p>
+	            		</t>
+	            	</div>	
+        		</t>
+    		</t>  
+        </template>
+    </data>
+
+</openerp>

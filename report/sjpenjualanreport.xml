@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp> 
+    <data>
+    	---------------------SJ PENJUALAN-----------------------------------
+        <template id="sjpenjualan_report" >
+       	 	<t t-call="report.html_container">
+       			 <t t-foreach="docs" t-as="o">
+       			 	<t t-set="stokkeluar" t-value="o.penjualansjdetil.sorted(key=lambda x: x.namaproduk.namaproduk)"/> 
+       			 	<t t-set="idx" t-value="0"/>
+       			 	<div class="page" style="font-family: Lucida Sans"> 
+	       			 	<t t-foreach="len(stokkeluar)/5+1" t-as="page">
+	            			<h2 style="margin-top:-6px;text-align: center">Surat Jalan</h2>
+	                 		<p class="col-xs-4" style= "font-size: 127%">
+	                 			Tanggal: <span t-field="o.tanggalterbit"/>  <br/>
+	                 			PO: <span t-field="o.idpenjualanpo.nomorpo"/> <br/> 
+	                 		</p> 
+	                 		<p class="col-xs-4" style="text-align:center;font-size: 127%">
+	                 			<b><span t-field="o.nomorsj"/></b>
+	                 		</p>
+	                 		<p class="col-xs-4" style="text-align: right;font-size: 100%">
+	                 			Kepada: <br/>
+	                 			<span t-field="o.idpenjualanpo.customer.nama"/> <br/> 
+	                 			<span style="font-size: 100%" t-field="o.idpenjualanpo.customer.alamat"/>
+	                 		</p>
+	             		   	<table style="width:100%;font-size: 127%; border: 1px solid black">
+	             		   		<tr style="border-bottom: 3px solid black;">
+	             		   			<th style="text-align: center; border-right: 1px solid black">Merk</th>
+	             		   			<th style="text-align: center; border-right: 1px solid black">Produk</th>
+	             		   			<th style="text-align: center; border-right: 1px solid black">Satuan</th>
+	             		   			<th style="text-align: center">Jml</th>
+	             		   		</tr>
+	                 		   	<t t-foreach="[1,2,3,4,5]" t-as="perstokkeluar">
+	                 		   		<t t-if="len(stokkeluar) > page*5+idx">
+		                 		   		<tr >
+		                   					<td style="border-right: 1px solid black"><span t-field="stokkeluar[page*5+idx].merk"/></td>
+		                   					<td style="border-right: 1px solid black"><span t-field="stokkeluar[page*5+idx].namaproduk"/></td>
+		                   					<td style="border-right: 1px solid black"><span t-field="stokkeluar[page*5+idx].satuan"/></td>
+		                   					<td style="text-align: center"><span t-esc="int(stokkeluar[page*5+idx].jumlah)"/></td>
+		                   				</tr>
+	                   				</t>
+	                   				<t t-if="page*5+idx >= len(stokkeluar)">
+		                 		   		<tr >
+		                 		   			<td style="border-right: 1px solid black">-</td>
+		                 		   			<td style="border-right: 1px solid black"></td>
+		                 		   			<td style="border-right: 1px solid black"></td>
+		                 		   			<td></td>
+		                   				</tr>
+	                   				</t>	
+	                   				<t t-set="idx" t-value="idx+1"/>
+	                            </t>
+	                        </table> 
+	                        <p class="col-xs-3" style="text-align: center;font-size: 127%"><br/><br/><br/><br/><br/>Tanda Terima,<br/><br/><br/><br/></p>
+	                        <p class="col-xs-3" style="text-align: center;font-size: 127%"><br/><br/><br/><br/><br/>Pengiriman,<br/><br/><br/><br/></p>
+	                        <p class="col-xs-3" style="text-align: center;font-size: 127%"><br/><br/><br/><br/><br/>Gudang,<br/><br/><br/><br/></p>
+	                        <p class="col-xs-3" style="text-align: center;font-size: 127%"><br/><br/><br/><br/><br/>Hormat Kami,<br/><br/><br/><br/></p>
+	                       
+	                        <p class="col-xs-12" style="text-align: center; border-bottom: 3px solid black;font-size: 90%">--SJ ini SAH apabila <span style="font-family: Times New Roman; font-size: 105%;" >t</span>erdapat TANDA TANGAN pada bagian TANDA TERIMA, PENGIRIMAN, GUDANG, HORMAT KAMI--</p>
+	                        <span style="text-align: center;">Page </span><span style="text-align: center;" class="page" /> <t t-esc="page+1"/> of <span style="text-align: center;" class="topage" /> <t t-esc="len(stokkeluar)/5+1"/>
+		            		<p style="page-break-after:always;">   </p>
+		            	</t>	
+		            </div>	
+        		</t>
+    		</t>  
+        </template>
+    </data>
+
+</openerp>
