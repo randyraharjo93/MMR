@@ -315,6 +315,97 @@
 				</form>
 			</field>
 		</record>
+
+		<record id="mmr_penjualansj_list_no_edit" model="ir.ui.view">
+			<field name="name">mmr.penjualansj.list.no.edit</field>
+			<field name="model">mmr.penjualansj</field>
+			<field name="arch" type="xml">
+				<tree string="Penjualan SJ" version="7.0" create="false" edit="false">
+					<field name="idpenjualanpo" string="Nomor PO"/>
+					<field name="nomorsj" />
+					<field name="tanggalterbit" />
+					<field name="dibuat" groups="MMR.otoritas"/>
+					<field name="disetujui" groups="MMR.otoritas"/>
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_penjualansj_form_no_edit" model="ir.ui.view">
+			<field name="name">mmr.penjualansj.form.no.edit</field>
+			<field name="model">mmr.penjualansj</field>
+			<field name="arch" type="xml">
+				<form string="Penjualan SJ" version="7.0" create="false" edit="false">
+					<group string="Informasi Dasar">
+						<field name="id" attrs="{'invisible':True}"/>
+						<field name="idpenjualanpo" string="Nomor PO"/>
+						<field name="trigger" attrs="{'invisible':True}"/>
+						<field name="nomorsj" attrs="{'readonly':True}"/>
+						<field name="reservednomorsj" groups="MMR.otoritas" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
+						<field name="tanggalterbit" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
+					</group>
+					<notebook>
+						<page string="List Produk">
+							<field name="penjualansjdetil" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
+						</page>
+						<page string="List Produk Detail">
+							<field name="stokkeluar" context="{'name': active_id}" attrs="{'readonly':[('disetujuigudang','!=',False)]}">
+								<tree string="Stok Keluar" version="7.0">
+									<field name="teknisi"/>
+									<field name="merk"/>
+									<field name="namaproduk"/>
+									<field name="satuan"/>
+									<field name="jumlah"/>
+									<field name="gudang"/>
+									<field name="kadaluarsa"/>
+									<field name="lot"/>
+									<field name="notes"/>
+									<field name="idstok" groups="MMR.otoritas" attrs="{'invisible':True}" string=""/>
+								</tree>
+								<form string="Stok Keluar" version="7.0" >
+									<group>
+										<group string="Informasi Dasar">
+											<field name="pilihanproduk" on_change="onchange_pilihanproduk(pilihanproduk)" groups="MMR.gudang" options="{'no_create': True, 'no_open':True}"/>
+											<field name="idstok" groups="MMR.gudang" on_change="onchange_idstok(pilihanproduk)" options="{'no_create': True, 'no_open':True}"/>
+											<field name="idpenjualanpo" attrs="{'invisible':True}"/>
+											<field name="merk"/>
+											<field name="namaproduk"/>
+											<field name="satuan"/>
+											<field name="jumlah"/>
+											<field name="teknisi"/>
+										</group>
+										<group string="Informasi Produk">
+											<field name="gudang"/>
+											<field name="kadaluarsa"/>
+											<field name="lot"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes" >
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>		
+						<page string="Notes">
+							<field name="notes" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
+						</page>	
+					</notebook>
+					<group groups="MMR.otoritas" string="Informasi Otoritas">
+						<group>
+							<field name="dibuat" />
+							<field name="create_date" attrs="{'readonly':[('disetujuigudang','!=',False)]}" string="Waktu Pembuatan"/> 
+							<field name="diedit" />
+						</group>
+						<group>
+							<field name="disetujui" />
+							<field name="disetujuigudang" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
 		
 		-----------PenjualanSJDetil----------
 		<record id="mmr_penjualansjdetil_list" model="ir.ui.view">
@@ -392,6 +483,171 @@
 							<field name="lunas" attrs="{'invisible':True}"/>
 							<field name="id" attrs="{'invisible':True}"/>
 							<field name="idpenjualanpo" attrs="{'invisible':True}"/>
+							<field name="namamodel" attrs="{'invisible':True}"/>
+							<field name="customer"  attrs="{'invisible':True}"/>
+							<field name="trigger"  attrs="{'invisible':True}"/>
+							<field name="waktu" attrs="{'readonly':[('disetujui','!=',False)],'invisible':True}"/>
+							<field name="nomorfaktur"/>
+							<field name="nofakturpajak" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="penjualansj" on_change="onchange_sj(penjualansj)" options="{'no_create': True, 'no_open':True}" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="tanggalterbit" on_change="onchange_tanggalterbit(idpenjualanpo,tanggalterbit)" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="jatuhtempo" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="teknisi" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="totalbayar"/>
+							<field name="status" />
+						</group>
+						<group string="Informasi Akunting">
+							<field name="bruto" />
+							<field name="diskon"/>
+							<field name="hppembelian"/>
+							<field name="pajak" />
+							<field name="netto" />
+							<field name="aturanakun" options="{'no_create': True, 'no_open':True}" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="akunotomatis" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+							<field name="setlunas" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="List Produk">
+							<field name="penjualanfakturdetil">
+								<tree >
+									<field name="teknisi" />
+									<field name="merk" />
+									<field name="namaproduk" />
+									<field name="satuan"/>
+									<field name="jumlah"/>
+									<field name="harga"/>
+									<field name="bruto"/>
+									<field name="diskon"/>
+									<field name="hppembelian"/>
+									<field name="pajak"/>
+									<field name="netto"/>
+									<field name="notes"/>
+								</tree>
+								<form string="List Barang" version="7.0">
+									<group>
+										<group string="Informasi Barang">
+											<field name="idpenjualansj" attrs="{'invisible':True}"/>
+											<field name="gudang" attrs="{'invisible':True}"/>
+											<field name="idpenjualanpo" attrs="{'invisible':True}"/>
+											<field name="teknisi" />
+											<field name="pilihanproduk" options="{'no_create': True, 'no_open':True}" attrs="{'invisible':True}"/>
+											<field name="merk" />
+											<field name="namaproduk" />
+											<field name="satuan" />
+											<field name="kadaluarsa"/>
+											<field name="lot"/>
+										</group>
+										<group string="Informasi Saldo">
+											<field name="jumlah" />
+											<field name="harga"/>
+											<field name="bruto"/>
+											<field name="diskon"/>
+											<field name="hppembelian"/>
+											<field name="pajak"/>
+											<field name="netto"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="Cetak Faktur">
+							<field name="cetakfaktur">
+							</field>
+						</page>	
+						<page string="Jurnal" >
+							<field name="akunterkena" attrs="{'readonly':[('disetujui','!=',False)]}">
+								<tree >
+									<field name="idakun" />
+									<field name="debit" />
+									<field name="kredit"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Akun Detil" version="7.0">
+									<group>
+										<group string ="Informasi Dasar">
+											<field name="idakun" string = "Nama Akun" options="{'no_create': True, 'no_open':True}"/>
+											<field name="debit" string = "Debit"/>
+											<field name="kredit" string = "Kredit"/>
+										</group>
+										<group string ="Ubah Manual" class="oe_edit_only">
+											<field name="isidebit" class="oe_edit_only"/>
+											<field name="isikredit" class="oe_edit_only"/>
+										</group>
+									</group>
+									<notebook>
+										<page string="Notes">
+											<field name="notes" string = "Notes"/>
+										</page>	
+									</notebook>
+								</form>
+							</field>
+						</page>	
+						<page string="List Pembayaran">
+							<field name="listpembayaran" attrs="{'readonly':True}">
+								<tree >
+									<field name="tanggal"/>
+									<field name="bayar"/>
+									<field name="notes"/>
+								</tree>
+								<form string="Pembayaran Detil" version="7.0">
+									<group string="Informasi Dasar" >
+										<field name="idpembayaranpenjualan"/>
+										<field name="tanggal"/>
+										<field name="bayar"/>
+										<field name="notes"/>
+									</group>
+								</form>
+							</field>	
+						</page>	
+						<page string="Notes">
+							<field name="notes" attrs="{'readonly':[('disetujui','!=',False)]}"/>
+						</page>	
+					</notebook>
+					<group groups="MMR.otoritas" string="Informasi Otoritas">
+						<group>
+							<field name="dibuat"/>
+							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/> 
+							<field name="diedit"/>
+						</group>
+						<group>
+							<field name="disetujui"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="mmr_penjualanfaktur_list_no_edit" model="ir.ui.view">
+			<field name="name">mmr.penjualanfaktur.list.no.edit</field>
+			<field name="model">mmr.penjualanfaktur</field>
+			<field name="arch" type="xml">
+				<tree string="Penjualan Faktur" version="7.0" create="false" edit="false">
+					<field name="status" />
+					<field name="idpenjualanpo" string="Nomor PO"/>
+					<field name="nomorfaktur" />
+					<field name="tanggalterbit" />
+					<field name="jatuhtempo" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="mmr_penjualanfaktur_form_no_edit" model="ir.ui.view">
+			<field name="name">mmr.penjualanfaktur.form.no.edit</field>
+			<field name="model">mmr.penjualanfaktur</field>
+			<field name="arch" type="xml">
+				<form string="Penjualan Faktur" version="7.0" create="false" edit="false" >
+					<group>
+						<group string="Informasi Dasar">
+							<field name="lunas" attrs="{'invisible':True}"/>
+							<field name="id" attrs="{'invisible':True}"/>
+							<field name="idpenjualanpo" string="Nomor PO"/>
 							<field name="namamodel" attrs="{'invisible':True}"/>
 							<field name="customer"  attrs="{'invisible':True}"/>
 							<field name="trigger"  attrs="{'invisible':True}"/>

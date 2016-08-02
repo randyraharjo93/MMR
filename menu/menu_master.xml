@@ -31,7 +31,7 @@
 			<field name="res_model">mmr.pembeliansj</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
-			<field name="view_ids" eval="[(0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_pembeliansj_list_no_edit')}), (0, 0, {'sequence': 2, 'view_mode': 'form', 'view_id': ref('MMR.mmr_pembeliansj_form_no_edit')})]"/>
+			<field name="view_ids" eval="[(6,0,[]), (0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_pembeliansj_list_no_edit')}), (0, 0, {'sequence': 2, 'view_mode': 'form', 'view_id': ref('MMR.mmr_pembeliansj_form_no_edit')})]"/>
 			<field name="context">{'group_by': 'tanggalterbit'}</field>
 			<field name="limit">9999</field>
 		</record>
@@ -41,6 +41,7 @@
 			<field name="res_model">mmr.pembelianfaktur</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
+			<field name="view_ids" eval="[(6,0,[]), (0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_pembelianfaktur_list_no_edit')}), (0, 0, {'sequence': 2, 'view_mode': 'form', 'view_id': ref('MMR.mmr_pembelianfaktur_form_no_edit')})]"/>
 			<field name="context">{'group_by': 'tanggalterbit'}</field>
 			<field name="limit">9999</field>
 		</record>
@@ -184,6 +185,26 @@
 			<field name="context">{'group_by': 'tanggal'}</field>
 			<field name="limit">9999</field>
 		</record>
+
+		<record id="multi_action_master_mmr_penjualansj" model="ir.actions.act_window">
+			<field name="name">SJPenjualan</field>
+			<field name="res_model">mmr.penjualansj</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_ids" eval="[(6,0,[]), (0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_penjualansj_list_no_edit')}), (0, 0, {'sequence': 2, 'view_mode': 'form', 'view_id': ref('MMR.mmr_penjualansj_form_no_edit')})]"/>
+			<field name="context">{'group_by': 'tanggalterbit'}</field>
+			<field name="limit">9999</field>
+		</record>
+
+		<record id="multi_action_master_mmr_penjualanfaktur" model="ir.actions.act_window">
+			<field name="name">FakturPenjualan</field>
+			<field name="res_model">mmr.penjualanfaktur</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_ids" eval="[(6,0,[]), (0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_penjualanfaktur_list_no_edit')}), (0, 0, {'sequence': 2, 'view_mode': 'form', 'view_id': ref('MMR.mmr_penjualanfaktur_form_no_edit')})]"/>
+			<field name="context">{'group_by': 'tanggalterbit'}</field>
+			<field name="limit">9999</field>
+		</record>
 		
 		<record id="multi_action_master_mmr_pembayaranpenjualan" model="ir.actions.act_window">
 			<field name="name">Pembayaran Penjualan</field>
@@ -315,8 +336,10 @@
 		
 			<menuitem id="mmr_menu_penjualan" name="Penjualan" parent="mmr_menu_utama" sequence="5" />
 				<menuitem id="multi_menu_master_penjualanpo" action="multi_action_master_mmr_penjualanpo" name="PO Penjualan" parent="mmr_menu_penjualan" sequence="1" />
-				<menuitem id="multi_menu_master_pembayaranpenjualan" action="multi_action_master_mmr_pembayaranpenjualan" name="Pembayaran Penjualan" parent="mmr_menu_penjualan" sequence="2" groups="MMR.akunting"/>
-				<menuitem id="multi_menu_master_penjualanretur" action="multi_action_master_mmr_penjualanretur" name="Retur Penjualan" parent="mmr_menu_penjualan" sequence="3" groups="MMR.akunting"/>
+				<menuitem id="multi_menu_master_penjualansj" action="multi_action_master_mmr_penjualansj" name="SJ Penjualan" parent="mmr_menu_penjualan" sequence="2" />
+				<menuitem id="multi_menu_master_penjualanfaktur" action="multi_action_master_mmr_penjualanfaktur" name="Faktur Penjualan" parent="mmr_menu_penjualan" sequence="3" />
+				<menuitem id="multi_menu_master_pembayaranpenjualan" action="multi_action_master_mmr_pembayaranpenjualan" name="Pembayaran Penjualan" parent="mmr_menu_penjualan" sequence="4" groups="MMR.akunting"/>
+				<menuitem id="multi_menu_master_penjualanretur" action="multi_action_master_mmr_penjualanretur" name="Retur Penjualan" parent="mmr_menu_penjualan" sequence="5" groups="MMR.akunting"/>
 
 		
 		<menuitem id="mmr_menu_pengaturan" name="Pengaturan" sequence="2" groups="base.group_user"/>

@@ -125,6 +125,7 @@ class mmr_penjualanpo(osv.osv):
 					'context': "{'idpenjualanpo': " +  str(ids[0]) + "}",
 					'type': 'ir.actions.act_window',
 					'nodestroy': True,
+					'view_id': self.pool['ir.model.data'].get_object_reference(cr, uid, 'MMR', 'mmr_penjualansj_form')[1],
 					'target': 'new',
 					}
 	
@@ -139,6 +140,7 @@ class mmr_penjualanpo(osv.osv):
 					'context': "{'idpenjualanpo': " +  str(ids[0]) + "}",
 					'type': 'ir.actions.act_window',
 					'nodestroy': True,
+					'view_id': self.pool['ir.model.data'].get_object_reference(cr, uid, 'MMR', 'mmr_penjualanfaktur_form')[1],
 					'target': 'new',
 					}	
 		
