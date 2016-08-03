@@ -108,7 +108,41 @@
 				</form>
 			</field>
 		</record>
-		
+
+		-----------save akun----------
+		<record id="mmr_saveakun_list" model="ir.ui.view">
+			<field name="name">mmr.saveakun.list</field>
+			<field name="model">mmr.saveakun</field>
+			<field name="arch" type="xml">
+				<tree string="Save Akun" version="7.0">
+					<field name="tanggal" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="mmr_saveakun_form" model="ir.ui.view">
+			<field name="name">mmr.saveakun.form</field>
+			<field name="model">mmr.saveakun</field>
+			<field name="arch" type="xml">
+				<form string="Save Akun" version="7.0" >
+					<group>
+						<field name="tanggal" />
+					</group>
+					<notebook>
+						<page string="Akun">
+							<field name="idssaveakun">
+								<tree editable="bottom">
+									<field name="idakun" />
+									<field name="debit" />
+									<field name="kredit" />
+								</tree>
+							</field>
+						</page>	
+					</notebook>
+				</form>
+			</field>
+		</record>
+
 		-----------Jurnal Penyesuaian----------
 		<record id="mmr_jurnalpenyesuaian_list" model="ir.ui.view">
 			<field name="name">mmr.jurnalpenyesuaian.list</field>

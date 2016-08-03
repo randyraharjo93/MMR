@@ -101,6 +101,14 @@
 			<field name="view_mode">tree,form</field>
 			<field name="limit">9999</field>
 		</record>
+
+		<record id="multi_action_master_mmr_save_akun" model="ir.actions.act_window">
+			<field name="name">Save Akun</field>
+			<field name="res_model">mmr.saveakun</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="limit">9999</field>
+		</record>
 		
 		<record id="multi_action_master_mmr_aturanakun" model="ir.actions.act_window">
 			<field name="name">Aturan Akun</field>
@@ -320,6 +328,7 @@
 				<menuitem id="multi_menu_master_kegiatanakunting" action="multi_action_master_mmr_kegiatanakunting" name="Kegiatan Akunting" parent="mmr_menu_akunting" sequence="5"/>
 				<menuitem id="multi_menu_master_biaya" action="multi_action_master_mmr_biaya" name="Biaya" parent="mmr_menu_akunting" sequence="6"/>
 				<menuitem id="multi_menu_master_laporanjurnal" action="multi_action_master_mmr_laporanjurnal" name="Laporan Jurnal" parent="mmr_menu_akunting" sequence="7"/>
+				<menuitem id="multi_menu_master_saveakun" action="multi_action_master_mmr_save_akun" name="Save Akun" parent="mmr_menu_akunting" sequence="8"/>
 
 			
 			<menuitem id="mmr_menu_produk" name="Produk" parent="mmr_menu_utama" sequence="3" />

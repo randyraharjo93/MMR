@@ -376,6 +376,7 @@ class mmr_kartustok(osv.osv):
 
 mmr_kartustok()
 
+
 class mmr_laporanstok(osv.osv):
     _name = "mmr.laporanstok"
     _description = "Modul Laporan Stok untuk PT. MMR. Mengelompokkan stok berdasar gudang, dan exp date"
@@ -408,13 +409,13 @@ class mmr_laporanstok(osv.osv):
                         jumlah += stokobj.debit
                         nilai += round(stokobj.harga * stokobj.debit, 2) - round(round(stokobj.harga * stokobj.debit, 2) * stokobj.diskon / 100, 2)
                         self.laporanstokdetil += self.laporanstokdetil.new({
-                                                    'laporanstok': self.id, 'sumber': str(stokobj.idpembelianpo.nomorpo), 'suppliercustomer': stokobj.idpembelianpo.supplier.nama, 
-                                                    'tanggal': stokobj.idpembeliansj.tanggalterbit, 'gudang': stokobj.gudang, 
-                                                    'harga': stokobj.harga, 'debit': stokobj.debit, 'bruto': round(stokobj.harga * stokobj.debit, 2), 
-                                                    'diskon':stokobj.diskon, 'hppembelian': round(stokobj.harga * stokobj.debit, 2) - round(round(stokobj.harga * stokobj.debit, 2) * stokobj.diskon / 100, 2), 
-                                                    'kadaluarsa': stokobj.kadaluarsa, 'lot': stokobj.lot, 'stokkhusus': stokobj.idpembelianpo.pokhusus, 'saldo':jumlah, 
-                                                    'hargasetelahdiskon': round((round(stokobj.harga * stokobj.debit, 2) - round(round(stokobj.harga * stokobj.debit, 2) * stokobj.diskon / 100, 2)) / stokobj.debit, 2), 
-                                                    'nilai':nilai
+                                                    'laporanstok': self.id, 'sumber': str(stokobj.idpembelianpo.nomorpo), 'suppliercustomer': stokobj.idpembelianpo.supplier.nama,
+                                                    'tanggal': stokobj.idpembeliansj.tanggalterbit, 'gudang': stokobj.gudang,
+                                                    'harga': stokobj.harga, 'debit': stokobj.debit, 'bruto': round(stokobj.harga * stokobj.debit, 2),
+                                                    'diskon': stokobj.diskon, 'hppembelian': round(stokobj.harga * stokobj.debit, 2) - round(round(stokobj.harga * stokobj.debit, 2) * stokobj.diskon / 100, 2),
+                                                    'kadaluarsa': stokobj.kadaluarsa, 'lot': stokobj.lot, 'stokkhusus': stokobj.idpembelianpo.pokhusus, 'saldo': jumlah,
+                                                    'hargasetelahdiskon': round((round(stokobj.harga * stokobj.debit, 2) - round(round(stokobj.harga * stokobj.debit, 2) * stokobj.diskon / 100, 2)) / stokobj.debit, 2),
+                                                    'nilai': nilai
                                                     })
                     else:
                         stokkeluarobj = self.env['mmr.stokkeluar'].browse(int(semuastok[0][2:]))
@@ -422,79 +423,79 @@ class mmr_laporanstok(osv.osv):
                         stokobj = self.env['mmr.stok'].browse(stokkeluarobj.idstok.id)
                         nilai -= round(stokobj.harga * stokkeluarobj.jumlah, 2) - round(round(stokobj.harga * stokkeluarobj.jumlah, 2) * stokobj.diskon / 100, 2)
                         self.laporanstokdetil += self.laporanstokdetil.new({
-                                                    'laporanstok': self.id, 'sumber': str(stokkeluarobj.idpenjualanpo.nomorpo), 'suppliercustomer': stokkeluarobj.idpenjualanpo.customer.nama, 
-                                                    'tanggal': stokkeluarobj.idpenjualansj.tanggalterbit, 'gudang': stokkeluarobj.idstok.gudang, 
-                                                    'harga': stokkeluarobj.idstok.harga, 'kredit': stokkeluarobj.jumlah, 'bruto': round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2), 
-                                                    'diskon':stokkeluarobj.idstok.diskon, 'hppembelian': round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2) - round(round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2) * stokkeluarobj.idstok.diskon / 100, 2), 
-                                                    'kadaluarsa': stokkeluarobj.idstok.kadaluarsa, 'lot': stokkeluarobj.idstok.lot, 'stokkhusus': stokkeluarobj.idstok.idpembelianpo.pokhusus, 'saldo':jumlah, 
-                                                    'hargasetelahdiskon': round((round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2) - round(round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2) * stokkeluarobj.idstok.diskon / 100, 2)) / stokkeluarobj.jumlah, 2), 
-                                                    'nilai':nilai
-                                                })    
-                laporanstokdetilterbalik = self.env['mmr.kartustok']            
+                                                    'laporanstok': self.id, 'sumber': str(stokkeluarobj.idpenjualanpo.nomorpo), 'suppliercustomer': stokkeluarobj.idpenjualanpo.customer.nama,
+                                                    'tanggal': stokkeluarobj.idpenjualansj.tanggalterbit, 'gudang': stokkeluarobj.idstok.gudang,
+                                                    'harga': stokkeluarobj.idstok.harga, 'kredit': stokkeluarobj.jumlah, 'bruto': round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2),
+                                                    'diskon': stokkeluarobj.idstok.diskon, 'hppembelian': round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2) - round(round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2) * stokkeluarobj.idstok.diskon / 100, 2),
+                                                    'kadaluarsa': stokkeluarobj.idstok.kadaluarsa, 'lot': stokkeluarobj.idstok.lot, 'stokkhusus': stokkeluarobj.idstok.idpembelianpo.pokhusus, 'saldo': jumlah,
+                                                    'hargasetelahdiskon': round((round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2) - round(round(stokkeluarobj.idstok.harga * stokkeluarobj.jumlah, 2) * stokkeluarobj.idstok.diskon / 100, 2)) / stokkeluarobj.jumlah, 2),
+                                                    'nilai': nilai
+                                                })
+                laporanstokdetilterbalik = self.env['mmr.kartustok']
                 for semuastokdetil in reversed(self.laporanstokdetil):
-                    laporanstokdetilterbalik+=semuastokdetil
-                self.laporanstokdetil = laporanstokdetilterbalik    
-    
+                    laporanstokdetilterbalik += semuastokdetil
+                self.laporanstokdetil = laporanstokdetilterbalik
+
     _columns = {
-        'idcetakbackup': fields.many2one("mmr.cetakbackup", "ID Cetak Backup"),    
-        'merk': fields.many2one("mmr.merk", "merk"), 
-        'namaproduk': fields.many2one("mmr.produk", "Nama Produk", domain="[('merk', '=', merk)]"), 
-        'satuan': fields.many2one("mmr.satuan", "Satuan", related="namaproduk.satuan", readonly=True), 
-        'laporanstokdetil': fields.one2many("mmr.kartustok", "laporanstok", "Kartu Stok", compute="_isi_kartustok"), 
-        'cetak': fields.boolean("Cetak"), 
-    }    
-    
+        'idcetakbackup': fields.many2one("mmr.cetakbackup", "ID Cetak Backup"),
+        'merk': fields.many2one("mmr.merk", "merk"),
+        'namaproduk': fields.many2one("mmr.produk", "Nama Produk", domain="[('merk', '=', merk)]"),
+        'satuan': fields.many2one("mmr.satuan", "Satuan", related="namaproduk.satuan", readonly=True),
+        'laporanstokdetil': fields.one2many("mmr.kartustok", "laporanstok", "Kartu Stok", compute="_isi_kartustok"),
+        'cetak': fields.boolean("Cetak"),
+    }
+
     # Tidak perlu menyimpan laporan
-    #def create(self, cr, uid, vals, context=None):
-        #raise osv.except_osv(_('Tidak Dapat Menyimpan'), _("Laporan ini tidak untuk disimpan!"))
-    #    return id    
-    
+    # def create(self, cr, uid, vals, context=None):
+    #   raise osv.except_osv(_('Tidak Dapat Menyimpan'), _("Laporan ini tidak untuk disimpan!"))
+    #    return id
+
 mmr_laporanstok()
+
 
 # !DEPCRECATED! Gunakan prosedur normal
 class mmr_tukarkadaluarsastok(osv.osv):
     _name = "mmr.tukarkadaluarsastok"
     _description = "Modul Tukar Kadaluarsa Stok untuk PT. MMR"
-    
+
     def onchange_idstok(self, cr, uid, ids, idstok, context=None):
         res = {}
-        
+
         res['kadaluarsa'] = self.pool.get("mmr.stok").browse(cr, uid, idstok).kadaluarsa
-        
-        return {'value':res}
-        
+
+        return {'value': res}
+
     _columns = {
-        'idstok': fields.many2one("mmr.stok", "Stok", required=True , domain="[('namaproduk', '=', namaproduk)]"), 
-        'idpembelianpo': fields.many2one("mmr.pembelianpo", "Sumber PO Pembelian", related='idstok.idpembelianpo'), 
-        'tanggal': fields.date("Tanggal Masuk", related="idstok.tanggal"), 
-        'merk': fields.many2one("mmr.merk", "Merk"), 
-        'namaproduk': fields.many2one("mmr.produk", "Nama Produk", domain="[('merk', '=', merk)]"), 
-        'satuan': fields.many2one("mmr.satuan", "Satuan", related="idstok.satuan"), 
-        'gudang': fields.many2one("mmr.gudang", "Gudang", related="idstok.gudang"), 
-        'kadaluarsa': fields.date("Kadaluarsa Lama"), 
-        'lot': fields.char("LOT", related="idstok.lot"), 
-        'debit': fields.float("Debit", related="idstok.debit", digits=(12, 2)), 
-        'harga': fields.float("Harga", related="idstok.harga", digits=(12, 2)), 
-        'stokkhusus': fields.boolean("Stok Khusus", related='idstok.stokkhusus'), 
-        'diskon': fields.float("Diskon(%)", related="idstok.diskon", digits=(12, 2)), 
-        'kadaluarsabaru': fields.date("Kadaluarsa Baru", required=True), 
-        'notes': fields.text("Notes"), 
+        'idstok': fields.many2one("mmr.stok", "Stok", required=True, domain="[('namaproduk', '=', namaproduk)]"),
+        'idpembelianpo': fields.many2one("mmr.pembelianpo", "Sumber PO Pembelian", related='idstok.idpembelianpo'),
+        'tanggal': fields.date("Tanggal Masuk", related="idstok.tanggal"),
+        'merk': fields.many2one("mmr.merk", "Merk"),
+        'namaproduk': fields.many2one("mmr.produk", "Nama Produk", domain="[('merk', '=', merk)]"),
+        'satuan': fields.many2one("mmr.satuan", "Satuan", related="idstok.satuan"),
+        'gudang': fields.many2one("mmr.gudang", "Gudang", related="idstok.gudang"),
+        'kadaluarsa': fields.date("Kadaluarsa Lama"),
+        'lot': fields.char("LOT", related="idstok.lot"),
+        'debit': fields.float("Debit", related="idstok.debit", digits=(12, 2)),
+        'harga': fields.float("Harga", related="idstok.harga", digits=(12, 2)),
+        'stokkhusus': fields.boolean("Stok Khusus", related='idstok.stokkhusus'),
+        'diskon': fields.float("Diskon(%)", related="idstok.diskon", digits=(12, 2)),
+        'kadaluarsabaru': fields.date("Kadaluarsa Baru", required=True),
+        'notes': fields.text("Notes"),
     }
-    
+
     def create(self, cr, uid, vals, context=None):
         id = super(mmr_tukarkadaluarsastok, self).create(cr, uid, vals, context)
         objini = self.browse(cr, uid, id)
         stokClass = self.pool.get("mmr.stok")
-        stokClass.write(cr, uid, objini.idstok.id, {'kadaluarsa':objini.kadaluarsabaru})
-        return id    
-    
+        stokClass.write(cr, uid, objini.idstok.id, {'kadaluarsa': objini.kadaluarsabaru})
+        return id
+
     def write(self, cr, uid, ids, vals, context=None):
         raise osv.except_osv(_('Tidak Dapat Mengedit'), _("Perubahan Tanggal Tidak dapat Dianulir / Dihapus!"))
         return True
-    
+
     def unlink(self, cr, uid, ids, context):
         raise osv.except_osv(_('Tidak Dapat Mendelete'), _("Perubahan Tanggal Tidak dapat Dianulir / Dihapus!"))
-        return True    
-    
-mmr_tukarkadaluarsastok()
+        return True
 
+mmr_tukarkadaluarsastok()
