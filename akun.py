@@ -239,7 +239,7 @@ class mmr_saveakun(osv.osv):
     _rec_name = 'tanggal'
 
     _columns = {
-        'tanggal': fields.date('Tanggal Save Nilai Akun'),
+        'tanggal': fields.date('Tanggal Simpan Nilai Akun'),
         'idssaveakun': fields.one2many('mmr.saveakundetil', 'idsaveakun', 'List Akun')
     }
 
@@ -249,7 +249,8 @@ class mmr_saveakundetil(osv.osv):
 
     _columns = {
         'idsaveakun': fields.many2one('mmr.saveakun'),
-        'idakun': fields.many2one('mmr.akun'),
+        'idakun': fields.many2one('mmr.akun', 'Nama Akun'),
+        'nomorakun': fields.char('Nomor Akun', related="idakun.nomorakun"),
         'debit': fields.float("Debit", digits=(12, 2)),
         'kredit': fields.float("Kredit", digits=(12, 2)),
     }
@@ -326,16 +327,15 @@ class mmr_jurnalpenutup(osv.osv):
     def _set_status(self, cr, uid, ids, field_name, field_value, args=None, context=None):
         res = {}
         for jurnalpenutup in self.browse(cr, uid, ids):
-            res[jurnalpenutup.id]    = "Normal"
-            total = 0    
+            res[jurnalpenutup.id] = "Normal"
+            total = 0
             for semuaakundetil in jurnalpenutup.akunterkena:
-                total+=semuaakundetil.debit
-                total-=semuaakundetil.kredit
-            if round(total, 2)!=0:
-                res[jurnalpenutup.id]    = "Jurnal Tidak Balance"
-                
+                total += semuaakundetil.debit
+                total -= semuaakundetil.kredit
+            if round(total, 2) != 0:
+                res[jurnalpenutup.id] = "Jurnal Tidak Balance"
         return res
-    
+
     # Isi tanggal, secara otomatis akhir bulan
     def onchange_tanggal(self, cr, uid, ids, bulan, tahun, context=None):
         res = {}
@@ -344,10 +344,10 @@ class mmr_jurnalpenutup(osv.osv):
             if int(bulan) == 12:
                 tanggal = datetime.date(int(tahun)+1, 1, 1)
             else:
-                tanggal = datetime.date(int(tahun), int(bulan)+1, 1)    
-            res['tanggal'] =  tanggal - datetime.timedelta(days=1)
-        return {'value': res}    
-        
+                tanggal = datetime.date(int(tahun), int(bulan)+1, 1)
+            res['tanggal'] = tanggal - datetime.timedelta(days=1)
+        return {'value': res}
+
     _columns = {
         'bulan' : fields.selection([('01', 'Januari'), ('02', 'Februari'), ('03', 'Maret')
                                         , ('04', 'April'), ('05', 'Mei'), ('06', 'Juni'), ('07', 'Juli')
@@ -418,13 +418,43 @@ class mmr_akundetildummy(osv.osv):
     
 mmr_akundetildummy()
 
+
 class mmr_laporanjurnal(osv.osv):
-    _name    =    "mmr.laporanjurnal"
-    _description    =    "Modul Memory Laporan Jurnal untuk PT. MMR"
+    _name = "mmr.laporanjurnal"
+    _description = "Modul Memory Laporan Jurnal untuk PT. MMR"
     _rec_name = "bulan"
-    
+
+    @api.one
+    def simpan_akun(self):
+        if self.bulan and self.tahun:
+            tanggal = False
+            if int(self.bulan) == 12:
+                tanggal = datetime.date(int(self.tahun)+1, 1, 1)
+            else:
+                tanggal = datetime.date(int(self.tahun), int(self.bulan)+1, 1)
+            tanggal = tanggal - datetime.timedelta(days=1)
+            akundetil = []
+            for akun in self.env['mmr.akun'].search([]):
+                nilaidisesuaikandebit = 0
+                nilaidisesuaikankredit = 0
+                nilaipenutupdebit = 0
+                nilaipenutupkredit = 0
+                for akundisesuaikan in self.jurnaldisesuaikan:
+                    if akun.nomorakun == akundisesuaikan.nomorakun:
+                        nilaidisesuaikandebit = akundisesuaikan.debit
+                        nilaidisesuaikankredit = akundisesuaikan.kredit
+                for akunpenutup in self.jurnalpenutup:
+                    if akun.nomorakun == akunpenutup.nomorakun:
+                        nilaipenutupdebit = akunpenutup.debit
+                        nilaipenutupkredit = akunpenutup.kredit
+                if akun.normaldi == 'debit':
+                    akundetil.append((0, 0, {'idakun': akun.id, 'debit': (nilaidisesuaikandebit - nilaidisesuaikankredit) + (nilaipenutupdebit - nilaipenutupkredit)}))
+                elif akun.normaldi == 'kredit':
+                    akundetil.append((0, 0, {'idakun': akun.id, 'kredit': (nilaidisesuaikankredit - nilaidisesuaikandebit) + (nilaipenutupkredit - nilaipenutupdebit)}))
+            self.env['mmr.saveakun'].create({'tanggal': tanggal, 'idssaveakun': akundetil})
+
     # Isi laporan jurnal sesuai dengan bulan yang dipilih
-    # Tampilkan seluruh akun dan sumber nilai akun tsb ( Jurnal - jurnalnya ) 
+    # Tampilkan seluruh akun dan sumber nilai akun tsb ( Jurnal - jurnalnya )
     # Apabila akun 1 - 3 yang berlanjut ( Tidak ditutup ) Diringkas menjadi saldo awal
     @api.one
     @api.onchange('bulan', 'tahun')
@@ -433,14 +463,14 @@ class mmr_laporanjurnal(osv.osv):
         self.jurnalpenyesuaian = False
         self.jurnaldisesuaikan = False
         self.jurnalpenutup = False
-        
+
         if self.bulan and self.tahun:
             # Hapus dulu semua record ini -1 hari, agar tidak memakan banyak space pada database
             hariminus1 = datetime.datetime.today() - datetime.timedelta(days=1)
             self.env['mmr.akundetildummy'].search([('create_date', '<', datetime.datetime.strftime(hariminus1, "%Y-%m-%d"))]).unlink()
             self.env['mmr.akundummy'].search([('create_date', '<', datetime.datetime.strftime(hariminus1, "%Y-%m-%d"))]).unlink()
-            
-            # Ambil seluruh akun yang ada, salin ulang pada jurnal 
+
+            # Ambil seluruh akun yang ada, salin ulang pada jurnal
             # Nilai berlanjut ( Akun 1-3 ) Dijumlah dan diberi nama saldo awal
             hasilsearch = self.env['mmr.akun'].search([])
             for semuahasilsearch in hasilsearch:
@@ -625,7 +655,7 @@ class mmr_laporanjurnal(osv.osv):
                     self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
                                                     'namaakun':semuahasilsearch.namaakun, 'debit':nilaipenutupdebit, 
                                                     'kredit':nilaipenutupkredit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenutup})
-    
+
     # Isi nilai debit dan kredit jurnal penutup/penyesuaian/neraca lajur
     @api.one
     @api.depends("jurnalpenutup")    

@@ -114,7 +114,7 @@
 			<field name="name">mmr.saveakun.list</field>
 			<field name="model">mmr.saveakun</field>
 			<field name="arch" type="xml">
-				<tree string="Save Akun" version="7.0">
+				<tree string="Simpan Akun" version="7.0" create="false">
 					<field name="tanggal" />
 				</tree>
 			</field>
@@ -124,14 +124,15 @@
 			<field name="name">mmr.saveakun.form</field>
 			<field name="model">mmr.saveakun</field>
 			<field name="arch" type="xml">
-				<form string="Save Akun" version="7.0" >
+				<form string="Simpan Akun" version="7.0" create="false">
 					<group>
 						<field name="tanggal" />
 					</group>
 					<notebook>
 						<page string="Akun">
 							<field name="idssaveakun">
-								<tree editable="bottom">
+								<tree editable="bottom" default_order="nomorakun">
+									<field name="nomorakun" />
 									<field name="idakun" />
 									<field name="debit" />
 									<field name="kredit" />
@@ -305,8 +306,10 @@
 						<button name="%(laporanneracalajurdisesuaikan_qweb_report)d" string="Print Laporan Neraca Lajur Disesuaikan" type="action" attrs="{'invisible':[('modellaporan','!=','neracadisesuaikan')]}"/>
 						<button name="%(laporanneracalajurpenutup_qweb_report)d" string="Print Laporan Neraca Lajur Penutup" type="action" attrs="{'invisible':[('modellaporan','!=','jurnalpenutup')]}"/>
 						<button name="%(laporanbukubesar_qweb_report)d" string="Print Laporan Buku Besar" type="action" attrs="{'invisible':[('modellaporan','!=','bukubesar')]}"/>
+						<button name="simpan_akun" string="Simpan Akun" type="object"/>
 					</header>
 					<group string="Informasi Dasar">
+						<field name="id" invisible="1"/>
 						<field name="bulan" />
 						<field name="tahun" />
 						<field name="modellaporan" string="Model Print"/>

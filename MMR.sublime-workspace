@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"akun",
+				"akundetil	(statement)"
+			],
+			[
+				"jurnal",
+				"jurnaldisesuaikan	(statement)"
+			],
+			[
 				"many2",
 				"many2one	(class)"
 			],
@@ -309,7 +317,7 @@
 			"file": "akun.py",
 			"settings":
 			{
-				"buffer_size": 60336,
+				"buffer_size": 61996,
 				"line_ending": "Windows"
 			}
 		},
@@ -317,7 +325,7 @@
 			"file": "view/akun.xml",
 			"settings":
 			{
-				"buffer_size": 28762,
+				"buffer_size": 28966,
 				"line_ending": "Windows"
 			}
 		},
@@ -325,7 +333,7 @@
 			"file": "menu/menu_master.xml",
 			"settings":
 			{
-				"buffer_size": 20126,
+				"buffer_size": 20130,
 				"line_ending": "Windows"
 			}
 		}
@@ -374,6 +382,9 @@
 	],
 	"file_history":
 	[
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/pembayaran.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/groups.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/customer.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/menu/menu_master.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/pembelian.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/stok.py",
@@ -498,10 +509,7 @@
 		"/G/Software/Work/falinwa_module/falinwa_field_ext/views/project_view.xml",
 		"/G/Software/Work/falinwa_module/falinwa_field_ext/views/fal_account_invoice.xml",
 		"/G/Software/Work/falinwa_module/fal_account_periods_lock/models/fal_account_periods_lock.py",
-		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account/views/account_view.xml",
-		"/G/Software/Work/falinwa_module/gleize_field_ext/views/crm_dashboard_view.xml",
-		"/G/Software/Work/falinwa_module/falinwa_field_ext/views/account_view.xml",
-		"/G/Software/Work/falinwa_branch/falinwa_field_ext/views/account_view.xml"
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account/views/account_view.xml"
 	],
 	"find":
 	{
@@ -647,6 +655,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"order",
+			"fields.related",
+			"idakun",
+			"object",
+			"idsaveakun",
+			"mmr.akundummy",
+			"mmr.akun",
+			"saldoawal",
+			"laporanjurnal",
+			"save",
 			"multi_action_master_mmr_saveakun",
 			"account",
 			",  ",
@@ -764,17 +782,7 @@
 			"_check_holidays",
 			"The number of remaining leaves is not sufficient for t",
 			"The number of remaining leaves is not sufficient for this leave type. Please verify also the leaves waiting for validation.",
-			"The number of remaining leaves is not sufficient for this leave type.\\nPlease verify also the leaves waiting for validation.",
-			"ir.cron",
-			"hr.holidays",
-			"_inherit",
-			"hr.holidays",
-			"By Employee",
-			"fal_customer_project_type",
-			"fal_partner_type",
-			"hr.holidays",
-			"cron",
-			"Allocation Request"
+			"The number of remaining leaves is not sufficient for this leave type.\\nPlease verify also the leaves waiting for validation."
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -799,13 +807,13 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -994,15 +1002,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 60336,
+						"buffer_size": 61996,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16161,
-								16172
+								16457,
+								16466
 							]
 						],
 						"settings":
@@ -1014,8 +1022,8 @@
 								{
 									"1":
 									[
-										16172,
-										16173
+										16466,
+										16467
 									]
 								},
 								"icon":
@@ -1030,8 +1038,8 @@
 								{
 									"1":
 									[
-										16160,
-										16161
+										16456,
+										16457
 									]
 								},
 								"unmatched":
@@ -1040,71 +1048,71 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content"
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
 							],
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"translate_tabs_to_spaces": true,
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4927.0,
+						"translation.y": 4967.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1113,15 +1121,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 28762,
+						"buffer_size": 28966,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4369,
-								4369
+								4461,
+								4461
 							]
 						],
 						"settings":
@@ -1133,8 +1141,8 @@
 								{
 									"1":
 									[
-										4369,
-										4370
+										4461,
+										4462
 									]
 								},
 								"icon":
@@ -1149,8 +1157,8 @@
 								{
 									"1":
 									[
-										4357,
-										4358
+										4451,
+										4452
 									]
 								},
 								"unmatched":
@@ -1159,70 +1167,70 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content"
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
 							],
 							"syntax": "Packages/XML/XML.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2142.0,
+						"translation.y": 2159.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1231,15 +1239,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20126,
+						"buffer_size": 20130,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15198,
-								15198
+								15149,
+								15153
 							]
 						],
 						"settings":
@@ -1251,8 +1259,8 @@
 								{
 									"1":
 									[
-										15198,
-										15199
+										15157,
+										15158
 									]
 								},
 								"icon":
@@ -1267,8 +1275,8 @@
 								{
 									"1":
 									[
-										15164,
-										15165
+										15130,
+										15131
 									]
 								},
 								"unmatched":
@@ -1277,70 +1285,70 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content"
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
 							],
 							"syntax": "Packages/XML/XML.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5975.0,
+						"translation.y": 5993.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
