@@ -2,6 +2,7 @@ from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from openerp import tools, api
 import datetime
+import time
 from dateutil.relativedelta import relativedelta
 import itertools
 
@@ -56,11 +57,11 @@ class mmr_akun(osv.osv):
         'idakunparent': fields.selection([('activa', '1. Activa'), ('hutang', '2. Hutang'), ('modal', '3. Modal'), ('penjualan', '4. Penjualan'), ('pembelian', '5. Pembelian'), ('biaya', '6. Biaya'), ('pendapatandiluarusaha', '7. Pendapatan di Luar Usaha'), ('bebandiluarusaha', '8. Beban di Luar Usaha')], "Golongan", required=True),
         'nomorakun': fields.char("Nomor Akun", required=True),
         'namaakun': fields.char("Nama Akun", required=True),
-        'debit': fields.function(_hitung_debit, type="float", method=True, string= "Debit", digits=(12, 2)),
-        'kredit': fields.function(_hitung_kredit, type="float", method=True, string= "Kredit", digits=(12, 2)),
+        'debit': fields.function(_hitung_debit, type="float", method=True, string="Debit", digits=(12, 2)),
+        'kredit': fields.function(_hitung_kredit, type="float", method=True, string="Kredit", digits=(12, 2)),
         'akundetil': fields.one2many("mmr.akundetil", "idakun", "History"),
-        'notes' : fields.text("Notes"),
-        'normaldi' : fields.selection([('debit', 'Debit'), ('kredit', 'Kredit'), ('debitkredit', 'Debit Kredit')], "Normal Di", required=True),
+        'notes': fields.text("Notes"),
+        'normaldi': fields.selection([('debit', 'Debit'), ('kredit', 'Kredit'), ('debitkredit', 'Debit Kredit')], "Normal Di", required=True),
     }
 
     _sql_constraints = [
@@ -72,85 +73,78 @@ mmr_akun()
 class mmr_akundetil(osv.osv):
     _name = "mmr.akundetil"
     _description = "Modul akun detil untuk PT. MMR."
-    
+
     # Isi nilai debit / kredit berdasarkan sumber akundetil-nya
     # Apabila tidak bersumnber, isi berdasarkan field isidebit / isikredit
     @api.one
-    @api.depends("idakun.normaldi", 
-                "sumberpembelianfaktur.bruto", "sumberpembelianfaktur.diskon", "sumberpembelianfaktur.pajak", "sumberpembelianfaktur.biayalain", 
-                "sumberpembelianfaktur.netto", "sumberpembelianfaktur.hppembelian", 
-                "sumberpenjualanfaktur.bruto", "sumberpenjualanfaktur.diskon", "sumberpenjualanfaktur.pajak", "sumberpenjualanfaktur.biayalain", 
-                "sumberpenjualanfaktur.netto", "sumberpenjualanfaktur.hppembelian", 
-                "sumberpembayaranpembelian.bayar", "sumberpembayaranpenjualan.bayar", 
+    @api.depends("idakun.normaldi",
+                "sumberpembelianfaktur.bruto", "sumberpembelianfaktur.diskon", "sumberpembelianfaktur.pajak", "sumberpembelianfaktur.biayalain",
+                "sumberpembelianfaktur.netto", "sumberpembelianfaktur.hppembelian",
+                "sumberpenjualanfaktur.bruto", "sumberpenjualanfaktur.diskon", "sumberpenjualanfaktur.pajak", "sumberpenjualanfaktur.biayalain",
+                "sumberpenjualanfaktur.netto", "sumberpenjualanfaktur.hppembelian",
+                "sumberpembayaranpembelian.bayar", "sumberpembayaranpenjualan.bayar",
                 "sumberbiaya.jumlahbiaya", "isidebit", "isikredit")
     def _ambil_nilai(self):
         if self.idakun:
             if self.sumberpembelianfaktur and self.sumberpembelianfaktur.akunotomatis != False:
-                data= {'bruto':self.sumberpembelianfaktur.bruto, 'diskon':self.sumberpembelianfaktur.diskon, 
-                    'pajak':self.sumberpembelianfaktur.pajak, 'biayalain':self.sumberpembelianfaktur.biayalain, 
-                    'netto':self.sumberpembelianfaktur.netto, 'hppembelian':self.sumberpembelianfaktur.hppembelian}
+                data = {'bruto': self.sumberpembelianfaktur.bruto, 'diskon': self.sumberpembelianfaktur.diskon,
+                    'pajak': self.sumberpembelianfaktur.pajak, 'biayalain': self.sumberpembelianfaktur.biayalain,
+                    'netto': self.sumberpembelianfaktur.netto, 'hppembelian': self.sumberpembelianfaktur.hppembelian}
                 for semuaaturanjurnal in self.sumberpembelianfaktur.aturanakun.aturanakundetil:
                     if semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "debit":
                         self.debit = data[semuaaturanjurnal.field.name]
                         self.tanggal = self.sumberpembelianfaktur.write_date
-                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":    
+                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":
                         self.kredit = data[semuaaturanjurnal.field.name]
                         self.tanggal = self.sumberpembelianfaktur.write_date
             elif self.sumberpenjualanfaktur and self.sumberpenjualanfaktur.akunotomatis != False:
-                data= {'bruto':self.sumberpenjualanfaktur.bruto, 'diskon':self.sumberpenjualanfaktur.diskon, 
-                    'pajak':self.sumberpenjualanfaktur.pajak, 'biayalain':self.sumberpenjualanfaktur.biayalain, 
-                    'netto':self.sumberpenjualanfaktur.netto, 'hppembelian':self.sumberpenjualanfaktur.hppembelian}
+                data = {'bruto': self.sumberpenjualanfaktur.bruto, 'diskon': self.sumberpenjualanfaktur.diskon,
+                    'pajak': self.sumberpenjualanfaktur.pajak, 'biayalain': self.sumberpenjualanfaktur.biayalain, 'netto': self.sumberpenjualanfaktur.netto, 'hppembelian': self.sumberpenjualanfaktur.hppembelian}
                 for semuaaturanjurnal in self.sumberpenjualanfaktur.aturanakun.aturanakundetil:
                     if semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "debit":
                         self.debit = data[semuaaturanjurnal.field.name]
                         self.tanggal = self.sumberpenjualanfaktur.write_date
-                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":    
+                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":
                         self.kredit = data[semuaaturanjurnal.field.name]
-                        self.tanggal = self.sumberpenjualanfaktur.write_date            
-            elif self.sumberpembayaranpembelian and self.sumberpembayaranpembelian.akunotomatis != False:    
-                data= {'bayar':self.sumberpembayaranpembelian.bayar, 'hutang':self.sumberpembayaranpembelian.hutang, 
-                        'kelebihan': self.sumberpembayaranpembelian.kelebihan, 'kekurangan': self.sumberpembayaranpembelian.kekurangan, 
-                        'biayatransfer' : self.sumberpembayaranpembelian.biayatransfer, 'biayalain': self.sumberpembayaranpembelian.biayalain, 
-                         'bayartotal' : self.sumberpembayaranpembelian.bayartotal}
+                        self.tanggal = self.sumberpenjualanfaktur.write_date
+            elif self.sumberpembayaranpembelian and self.sumberpembayaranpembelian.akunotomatis != False:
+                data = {'bayar': self.sumberpembayaranpembelian.bayar, 'hutang': self.sumberpembayaranpembelian.hutang, 'kelebihan': self.sumberpembayaranpembelian.kelebihan, 'kekurangan': self.sumberpembayaranpembelian.kekurangan, 'biayatransfer': self.sumberpembayaranpembelian.biayatransfer, 'biayalain': self.sumberpembayaranpembelian.biayalain, 'bayartotal': self.sumberpembayaranpembelian.bayartotal}
                 for semuaaturanjurnal in self.sumberpembayaranpembelian.aturanakun.aturanakundetil:
                     if semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "debit":
                         self.debit = data[semuaaturanjurnal.field.name]
                         self.tanggal = self.sumberpembelianfaktur.write_date
-                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":    
-                        self.kredit = data[semuaaturanjurnal.field.name]        
+                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":
+                        self.kredit = data[semuaaturanjurnal.field.name]
                         self.tanggal = self.sumberpembelianfaktur.write_date
-            elif self.sumberpembayaranpenjualan and self.sumberpembayaranpenjualan.akunotomatis != False:    
-                data= {'bayar':self.sumberpembayaranpenjualan.bayar, 'hutang':self.sumberpembayaranpenjualan.hutang, 
-                        'kelebihan': self.sumberpembayaranpenjualan.kelebihan, 'kekurangan': self.sumberpembayaranpenjualan.kekurangan, 
-                        'biayatransfer' : self.sumberpembayaranpenjualan.biayatransfer, 'biayalain': self.sumberpembayaranpenjualan.biayalain, 
-                        'bayartotal' : self.sumberpembayaranpenjualan.bayartotal}
+            elif self.sumberpembayaranpenjualan and self.sumberpembayaranpenjualan.akunotomatis != False:
+                data = {'bayar': self.sumberpembayaranpenjualan.bayar, 'hutang': self.sumberpembayaranpenjualan.hutang, 'kelebihan': self.sumberpembayaranpenjualan.kelebihan, 'kekurangan': self.sumberpembayaranpenjualan.kekurangan, 'biayatransfer': self.sumberpembayaranpenjualan.biayatransfer, 'biayalain': self.sumberpembayaranpenjualan.biayalain, 'bayartotal': self.sumberpembayaranpenjualan.bayartotal}
                 for semuaaturanjurnal in self.sumberpembayaranpenjualan.aturanakun.aturanakundetil:
                     if semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "debit":
                         self.debit = data[semuaaturanjurnal.field.name]
                         self.tanggal = self.sumberpembelianfaktur.write_date
-                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":    
-                        self.kredit = data[semuaaturanjurnal.field.name]        
-                        self.tanggal = self.sumberpembelianfaktur.write_date            
-            elif self.sumberbiaya and self.sumberbiaya.akunotomatis != False:    
-                data= {'jumlahbiaya':self.sumberbiaya.jumlahbiaya}
+                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":
+                        self.kredit = data[semuaaturanjurnal.field.name]
+                        self.tanggal = self.sumberpembelianfaktur.write_date
+            elif self.sumberbiaya and self.sumberbiaya.akunotomatis != False:
+                data = {'jumlahbiaya': self.sumberbiaya.jumlahbiaya}
                 for semuaaturanjurnal in self.sumberbiaya.aturanakun.aturanakundetil:
                     if semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "debit":
                         self.debit = data[semuaaturanjurnal.field.name]
                         self.tanggal = self.sumberpembelianfaktur.write_date
-                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":    
-                        self.kredit = data[semuaaturanjurnal.field.name]        
-                        self.tanggal = self.sumberpembelianfaktur.write_date            
-            elif self.sumberpembelianfaktur and self.sumberpembelianfaktur.akunotomatis == False:
+                    elif semuaaturanjurnal.noakun == self.idakun and semuaaturanjurnal.debitkredit == "kredit":
+                        self.kredit = data[semuaaturanjurnal.field.name]
+                        self.tanggal = self.sumberpembelianfaktur.write_date
+            elif self.sumberpembelianfaktur and not self.sumberpembelianfaktur.akunotomatis:
                 self.debit = self.isidebit
                 self.kredit = self.isikredit
-            elif self.sumberpembayaranpembelian and self.sumberpembayaranpembelian.akunotomatis == False:
+            elif self.sumberpembayaranpembelian and not self.sumberpembayaranpembelian.akunotomatis:
                 self.debit = self.isidebit
-                self.kredit = self.isikredit    
+                self.kredit = self.isikredit
             else:
                 self.debit = self.isidebit
-                self.kredit = self.isikredit    
-     
-    # Tampilkan sumber dengan tulisan yang baik.           
+                self.kredit = self.isikredit
+
+    # Tampilkan sumber dengan tulisan yang baik.
     @api.multi
     @api.depends("sumberpembelianfaktur", "sumberpembelianfaktur.nomorfaktur", "sumberpenjualanfaktur", "sumberpenjualanfaktur.nomorfaktur", 
                 "sumberpembayaranpembelian", "sumberpembayaranpembelian.supplier", "sumberpembayaranpembelian.supplier.nama", 
@@ -207,30 +201,29 @@ class mmr_akundetil(osv.osv):
             elif semuaakun.sumberjurnalringkasan:
                 tanggalperingkasan = "01" + semuaakun.sumberjurnalringkasan.bulan + semuaakun.sumberjurnalringkasan.tahun
                 res[semuaakun.id] = datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y").date()
-                
         return res
-                    
+
     _columns = {
-        'idakun': fields.many2one("mmr.akun", "Nama Akun"), 
-        'tanggal': fields.function(_ambil_tanggal, type="date", method=True, string="Waktu"), 
-        'sumberpembelianfaktur': fields.many2one("mmr.pembelianfaktur", "Sumber Pembelian Faktur", ondelete='cascade'), 
-        'sumberpenjualanfaktur': fields.many2one("mmr.penjualanfaktur", "Sumber Penjualan Faktur", ondelete='cascade'), 
-        'sumberpembayaranpembelian': fields.many2one("mmr.pembayaranpembelian", "Sumber Pembayaran Pembelian", ondelete='cascade'), 
-        'sumberpembayaranpenjualan': fields.many2one("mmr.pembayaranpenjualan", "Sumber Pembayaran Penjualan", ondelete='cascade'), 
-        'sumberkegiatanakunting': fields.many2one("mmr.kegiatanakunting", "Sumber Kegiatan Akunting", ondelete='cascade'), 
-        'sumberbiaya': fields.many2one("mmr.biaya", "Sumber Biaya", ondelete='cascade'), 
-        'sumberinventaris': fields.many2one("mmr.inventaris", "Sumber Inventaris", ondelete='cascade'), 
-        'sumberjurnalpenyesuaian': fields.many2one("mmr.jurnalpenyesuaian", "Sumber Jurnal Penyesuaian", ondelete='cascade'), 
-        'sumberjurnalpenutup': fields.many2one("mmr.jurnalpenutup", "Sumber Jurnal Penutup", ondelete='cascade'), 
-        'sumberjurnalringkasan' : fields.many2one("mmr.autodelete", "Sumber Jurnal Peringkas", ondelete='cascade'), 
-        'sumber' : fields.char("Sumber", compute="_get_sumber"), 
-        'debit': fields.float("Debit", compute="_ambil_nilai", digits=(12, 2)), 
-        'isidebit': fields.float("Ubah Debit", digits=(12, 2)), 
-        'kredit': fields.float("Kredit", compute="_ambil_nilai", digits=(12, 2)), 
-        'isikredit': fields.float("Ubah Kredit", digits=(12, 2)), 
-        'notes' : fields.text("Notes"), 
+        'idakun': fields.many2one("mmr.akun", "Nama Akun"),
+        'tanggal': fields.function(_ambil_tanggal, type="date", method=True, string="Waktu"),
+        'sumberpembelianfaktur': fields.many2one("mmr.pembelianfaktur", "Sumber Pembelian Faktur", ondelete='cascade'),
+        'sumberpenjualanfaktur': fields.many2one("mmr.penjualanfaktur", "Sumber Penjualan Faktur", ondelete='cascade'),
+        'sumberpembayaranpembelian': fields.many2one("mmr.pembayaranpembelian", "Sumber Pembayaran Pembelian", ondelete='cascade'),
+        'sumberpembayaranpenjualan': fields.many2one("mmr.pembayaranpenjualan", "Sumber Pembayaran Penjualan", ondelete='cascade'),
+        'sumberkegiatanakunting': fields.many2one("mmr.kegiatanakunting", "Sumber Kegiatan Akunting", ondelete='cascade'),
+        'sumberbiaya': fields.many2one("mmr.biaya", "Sumber Biaya", ondelete='cascade'),
+        'sumberinventaris': fields.many2one("mmr.inventaris", "Sumber Inventaris", ondelete='cascade'),
+        'sumberjurnalpenyesuaian': fields.many2one("mmr.jurnalpenyesuaian", "Sumber Jurnal Penyesuaian", ondelete='cascade'),
+        'sumberjurnalpenutup': fields.many2one("mmr.jurnalpenutup", "Sumber Jurnal Penutup", ondelete='cascade'),
+        'sumberjurnalringkasan': fields.many2one("mmr.autodelete", "Sumber Jurnal Peringkas", ondelete='cascade'),
+        'sumber': fields.char("Sumber", compute="_get_sumber"),
+        'debit': fields.float("Debit", compute="_ambil_nilai", digits=(12, 2)),
+        'isidebit': fields.float("Ubah Debit", digits=(12, 2)),
+        'kredit': fields.float("Kredit", compute="_ambil_nilai", digits=(12, 2)),
+        'isikredit': fields.float("Ubah Kredit", digits=(12, 2)),
+        'notes': fields.text("Notes"),
     }
-    
+
 mmr_akundetil()
 
 
@@ -500,161 +493,117 @@ class mmr_laporanjurnal(osv.osv):
                         sumber = "Pembayaran Pembelian Untuk : " + str(semuaakundetil.sumberpembayaranpembelian.supplier.nama)
                     elif semuaakundetil.sumberpembayaranpenjualan:
                         tanggal = semuaakundetil.sumberpembayaranpenjualan.tanggalbayar
-                        sumber = "Pembayaran Pembelian Untuk : " + str(semuaakundetil.sumberpembayaranpenjualan.customer.nama)    
+                        sumber = "Pembayaran Pembelian Untuk : " + str(semuaakundetil.sumberpembayaranpenjualan.customer.nama)
                     elif semuaakundetil.sumberkegiatanakunting:
                         tanggal = semuaakundetil.sumberkegiatanakunting.tanggal
                         sumber = "Kegiatan Akunting : " + str(semuaakundetil.sumberkegiatanakunting.detilkejadian)
                     elif semuaakundetil.sumberbiaya:
                         tanggal = semuaakundetil.sumberbiaya.tanggal
-                        sumber = "Biaya : " + str(semuaakundetil.sumberbiaya.detilkejadian)    
+                        sumber = "Biaya : " + str(semuaakundetil.sumberbiaya.detilkejadian)
                     elif semuaakundetil.sumberinventaris:
                         tanggal = semuaakundetil.sumberinventaris.tanggal
-                        sumber = "Inventaris : " + str(semuaakundetil.sumberinventaris.nama)        
+                        sumber = "Inventaris : " + str(semuaakundetil.sumberinventaris.nama)
                     elif semuaakundetil.sumberjurnalpenyesuaian:
                         tanggal = semuaakundetil.sumberjurnalpenyesuaian.tanggal
-                        sumber = "Jurnal Penyesuaian : " + str(semuaakundetil.sumberjurnalpenyesuaian.tanggal)        
+                        sumber = "Jurnal Penyesuaian : " + str(semuaakundetil.sumberjurnalpenyesuaian.tanggal)
                     elif semuaakundetil.sumberjurnalpenutup:
                         tanggal = semuaakundetil.sumberjurnalpenutup.tanggal
                         sumber = "Jurnal Penutup : " + str(semuaakundetil.sumberjurnalpenutup.tanggal)
                     elif semuaakundetil.sumberjurnalringkasan:
                         tanggalperingkasan = "01" + semuaakundetil.sumberjurnalringkasan.bulan + semuaakundetil.sumberjurnalringkasan.tahun
                         tanggal = str(datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y"))
-                        sumber = "Jurnal Peringkas : bulan: " + str(semuaakundetil.sumberjurnalringkasan.bulan) + ", tahun: " +     str(semuaakundetil.sumberjurnalringkasan.tahun)                    
-                    
+                        sumber = "Jurnal Peringkas : bulan: " + str(semuaakundetil.sumberjurnalringkasan.bulan) + ", tahun: " + str(semuaakundetil.sumberjurnalringkasan.tahun)
+
                     # Deprecated, tanggal pada pembayaran sudah required!
-                    if tanggal == False:
+                    if not tanggal:
                         raise osv.except_osv(_('Tidak Dapat Melanjutkan'), _("Ada jurnal pembayaran yang belum disetujui"))
-                    
+
+                    self.env.cr.execute('SELECT debit FROM mmr_akundetil where id=%s', [semuaakundetil.id])
+                    semuaakundetildebit = self.env.cr.fetchone()[0]
+                    self.env.cr.execute('SELECT kredit FROM mmr_akundetil where id=%s', [semuaakundetil.id])
+                    semuaakundetilkredit = self.env.cr.fetchone()[0]
+
                     if self.tahun == tanggal[0:4] and self.bulan == tanggal[5:7]:
                         if semuaakundetil.sumberjurnalpenyesuaian:
-                            akundetilpenyesuaian += self.env['mmr.akundetildummy'].new({'debit':semuaakundetil.debit, 'kredit':semuaakundetil.kredit, 
-                                                                    'sumber':sumber, 'tanggal': tanggal})
-                            akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit':semuaakundetil.debit, 'kredit':semuaakundetil.kredit, 
-                                                                    'sumber':sumber, 'tanggal': tanggal})
-                            nilaidisesuaikandebit += semuaakundetil.debit
-                            nilaidisesuaikankredit += semuaakundetil.kredit
-                            nilaipenyesuaiandebit += semuaakundetil.debit
-                            nilaipenyesuaiankredit += semuaakundetil.kredit    
+                            akundetilpenyesuaian += self.env['mmr.akundetildummy'].new({'debit': semuaakundetildebit, 'kredit': semuaakundetilkredit, 'sumber': sumber, 'tanggal': tanggal})
+                            akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit': semuaakundetildebit, 'kredit': semuaakundetilkredit, 'sumber': sumber, 'tanggal': tanggal})
+                            nilaidisesuaikandebit += semuaakundetildebit
+                            nilaidisesuaikankredit += semuaakundetilkredit
+                            nilaipenyesuaiandebit += semuaakundetildebit
+                            nilaipenyesuaiankredit += semuaakundetilkredit
                         elif semuaakundetil.sumberjurnalpenutup:
-                            akundetilpenutup += self.env['mmr.akundetildummy'].new({'debit':semuaakundetil.debit, 'kredit':semuaakundetil.kredit, 
-                                                                    'sumber':sumber, 'tanggal': tanggal})    
-                            nilaipenutupdebit += semuaakundetil.debit
-                            nilaipenutupkredit += semuaakundetil.kredit
+                            akundetilpenutup += self.env['mmr.akundetildummy'].new({'debit': semuaakundetildebit, 'kredit': semuaakundetilkredit, 'sumber': sumber, 'tanggal': tanggal})
+                            nilaipenutupdebit += semuaakundetildebit
+                            nilaipenutupkredit += semuaakundetilkredit
                         else:
-                            akundetil += self.env['mmr.akundetildummy'].new({'debit':semuaakundetil.debit, 'kredit':semuaakundetil.kredit, 
-                                                                    'sumber':sumber, 'tanggal': tanggal})
-                            akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit':semuaakundetil.debit, 'kredit':semuaakundetil.kredit, 
-                                                                    'sumber':sumber, 'tanggal': tanggal})
-                            nilaidebit += semuaakundetil.debit
-                            nilaikredit += semuaakundetil.kredit    
-                            nilaidisesuaikandebit += semuaakundetil.debit    
-                            nilaidisesuaikankredit += semuaakundetil.kredit    
+                            akundetil += self.env['mmr.akundetildummy'].new({'debit': semuaakundetildebit, 'kredit': semuaakundetilkredit, 'sumber': sumber, 'tanggal': tanggal})
+                            akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit': semuaakundetildebit, 'kredit': semuaakundetilkredit, 'sumber': sumber, 'tanggal': tanggal})
+                            nilaidebit += semuaakundetildebit
+                            nilaikredit += semuaakundetilkredit
+                            nilaidisesuaikandebit += semuaakundetildebit
+                            nilaidisesuaikankredit += semuaakundetilkredit
                     elif self.tahun+self.bulan > tanggal[0:4]+tanggal[5:7]:
                         if semuahasilsearch.normaldi == 'debit':
-                            saldoawal += semuaakundetil.debit
-                            saldoawal -= semuaakundetil.kredit
+                            saldoawal += semuaakundetildebit
+                            saldoawal -= semuaakundetilkredit
                         else:
-                            saldoawal -= semuaakundetil.debit
-                            saldoawal += semuaakundetil.kredit
+                            saldoawal -= semuaakundetildebit
+                            saldoawal += semuaakundetilkredit
 
-                        nilaidebit += semuaakundetil.debit    
-                        nilaikredit += semuaakundetil.kredit
-                        nilaidisesuaikandebit += semuaakundetil.debit
-                        nilaidisesuaikankredit += semuaakundetil.kredit
-                
+                        nilaidebit += semuaakundetildebit
+                        nilaikredit += semuaakundetilkredit
+                        nilaidisesuaikandebit += semuaakundetildebit
+                        nilaidisesuaikankredit += semuaakundetilkredit
+
                 if saldoawal != 0:
                     tanggal = datetime.date(int(self.tahun), int(self.bulan), 1)
                     if semuahasilsearch.normaldi == 'debit':
-                        akundetil += self.env['mmr.akundetildummy'].new({'debit':saldoawal, 'kredit':0, 
-                                                                'sumber':'Saldo Awal', 'tanggal': tanggal})
-                        akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit':saldoawal, 'kredit':0, 
-                                                                'sumber':'Saldo Awal', 'tanggal': tanggal})
+                        akundetil += self.env['mmr.akundetildummy'].new({'debit': saldoawal, 'kredit': 0,
+                                                                'sumber': 'Saldo Awal', 'tanggal': tanggal})
+                        akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit': saldoawal, 'kredit': 0, 'sumber': 'Saldo Awal', 'tanggal': tanggal})
                     else:
-                        akundetil += self.env['mmr.akundetildummy'].new({'debit':0, 'kredit':saldoawal, 
-                                                                'sumber':'Saldo Awal', 'tanggal': tanggal})
-                        akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit':saldoawal, 'kredit':0, 
-                                                                'sumber':'Saldo Awal', 'tanggal': tanggal})    
-                        
+                        akundetil += self.env['mmr.akundetildummy'].new({'debit': 0, 'kredit': saldoawal, 'sumber': 'Saldo Awal', 'tanggal': tanggal})
+                        akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit': saldoawal, 'kredit': 0, 'sumber': 'Saldo Awal', 'tanggal': tanggal})
                 if semuahasilsearch.normaldi == 'debit':
                     if nilaidebit - nilaikredit >= 0:
-                        self.jurnal += self.jurnal.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':nilaidebit-nilaikredit, 
-                                                    'kredit':0, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetil})
+                        self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaidebit-nilaikredit, 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
                     else:
-                        self.jurnal += self.jurnal.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':0, 
-                                                    'kredit':round(-1*(nilaidebit-nilaikredit), 2), 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetil})    
+                        self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': round(-1*(nilaidebit-nilaikredit), 2), 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
                     if nilaipenyesuaiandebit - nilaipenyesuaiankredit >= 0:
-                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':nilaipenyesuaiandebit - nilaipenyesuaiankredit, 
-                                                    'kredit':0, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenyesuaian})
+                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaipenyesuaiandebit - nilaipenyesuaiankredit, 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
                     else:
-                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':0, 
-                                                    'kredit':round(-1*(nilaipenyesuaiandebit - nilaipenyesuaiankredit), 2), 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenyesuaian})    
+                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': round(-1*(nilaipenyesuaiandebit - nilaipenyesuaiankredit), 2), 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
                     if nilaidisesuaikandebit - nilaidisesuaikankredit >= 0:
-                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':nilaidisesuaikandebit - nilaidisesuaikankredit, 
-                                                    'kredit':0, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetildisesuaikan})
+                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaidisesuaikandebit - nilaidisesuaikankredit, 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetildisesuaikan})
                     else:
-                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':0, 
-                                                    'kredit':round(-1*(nilaidisesuaikandebit - nilaidisesuaikankredit), 2), 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetildisesuaikan})
+                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': round(-1*(nilaidisesuaikandebit - nilaidisesuaikankredit), 2), 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetildisesuaikan})
                     if nilaipenutupdebit - nilaipenutupkredit >= 0:
-                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':nilaipenutupdebit - nilaipenutupkredit, 
-                                                    'kredit':0, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenutup})
+                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaipenutupdebit - nilaipenutupkredit, 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
                     else:
-                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':0, 
-                                                    'kredit':round(-1*(nilaipenutupdebit - nilaipenutupkredit), 2), 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenutup})
+                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': round(-1*(nilaipenutupdebit - nilaipenutupkredit), 2), 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
                 elif semuahasilsearch.normaldi == 'kredit':
                     if nilaikredit - nilaidebit >= 0:
-                        self.jurnal += self.jurnal.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':0, 
-                                                    'kredit':nilaikredit - nilaidebit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetil})
+                        self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': nilaikredit - nilaidebit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
                     else:
-                        self.jurnal += self.jurnal.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':round(-1*(nilaikredit - nilaidebit), 2), 
-                                                    'kredit':0, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetil})
+                        self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round(-1*(nilaikredit - nilaidebit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
 
-                    if nilaipenyesuaiankredit - nilaipenyesuaiandebit >= 0: 
-                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':0, 
-                                                    'kredit':nilaipenyesuaiankredit - nilaipenyesuaiandebit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenyesuaian})
+                    if nilaipenyesuaiankredit - nilaipenyesuaiandebit >= 0:
+                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun,  'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': nilaipenyesuaiankredit - nilaipenyesuaiandebit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
                     else:
-                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':round(-1*(nilaipenyesuaiankredit - nilaipenyesuaiandebit), 2), 
-                                                    'kredit':0, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenyesuaian})
+                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round(-1*(nilaipenyesuaiankredit - nilaipenyesuaiandebit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
                     if nilaidisesuaikankredit - nilaidisesuaikandebit >= 0:
-                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':0, 
-                                                    'kredit':nilaidisesuaikankredit - nilaidisesuaikandebit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetildisesuaikan})
+                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': nilaidisesuaikankredit - nilaidisesuaikandebit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetildisesuaikan})
                     else:
-                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':round(-1*(nilaidisesuaikankredit - nilaidisesuaikandebit), 2), 
-                                                    'kredit':0, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetildisesuaikan})
-                    if nilaipenutupkredit - nilaipenutupdebit >= 0: 
-                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':0, 
-                                                    'kredit':nilaipenutupkredit - nilaipenutupdebit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenutup})
+                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round(-1*(nilaidisesuaikankredit - nilaidisesuaikandebit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetildisesuaikan})
+                    if nilaipenutupkredit - nilaipenutupdebit >= 0:
+                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': nilaipenutupkredit - nilaipenutupdebit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
                     else:
-                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':round(-1*(nilaipenutupkredit - nilaipenutupdebit), 2), 
-                                                    'kredit':0, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenutup})
+                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round(-1*(nilaipenutupkredit - nilaipenutupdebit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
                 else:
-                    self.jurnal += self.jurnal.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':nilaidebit, 
-                                                    'kredit':nilaikredit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetil})        
-                    self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':nilaipenyesuaiandebit, 
-                                                    'kredit': nilaipenyesuaiankredit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenyesuaian})
-                    self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':nilaidisesuaikandebit, 
-                                                    'kredit':nilaidisesuaikankredit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetildisesuaikan})
-                    self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent':semuahasilsearch.idakunparent, 'nomorakun':semuahasilsearch.nomorakun, 
-                                                    'namaakun':semuahasilsearch.namaakun, 'debit':nilaipenutupdebit, 
-                                                    'kredit':nilaipenutupkredit, 'normaldi':semuahasilsearch.normaldi, 'akundetil':akundetilpenutup})
+                    self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaidebit, 'kredit': nilaikredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
+                    self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaipenyesuaiandebit, 'kredit':  nilaipenyesuaiankredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
+                    self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaidisesuaikandebit, 'kredit': nilaidisesuaikankredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetildisesuaikan})
+                    self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaipenutupdebit, 'kredit': nilaipenutupkredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
 
     # Isi nilai debit dan kredit jurnal penutup/penyesuaian/neraca lajur
     @api.one
