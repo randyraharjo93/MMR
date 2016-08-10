@@ -307,6 +307,7 @@
 						<button name="%(laporanneracalajurpenutup_qweb_report)d" string="Print Laporan Neraca Lajur Penutup" type="action" attrs="{'invisible':[('modellaporan','!=','jurnalpenutup')]}"/>
 						<button name="%(laporanbukubesar_qweb_report)d" string="Print Laporan Buku Besar" type="action" attrs="{'invisible':[('modellaporan','!=','bukubesar')]}"/>
 						<button name="simpan_akun" string="Simpan Akun" type="object"/>
+						<button name="ambil_tanggal" string="Hitung Tanggal " type="object" groups="base.group_erp_manager"/>
 					</header>
 					<group string="Informasi Dasar">
 						<field name="id" invisible="1"/>

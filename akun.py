@@ -5,6 +5,7 @@ import datetime
 import time
 from dateutil.relativedelta import relativedelta
 import itertools
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class mmr_akun(osv.osv):
@@ -146,11 +147,11 @@ class mmr_akundetil(osv.osv):
 
     # Tampilkan sumber dengan tulisan yang baik.
     @api.multi
-    @api.depends("sumberpembelianfaktur", "sumberpembelianfaktur.nomorfaktur", "sumberpenjualanfaktur", "sumberpenjualanfaktur.nomorfaktur", 
-                "sumberpembayaranpembelian", "sumberpembayaranpembelian.supplier", "sumberpembayaranpembelian.supplier.nama", 
-                "sumberpembayaranpenjualan", "sumberpembayaranpenjualan.customer", "sumberpembayaranpenjualan.customer.nama", 
-                "sumberkegiatanakunting", "sumberkegiatanakunting.detilkejadian", "sumberbiaya", "sumberbiaya.detilkejadian", 
-                "sumberinventaris", "sumberinventaris.nama", "sumberjurnalpenyesuaian", "sumberjurnalpenyesuaian.tanggal", 
+    @api.depends("sumberpembelianfaktur", "sumberpembelianfaktur.nomorfaktur", "sumberpenjualanfaktur", "sumberpenjualanfaktur.nomorfaktur",
+                "sumberpembayaranpembelian", "sumberpembayaranpembelian.supplier", "sumberpembayaranpembelian.supplier.nama",
+                "sumberpembayaranpenjualan", "sumberpembayaranpenjualan.customer", "sumberpembayaranpenjualan.customer.nama",
+                "sumberkegiatanakunting", "sumberkegiatanakunting.detilkejadian", "sumberbiaya", "sumberbiaya.detilkejadian",
+                "sumberinventaris", "sumberinventaris.nama", "sumberjurnalpenyesuaian", "sumberjurnalpenyesuaian.tanggal",
                 "sumberjurnalpenutup", "sumberjurnalpenutup.tanggal")
     def _get_sumber(self):
         for semuaakundetil in self:
@@ -161,7 +162,7 @@ class mmr_akundetil(osv.osv):
             elif semuaakundetil.sumberpembayaranpembelian:
                 semuaakundetil.sumber = "Pembayaran Pembelian Untuk : " + semuaakundetil.sumberpembayaranpembelian.supplier.nama
             elif semuaakundetil.sumberpembayaranpenjualan:
-                semuaakundetil.sumber = "Pembayaran Penjualan Untuk : " + semuaakundetil.sumberpembayaranpenjualan.customer.nama    
+                semuaakundetil.sumber = "Pembayaran Penjualan Untuk : " + semuaakundetil.sumberpembayaranpenjualan.customer.nama
             elif semuaakundetil.sumberkegiatanakunting:
                 semuaakundetil.sumber = "Kegiatan Akunting : " + str(semuaakundetil.sumberkegiatanakunting.detilkejadian)
             elif semuaakundetil.sumberbiaya:
@@ -171,41 +172,40 @@ class mmr_akundetil(osv.osv):
             elif semuaakundetil.sumberjurnalpenyesuaian:
                 semuaakundetil.sumber = "Jurnal Penyesuaian : " + str(semuaakundetil.sumberjurnalpenyesuaian.tanggal)
             elif semuaakundetil.sumberjurnalpenutup:
-                semuaakundetil.sumber = "Jurnal Penutup : " + str(semuaakundetil.sumberjurnalpenutup.tanggal)    
+                semuaakundetil.sumber = "Jurnal Penutup : " + str(semuaakundetil.sumberjurnalpenutup.tanggal)
             elif semuaakundetil.sumberjurnalringkasan:
-                semuaakundetil.sumber = "Jurnal Peringkas : bulan: " + str(semuaakundetil.sumberjurnalringkasan.bulan) + ", tahun: " +     str(semuaakundetil.sumberjurnalringkasan.tahun)                    
+                semuaakundetil.sumber = "Jurnal Peringkas : bulan: " + str(semuaakundetil.sumberjurnalringkasan.bulan) + ", tahun: " + str(semuaakundetil.sumberjurnalringkasan.tahun)
 
-    # Ambil tanggal berdasarkan sumber  
-    def _ambil_tanggal(self, cr, uid, ids, field_name, arg, context):
-        res = {}
-        
-        for semuaakun in self.browse(cr, uid, ids):
+    # Ambil tanggal berdasarkan sumber
+    @api.multi
+    @api.depends("sumberpembelianfaktur", "sumberpembelianfaktur.tanggalterbit", "sumberpenjualanfaktur", "sumberpenjualanfaktur.tanggalterbit", "sumberpembayaranpembelian", "sumberpembayaranpembelian.tanggalbayar", "sumberpembayaranpenjualan", "sumberpembayaranpenjualan.tanggalbayar", "sumberkegiatanakunting", "sumberkegiatanakunting.tanggal", "sumberbiaya", "sumberbiaya.tanggal", "sumberinventaris", "sumberinventaris.tanggal", "sumberjurnalpenyesuaian", "sumberjurnalpenyesuaian.tanggal", "sumberjurnalpenutup", "sumberjurnalpenutup.tanggal", "sumberjurnalringkasan", "sumberjurnalringkasan.bulan", "sumberjurnalringkasan.tahun")
+    def _ambil_tanggal(self):
+        for semuaakun in self:
             if semuaakun.sumberpembelianfaktur:
-                res[semuaakun.id] = semuaakun.sumberpembelianfaktur.tanggalterbit
+                semuaakun.tanggal = semuaakun.sumberpembelianfaktur.tanggalterbit
             elif semuaakun.sumberpenjualanfaktur:
-                res[semuaakun.id] = semuaakun.sumberpenjualanfaktur.tanggalterbit
+                semuaakun.tanggal = semuaakun.sumberpenjualanfaktur.tanggalterbit
             elif semuaakun.sumberpembayaranpembelian:
-                res[semuaakun.id] = semuaakun.sumberpembayaranpembelian.tanggalbayar
+                semuaakun.tanggal = semuaakun.sumberpembayaranpembelian.tanggalbayar
             elif semuaakun.sumberpembayaranpenjualan:
-                res[semuaakun.id] = semuaakun.sumberpembayaranpenjualan.tanggalbayar    
+                semuaakun.tanggal = semuaakun.sumberpembayaranpenjualan.tanggalbayar
             elif semuaakun.sumberkegiatanakunting:
-                res[semuaakun.id] = semuaakun.sumberkegiatanakunting.tanggal    
+                semuaakun.tanggal = semuaakun.sumberkegiatanakunting.tanggal
             elif semuaakun.sumberbiaya:
-                res[semuaakun.id] = semuaakun.sumberbiaya.tanggal    
+                semuaakun.tanggal = semuaakun.sumberbiaya.tanggal
             elif semuaakun.sumberinventaris:
-                res[semuaakun.id] = semuaakun.sumberinventaris.tanggal
+                semuaakun.tanggal = semuaakun.sumberinventaris.tanggal
             elif semuaakun.sumberjurnalpenyesuaian:
-                res[semuaakun.id] = semuaakun.sumberjurnalpenyesuaian.tanggal
+                semuaakun.tanggal = semuaakun.sumberjurnalpenyesuaian.tanggal
             elif semuaakun.sumberjurnalpenutup:
-                res[semuaakun.id] = semuaakun.sumberjurnalpenutup.tanggal    
+                semuaakun.tanggal = semuaakun.sumberjurnalpenutup.tanggal
             elif semuaakun.sumberjurnalringkasan:
                 tanggalperingkasan = "01" + semuaakun.sumberjurnalringkasan.bulan + semuaakun.sumberjurnalringkasan.tahun
-                res[semuaakun.id] = datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y").date()
-        return res
+                semuaakun.tanggal = datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y").date()
 
     _columns = {
         'idakun': fields.many2one("mmr.akun", "Nama Akun"),
-        'tanggal': fields.function(_ambil_tanggal, type="date", method=True, string="Waktu"),
+        'tanggal': fields.date("Waktu", compute="_ambil_tanggal"),
         'sumberpembelianfaktur': fields.many2one("mmr.pembelianfaktur", "Sumber Pembelian Faktur", ondelete='cascade'),
         'sumberpenjualanfaktur': fields.many2one("mmr.penjualanfaktur", "Sumber Penjualan Faktur", ondelete='cascade'),
         'sumberpembayaranpembelian': fields.many2one("mmr.pembayaranpembelian", "Sumber Pembayaran Pembelian", ondelete='cascade'),
@@ -446,6 +446,31 @@ class mmr_laporanjurnal(osv.osv):
                     akundetil.append((0, 0, {'idakun': akun.id, 'kredit': (nilaidisesuaikankredit - nilaidisesuaikandebit) + (nilaipenutupkredit - nilaipenutupdebit)}))
             self.env['mmr.saveakun'].create({'tanggal': tanggal, 'idssaveakun': akundetil})
 
+    @api.multi
+    def ambil_tanggal(self):
+        for semuaakun in self.env['mmr.akundetil'].search([]):
+            if semuaakun.sumberpembelianfaktur:
+                semuaakun.tanggal = semuaakun.sumberpembelianfaktur.tanggalterbit
+            elif semuaakun.sumberpenjualanfaktur:
+                semuaakun.tanggal = semuaakun.sumberpenjualanfaktur.tanggalterbit
+            elif semuaakun.sumberpembayaranpembelian:
+                semuaakun.tanggal = semuaakun.sumberpembayaranpembelian.tanggalbayar
+            elif semuaakun.sumberpembayaranpenjualan:
+                semuaakun.tanggal = semuaakun.sumberpembayaranpenjualan.tanggalbayar
+            elif semuaakun.sumberkegiatanakunting:
+                semuaakun.tanggal = semuaakun.sumberkegiatanakunting.tanggal
+            elif semuaakun.sumberbiaya:
+                semuaakun.tanggal = semuaakun.sumberbiaya.tanggal
+            elif semuaakun.sumberinventaris:
+                semuaakun.tanggal = semuaakun.sumberinventaris.tanggal
+            elif semuaakun.sumberjurnalpenyesuaian:
+                semuaakun.tanggal = semuaakun.sumberjurnalpenyesuaian.tanggal
+            elif semuaakun.sumberjurnalpenutup:
+                semuaakun.tanggal = semuaakun.sumberjurnalpenutup.tanggal
+            elif semuaakun.sumberjurnalringkasan:
+                tanggalperingkasan = "01" + semuaakun.sumberjurnalringkasan.bulan + semuaakun.sumberjurnalringkasan.tahun
+                semuaakun.tanggal = datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y").date()
+
     # Isi laporan jurnal sesuai dengan bulan yang dipilih
     # Tampilkan seluruh akun dan sumber nilai akun tsb ( Jurnal - jurnalnya )
     # Apabila akun 1 - 3 yang berlanjut ( Tidak ditutup ) Diringkas menjadi saldo awal
@@ -456,7 +481,6 @@ class mmr_laporanjurnal(osv.osv):
         self.jurnalpenyesuaian = False
         self.jurnaldisesuaikan = False
         self.jurnalpenutup = False
-
         if self.bulan and self.tahun:
             # Hapus dulu semua record ini -1 hari, agar tidak memakan banyak space pada database
             hariminus1 = datetime.datetime.today() - datetime.timedelta(days=1)
@@ -465,7 +489,9 @@ class mmr_laporanjurnal(osv.osv):
 
             # Ambil seluruh akun yang ada, salin ulang pada jurnal
             # Nilai berlanjut ( Akun 1-3 ) Dijumlah dan diberi nama saldo awal
+            saveakunterakhir = self.env['mmr.saveakun'].search([('tanggal', '<', datetime.date(int(self.tahun), int(self.bulan), 1))], limit=1, order='tanggal desc')
             hasilsearch = self.env['mmr.akun'].search([])
+
             for semuahasilsearch in hasilsearch:
                 akundetil = self.env['mmr.akundetildummy']
                 akundetilpenyesuaian = self.env['mmr.akundetildummy']
@@ -479,8 +505,33 @@ class mmr_laporanjurnal(osv.osv):
                 nilaidisesuaikankredit = False
                 nilaipenutupdebit = False
                 nilaipenutupkredit = False
-                saldoawal = False
-                for semuaakundetil in semuahasilsearch.akundetil:
+                saldoawal = 0
+
+                listakundetilid = []
+                if saveakunterakhir:
+                    if semuahasilsearch.normaldi == 'debit':
+                        saldoawal = self.env['mmr.saveakundetil'].search([('idsaveakun', '=', saveakunterakhir.id), ('idakun', '=', semuahasilsearch.id)], limit=1).debit - self.env['mmr.saveakundetil'].search([('idsaveakun', '=', saveakunterakhir.id), ('idakun', '=', semuahasilsearch.id)], limit=1).kredit
+                    elif semuahasilsearch.normaldi == 'kredit':
+                        saldoawal = self.env['mmr.saveakundetil'].search([('idsaveakun', '=', saveakunterakhir.id), ('idakun', '=', semuahasilsearch.id)], limit=1).kredit - self.env['mmr.saveakundetil'].search([('idsaveakun', '=', saveakunterakhir.id), ('idakun', '=', semuahasilsearch.id)], limit=1).debit
+                    self.env.cr.execute('SELECT id FROM mmr_akundetil where tanggal>%s and idakun=%s', [saveakunterakhir.tanggal, semuahasilsearch.id])
+                    listakundetil = self.env.cr.fetchall()
+                    for eachlistakundetil in listakundetil:
+                        listakundetilid.append(eachlistakundetil[0])
+                else:
+                    self.env.cr.execute('SELECT id FROM mmr_akundetil where idakun=%s', [semuahasilsearch.id])
+                    listakundetil = self.env.cr.fetchall()
+                    for eachlistakundetil in listakundetil:
+                        listakundetilid.append(eachlistakundetil[0])
+
+                if semuahasilsearch.normaldi == 'debit':
+                    nilaidebit += saldoawal
+                    nilaidisesuaikandebit += saldoawal
+                else:
+                    nilaikredit += saldoawal
+                    nilaidisesuaikankredit += saldoawal
+
+                # for semuaakundetil in semuahasilsearch.akundetil:
+                for semuaakundetil in self.env['mmr.akundetil'].browse(listakundetilid):
                     tanggal, sumber = False, False
                     if semuaakundetil.sumberpembelianfaktur:
                         tanggal = semuaakundetil.sumberpembelianfaktur.tanggalterbit
@@ -542,7 +593,7 @@ class mmr_laporanjurnal(osv.osv):
                             nilaikredit += semuaakundetilkredit
                             nilaidisesuaikandebit += semuaakundetildebit
                             nilaidisesuaikankredit += semuaakundetilkredit
-                    elif self.tahun+self.bulan > tanggal[0:4]+tanggal[5:7]:
+                    elif self.tahun + self.bulan > tanggal[0:4] + tanggal[5:7]:
                         if semuahasilsearch.normaldi == 'debit':
                             saldoawal += semuaakundetildebit
                             saldoawal -= semuaakundetilkredit
