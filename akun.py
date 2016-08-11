@@ -481,7 +481,9 @@ class mmr_laporanjurnal(osv.osv):
         self.jurnalpenyesuaian = False
         self.jurnaldisesuaikan = False
         self.jurnalpenutup = False
-        if self.bulan and self.tahun:
+        bulan = self.bulan
+        tahun = self.tahun
+        if bulan and tahun:
             # Hapus dulu semua record ini -1 hari, agar tidak memakan banyak space pada database
             hariminus1 = datetime.datetime.today() - datetime.timedelta(days=1)
             self.env['mmr.akundetildummy'].search([('create_date', '<', datetime.datetime.strftime(hariminus1, "%Y-%m-%d"))]).unlink()
@@ -489,7 +491,7 @@ class mmr_laporanjurnal(osv.osv):
 
             # Ambil seluruh akun yang ada, salin ulang pada jurnal
             # Nilai berlanjut ( Akun 1-3 ) Dijumlah dan diberi nama saldo awal
-            saveakunterakhir = self.env['mmr.saveakun'].search([('tanggal', '<', datetime.date(int(self.tahun), int(self.bulan), 1))], limit=1, order='tanggal desc')
+            saveakunterakhir = self.env['mmr.saveakun'].search([('tanggal', '<', datetime.date(int(tahun), int(bulan), 1))], limit=1, order='tanggal desc')
             hasilsearch = self.env['mmr.akun'].search([])
 
             for semuahasilsearch in hasilsearch:
@@ -574,7 +576,7 @@ class mmr_laporanjurnal(osv.osv):
                     self.env.cr.execute('SELECT kredit FROM mmr_akundetil where id=%s', [semuaakundetil.id])
                     semuaakundetilkredit = self.env.cr.fetchone()[0]
 
-                    if self.tahun == tanggal[0:4] and self.bulan == tanggal[5:7]:
+                    if tahun == tanggal[0:4] and bulan == tanggal[5:7]:
                         if semuaakundetil.sumberjurnalpenyesuaian:
                             akundetilpenyesuaian += self.env['mmr.akundetildummy'].new({'debit': semuaakundetildebit, 'kredit': semuaakundetilkredit, 'sumber': sumber, 'tanggal': tanggal})
                             akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit': semuaakundetildebit, 'kredit': semuaakundetilkredit, 'sumber': sumber, 'tanggal': tanggal})
@@ -593,7 +595,7 @@ class mmr_laporanjurnal(osv.osv):
                             nilaikredit += semuaakundetilkredit
                             nilaidisesuaikandebit += semuaakundetildebit
                             nilaidisesuaikankredit += semuaakundetilkredit
-                    elif self.tahun + self.bulan > tanggal[0:4] + tanggal[5:7]:
+                    elif tahun + bulan > tanggal[0:4] + tanggal[5:7]:
                         if semuahasilsearch.normaldi == 'debit':
                             saldoawal += semuaakundetildebit
                             saldoawal -= semuaakundetilkredit
@@ -607,7 +609,7 @@ class mmr_laporanjurnal(osv.osv):
                         nilaidisesuaikankredit += semuaakundetilkredit
 
                 if saldoawal != 0:
-                    tanggal = datetime.date(int(self.tahun), int(self.bulan), 1)
+                    tanggal = datetime.date(int(tahun), int(bulan), 1)
                     if semuahasilsearch.normaldi == 'debit':
                         akundetil += self.env['mmr.akundetildummy'].new({'debit': saldoawal, 'kredit': 0,
                                                                 'sumber': 'Saldo Awal', 'tanggal': tanggal})
