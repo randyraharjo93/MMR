@@ -639,9 +639,8 @@ class mmr_laporanjurnal(osv.osv):
                         self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': nilaikredit - nilaidebit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
                     else:
                         self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round(-1*(nilaikredit - nilaidebit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
-
                     if nilaipenyesuaiankredit - nilaipenyesuaiandebit >= 0:
-                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun,  'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': nilaipenyesuaiankredit - nilaipenyesuaiandebit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
+                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun,  'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': round((nilaipenyesuaiankredit - nilaipenyesuaiandebit), 2), 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
                     else:
                         self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round(-1*(nilaipenyesuaiankredit - nilaipenyesuaiandebit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
                     if nilaidisesuaikankredit - nilaidisesuaikandebit >= 0:
