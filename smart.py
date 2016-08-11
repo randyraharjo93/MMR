@@ -902,7 +902,7 @@ class mmr_cetakbackup(osv.osv):
 		'fakturjualdetil' : fields.one2many("mmr.cetakfaktur","idcetakbackup","Faktur Beli Detil", compute="_isi_fakturjualdetil"),	
 		'stok' : fields.one2many("mmr.laporanstok","idcetakbackup","Stok", compute="_isi_stok"),
 		'kas' : fields.one2many("mmr.akundetildummy", "idcetakbackup", "Kas", compute="_isi_kas"),
-		'saldoawal' : fields.float("SaldoAwal"),
+		'saldoawal' : fields.float("SaldoAwal", digits=(12,2)),
 	}	
 	
 mmr_cetakbackup()
