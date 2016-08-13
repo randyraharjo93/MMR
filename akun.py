@@ -224,6 +224,32 @@ class mmr_akundetil(osv.osv):
         'notes': fields.text("Notes"),
     }
 
+    def create(self, cr, uid, vals, context=None):
+        id = super(mmr_akundetil, self).create(cr, uid, vals, context)
+        akundetilobj = self.browse(cr, uid, id)
+        if akundetilobj.sumberpembelianfaktur:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembelianfaktur.tanggalterbit})
+        elif akundetilobj.sumberpenjualanfaktur:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpenjualanfaktur.tanggalterbit})
+        elif akundetilobj.sumberpembayaranpembelian:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembayaranpembelian.tanggalbayar})
+        elif akundetilobj.sumberpembayaranpenjualan:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembayaranpenjualan.tanggalbayar})
+        elif akundetilobj.sumberkegiatanakunting:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberkegiatanakunting.tanggal})
+        elif akundetilobj.sumberbiaya:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberbiaya.tanggal})
+        elif akundetilobj.sumberinventaris:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberinventaris.tanggal})
+        elif akundetilobj.sumberjurnalpenyesuaian:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberjurnalpenyesuaian.tanggal})
+        elif akundetilobj.sumberjurnalpenutup:
+            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberjurnalpenutup.tanggal})
+        elif akundetilobj.sumberjurnalringkasan:
+            tanggalperingkasan = "01" + akundetilobj.sumberjurnalringkasan.bulan + akundetilobj.sumberjurnalringkasan.tahun
+            self.write(cr, uid, id, {'tanggal': datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y").date()})
+        return id
+
 mmr_akundetil()
 
 
