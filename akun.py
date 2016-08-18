@@ -227,6 +227,8 @@ class mmr_akundetil(osv.osv):
     def create(self, cr, uid, vals, context=None):
         id = super(mmr_akundetil, self).create(cr, uid, vals, context)
         akundetilobj = self.browse(cr, uid, id)
+        print '===Dunno why but the print is intended======'
+        print id
         if akundetilobj.sumberpembelianfaktur:
             self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembelianfaktur.tanggalterbit})
         elif akundetilobj.sumberpenjualanfaktur:
@@ -234,7 +236,10 @@ class mmr_akundetil(osv.osv):
         elif akundetilobj.sumberpembayaranpembelian:
             self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembayaranpembelian.tanggalbayar})
         elif akundetilobj.sumberpembayaranpenjualan:
+            print 'a7'
             self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembayaranpenjualan.tanggalbayar})
+            print akundetilobj.sumberpembayaranpenjualan.tanggalbayar
+            print akundetilobj
         elif akundetilobj.sumberkegiatanakunting:
             self.write(cr, uid, id, {'tanggal': akundetilobj.sumberkegiatanakunting.tanggal})
         elif akundetilobj.sumberbiaya:
