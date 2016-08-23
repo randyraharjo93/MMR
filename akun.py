@@ -205,7 +205,7 @@ class mmr_akundetil(osv.osv):
 
     _columns = {
         'idakun': fields.many2one("mmr.akun", "Nama Akun"),
-        'tanggal': fields.date("Waktu", compute="_ambil_tanggal"),
+        'tanggal': fields.date("Waktu", compute=_ambil_tanggal, store=True),
         'sumberpembelianfaktur': fields.many2one("mmr.pembelianfaktur", "Sumber Pembelian Faktur", ondelete='cascade'),
         'sumberpenjualanfaktur': fields.many2one("mmr.penjualanfaktur", "Sumber Penjualan Faktur", ondelete='cascade'),
         'sumberpembayaranpembelian': fields.many2one("mmr.pembayaranpembelian", "Sumber Pembayaran Pembelian", ondelete='cascade'),
@@ -223,37 +223,6 @@ class mmr_akundetil(osv.osv):
         'isikredit': fields.float("Ubah Kredit", digits=(12, 2)),
         'notes': fields.text("Notes"),
     }
-
-    def create(self, cr, uid, vals, context=None):
-        id = super(mmr_akundetil, self).create(cr, uid, vals, context)
-        akundetilobj = self.browse(cr, uid, id)
-        print '===Dunno why but the print is intended======'
-        print id
-        if akundetilobj.sumberpembelianfaktur:
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembelianfaktur.tanggalterbit})
-        elif akundetilobj.sumberpenjualanfaktur:
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpenjualanfaktur.tanggalterbit})
-        elif akundetilobj.sumberpembayaranpembelian:
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembayaranpembelian.tanggalbayar})
-        elif akundetilobj.sumberpembayaranpenjualan:
-            print 'a7'
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberpembayaranpenjualan.tanggalbayar})
-            print akundetilobj.sumberpembayaranpenjualan.tanggalbayar
-            print akundetilobj
-        elif akundetilobj.sumberkegiatanakunting:
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberkegiatanakunting.tanggal})
-        elif akundetilobj.sumberbiaya:
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberbiaya.tanggal})
-        elif akundetilobj.sumberinventaris:
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberinventaris.tanggal})
-        elif akundetilobj.sumberjurnalpenyesuaian:
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberjurnalpenyesuaian.tanggal})
-        elif akundetilobj.sumberjurnalpenutup:
-            self.write(cr, uid, id, {'tanggal': akundetilobj.sumberjurnalpenutup.tanggal})
-        elif akundetilobj.sumberjurnalringkasan:
-            tanggalperingkasan = "01" + akundetilobj.sumberjurnalringkasan.bulan + akundetilobj.sumberjurnalringkasan.tahun
-            self.write(cr, uid, id, {'tanggal': datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y").date()})
-        return id
 
 mmr_akundetil()
 
