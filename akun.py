@@ -180,6 +180,7 @@ class mmr_akundetil(osv.osv):
     @api.multi
     @api.depends("sumberpembelianfaktur", "sumberpembelianfaktur.tanggalterbit", "sumberpenjualanfaktur", "sumberpenjualanfaktur.tanggalterbit", "sumberpembayaranpembelian", "sumberpembayaranpembelian.tanggalbayar", "sumberpembayaranpenjualan", "sumberpembayaranpenjualan.tanggalbayar", "sumberkegiatanakunting", "sumberkegiatanakunting.tanggal", "sumberbiaya", "sumberbiaya.tanggal", "sumberinventaris", "sumberinventaris.tanggal", "sumberjurnalpenyesuaian", "sumberjurnalpenyesuaian.tanggal", "sumberjurnalpenutup", "sumberjurnalpenutup.tanggal", "sumberjurnalringkasan", "sumberjurnalringkasan.bulan", "sumberjurnalringkasan.tahun")
     def _ambil_tanggal(self):
+        print '1========================================'
         for semuaakun in self:
             if semuaakun.sumberpembelianfaktur:
                 semuaakun.tanggal = semuaakun.sumberpembelianfaktur.tanggalterbit
