@@ -1276,8 +1276,6 @@ def validasipenjualansj(self, cr, uid, id, context=None):
                 listproduk2[semuapenjualansjdetil.pilihanproduk] += semuapenjualansjdetil.jumlah
             else:
                 listproduk2[semuapenjualansjdetil.pilihanproduk] = semuapenjualansjdetil.jumlah
-        print 'A=================================='
-        print listproduk2
 
         for semuastokkeluar in objini.stokkeluar:
             if semuastokkeluar.pilihanproduk in listproduk2:
@@ -1285,8 +1283,6 @@ def validasipenjualansj(self, cr, uid, id, context=None):
             else:
                 raise osv.except_osv(_('Tidak Dapat Melanjutkan'), _("Produk: " + str(semuastokkeluar.namaproduk.namaproduk) + " Belum Didaftarkan Pada List Barang pada SJ"))
 
-        print 'B=================================='
-        print listproduk2
         for semualistproduk2 in listproduk2:
             if listproduk2[semualistproduk2] != 0:
                 raise osv.except_osv(_('Tidak Dapat Melanjutkan'), _("Jumlah Produk: " + str(semualistproduk2.namaproduk.namaproduk) + " yang Akan Dikeluarkan Tidak Sesuai. Selisih: " + str(listproduk2[semualistproduk2])))

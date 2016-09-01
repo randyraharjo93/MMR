@@ -252,7 +252,7 @@
 			<field name="res_model">mmr.laporansales</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
-			<field name="limit">9999</field>
+			<field name="limit">100</field>
 		</record>	
 		
 		<record id="multi_action_master_mmr_smart" model="ir.actions.act_window">
