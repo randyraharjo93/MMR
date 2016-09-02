@@ -136,7 +136,7 @@
 			<field name="model">mmr.laporanmarketing</field>
 			<field name="arch" type="xml">
 				<form string="Laporan Marketing" version="7.0" >
-					<group string="Filter Berdasarkan">
+					<group string="Filter Berdasarkan(Pilih Minimal 1 Filter, Lalu tekan checkbox Filter!)">
 						<group>
 							<field name="customer" options="{'no_create': True, 'no_open':True}"/>
 							<field name="rayon" options="{'no_create': True, 'no_open':True}"/>
