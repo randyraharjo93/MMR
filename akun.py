@@ -152,29 +152,51 @@ class mmr_akundetil(osv.osv):
                 "sumberpembayaranpenjualan", "sumberpembayaranpenjualan.customer", "sumberpembayaranpenjualan.customer.nama",
                 "sumberkegiatanakunting", "sumberkegiatanakunting.detilkejadian", "sumberbiaya", "sumberbiaya.detilkejadian",
                 "sumberinventaris", "sumberinventaris.nama", "sumberjurnalpenyesuaian", "sumberjurnalpenyesuaian.tanggal",
-                "sumberjurnalpenutup", "sumberjurnalpenutup.tanggal")
+                "sumberjurnalpenutup", "sumberjurnalpenutup.tanggal", "sumberpembelianfaktur.tanggalterbit", "sumberpenjualanfaktur.tanggalterbit", "sumberpembayaranpembelian.tanggalbayar", "sumberpembayaranpenjualan.tanggalbayar", "sumberkegiatanakunting.tanggal", "sumberbiaya.tanggal", "sumberinventaris.tanggal", "sumberjurnalpenyesuaian.tanggal", "sumberjurnalpenutup.tanggal", "sumberjurnalringkasan.bulan", "sumberjurnalringkasan.tahun")
     def _get_sumber(self):
+        print '2========================================'
         for semuaakundetil in self:
             if semuaakundetil.sumberpembelianfaktur:
                 semuaakundetil.sumber = "Faktur Nomor : " + str(semuaakundetil.sumberpembelianfaktur.nomorfaktur)
+                semuaakundetil.tanggal = semuaakundetil.sumberpembelianfaktur.tanggalterbit
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberpembelianfaktur.tanggalterbit, semuaakundetil.id))
             elif semuaakundetil.sumberpenjualanfaktur:
                 semuaakundetil.sumber = "Faktur Nomor : " + str(semuaakundetil.sumberpenjualanfaktur.nomorfaktur)
+                semuaakundetil.tanggal = semuaakundetil.sumberpenjualanfaktur.tanggalterbit
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberpenjualanfaktur.tanggalterbit, semuaakundetil.id))
             elif semuaakundetil.sumberpembayaranpembelian:
                 semuaakundetil.sumber = "Pembayaran Pembelian Untuk : " + semuaakundetil.sumberpembayaranpembelian.supplier.nama
+                semuaakundetil.tanggal = semuaakundetil.sumberpembayaranpembelian.tanggalbayar
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberpembayaranpembelian.tanggalbayar, semuaakundetil.id))
             elif semuaakundetil.sumberpembayaranpenjualan:
                 semuaakundetil.sumber = "Pembayaran Penjualan Untuk : " + semuaakundetil.sumberpembayaranpenjualan.customer.nama
+                semuaakundetil.tanggal = semuaakundetil.sumberpembayaranpenjualan.tanggalbayar
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberpembayaranpenjualan.tanggalbayar, semuaakundetil.id))
             elif semuaakundetil.sumberkegiatanakunting:
                 semuaakundetil.sumber = "Kegiatan Akunting : " + str(semuaakundetil.sumberkegiatanakunting.detilkejadian)
+                semuaakundetil.tanggal = semuaakundetil.sumberkegiatanakunting.tanggal
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberkegiatanakunting.tanggal, semuaakundetil.id))
             elif semuaakundetil.sumberbiaya:
                 semuaakundetil.sumber = "Biaya : " + str(semuaakundetil.sumberbiaya.detilkejadian)
+                semuaakundetil.tanggal = semuaakundetil.sumberbiaya.tanggal
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberbiaya.tanggal, semuaakundetil.id))
             elif semuaakundetil.sumberinventaris:
                 semuaakundetil.sumber = "Inventaris : " + str(semuaakundetil.sumberinventaris.nama)
+                semuaakundetil.tanggal = semuaakundetil.sumberinventaris.tanggal
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberinventaris.tanggal, semuaakundetil.id))
             elif semuaakundetil.sumberjurnalpenyesuaian:
                 semuaakundetil.sumber = "Jurnal Penyesuaian : " + str(semuaakundetil.sumberjurnalpenyesuaian.tanggal)
+                semuaakundetil.tanggal = semuaakundetil.sumberjurnalpenyesuaian.tanggal
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberjurnalpenyesuaian.tanggal, semuaakundetil.id))
             elif semuaakundetil.sumberjurnalpenutup:
                 semuaakundetil.sumber = "Jurnal Penutup : " + str(semuaakundetil.sumberjurnalpenutup.tanggal)
+                semuaakundetil.tanggal = semuaakundetil.sumberjurnalpenutup.tanggal
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (semuaakundetil.sumberjurnalpenutup.tanggal, semuaakundetil.id))
             elif semuaakundetil.sumberjurnalringkasan:
                 semuaakundetil.sumber = "Jurnal Peringkas : bulan: " + str(semuaakundetil.sumberjurnalringkasan.bulan) + ", tahun: " + str(semuaakundetil.sumberjurnalringkasan.tahun)
+                tanggalperingkasan = "01" + semuaakundetil.sumberjurnalringkasan.bulan + semuaakundetil.sumberjurnalringkasan.tahun
+                semuaakundetil.tanggal = datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y").date()
+                self.env.cr.execute('UPDATE mmr_akundetil SET tanggal = %s WHERE id = %s', (datetime.datetime.strptime(tanggalperingkasan, "%d%m%Y").date(), semuaakundetil.id))
 
     # Ambil tanggal berdasarkan sumber
     @api.multi
@@ -206,7 +228,7 @@ class mmr_akundetil(osv.osv):
 
     _columns = {
         'idakun': fields.many2one("mmr.akun", "Nama Akun"),
-        'tanggal': fields.date("Waktu", compute=_ambil_tanggal, store=True),
+        'tanggal': fields.date("Waktu"),
         'sumberpembelianfaktur': fields.many2one("mmr.pembelianfaktur", "Sumber Pembelian Faktur", ondelete='cascade'),
         'sumberpenjualanfaktur': fields.many2one("mmr.penjualanfaktur", "Sumber Penjualan Faktur", ondelete='cascade'),
         'sumberpembayaranpembelian': fields.many2one("mmr.pembayaranpembelian", "Sumber Pembayaran Pembelian", ondelete='cascade'),
@@ -937,8 +959,10 @@ class mmr_biaya(osv.osv):
     
     # Jangan dapat dihapus apabila PO telah disetujui admin dan ( sales / kepala sales )
     def unlink(self, cr, uid, ids, context):
-        ids = [ids]
+        print '---------------'
+        print ids
         for id in ids:
+            print id
             biayaobj = self.browse(cr, uid, id)
             if biayaobj.disetujui != False and 'ijindelete' not in context:
                 raise osv.except_osv(_('Tidak Dapat Menghapus'), _("Biaya Telah Disetujui!"))
