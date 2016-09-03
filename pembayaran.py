@@ -180,8 +180,8 @@ class mmr_pembayaranpembeliandetil(osv.osv):
     @api.multi
     @api.depends("idfakturpembelian")
     def _get_totalbayar(self):
+        self.totalbayar = 0
         if self.idfakturpembelian:
-            self.totalbayar = 0
             for semuapembayaranpembeliandetil in self.idfakturpembelian.listpembayaran:
                 self.totalbayar += semuapembayaranpembeliandetil.bayar
 
@@ -366,9 +366,10 @@ class mmr_pembayaranpenjualandetil(osv.osv):
     @api.multi
     @api.depends("idfakturpenjualan")
     def _get_totalbayar(self):
+        self.totalbayar = 0
         if self.idfakturpenjualan:
             for semuapembayaranpenjualandetil in self.idfakturpenjualan.listpembayaran:
-                self.totalbayar += semuapembayaranpenjualandetil.bayar    
+                self.totalbayar += semuapembayaranpenjualandetil.bayar
                     
     _columns = {
             "idpembayaranpenjualan" : fields.many2one("mmr.pembayaranpenjualan", "IDPembayaranpenjualan", ondelete='cascade'),
