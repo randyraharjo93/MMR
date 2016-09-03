@@ -2,7 +2,8 @@ from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from openerp import tools, api 
 import datetime
-import itertools     
+import itertools
+import math
 
 # Penjualan secara konsep sama dengan pembelian
 # Penjualan lebih fleksibel ( Tidak perlu persetujuan otoritas, dll.) Tetapi lebih rapi dimana, satu Faktur hanya bisa satu SJ
@@ -742,23 +743,55 @@ class mmr_penjualanfaktur(osv.osv):
     @api.one
     @api.depends("penjualansj.stokkeluar", "biayalain", "idpenjualanpo.penjualanpodetil")
     def _hitung_harga(self):
+        def Terbilang(x):
+            satuan=["","Satu","Dua","Tiga","Empat","Lima","Enam","Tujuh", "Delapan","Sembilan","Sepuluh","Sebelas"]
+            n = int(x)
+            if n >= 0 and n <= 11:
+                Hasil = " " + satuan[n]
+            elif n >= 12 and n <= 19:
+                Hasil = Terbilang(n % 10) + " Belas"
+            elif n >= 20 and n <= 99:
+                Hasil = Terbilang(n / 10) + " Puluh" + Terbilang(n % 10)
+            elif n >= 100 and n <= 199:
+                Hasil = " Seratus" + Terbilang(n - 100)
+            elif n >= 200 and n <= 999:
+                Hasil = Terbilang(n / 100) + " Ratus" + Terbilang(n % 100)
+            elif n >= 1000 and n <= 1999:
+                Hasil = " Seribu" + Terbilang(n - 1000)
+            elif n >= 2000 and n <= 999999:
+                Hasil = Terbilang(n / 1000) + " Ribu" + Terbilang(n % 1000)
+            elif n >= 1000000 and n <= 999999999:
+                Hasil = Terbilang(n / 1000000) + " Juta" + Terbilang(n % 1000000)
+            else:
+                Hasil = Terbilang(n / 1000000000) + " Milyar" + Terbilang(n % 100000000)
+            return Hasil
+
         bruto, diskon, hpp, pajak, netto = 0, 0, 0, 0, 0
         for produk in self.penjualansj.stokkeluar:
-             bruto+= produk.bruto
-             diskon+= produk.bruto - produk.hppembelian
-             hpp+= produk.hppembelian
-             pajak+= produk.netto - produk.hppembelian
-             netto+= produk.netto
-        self.bruto = bruto    
-        self.diskon = diskon    
-        self.hppembelian = hpp    
-        self.pajak = pajak    
+             bruto += produk.bruto
+             diskon += produk.bruto - produk.hppembelian
+             hpp += produk.hppembelian
+             pajak += produk.netto - produk.hppembelian
+             netto += produk.netto
+        self.bruto = bruto
+        self.diskon = diskon
+        self.hppembelian = hpp
+        self.pajak = pajak
         self.netto = netto + self.biayalain
-    
+        splitnetto = math.modf(netto + self.biayalain)
+        nilaisebelumkoma = int(splitnetto[1])
+        nilaisetelahkoma = int(splitnetto[0])
+        total_terbilang = False
+        total_terbilang = Terbilang(nilaisebelumkoma)
+        if nilaisetelahkoma > 0:
+            total_terbilang += "koma" + Terbilang(nilaisebelumkoma)
+        total_terbilang += "Rupiah"
+        self.total_terbilang = total_terbilang
+
     # Tampilkan barang yang akan dibayar
     # Sebagai informasi akunting
     @api.one
-    @api.depends("penjualansj.stokkeluar", "idpenjualanpo.penjualanpodetil")    
+    @api.depends("penjualansj.stokkeluar", "idpenjualanpo.penjualanpodetil")
     def _isi_barang(self):
         self.penjualanfakturdetil = False
         if self.penjualansj.id != False:
@@ -923,6 +956,7 @@ class mmr_penjualanfaktur(osv.osv):
         'namamodel': fields.char("NamaModel"), 
         'notes': fields.text("Notes"), 
         'laporanmarketing': fields.many2one("mmr.laporanmarketing", "Laporan Marketing"), 
+        'total_terbilang': fields.char("Terbilang", compute="_hitung_harga", store=True)
     }    
     
     _defaults = {
@@ -933,34 +967,39 @@ class mmr_penjualanfaktur(osv.osv):
                 'namamodel': "mmr.penjualanfaktur", 
                 'lunas': False
                 }
-    
+
     def create(self, cr, uid, vals, context=None):
         id = super(mmr_penjualanfaktur, self).create(cr, uid, vals, context)
         hasil = {}
-        
+
         # Isi Pembuat
         userclass = self.pool.get("res.users")
         userobj = userclass.browse(cr, uid, uid)
         hasil['dibuat'] = userobj.login
-        
-        self.write(cr, uid, id, hasil)    
+
+        self.write(cr, uid, id, hasil)
         validasipenjualanfaktur(self, cr, uid, id)
         return id
-    
+
     def write(self, cr, uid, id, vals, context=None):
         res = super(mmr_penjualanfaktur, self).write(cr, uid, id, vals, context)
         hasil = {}
-        
+
+        # Isi Pembuat
+        userclass = self.pool.get("res.users")
+        userobj = userclass.browse(cr, uid, uid)
+        hasil['dibuat'] = userobj.login
+
         # Isi Pengedit
         if 'customer' in vals or 'nomorfaktur' in vals or 'waktu' in vals or 'jatuhtempo' in vals or 'tanggalterbit' in vals or 'penjualansj' in vals or 'aturanakun' in vals or 'akunterkena' in vals or 'biayalain' in vals or 'akunotomatis' in vals or 'notes' in vals:
             userclass = self.pool.get("res.users")
             userobj = userclass.browse(cr, uid, uid)
             hasil['diedit'] = userobj.login
-            
+
         res = super(mmr_penjualanfaktur, self).write(cr, uid, id, hasil, context)
         validasipenjualanfaktur(self, cr, uid, id)
         return res
-    
+
     # Jangan bisa dihapus apabila faktur telah disetujui
     def unlink(self, cr, uid, id, context):
         penjualanfaktur = self.browse(cr, uid, id)

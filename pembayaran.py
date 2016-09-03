@@ -370,7 +370,7 @@ class mmr_pembayaranpenjualandetil(osv.osv):
         if self.idfakturpenjualan:
             for semuapembayaranpenjualandetil in self.idfakturpenjualan.listpembayaran:
                 self.totalbayar += semuapembayaranpenjualandetil.bayar
-                    
+
     _columns = {
             "idpembayaranpenjualan" : fields.many2one("mmr.pembayaranpenjualan", "IDPembayaranpenjualan", ondelete='cascade'),
             "customer" : fields.many2one("mmr.customer", "Customer", required=True, related="idpembayaranpenjualan.customer"),

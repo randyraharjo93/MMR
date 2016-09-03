@@ -123,7 +123,8 @@
 		                        		 </td>
 	                        		 </t>
 	                            </tr>
-	                        </table> 
+	                        </table>
+	                        <p style="text-align: right; border-left: 1px solid black; border-bottom: 1px solid black; border-right: 1px solid black; padding: 3px;"><b>Terbilang: <span t-field="o.total_terbilang"/></b></p>
 	                        <br/>
 	                        <p class="col-xs-6" style="text-align: center; font-size: 127%">Tanda Terima,<br/><br/><br/><br/></p>
 	                        <p class="col-xs-6" style="text-align: center; font-size: 127%">Hormat Kami,<br/><br/><br/><br/></p>
