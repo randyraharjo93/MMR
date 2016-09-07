@@ -21,7 +21,7 @@ class mmr_gudang(osv.osv):
         # Cari seluruh pembelian pada suatu gudang, jumlahkan total pembeliannya ( Stok )
         # Kurangi dengan jumlah pada stok keluar
         for gudang in self.browse(cr, uid, ids):
-            sjpembelianobj = sjpembelianClass.browse(cr, uid, sjpembelianClass.search(cr, uid, [('gudang', '=', udang.id)]))
+            sjpembelianobj = sjpembelianClass.browse(cr, uid, sjpembelianClass.search(cr, uid, [('gudang', '=', gudang.id)]))
             jumlah = 0
             for seluruhsjpembelian in sjpembelianobj:
                 for seluruhsjpembeliandetil in seluruhsjpembelian.pembeliansjdetil:
