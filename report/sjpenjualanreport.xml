@@ -11,9 +11,12 @@
        			 	<div class="page" style="font-family: Lucida Sans"> 
 	       			 	<t t-foreach="len(stokkeluar)/5+1" t-as="page">
 	            			<h2 style="margin-top:-6px;text-align: center">Surat Jalan</h2>
-	                 		<p class="col-xs-4" style= "font-size: 127%">
+	                 		<p class="col-xs-4" style= "font-size: 110%">
 	                 			Tanggal: <span t-field="o.tanggalterbit"/>  <br/>
 	                 			PO: <span t-field="o.idpenjualanpo.nomorpo"/> <br/> 
+	                 			<t t-if="o.idpenjualanpo.nomorpocustomer">
+	                 				PO Customer: <span t-field="o.idpenjualanpo.nomorpocustomer"/> <br/>
+	                 			</t>
 	                 		</p> 
 	                 		<p class="col-xs-4" style="text-align:center;font-size: 127%">
 	                 			<b><span t-field="o.nomorsj"/></b>
