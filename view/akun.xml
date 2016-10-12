@@ -13,6 +13,7 @@
 					<field name="debit" />
 					<field name="kredit"/>
 					<field name="normaldi"/>
+					<field name="aktif"/>
 					<field name="notes"/>
 				</tree>
 			</field>
@@ -29,6 +30,7 @@
 							<field name="normaldi"/>
 							<field name="nomorakun" />
 							<field name="namaakun" />
+							<field name="aktif"/>
 						</group>
 						<group string="Saldo">
 							<field name="debit" />
@@ -54,6 +56,20 @@
 						</page>	
 					</notebook>
 				</form>
+			</field>
+		</record>
+
+		<record id="mmr_akun_search" model="ir.ui.view">
+			<field name="name">mmr.akun.search</field>
+			<field name="model">mmr.akun</field>
+			<field name="arch" type="xml">
+				<search string="Akun" version="7.0">
+					<field name="idakunparent"/>
+					<field name="normaldi"/>
+					<field name="nomorakun"/>
+					<field name="namaakun"/>
+					<filter name="akun_aktif" string="Aktif" help="Akun Aktif" domain="[('aktif','=',True)]"/>
+				</search>
 			</field>
 		</record>
 		
@@ -314,6 +330,7 @@
 						<field name="bulan" />
 						<field name="tahun" />
 						<field name="modellaporan" string="Model Print"/>
+						<field name="include_non_aktif"/>
 					</group>
 					<notebook>
 						<page string="Jurnal">

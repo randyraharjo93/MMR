@@ -109,6 +109,7 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 			<field name="limit">9999</field>
+			<field name="context">{'search_default_akun_aktif': 1}</field>
 		</record>
 
 		<record id="multi_action_master_mmr_save_akun" model="ir.actions.act_window">

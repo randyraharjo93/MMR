@@ -63,6 +63,7 @@ class mmr_akun(osv.osv):
         'akundetil': fields.one2many("mmr.akundetil", "idakun", "History"),
         'notes': fields.text("Notes"),
         'normaldi': fields.selection([('debit', 'Debit'), ('kredit', 'Kredit'), ('debitkredit', 'Debit Kredit')], "Normal Di", required=True),
+        'aktif': fields.boolean("Aktif", default=True),
     }
 
     _sql_constraints = [
@@ -414,9 +415,9 @@ class mmr_akundummy(osv.osv):
         'idjurnal' : fields.many2one("mmr.laporanjurnal", "IDJURNAL"), 
         'idjurnalpenyesuaian' : fields.many2one("mmr.laporanjurnal", "IDJURNALPENYESUAIAN"), 
         'idjurnaldisesuaikan' : fields.many2one("mmr.laporanjurnal", "IDJURNALDISESUAIKAN"), 
-        'idjurnalpenutup' : fields.many2one("mmr.laporanjurnal", "IDJURNALPENUTUP"), 
-    }    
-    
+        'idjurnalpenutup' : fields.many2one("mmr.laporanjurnal", "IDJURNALPENUTUP"),
+    }
+
 mmr_akundummy()
 
 class mmr_akundetildummy(osv.osv):
@@ -498,7 +499,7 @@ class mmr_laporanjurnal(osv.osv):
     # Tampilkan seluruh akun dan sumber nilai akun tsb ( Jurnal - jurnalnya )
     # Apabila akun 1 - 3 yang berlanjut ( Tidak ditutup ) Diringkas menjadi saldo awal
     @api.one
-    @api.onchange('bulan', 'tahun')
+    @api.onchange('bulan', 'tahun', 'include_non_aktif')
     def _isi_jurnal(self):
         self.jurnal = False
         self.jurnalpenyesuaian = False
@@ -640,7 +641,7 @@ class mmr_laporanjurnal(osv.osv):
                     else:
                         akundetil += self.env['mmr.akundetildummy'].new({'debit': 0, 'kredit': saldoawal, 'sumber': 'Saldo Awal', 'tanggal': tanggal})
                         akundetildisesuaikan += self.env['mmr.akundetildummy'].new({'debit': saldoawal, 'kredit': 0, 'sumber': 'Saldo Awal', 'tanggal': tanggal})
-                if semuahasilsearch.normaldi == 'debit':
+                if semuahasilsearch.normaldi == 'debit' and (semuahasilsearch.aktif or self.include_non_aktif):
                     if nilaidebit - nilaikredit >= 0:
                         self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round((nilaidebit-nilaikredit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
                     else:
@@ -657,7 +658,7 @@ class mmr_laporanjurnal(osv.osv):
                         self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round((nilaipenutupdebit - nilaipenutupkredit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
                     else:
                         self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': round(-1*(nilaipenutupdebit - nilaipenutupkredit), 2), 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
-                elif semuahasilsearch.normaldi == 'kredit':
+                elif semuahasilsearch.normaldi == 'kredit' and (semuahasilsearch.aktif or self.include_non_aktif):
                     if nilaikredit - nilaidebit >= 0:
                         self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': 0, 'kredit': round((nilaikredit - nilaidebit), 2), 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
                     else:
@@ -675,10 +676,11 @@ class mmr_laporanjurnal(osv.osv):
                     else:
                         self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': round(-1*(nilaipenutupkredit - nilaipenutupdebit), 2), 'kredit': 0, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
                 else:
-                    self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaidebit, 'kredit': nilaikredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
-                    self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaipenyesuaiandebit, 'kredit':  nilaipenyesuaiankredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
-                    self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaidisesuaikandebit, 'kredit': nilaidisesuaikankredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetildisesuaikan})
-                    self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaipenutupdebit, 'kredit': nilaipenutupkredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
+                    if (semuahasilsearch.aktif or self.include_non_aktif):
+                        self.jurnal += self.jurnal.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaidebit, 'kredit': nilaikredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetil})
+                        self.jurnalpenyesuaian += self.jurnalpenyesuaian.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaipenyesuaiandebit, 'kredit':  nilaipenyesuaiankredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenyesuaian})
+                        self.jurnaldisesuaikan += self.jurnaldisesuaikan.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaidisesuaikandebit, 'kredit': nilaidisesuaikankredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetildisesuaikan})
+                        self.jurnalpenutup += self.jurnalpenutup.new({'idakunparent': semuahasilsearch.idakunparent, 'nomorakun': semuahasilsearch.nomorakun, 'namaakun': semuahasilsearch.namaakun, 'debit': nilaipenutupdebit, 'kredit': nilaipenutupkredit, 'normaldi': semuahasilsearch.normaldi, 'akundetil': akundetilpenutup})
 
     # Isi nilai debit dan kredit jurnal penutup/penyesuaian/neraca lajur
     @api.one
@@ -719,7 +721,7 @@ class mmr_laporanjurnal(osv.osv):
                                     
     _columns = {
             'modellaporan' : fields.selection([('neraca', 'Neraca') , ('labarugi', 'Laba/Rugi'), ('neracalajur', 'Neraca Lajur'), ('jurnalpenyesuaian', 'Jurnal Penyesuaian'), ('neracadisesuaikan', 'Neraca Disesuaikan')
-                                        , ('jurnalpenutup', 'Jurnal Penutup'), ('bukubesar', 'Buku Besar')], "Jenis Laporan", required=True), 
+                                        , ('jurnalpenutup', 'Jurnal Penutup'), ('bukubesar', 'Buku Besar')], "Jenis Laporan"),
             'bulan' : fields.selection([('01', 'Januari'), ('02', 'Februari'), ('03', 'Maret')
                                         , ('04', 'April'), ('05', 'Mei'), ('06', 'Juni'), ('07', 'Juli')
                                         , ('08', 'Agustus'), ('09', 'September'), ('10', 'Oktober'), ('11', 'November')
@@ -740,6 +742,7 @@ class mmr_laporanjurnal(osv.osv):
             'jurnalpenutupdebit' : fields.float("Debit", compute=_isi_debitkreditjurnalpenutup, store=True, digits=(12, 2)), 
             'jurnalpenutupkredit' : fields.float("Kredit", compute=_isi_debitkreditjurnalpenutup, store=True, digits=(12, 2)), 
             'trigger' : fields.char("Trigger", compute=_isi_jurnal ), 
+            'include_non_aktif': fields.boolean("Include akun non-aktif"),
             }
     
 mmr_laporanjurnal()
