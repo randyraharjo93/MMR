@@ -131,6 +131,17 @@
 				</form>
 			</field>
 		</record>
+
+		<record id="mmr_penjualanpo_graph" model="ir.ui.view">
+            <field name="name">mmr.penjualanpo.graph</field>
+            <field name="model">mmr.penjualanpo</field>
+            <field name="arch" type="xml">
+                <graph string="Penjualan" type="pivot" stacked="True">
+                    <field name="rayon" type="row"/>
+                    <field name="netto" type="measure"/>
+                </graph>
+            </field>
+        </record>
 		
 		-----------PenjualanPODetil----------
 		<record id="mmr_penjualanpodetil_list" model="ir.ui.view">
@@ -144,7 +155,7 @@
 					<field name="jumlah" />
 					<field name="jumlahdikirim" />
 					<field name="harga"  />
-					<field name="bruto" />					
+					<field name="bruto" />
 					<field name="diskon" />
 					<field name="hppembelian" />
 					<field name="pajak" />
@@ -214,6 +225,56 @@
 						</page>	
 					</notebook>
 				</form>
+			</field>
+		</record>
+
+		<record id="mmr_penjualanpodetil_list_standalone" model="ir.ui.view">
+			<field name="name">mmr.penjualanpodetil.list.standalone</field>
+			<field name="model">mmr.penjualanpodetil</field>
+			<field name="arch" type="xml">
+				<tree string="Penjualan PO Detil" version="7.0" create="false" edit="false">
+					<field name="idpenjualanpo" string="PO Penjualan"/>
+					<field name="customerpo" />
+					<field name="waktu" />
+					<field name="merk" />
+					<field name="namaproduk" />
+					<field name="satuan" />
+					<field name="jumlah" />
+					<field name="jumlahdikirim" />
+					<field name="harga"  />
+					<field name="bruto" />
+					<field name="diskon" />
+					<field name="hppembelian" />
+					<field name="pajak" />
+					<field name="netto" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="mmr_penjualanpodetil_graph" model="ir.ui.view">
+            <field name="name">mmr.penjualanpodetil.graph</field>
+            <field name="model">mmr.penjualanpodetil</field>
+            <field name="arch" type="xml">
+                <graph string="Penjualan Detil" type="pivot" stacked="True">
+                </graph>
+            </field>
+        </record>
+
+        <record id="mmr_penjualanpodetil_search" model="ir.ui.view">
+			<field name="name">mmr.penjualanpodetil.search</field>
+			<field name="model">mmr.penjualanpodetil</field>
+			<field name="arch" type="xml">
+				<search string="Penjualan PO Detil" version="7.0">
+					<field name="customerpo"/>
+					<field name="merk"/>
+					<field name="namaproduk"/>
+					<group expand="1" string="Group By">
+						<filter name="group_by_customer" string="Customer" help="Group By Customer" context="{'group_by':'customerpo'}"/>
+						<filter name="group_by_merk" string="Merk" help="Group By Merk" context="{'group_by':'merk'}"/>
+						<filter name="group_by_namaproduk" string="Produk" help="Group By Produk" context="{'group_by':'namaproduk'}"/>
+					</group>
+				</search>
 			</field>
 		</record>
 		

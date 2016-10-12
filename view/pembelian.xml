@@ -117,6 +117,17 @@
 			</field>
 		</record>
 
+		<record id="mmr_pembelianpo_graph" model="ir.ui.view">
+            <field name="name">mmr.pembelianpo.graph</field>
+            <field name="model">mmr.pembelianpo</field>
+            <field name="arch" type="xml">
+                <graph string="Penjualan" type="pivot" stacked="True">
+                    <field name="supplier" type="row"/>
+                    <field name="netto" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
 		-----------PembelianPODetil----------
 		<record id="mmr_pembelianpodetil_list" model="ir.ui.view">
 			<field name="name">mmr.pembelianpodetil.list</field>
@@ -170,7 +181,57 @@
 					</notebook>		
 				</form>
 			</field>
-		</record>		
+		</record>
+
+		<record id="mmr_pembelianpodetil_list_standalone" model="ir.ui.view">
+			<field name="name">mmr.pembelianpodetil.list.standalone</field>
+			<field name="model">mmr.pembelianpodetil</field>
+			<field name="arch" type="xml">
+				<tree string="Pembelian PO Detil" version="7.0" create="false" edit="false">
+					<field name="idpo" string="PO Pembelian"/>
+					<field name="supplier" />
+					<field name="waktu" />
+					<field name="merk" />
+					<field name="namaproduk" />
+					<field name="satuan" />
+					<field name="jumlah" />
+					<field name="jumlahditerima" />
+					<field name="harga"  />
+					<field name="bruto" />
+					<field name="diskon" />
+					<field name="hppembelian" />
+					<field name="pajak" />
+					<field name="netto" />
+					<field name="notes" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="mmr_pembelianpodetil_graph" model="ir.ui.view">
+            <field name="name">mmr.pembelianpodetil.graph</field>
+            <field name="model">mmr.pembelianpodetil</field>
+            <field name="arch" type="xml">
+                <graph string="Pembelian Detil" type="pivot" stacked="True">
+                </graph>
+            </field>
+        </record>
+
+        <record id="mmr_pembelianpodetil_search" model="ir.ui.view">
+			<field name="name">mmr.pembelianpodetil.search</field>
+			<field name="model">mmr.pembelianpodetil</field>
+			<field name="arch" type="xml">
+				<search string="Pembelian PO Detil" version="7.0">
+					<field name="supplier"/>
+					<field name="merk"/>
+					<field name="namaproduk"/>
+					<group expand="1" string="Group By">
+						<filter name="group_by_supplier" string="Supplier" help="Group By Supplier" context="{'group_by':'supplier'}"/>
+						<filter name="group_by_merk" string="Merk" help="Group By Merk" context="{'group_by':'merk'}"/>
+						<filter name="group_by_namaproduk" string="Produk" help="Group By Produk" context="{'group_by':'namaproduk'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
 		
 		-----------PembelianSJ----------
 		<record id="mmr_pembeliansj_list" model="ir.ui.view">

@@ -464,7 +464,8 @@ class mmr_penjualanpodetil(osv.osv):
         self.trigger = "Triggered"
                 
     _columns = {
-        'waktu': fields.date("Waktu pada PO", related="idpenjualanpo.tanggal", required=True), 
+        'waktu': fields.date("Waktu PO", related="idpenjualanpo.tanggal", required=True),
+        'customerpo': fields.many2one("mmr.customer", "Customer PO", related="idpenjualanpo.customer"), 
         'idpenjualanpo': fields.many2one("mmr.penjualanpo", "idpopenjualan", ondelete='cascade'), 
         'merk': fields.many2one("mmr.merk", "Merk", required=True), 
         'namaproduk': fields.many2one("mmr.produk", "Nama Produk", required=True, domain="[('merk', '=', merk)]"), 

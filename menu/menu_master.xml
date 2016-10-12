@@ -21,9 +21,18 @@
 			<field name="name">POPembelian</field>
 			<field name="res_model">mmr.pembelianpo</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,graph</field>
 			<field name="context">{'group_by': 'waktu'}</field>
 			<field name="limit">9999</field>
+		</record>
+
+		<record id="multi_action_master_mmr_pembelianpodetil" model="ir.actions.act_window">
+			<field name="name">POPembelian Detil</field>
+			<field name="res_model">mmr.pembelianpodetil</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,graph</field>
+			<field name="limit">200</field>
+			<field name="view_ids" eval="[(6,0,[]), (0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_pembelianpodetil_list_standalone')}), (0, 0, {'sequence': 2, 'view_mode': 'graph', 'view_id': ref('MMR.mmr_pembelianpodetil_graph')})]"/>
 		</record>
 
 		<record id="multi_action_master_mmr_pembeliansj" model="ir.actions.act_window">
@@ -189,9 +198,18 @@
 			<field name="name">POPenjualan</field>
 			<field name="res_model">mmr.penjualanpo</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,graph</field>
 			<field name="context">{'group_by': 'tanggal'}</field>
 			<field name="limit">9999</field>
+		</record>
+
+		<record id="multi_action_master_mmr_penjualanpodetil" model="ir.actions.act_window">
+			<field name="name">POPenjualan Detil</field>
+			<field name="res_model">mmr.penjualanpodetil</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,graph</field>
+			<field name="limit">200</field>
+			<field name="view_ids" eval="[(6,0,[]), (0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_penjualanpodetil_list_standalone')}), (0, 0, {'sequence': 2, 'view_mode': 'graph', 'view_id': ref('MMR.mmr_penjualanpodetil_graph')})]"/>
 		</record>
 
 		<record id="multi_action_master_mmr_penjualansj" model="ir.actions.act_window">
@@ -339,16 +357,18 @@
 			
 			<menuitem id="mmr_menu_pembelian" name="Pembelian" parent="mmr_menu_utama" sequence="4" />
 				<menuitem id="multi_menu_master_pembelianpo" action="multi_action_master_mmr_pembelianpo" name="PO Pembelian" parent="mmr_menu_pembelian" sequence="1" />
-				<menuitem id="multi_menu_master_pembeliansj" action="multi_action_master_mmr_pembeliansj" name="SJ Pembelian" parent="mmr_menu_pembelian" sequence="2" />
-				<menuitem id="multi_menu_master_pembelianfaktur" action="multi_action_master_mmr_pembelianfaktur" name="Faktur Pembelian" parent="mmr_menu_pembelian" sequence="3" />
-				<menuitem id="multi_menu_master_pembayaranpembelian" action="multi_action_master_mmr_pembayaranpembelian" name="Pembayaran Pembelian" parent="mmr_menu_pembelian" sequence="4" groups="MMR.akunting"/>
+				<menuitem id="multi_menu_master_pembelianpodetil" action="multi_action_master_mmr_pembelianpodetil" name="PO Pembelian Detil" parent="mmr_menu_pembelian" sequence="2" />
+				<menuitem id="multi_menu_master_pembeliansj" action="multi_action_master_mmr_pembeliansj" name="SJ Pembelian" parent="mmr_menu_pembelian" sequence="3" />
+				<menuitem id="multi_menu_master_pembelianfaktur" action="multi_action_master_mmr_pembelianfaktur" name="Faktur Pembelian" parent="mmr_menu_pembelian" sequence="4" />
+				<menuitem id="multi_menu_master_pembayaranpembelian" action="multi_action_master_mmr_pembayaranpembelian" name="Pembayaran Pembelian" parent="mmr_menu_pembelian" sequence="5" groups="MMR.akunting"/>
 		
 			<menuitem id="mmr_menu_penjualan" name="Penjualan" parent="mmr_menu_utama" sequence="5" />
 				<menuitem id="multi_menu_master_penjualanpo" action="multi_action_master_mmr_penjualanpo" name="PO Penjualan" parent="mmr_menu_penjualan" sequence="1" />
-				<menuitem id="multi_menu_master_penjualansj" action="multi_action_master_mmr_penjualansj" name="SJ Penjualan" parent="mmr_menu_penjualan" sequence="2" />
-				<menuitem id="multi_menu_master_penjualanfaktur" action="multi_action_master_mmr_penjualanfaktur" name="Faktur Penjualan" parent="mmr_menu_penjualan" sequence="3" />
-				<menuitem id="multi_menu_master_pembayaranpenjualan" action="multi_action_master_mmr_pembayaranpenjualan" name="Pembayaran Penjualan" parent="mmr_menu_penjualan" sequence="4" groups="MMR.akunting"/>
-				<menuitem id="multi_menu_master_penjualanretur" action="multi_action_master_mmr_penjualanretur" name="Retur Penjualan" parent="mmr_menu_penjualan" sequence="5" groups="MMR.akunting"/>
+				<menuitem id="multi_menu_master_penjualanpodetil" action="multi_action_master_mmr_penjualanpodetil" name="PO Penjualan Detil" parent="mmr_menu_penjualan" sequence="2" />
+				<menuitem id="multi_menu_master_penjualansj" action="multi_action_master_mmr_penjualansj" name="SJ Penjualan" parent="mmr_menu_penjualan" sequence="3" />
+				<menuitem id="multi_menu_master_penjualanfaktur" action="multi_action_master_mmr_penjualanfaktur" name="Faktur Penjualan" parent="mmr_menu_penjualan" sequence="4" />
+				<menuitem id="multi_menu_master_pembayaranpenjualan" action="multi_action_master_mmr_pembayaranpenjualan" name="Pembayaran Penjualan" parent="mmr_menu_penjualan" sequence="5" groups="MMR.akunting"/>
+				<menuitem id="multi_menu_master_penjualanretur" action="multi_action_master_mmr_penjualanretur" name="Retur Penjualan" parent="mmr_menu_penjualan" sequence="6" groups="MMR.akunting"/>
 
 		
 		<menuitem id="mmr_menu_pengaturan" name="Pengaturan" sequence="2" groups="base.group_user"/>
