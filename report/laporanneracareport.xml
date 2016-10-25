@@ -22,7 +22,7 @@
 							</style>			           		
 			           		<table class="col-xs-6" >
 			           			<t t-foreach="o.jurnaldisesuaikan" t-as="jurnaldetil">
-				           			<t t-if="jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:4] == '1.1.'">	
+				           			<t t-if="jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:5] == '1.01.'">	
 					           			<tr>
 					           				<td style="width:50%"> <span t-esc="jurnaldetil.namaakun"/> </td>
 					           				<td style="width:25%; text-align:right"> <span t-esc="'{0:,.2f}'.format(round(jurnaldetil.debit - jurnaldetil.kredit,2))"/> </td>
@@ -46,7 +46,7 @@
 			           		<table class="col-xs-12" >
 					           	<tr>
 					       			<td style="width:25%; text-align:left"> <b>TOTAL AKTIVA LANCAR</b> </td>
-					           		<td style="width:25%; text-align:right; padding:5px "> <b><span t-esc="'{0:,.2f}'.format(sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:4] == '1.1.')))"/></b> </td>
+					           		<td style="width:25%; text-align:right; padding:5px "> <b><span t-esc="'{0:,.2f}'.format(sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:5] == '1.01.')))"/></b> </td>
 					          		<td style="width:25%; text-align:left; padding: 5px "> <b>TOTAL HUTANG</b> </td>
 					           		<td style="width:25%; text-align:right"> <b><span t-esc="'{0:,.2f}'.format(sum((jurnaldetil.kredit-jurnaldetil.debit) for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'hutang')))"/></b> </td>
 					           	</tr>
@@ -56,7 +56,7 @@
 			           		<p class="col-xs-6" style="padding:5px"><b> MODAL </b></p>
 			           		<table class="col-xs-6" >
 			           			<t t-foreach="o.jurnaldisesuaikan" t-as="jurnaldetil">
-				           			<t t-if="jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:4] == '1.2.'">	
+				           			<t t-if="jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:5] == '1.02.'">	
 					           			<tr>
 					           				<td style="width:50%"> <span t-esc="jurnaldetil.namaakun"/> </td>
 					           				<td style="width:25%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.debit - jurnaldetil.kredit)"/> </td>
@@ -67,7 +67,7 @@
 			           		</table>
 			           		<table class="col-xs-6" >
 			           			<t t-foreach="o.jurnaldisesuaikan" t-as="jurnaldetil">
-				           			<t t-if="jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5' and jurnaldetil.nomorakun[:4] != '3.4'">	
+				           			<t t-if="jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun != '3.01.05' and jurnaldetil.nomorakun != '3.01.04'">	
 					           			<tr>
 					           				<td style="width:50%"> <span t-esc="jurnaldetil.namaakun"/> </td>
 					           				<td style="width:25%; text-align:right"> <span t-esc="'{0:,.2f}'.format(jurnaldetil.kredit - jurnaldetil.debit)"/> </td>
@@ -76,8 +76,8 @@
 					           		</t>
 				           		</t>	
 				           		<tr>
-			           				<td style="width:50%"> <span t-esc="o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.4')]).namaakun"/> </td>
-			           				<td style="width:25%; text-align:right"> <span t-esc="'{0:,.2f}'.format(o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.3')]).kredit - o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.3')]).debit)"/> </td>
+			           				<td style="width:50%"> <span t-esc="o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.01.04')]).namaakun"/> </td>
+			           				<td style="width:25%; text-align:right"> <span t-esc="'{0:,.2f}'.format(o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.01.03')]).kredit - o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.01.03')]).debit)"/> </td>
 			           				<td style="width:25%; text-align:right"> </td>
 			           			</tr>
 			           		</table>
@@ -85,9 +85,9 @@
 			           		<table class="col-xs-12" >
 					           	<tr>
 					       			<td style="width:25%; text-align:left"> <b>TOTAL AKTIVA TETAP</b> </td>
-					           		<td style="width:25%; text-align:right; padding:5px "> <b><span t-esc="'{0:,.2f}'.format(sum((jurnaldetil.debit-jurnaldetil.kredit) for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:4] == '1.2.')))"/></b> </td>
+					           		<td style="width:25%; text-align:right; padding:5px "> <b><span t-esc="'{0:,.2f}'.format(sum((jurnaldetil.debit-jurnaldetil.kredit) for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:5] == '1.02.')))"/></b> </td>
 					          		<td style="width:25%; text-align:left; padding: 5px "> <b>TOTAL MODAL</b> </td>
-					           		<td style="width:25%; text-align:right"> <b><span t-esc="'{0:,.2f}'.format(sum(jurnaldetil.kredit - jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5')) - sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnalpenutup if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5')))"/></b> </td>
+					           		<td style="width:25%; text-align:right"> <b><span t-esc="'{0:,.2f}'.format(sum(jurnaldetil.kredit - jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun != '3.01.05')) - sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnalpenutup if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun != '3.01.05')))"/></b> </td>
 					           	</tr>
 			           		</table>
 			           		<table class="col-xs-12" >
@@ -95,7 +95,7 @@
 					       			<td style="width:25%; text-align:left"> <b>TOTAL AKTIVA</b> </td>
 					           		<td style="width:25%; text-align:right; padding:5px "> <b><span t-esc="'{0:,.2f}'.format(sum((jurnaldetil.debit-jurnaldetil.kredit) for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'activa')))"/></b> </td>
 					          		<td style="width:25%; text-align:left; padding: 5px "> <b>TOTAL PASIVA</b> </td>
-					           		<td style="width:25%; text-align:right"> <b><span t-esc="'{0:,.2f}'.format(sum((jurnaldetil.kredit - jurnaldetil.debit) for jurnaldetil in o.jurnaldisesuaikan if ((jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5') or jurnaldetil.idakunparent == 'hutang')) - sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnalpenutup if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5')))"/></b> </td>
+					           		<td style="width:25%; text-align:right"> <b><span t-esc="'{0:,.2f}'.format(sum((jurnaldetil.kredit - jurnaldetil.debit) for jurnaldetil in o.jurnaldisesuaikan if ((jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun != '3.01.05') or jurnaldetil.idakunparent == 'hutang')) - sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnalpenutup if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun != '3.01.05')))"/></b> </td>
 					           	</tr>
 			           		</table>
 			           	</div>	
