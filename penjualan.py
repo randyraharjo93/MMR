@@ -938,7 +938,7 @@ class mmr_penjualanfaktur(osv.osv):
         'penjualansj': fields.many2one("mmr.penjualansj", "Surat Jalan", domain="[('idpenjualanpo', '=', idpenjualanpo)]", required=True), 
         'penjualanfakturdetil': fields.one2many("mmr.stokkeluar", "idpenjualanfaktur", "ListBarang", compute="_isi_barang"), 
         'cetakfaktur': fields.one2many("mmr.cetakfaktur", "idpenjualanfaktur", "Tabel Cetak", compute="_isi_cetak_faktur"), 
-        'aturanakun': fields.many2one("mmr.aturanakun", "Aturan Jurnal", required=True, domain="[('model', '=', namamodel)]"), 
+        'aturanakun': fields.many2one("mmr.aturanakun", "Aturan Jurnal", required=True, domain="[('model', '=', namamodel),('aktif', '=', True)]"), 
         'akunterkena': fields.one2many("mmr.akundetil", "sumberpenjualanfaktur", "Akuntansi"), 
         'listpembayaran': fields.one2many("mmr.pembayaranpenjualandetil", "idfakturpenjualan", "List Penjualan"), 
         'totalbayar': fields.function(_isi_totalbayar, type="float", method=True, string="Total Pembayaran", digits=(12, 2)), 

@@ -760,7 +760,8 @@ class mmr_aturanakun(osv.osv):
         'namaaturan' : fields.char("Nama Aturan", required=True), 
         'model': fields.many2one("ir.model", "Model", domain="[('model', 'like', 'mmr.')]", required=True), 
         'aturanakundetil' : fields.one2many("mmr.aturanakundetil", "idaturanakun", "Fields"), 
-        'notes' : fields.text("Notes"), 
+        'notes' : fields.text("Notes"),
+        'aktif' : fields.boolean("Aktif", default=True),
     }    
     
     # Apabila ada perubahan aturan, ikut ubah seluruh jurnal yang menggunakan aturan ini
@@ -946,7 +947,7 @@ class mmr_biaya(osv.osv):
         'detilkejadian' : fields.char("Detil Kejadian", required=True), 
         'jumlahbiaya' : fields.float("Total Biaya", required=True, digits=(12, 2)), 
         'status' : fields.function(_set_status, type="char", method=True, string="Status"), 
-        "aturanakun" : fields.many2one("mmr.aturanakun", "Aturan Jurnal", domain="[('model', '=', namamodel)]"), 
+        "aturanakun" : fields.many2one("mmr.aturanakun", "Aturan Jurnal", domain="[('model', '=', namamodel),('aktif', '=', True)]"), 
         'akunotomatis': fields.boolean("Otomatisasi Jurnal", help="Apabila tercentang, jurnal akan diisi otomatis sesuai data yang ada! Sebaliknya, jurnal tidak akan diisi otomatis dan user dapat mengubah jurnal secara manual!"), 
         "akunterkena" : fields.one2many("mmr.akundetil", "sumberbiaya", "Jurnal"), 
         'disetujui' : fields.char("Disetujui"), 

@@ -595,6 +595,7 @@
 					<field name="namaaturan"/>
 					<field name="model" />
 					<field name="aturanakundetil" />
+					<field name="aktif" />
 				</tree>
 			</field>
 		</record>
@@ -607,6 +608,7 @@
 					<group string="Informasi Dasar">
 						<field name="namaaturan"/>
 						<field name="model" options="{'no_create': True, 'no_open':True}"/>
+						<field name="aktif" />
 					</group>
 					<notebook>
 						<page string="Detil Aturan">

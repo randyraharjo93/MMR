@@ -701,7 +701,7 @@ class mmr_pembelianfaktur(osv.osv):
         'pembelianfakturdetil' : fields.one2many("mmr.stok", "idpembelianfaktur", "ListBarang",compute="_isi_barang"),
         #-------------------------------------------------------------------------------
         
-        'aturanakun' : fields.many2one("mmr.aturanakun", "Aturan Jurnal", required=True, domain="[('model', '=', namamodel)]"),
+        'aturanakun' : fields.many2one("mmr.aturanakun", "Aturan Jurnal", required=True, domain="[('model', '=', namamodel),('aktif', '=', True)]"),
         'akunterkena' : fields.one2many("mmr.akundetil","sumberpembelianfaktur","Akuntansi"),
         'listpembayaran' : fields.one2many("mmr.pembayaranpembeliandetil","idfakturpembelian","List Pembayaran"),
         'trigger' : fields.char("Trigger",compute="_isi_akun"),
