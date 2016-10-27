@@ -169,26 +169,40 @@ class mmr_penjualanpo(osv.osv):
         for penjualanpo in self.browse(cr, uid, ids):
             # Set awal selalu baru
             res[penjualanpo.id] = "Baru"
+
+            # Apabila penyetuju belum lengkap
+            if penjualanpo.disetujui == "Ya":
+                if (penjualanpo.disetujuiadmin.id==False or penjualanpo.disetujuisales.id==False or penjualanpo.disetujuisupervisor.id==False) and penjualanpo.tukarbarang == False:
+                    res[penjualanpo.id] = "Valid, Penyetuju Belum Lengkap"
+                else:
+                    res[penjualanpo.id] = "Valid, Penyetuju Lengkap"
+            else:
+                res[penjualanpo.id] = "Belum Valid"
+
+            # Apabila PO dibatalkan
+            if penjualanpo.dibatalkan != False:
+                res[penjualanpo.id] = "Batal"
+        return res
+
+    def _set_statussj(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for penjualanpo in self.browse(cr, uid, ids):
+            # Set awal selalu baru
+            res[penjualanpo.id] = "Baru"
             lengkap = True
             for penjualanpodetil in penjualanpo.penjualanpodetil:
                 if penjualanpodetil.jumlah != penjualanpodetil.jumlahdikirim:
                     lengkap = False
-            
             # Cek kelengkapan barang yang dikirim
             if lengkap:
                 res[penjualanpo.id] = "Barang Lengkap Dikirim"
             else:
                 if penjualanpo.tanggaldijanjikan != False and datetime.datetime.today() > datetime.datetime.strptime(penjualanpo.tanggaldijanjikan, '%Y-%m-%d'):
                     res[penjualanpo.id] = "Barang Terlambat"
-            # Apabila penyetuju belum lengkap
-            if (penjualanpo.disetujuiadmin.id==False or penjualanpo.disetujuisales.id==False or penjualanpo.disetujuisupervisor.id==False) and penjualanpo.tukarbarang == False:
-                res[penjualanpo.id] = "Penyetuju Belum Lengkap"    
-            # Apabila PO dibatalkan
-            if penjualanpo.dibatalkan != False:
-                res[penjualanpo.id] = "Batal"    
-                        
+                else:
+                    res[penjualanpo.id] = "Barang Belum Dikirim"
         return res
-    
+
     # Milestone PO Penjualan ( Belum ada SJ, Faktur Lengkap, Faktur tidak lengkap, Tanpa Faktur (hanya po khusus) )
     def _set_statusfaktur(self, cr, uid, ids, field_name, arg, context):
         res = {}
@@ -326,7 +340,8 @@ class mmr_penjualanpo(osv.osv):
         'rayon': fields.many2one("mmr.rayon", "Rayon"), 
         'kota': fields.many2one("mmr.kota", "Kota"), 
         'tanggal': fields.date("Tanggal Terbit", required=True), 
-        'status': fields.function(_set_status, type="char", method=True, string="Status"), 
+        'status': fields.function(_set_status, type="char", method=True, string="Status PO"),
+        'statussj': fields.function(_set_statussj, type="char", method=True, string="Status SJ"), 
         'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur"), 
         'syaratpembayaran': fields.many2one("mmr.syaratpembayaran", "Syarat Pembayaran"), 
         'tanggaldijanjikan': fields.date("Tanggal Dijanjikan"), 
@@ -572,7 +587,19 @@ class mmr_penjualansj(osv.osv):
     def revisi(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'disetujuigudang':False})    
         return True
-                                
+
+    # Milestone PO Penjualan ( Belum ada SJ, Faktur Lengkap, Faktur tidak lengkap, Tanpa Faktur (hanya po khusus) )
+    def _set_statusfaktur(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for penjualansj in self.browse(cr, uid, ids):
+            if self.pool.get('mmr.penjualanfaktur').search(cr, uid, [('penjualansj', '=', penjualansj.id)]):
+                res[penjualansj.id] = 'Terfaktur'
+            else:
+                res[penjualansj.id] = 'Belum Terfaktur'
+            if penjualansj.idpenjualanpo.tanpafaktur:
+                res[penjualansj.id] = 'Tidak Perlu Faktur'
+        return res
+
     _columns = {
         'idpenjualanpo':fields.many2one("mmr.penjualanpo", "IDPOPENJUALAN"),    
         'nomorsj': fields.char("Nomor SJ"), 
@@ -586,6 +613,7 @@ class mmr_penjualansj(osv.osv):
         'diedit': fields.char("Diedit", readonly=True), 
         'disetujui': fields.char("Disetujui", readonly=True), 
         'disetujuigudang': fields.char("Disetujui Gudang", readonly=True), 
+        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur"), 
     }    
     
     _defaults = {

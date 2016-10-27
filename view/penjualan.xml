@@ -6,8 +6,9 @@
 			<field name="name">mmr.penjualanpo.list</field>
 			<field name="model">mmr.penjualanpo</field>
 			<field name="arch" type="xml">
-				<tree string="Penjualan PO" version="7.0" colors="red:((status!='Barang Lengkap Dikirim' and status!='Batal') or (statusfaktur!='Faktur lengkap' and statusfaktur!='Tanpa Faktur'))" default_order="tanggal desc">
+				<tree string="Penjualan PO" version="7.0" colors="red:((status!='Valid, Penyetuju Lengkap' and status!='Batal') or (statussj!='Barang Lengkap Dikirim') or (statusfaktur!='Faktur lengkap' and statusfaktur!='Tanpa Faktur'))" default_order="tanggal desc">
 					<field name="status" />
+					<field name="statussj"/>
 					<field name="statusfaktur" groups="MMR.akunting"/>
 					<field name="tanggal" />
 					<field name="customer" />
@@ -15,7 +16,7 @@
 					<field name="nomorpo" />
 					<field name="tanggaldijanjikan" />
 					<field name="sales" />
-					<field name="disetujui" string="Validitas"/>
+					<field name="disetujui" string="Validitas" invisible="1"/>
 					<field name="notes" />
 				</tree>
 			</field>
@@ -47,6 +48,7 @@
 								<field name="syaratpembayaran"  attrs="{'readonly':[('disetujui','!=',False)]}" options="{'no_create': True, 'no_open':True}"/>
 								<field name="tanggaldijanjikan"  attrs="{'readonly':[('disetujui','!=',False)]}" />
 								<field name="status" />
+								<field name="statussj"/>
 								<field name="statusfaktur" groups="MMR.akunting"/>
 							</group>
 							<group string="Ijin Khusus">
@@ -80,6 +82,7 @@
 						<page string="List Surat Jalan">
 							<field name="penjualansj" attrs="{'readonly':[('disetujui','=',False)]}">
 								<tree create="false">
+									<field name="statusfaktur" />
 									<field name="nomorsj" />
 									<field name="tanggalterbit" />
 									<field name="penjualansjdetil" />
@@ -283,7 +286,8 @@
 			<field name="name">mmr.penjualansj.list</field>
 			<field name="model">mmr.penjualansj</field>
 			<field name="arch" type="xml">
-				<tree string="Penjualan SJ" version="7.0">
+				<tree string="Penjualan SJ" version="7.0" colors="red:(statusfaktur=='Belum Terfaktur')">
+					<field name="statusfaktur" />
 					<field name="nomorsj" />
 					<field name="tanggalterbit" />
 					<field name="dibuat" groups="MMR.otoritas"/>
@@ -313,6 +317,7 @@
 						<field name="nomorsj" attrs="{'readonly':True}"/>
 						<field name="reservednomorsj" groups="MMR.otoritas" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
 						<field name="tanggalterbit" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
+						<field name="statusfaktur" />
 					</group>
 					<notebook>
 						<page string="List Produk">
@@ -381,7 +386,8 @@
 			<field name="name">mmr.penjualansj.list.no.edit</field>
 			<field name="model">mmr.penjualansj</field>
 			<field name="arch" type="xml">
-				<tree string="Penjualan SJ" version="7.0" create="false" edit="false">
+				<tree string="Penjualan SJ" version="7.0" create="false" edit="false" colors="red:(statusfaktur=='Belum Terfaktur')">
+					<field name="statusfaktur" />
 					<field name="idpenjualanpo" string="Nomor PO"/>
 					<field name="nomorsj" />
 					<field name="tanggalterbit" />
@@ -404,6 +410,7 @@
 						<field name="nomorsj" attrs="{'readonly':True}"/>
 						<field name="reservednomorsj" groups="MMR.otoritas" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
 						<field name="tanggalterbit" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
+						<field name="statusfaktur" />
 					</group>
 					<notebook>
 						<page string="List Produk">
