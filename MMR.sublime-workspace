@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"sem",
+				"semuapenjualanfaktur"
+			],
+			[
+				"tanpa",
+				"tanpafaktur"
+			],
+			[
+				"penjualansj",
+				"penjualansj"
+			],
+			[
 				"view",
 				"view_id"
 			],
@@ -360,28 +372,28 @@
 	"buffers":
 	[
 		{
-			"contents": "\n\nSearching 12 files for \"nomorakun\"\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report\\laporanbukubesarreport.xml:\n   17  						</style>\n   18  						<t t-foreach=\"o.jurnal\" t-as=\"jurnaldetil\">\n   19: 							<h5 style=\"text-align:center\"> Nomor Akun : <span t-field=\"jurnaldetil.nomorakun\"/>, <span t-field=\"jurnaldetil.namaakun\"/></h5>\n   20  							<table class=\"col-xs-12\" >\n   21  			           			<tr style=\"border-bottom: 3px solid black\">\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report\\laporanlrreport.xml:\n   15  			           			<tr>\n   16  			           				<td style=\"width:82.5%\"> Penjualan : </td>\n   17: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit),2))\"/> </td>\n   18  			           				<td style=\"width:7.5%; text-align:right\"> </td>\n   19  			           			</tr>\n   ..\n   22  			           			<tr >\n   23  			           				<td style=\"width:72.5%\"> Diskon Penjualan : </td>\n   24: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit),2))\"/> </td>\n   25  			           				<td style=\"width:17.5%; text-align:right\">  </td>\n   26  			           			</tr>	\n   ..\n   29  			           			<tr >\n   30  			           				<td style=\"width:72.5%\"> Retur Penjualan : </td>\n   31: 			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit),2))\"/> </td>\n   32  			           				<td style=\"width:17.5%; text-align:left\"> (+) </td>\n   33  			           			</tr>	\n   ..\n   36  			           			<tr>\n   37  			           				<td style=\"width:82.5%\">  </td>\n   38: 			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit),2))\"/> </td>\n   39  			           				<td style=\"width:7.5%; text-align:left\"> (-) </td>\n   40  			           			</tr>\n   ..\n   43  			           			<tr style=\"background-color: #e5fff2;  font-weight: bold;\">\n   44  			           				<td style=\"width:82.5%\"> Penjualan Bersih </td>\n   45: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)),2))\"/> </td>\n   46  			           				<td style=\"width:7.5%; text-align:left\"> </td>\n   47  			           			</tr>\n   ..\n   53  			           			<tr>\n   54  			           				<td style=\"width:72.5%\"> Persediaan Awal : </td>\n   55: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit),2))\"/> </td>\n   56  			           				<td style=\"width:17.5%; text-align:left\"> </td>\n   57  			           			</tr>\n   ..\n   60  			           			<tr>\n   61  			           				<td style=\"width:62.5%\"> Pembelian : </td>\n   62: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit),2))\"/> </td>\n   63  			           				<td style=\"width:27.5%; text-align:left\"> </td>\n   64  			           			</tr>\n   ..\n   67  			           			<tr>\n   68  			           				<td style=\"width:52.5%\"> Diskon Pembelian : </td>\n   69: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit),2))\"/> </td>\n   70  			           				<td style=\"width:37.5%; text-align:left\"> </td>\n   71  			           			</tr>\n   ..\n   74  			           			<tr>\n   75  			           				<td style=\"width:52.5%\"> Retur Pembelian : </td>\n   76: 			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit),2))\"/> </td>\n   77  			           				<td style=\"width:37.5%; text-align:left\"> (+) </td>\n   78  			           			</tr>\n   ..\n   81  			           			<tr>\n   82  			           				<td style=\"width:62.5%\"> </td>\n   83: 			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit),2))\"/> </td>\n   84  			           				<td style=\"width:27.5%; text-align:left\"> (-) </td>\n   85  			           			</tr>\n   ..\n   88  			           			<tr style=\"background-color: #e5fff2;  font-weight: bold;\">\n   89  			           				<td style=\"width:72.5%\"> Pembelian Bersih : </td>\n   90: 			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit)),2))\"/> </td>\n   91  			           				<td style=\"width:17.5%; text-align:left\"> (+) </td>\n   92  			           			</tr>\n   ..\n   95  			           			<tr>\n   96  			           				<td style=\"width:72.5%\"> Barang Dagang Siap Dijual : </td>\n   97: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(float(o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit))))\"/> </td>\n   98  			           				<td style=\"width:17.5%; text-align:left\"> </td>\n   99  			           			</tr>\n  ...\n  102  			           			<tr>\n  103  			           				<td style=\"width:72.5%\"> Persediaan Akhir : </td>\n  104: 			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(float(o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.01.08')]).debit))\"/> </td>\n  105  			           				<td style=\"width:17.5%; text-align:left\"> (-) </td>\n  106  			           			</tr>\n  ...\n  109  			           			<tr>\n  110  			           				<td style=\"width:82.5%\"> Harga Pokok Penjualan(COGS) : </td>\n  111: 			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(float(((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.01.08')]).debit)))\"/> </td>\n  112  			           				<td style=\"width:1.5%; text-align:left\"> (-) </td>\n  113: 			           				<t t-if=\"((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\"> \n  114: 			           					<td style=\"width:6%; text-align:right\"> <b> <span t-esc=\"'{0:,.2f}'.format(round(float(((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.01.08')]).debit) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))),2))\"/> % </b></td>\n  115  			           				</t>\n  116: 			           				<t t-if=\"not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\"> \n  117  			           					<td style=\"width:6%; text-align:right\"> <b> -% </b></td>\n  118  			           				</t>\n  ...\n  122  			           			<tr style=\"background-color: #e5fff2;  font-weight: bold;\">\n  123  			           				<td style=\"width:82.5%\"> Laba Bruto : </td>\n  124: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(float(((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.01.08')]).debit)))\"/> </td>\n  125  			           				<td style=\"width:7.5%; text-align:left\">  </td>\n  126  			           			</tr>\n  ...\n  158  			           		<br/>\n  159  			           		\n  160: 			           		<t t-set=\"totalbeban\" t-value=\"sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'biaya') or (jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.01.03'))\"/>\n  161  			           		\n  162  			           		<p style=\"background-color: #f4f4f4\"><b> Biaya Operasional Perusahaan </b></p>\n  ...\n  167  					           				<td style=\"width:40%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n  168  					           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(jurnaldetil.debit)\"/> </td>\n  169: 					           				<t t-if=\"((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0 \">	\n  170: 					           					<td style=\"width:7.5%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(jurnaldetil.debit * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))),2))\"/> % </td>\n  171  					           				</t>\n  172: 					           				<t t-if=\" not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0 \">	\n  173  					           					<td style=\"width:7.5%; text-align:right\"> - % </td>\n  174  					           				</t>\n  ...\n  192  			           				<td style=\"width:62.5%\"> Total Biaya Operasional Perusahaan : </td>\n  193  			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'biaya')))\"/> </td>\n  194: 			           				<t t-if=\"((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0 \">	\n  195: 										<td style=\"width:7.5%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'biaya')) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))),2))\"/> % </td>			           				\n  196  									</t>\n  197: 			           				<t t-if=\" not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0 \">	\n  198  			           					<td style=\"width:7.5%; text-align:right\"> - % </td>\n  199  			           				</t>\n  ...\n  219  			           		<table style=\"width:100%\" >\n  220  			           			<t t-foreach=\"o.jurnaldisesuaikan\" t-as=\"jurnaldetil\">\n  221: 				           			<t t-if=\"jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.01.03'\">	\n  222  					           			<tr>\n  223  					           				<td style=\"width:40%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n  ...\n  242  			           			<tr style=\"background-color: #e5fff2;  font-weight: bold;\">\n  243  			           				<td style=\"width:62.5%\"> Total Biaya Di Luar Usaha : </td>\n  244: 			           				<td style=\"width:10%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.01.03')))\"/> </td>\n  245: 			           				<t t-if=\"((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\">\n  246: 			           					<td style=\"width:7.5%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.01.03')) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))),2))\"/> % </td>\n  247  			           				</t>\n  248: 			           				<t t-if=\"not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\">\n  249  			           					<td style=\"width:7.5%; text-align:right\"> - % </td>\n  250  			           				</t>\n  ...\n  258  			           				<td style=\"width:10%; text-align:right\"> </td>\n  259  			           				<t t-if=\"totalbeban > 0\" >\n  260: 			           					<td style=\"width:7.5%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(sum(jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'bebandiluarusaha' and jurnaldetil.nomorakun != '8.01.03')) * 100 / totalbeban),2))\"/> % </td>\n  261  			           				</t>\n  262  			           				<t t-if=\"not totalbeban > 0\" >\n  ...\n  272  			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(totalbeban)\"/> </td>\n  273  			           				<td style=\"width:1.5%; text-align:left\"> (-) </td>\n  274: 			           				<t t-if=\"((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\">\n  275: 					           				<td style=\"width:6%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(totalbeban * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))),2))\"/> % </td>\n  276  			           				</t>\n  277: 			           				<t t-if=\"not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\">\n  278  					           				<td style=\"width:6%; text-align:right\"> - % </td>\n  279  			           				</t>\n  ...\n  284  			           			<tr style=\"background-color: #e5fff2;  font-weight: bold;\">\n  285  			           				<td style=\"width:80%\"> Laba / Rugi Bersih Sebelum Pajak</td>\n  286: 			           				<td style=\"width:12.5%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(float(sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')) + ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.01.08')]).debit) - totalbeban))\"/> </td>\n  287: 			           				<t t-if=\"((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\" >\n  288: 			           					<td style=\"width:7.5%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float((sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')) + ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.01.08')]).debit) - totalbeban) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) ),2))\"/> % </td>\n  289  			           				</t>\n  290: 			           				<t t-if=\"not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\" >\n  291  			           					<td style=\"width:7.5%; text-align:right\"> - % </td>\n  292  			           				</t>\n  ...\n  297  			           			<tr >\n  298  			           				<td style=\"width:82.5%\"> Pajak Penghasilan Final / 25</td>\n  299: 			           				<td style=\"width:10%; text-align:right; border-bottom: thin solid #000000\"> <span t-esc=\"'{0:,.2f}'.format(float(o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','8.01.03')]).debit))\"/> </td>\n  300  			           				<td style=\"width:1.5%; text-align:left\"> (-) </td>\n  301: 			           				<t t-if=\"((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\" >\n  302: 			           					<td style=\"width:6%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float(o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','8.01.03')]).debit * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))),2))\"/> % </td>\n  303  			           				</t>\n  304: 			           				<t t-if=\"not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\" >\n  305  			           					<td style=\"width:6%; text-align:right\"> - % </td>\n  306  			           				</t>\n  ...\n  311  			           			<tr style=\"background-color: #e5fff2;  font-weight: bold;\">\n  312  			           				<td style=\"width:80%\"> Laba / Rugi Bersih Setelah Pajak</td>\n  313: 			           				<td style=\"width:12.5%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(float(sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')) + ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.01.08')]).debit) - totalbeban - o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','8.01.03')]).debit))\"/> </td>\n  314: 			           				<t t-if=\"((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\" >\n  315: 			           					<td style=\"width:7.5%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(round(float((sum(jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'pendapatandiluarusaha')) + ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit))-((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','1.01.08')]).debit + (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.01')]).debit - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.02')]).kredit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','5.01.03')]).kredit)))-o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','1.01.08')]).debit) - totalbeban - o.env['mmr.akundummy'].search([('idjurnaldisesuaikan','=',o.id),('nomorakun','=','8.01.03')]).debit) * 100 / ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) ),2))\"/> % </td>\n  316  			           				</t>\n  317: 			           				<t t-if=\"not ((o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.01')]).kredit) - (o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.03')]).debit + o.env['mmr.akundummy'].search([('idjurnal','=',o.id),('nomorakun','=','4.01.02')]).debit)) > 0\" >\n  318  			           					<td style=\"width:7.5%; text-align:right\"> - % </td>\n  319  			           				</t>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report\\laporanneracalajurdisesuaikanreport.xml:\n   26  			           			<t t-foreach=\"o.jurnaldisesuaikan\" t-as=\"jurnaldetil\">\n   27  				           			<tr>\n   28: 				           				<td style=\"width:15%\"> <span t-esc=\"jurnaldetil.nomorakun\"/> </td>\n   29  				           				<td style=\"width:45%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n   30  				           				<td style=\"width:20%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(jurnaldetil.debit)\"/> </td>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report\\laporanneracalajurpenutupreport.xml:\n   26  			           			<t t-foreach=\"o.jurnalpenutup\" t-as=\"jurnaldetil\">\n   27  				           			<tr>\n   28: 				           				<td style=\"width:15%\"> <span t-esc=\"jurnaldetil.nomorakun\"/> </td>\n   29  				           				<td style=\"width:45%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n   30  				           				<td style=\"width:20%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(jurnaldetil.debit)\"/> </td>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report\\laporanneracalajurpenyesuaianreport.xml:\n   26  			           			<t t-foreach=\"o.jurnalpenyesuaian\" t-as=\"jurnaldetil\">\n   27  				           			<tr>\n   28: 				           				<td style=\"width:15%\"> <span t-esc=\"jurnaldetil.nomorakun\"/> </td>\n   29  				           				<td style=\"width:45%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n   30  				           				<td style=\"width:20%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(jurnaldetil.debit)\"/> </td>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report\\laporanneracalajurreport.xml:\n   26  			           			<t t-foreach=\"o.jurnal\" t-as=\"jurnaldetil\">\n   27  				           			<tr>\n   28: 				           				<td style=\"width:15%\"> <span t-esc=\"jurnaldetil.nomorakun\"/> </td>\n   29  				           				<td style=\"width:45%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n   30  				           				<td style=\"width:20%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(jurnaldetil.debit)\"/> </td>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report\\laporanneracareport.xml:\n   23  			           		<table class=\"col-xs-6\" >\n   24  			           			<t t-foreach=\"o.jurnaldisesuaikan\" t-as=\"jurnaldetil\">\n   25: 				           			<t t-if=\"jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:4] == '1.1.'\">	\n   26  					           			<tr>\n   27  					           				<td style=\"width:50%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n   ..\n   47  					           	<tr>\n   48  					       			<td style=\"width:25%; text-align:left\"> <b>TOTAL AKTIVA LANCAR</b> </td>\n   49: 					           		<td style=\"width:25%; text-align:right; padding:5px \"> <b><span t-esc=\"'{0:,.2f}'.format(sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:4] == '1.1.')))\"/></b> </td>\n   50  					          		<td style=\"width:25%; text-align:left; padding: 5px \"> <b>TOTAL HUTANG</b> </td>\n   51  					           		<td style=\"width:25%; text-align:right\"> <b><span t-esc=\"'{0:,.2f}'.format(sum((jurnaldetil.kredit-jurnaldetil.debit) for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'hutang')))\"/></b> </td>\n   ..\n   57  			           		<table class=\"col-xs-6\" >\n   58  			           			<t t-foreach=\"o.jurnaldisesuaikan\" t-as=\"jurnaldetil\">\n   59: 				           			<t t-if=\"jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:4] == '1.2.'\">	\n   60  					           			<tr>\n   61  					           				<td style=\"width:50%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n   ..\n   68  			           		<table class=\"col-xs-6\" >\n   69  			           			<t t-foreach=\"o.jurnaldisesuaikan\" t-as=\"jurnaldetil\">\n   70: 				           			<t t-if=\"jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5' and jurnaldetil.nomorakun[:4] != '3.4'\">	\n   71  					           			<tr>\n   72  					           				<td style=\"width:50%\"> <span t-esc=\"jurnaldetil.namaakun\"/> </td>\n   ..\n   77  				           		</t>	\n   78  				           		<tr>\n   79: 			           				<td style=\"width:50%\"> <span t-esc=\"o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.01.04')]).namaakun\"/> </td>\n   80: 			           				<td style=\"width:25%; text-align:right\"> <span t-esc=\"'{0:,.2f}'.format(o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.01.03')]).kredit - o.env['mmr.akundummy'].search([('idjurnalpenutup','=',o.id),('nomorakun','=','3.01.03')]).debit)\"/> </td>\n   81  			           				<td style=\"width:25%; text-align:right\"> </td>\n   82  			           			</tr>\n   ..\n   86  					           	<tr>\n   87  					       			<td style=\"width:25%; text-align:left\"> <b>TOTAL AKTIVA TETAP</b> </td>\n   88: 					           		<td style=\"width:25%; text-align:right; padding:5px \"> <b><span t-esc=\"'{0:,.2f}'.format(sum((jurnaldetil.debit-jurnaldetil.kredit) for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'activa' and jurnaldetil.nomorakun[:4] == '1.2.')))\"/></b> </td>\n   89  					          		<td style=\"width:25%; text-align:left; padding: 5px \"> <b>TOTAL MODAL</b> </td>\n   90: 					           		<td style=\"width:25%; text-align:right\"> <b><span t-esc=\"'{0:,.2f}'.format(sum(jurnaldetil.kredit - jurnaldetil.debit for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5')) - sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnalpenutup if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5')))\"/></b> </td>\n   91  					           	</tr>\n   92  			           		</table>\n   ..\n   96  					           		<td style=\"width:25%; text-align:right; padding:5px \"> <b><span t-esc=\"'{0:,.2f}'.format(sum((jurnaldetil.debit-jurnaldetil.kredit) for jurnaldetil in o.jurnaldisesuaikan if (jurnaldetil.idakunparent == 'activa')))\"/></b> </td>\n   97  					          		<td style=\"width:25%; text-align:left; padding: 5px \"> <b>TOTAL PASIVA</b> </td>\n   98: 					           		<td style=\"width:25%; text-align:right\"> <b><span t-esc=\"'{0:,.2f}'.format(sum((jurnaldetil.kredit - jurnaldetil.debit) for jurnaldetil in o.jurnaldisesuaikan if ((jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5') or jurnaldetil.idakunparent == 'hutang')) - sum(jurnaldetil.debit - jurnaldetil.kredit for jurnaldetil in o.jurnalpenutup if (jurnaldetil.idakunparent == 'modal' and jurnaldetil.nomorakun[:4] != '3.5')))\"/></b> </td>\n   99  					           	</tr>\n  100  			           		</table>\n\n171 matches across 7 files\n",
+			"contents": "\n\nSearching 47 files for \"<filter name=\"\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\view\\akun.xml:\n   69  					<field name=\"nomorakun\"/>\n   70  					<field name=\"namaakun\"/>\n   71: 					<filter name=\"akun_aktif\" string=\"Aktif\" help=\"Akun Aktif\" domain=\"[('aktif','=',True)]\"/>\n   72  				</search>\n   73  			</field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\view\\pembelian.xml:\n  226  					<field name=\"namaproduk\"/>\n  227  					<group expand=\"1\" string=\"Group By\">\n  228: 						<filter name=\"group_by_supplier\" string=\"Supplier\" help=\"Group By Supplier\" context=\"{'group_by':'supplier'}\"/>\n  229: 						<filter name=\"group_by_merk\" string=\"Merk\" help=\"Group By Merk\" context=\"{'group_by':'merk'}\"/>\n  230: 						<filter name=\"group_by_namaproduk\" string=\"Produk\" help=\"Group By Produk\" context=\"{'group_by':'namaproduk'}\"/>\n  231  					</group>\n  232  				</search>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\view\\penjualan.xml:\n  156  					<field name=\"sales\"/>\n  157  					<group expand=\"1\" string=\"Filter By\">\n  158: 						<filter name=\"group_by_customer\" string=\"Customer\" help=\"Group By Customer\" context=\"{'group_by':'customerpo'}\"/>\n  159: 						<filter name=\"group_by_merk\" string=\"Merk\" help=\"Group By Merk\" context=\"{'group_by':'merk'}\"/>\n  160: 						<filter name=\"group_by_namaproduk\" string=\"Produk\" help=\"Group By Produk\" context=\"{'group_by':'namaproduk'}\"/>\n  161  					</group>\n  162  				</search>\n  ...\n  291  					<field name=\"namaproduk\"/>\n  292  					<group expand=\"1\" string=\"Group By\">\n  293: 						<filter name=\"group_by_customer\" string=\"Customer\" help=\"Group By Customer\" context=\"{'group_by':'customerpo'}\"/>\n  294: 						<filter name=\"group_by_merk\" string=\"Merk\" help=\"Group By Merk\" context=\"{'group_by':'merk'}\"/>\n  295: 						<filter name=\"group_by_namaproduk\" string=\"Produk\" help=\"Group By Produk\" context=\"{'group_by':'namaproduk'}\"/>\n  296  					</group>\n  297  				</search>\n\n10 matches across 3 files\n\n\nSearching 3083 files for \"<filter name=\"akun_aktif\" string=\"Aktif\" help=\"Akun Aktif\" domain=\"[('aktif','=',True)]\"/>\"\n\n\n\nSearching 3083 files for \"<filter name=\"\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account\\account_invoice_view.xml:\n  461                  <search string=\"Search Invoice\">\n  462                      <field name=\"number\" string=\"Invoice\" filter_domain=\"['|','|','|', ('number','ilike',self), ('origin','ilike',self), ('supplier_invoice_number', 'ilike', self), ('partner_id', 'child_of', self)]\"/>\n  463:                     <filter name=\"draft\" string=\"Draft\" domain=\"[('state','=','draft')]\" help=\"Draft Invoices\"/>\n  464:                     <filter name=\"proforma\" string=\"Proforma\" domain=\"[('state','=','proforma2')]\" help=\"Proforma Invoices\" groups=\"account.group_proforma_invoices\"/>\n  465:                     <filter name=\"invoices\" string=\"Invoices\" domain=\"[('state','not in',['draft','cancel'])]\" help=\"Proforma/Open/Paid Invoices\"/>\n  466:                     <filter name=\"unpaid\" string=\"Unpaid\" domain=\"[('state','=','open')]\" help=\"Unpaid Invoices\"/>\n  467                      <separator/>\n  468                      <field name=\"partner_id\" operator=\"child_of\"/>\n  ...\n  472                      <filter domain=\"[('user_id','=',uid)]\" help=\"My Invoices\"/>\n  473                      <group expand=\"0\" string=\"Group By\">\n  474:                     	<filter name=\"group_by_partner_id\" string=\"Partner\" context=\"{'group_by':'partner_id'}\"/>\n  475                          <filter string=\"Salesperson\" context=\"{'group_by':'user_id'}\"/>\n  476                          <filter string=\"Status\" context=\"{'group_by':'state'}\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account\\account_view.xml:\n 1246                      <separator/>\n 1247                      <filter icon=\"terp-document-new\" string=\"Unposted\" domain=\"[('move_id.state','=','draft')]\" help=\"Unposted Journal Items\"/>\n 1248:                     <filter name=\"posted\" icon=\"terp-camera_test\" string=\"Posted\" domain=\"[('move_id.state','=','posted')]\" help=\"Posted Journal Items\"/>\n 1249                      <separator/>\n 1250                      <filter icon=\"terp-dolar_ok!\" string=\"Unreconciled\" domain=\"[('reconcile_id','=',False), ('account_id.reconcile','=',True)]\" help=\"Unreconciled Journal Items\" name=\"unreconciled\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account\\project\\project_view.xml:\n  192                      <field name=\"name\" string=\"Analytic Line\"/>\n  193                      <field name=\"date\"/>\n  194:                     <filter name=\"sales\" string=\"Sales\" domain=\"[('journal_id.type','=','sale')]\" help=\"Analytic Journal Items related to a sale journal.\"/>\n  195:                     <filter name=\"purchases\" string=\"Purchases\" domain=\"[('journal_id.type','=','purchase')]\" help=\"Analytic Journal Items related to a purchase journal.\"/>\n  196:                     <filter name=\"others\" string=\"Others\" domain=\"[('journal_id.type','in',('cash','general','situation'))]\"/>\n  197                      <separator/>\n  198                      <filter string=\"My Entries\" domain=\"[('user_id','=',uid)]\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account_analytic_analysis\\account_analytic_analysis_view.xml:\n  221                      <field name=\"manager_id\"/>\n  222                      <field name=\"parent_id\"/>\n  223:                     <filter name=\"open\" string=\"In Progress\" domain=\"[('state','in',('open','draft'))]\" help=\"Contracts in progress (open, draft)\"/>\n  224:                     <filter name=\"pending\" string=\"To Renew\" domain=\"[('state','=','pending')]\" help=\"Pending contracts\"/>\n  225:                     <filter name=\"closed\" string=\"Closed\" domain=\"[('state','=','close')]\" help=\"Closed contracts\"/>\n  226:                     <filter name=\"cancelled\" string=\"Cancelled\" domain=\"[('state','=','cancelled')]\" help=\"Cancelled contracts\"/>\n  227                      <separator/>\n  228                      <filter\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account_bank_statement_extensions\\account_bank_statement_view.xml:\n  106                  <field name=\"name\" filter_domain=\"['|', ('name','ilike',self), ('ref','ilike',self)]\" string=\"Bank Transaction\"/>\n  107                  <field name=\"val_date\"/>\n  108:                 <filter name=\"debit\" string=\"Debit\" domain=\"[('amount','&gt;',0)]\" icon=\"terp-folder-green\" help=\"Debit Transactions.\"/>\n  109:                 <filter name=\"credit\" string=\"Credit\" domain=\"[('amount','&lt;',0)]\" icon=\"terp-folder-orange\" help=\"Credit Transactions.\"/>\n  110                  <separator/>\n  111:                 <filter name=\"draft\" string=\"Draft\" domain=\"[('state','=','draft')]\" icon=\"terp-document-new\" help=\"Draft Statement Lines.\"/>\n  112:                 <filter name=\"confirm\" string=\"Confirmed\" domain=\"[('state','=','confirm')]\" icon=\"terp-camera_test\" help=\"Confirmed Statement Lines.\"/>\n  113                  <field name=\"journal_id\"/>\n  114                  <field name=\"statement_id\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\ir\\ir_attachment_view.xml:\n   68                          domain=\"[('type','=','binary')]\"/>\n   69                      <separator/>\n   70:                     <filter name=\"my_documents_filter\" \n   71                          string=\"My Document(s)\"\n   72                          icon=\"terp-personal\"\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\ir\\ir_translation_view.xml:\n   10                          string=\"Untranslated\"\n   11                          domain=\"['|',('value', '=', False),('value','=','')]\"/>\n   12:                     <filter name=\"openerp-web\"\n   13                          string=\"Web-only translations\"\n   14                          domain=\"[('comments', 'like', 'openerp-web')]\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\module\\module_view.xml:\n   38                      <field name=\"name\" filter_domain=\"['|', '|', ('summary', 'ilike', self), ('shortdesc', 'ilike', self), ('name',\n   39                          'ilike', self)]\" string=\"Module\"/>\n   40:                     <filter name=\"app\" string=\"Apps\" domain=\"[('application', '=', 1)]\"/>\n   41:                     <filter name=\"extra\" string=\"Extra\" domain=\"[('application', '=', 0)]\"/>\n   42                      <separator/>\n   43:                     <filter name=\"installed\" string=\"Installed\" domain=\"[('state', 'in', ['installed', 'to upgrade', 'to remove'])]\"/>\n   44                      <filter string=\"Not Installed\" domain=\"[('state', 'in', ['uninstalled', 'uninstallable', 'to install'])]\"/>\n   45                      <field name=\"category_id\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\res\\res_bank_view.xml:\n  149                  <search string=\"Bank Accounts\">\n  150                      <field name=\"bank_name\" filter_domain=\"['|', ('bank_name','ilike',self), ('acc_number','ilike',self)]\" string=\"Bank Name\"/>\n  151:                     <filter name=\"my_bank\" icon=\"terp-check\" string=\"My Banks\" domain=\"[('company_id','&lt;&gt;',False)]\" help=\"Bank accounts belonging to one of your companies\"/>\n  152                      <field name=\"company_id\" invisible=\"context.get('company_hide', True)\"/>\n  153                      <field name=\"partner_id\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\crm\\report\\crm_lead_report_view.xml:\n   66              <field name=\"arch\" type=\"xml\">\n   67                  <search string=\"Leads Analysis\">\n   68:                     <filter name=\"lead\" string=\"Lead\" domain=\"[('type','=', 'lead')]\" help=\"Show only lead\"/>\n   69:                     <filter name=\"opportunity\" string=\"Opportunity\" domain=\"[('type','=','opportunity')]\" help=\"Show only opportunity\"/>\n   70                      <separator/>\n   71                      <filter string=\"Won\" name=\"won\"\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\crm\\report\\crm_opportunity_report_view.xml:\n   58              <field name=\"arch\" type=\"xml\">\n   59                  <search string=\"Opportunities Analysis\">\n   60:                     <filter name=\"lead\" string=\"Lead\" domain=\"[('type','=', 'lead')]\" help=\"Show only lead\"/>\n   61:                     <filter name=\"opportunity\" string=\"Opportunity\" domain=\"[('type','=','opportunity')]\" help=\"Show only opportunity\"/>\n   62                      <separator/>\n   63                      <filter string=\"Won\" name=\"won\"\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\crm_partner_assign\\crm_lead_view.xml:\n   63                      <filter string=\"Assigned Partner\" domain=\"[]\" context=\"{'group_by':'partner_assigned_id'}\"/>\n   64                  </filter>\n   65:                 <filter name=\"unassigned\" position=\"after\">\n   66                      <filter string=\"My Assigned Partners\" domain=\"[('partner_assigned_id.user_id', '=', uid)]\"/>\n   67                  </filter>\n   ..\n  132                      <filter string=\"Assigned Partner\" domain=\"[]\" context=\"{'group_by':'partner_assigned_id'}\"/>\n  133                  </filter>\n  134:                 <filter name=\"unassigned\" position=\"after\">\n  135                      <filter string=\"My Assigned Partners\" domain=\"[('partner_assigned_id.user_id', '=', uid)]\"/>\n  136                  </filter>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\document\\document_view.xml:\n  198              <field name=\"arch\" type=\"xml\">\n  199                  <xpath expr=\"//filter[@name='my_documents_filter']\" position=\"replace\">\n  200:                     <filter name=\"my_documents_filter\" string=\"My Document(s)\" icon=\"terp-personal\" domain=\"[('user_id','=',uid)]\" help=\"Filter on my documents\"/>\n  201                  </xpath>\n  202                  <xpath expr=\"//field[@name='create_uid']\" position=\"replace\">\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\event_sale\\event_sale_view.xml:\n   24              <field name=\"inherit_id\" ref=\"event.view_registration_search\" />\n   25              <field name=\"arch\" type=\"xml\">\n   26:                 <filter name=\"group_event\" position=\"after\">\n   27                      <filter string=\"Ticket Type\" domain=\"[]\" context=\"{'group_by':'event_ticket_id'}\"/>\n   28                  </filter>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\fleet\\fleet_view.xml:\n   63                      <field name=\"brand_id\" />\n   64                      <group expand=\"1\" string=\"Group By\">\n   65:                         <filter name=\"groupby_brand\" context=\"{'group_by' : 'brand_id'}\" string=\"Brand\"/>\n   66                      </group>\n   67                  </search>\n   ..\n  329                      <field name=\"location\"/>\n  330                      <field name=\"state_id\" />\n  331:                     <filter name=\"alert_true\" domain=\"['|',('contract_renewal_due_soon','=',True),('contract_renewal_overdue','=',True)]\" string=\"Has Alert(s)\"/>\n  332                      <group expand=\"1\" string=\"Group By\">\n  333:                         <filter name=\"groupby_status\" context=\"{'group_by' : 'state_id'}\" string=\"Status\"/>\n  334:                         <filter name=\"groupby_model\" context=\"{'group_by' : 'model_id'}\" string=\"Model\"/>\n  335                      </group>\n  336                 </search>\n  ...\n  612                      <field name=\"date\"/>\n  613                      <group expand=\"0\" string=\"Group By\">\n  614:                         <filter name=\"groupby_vehicle\" context=\"{'group_by' : 'vehicle_id'}\" string=\"Vehicle\"/>\n  615                      </group>\n  616                  </search>\n  ...\n  718                      <field name=\"amount\" sum=\"Price\"/>\n  719                      <group expand=\"0\" string=\"Group By\">\n  720:                         <filter name=\"groupby_vehicle\" context=\"{'group_by' : 'vehicle_id'}\" string=\"Vehicle\"/>\n  721                      </group>\n  722                  </search>\n  ...\n  933                      <field name=\"date\"/>\n  934                      <field name=\"parent_id\"/>\n  935:                     <filter name=\"parent_false\" domain=\"[('parent_id','=',False)]\" string=\"Effective Costs\"/>\n  936:                     <filter name=\"parent_true\" domain=\"[('parent_id','!=',False)]\" string=\"Indicative Costs\"/>\n  937                      <group expand=\"1\" string=\"Group By\">\n  938:                         <filter name=\"groupby_cost_type\" context=\"{'group_by': 'cost_type'}\" string=\"Cost Type\"/>\n  939:                         <filter name=\"groupby_cost_subtype_id\" context=\"{'group_by': 'cost_subtype_id'}\" string=\"Cost Subtype\"/>\n  940:                         <filter name=\"groupby_vehicle_id\" context=\"{'group_by': 'vehicle_id'}\" string=\"Vehicle\"/>\n  941:                         <filter name=\"groupby_parent_id\" context=\"{'group_by': 'parent_id'}\" string=\"Parent\"/>\n  942                          <separator/>\n  943:                         <filter name=\"groupby_date\" context=\"{'group_by': 'date:month'}\" string=\"Month\" help=\"Vehicle Costs by Month\"/>\n  944:                         <filter name=\"groupby_year\" context=\"{'group_by': 'date:year'}\" string=\"Year\"/>\n  945                      </group>\n  946                  </search>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\gamification\\views\\challenge.xml:\n  215              <field name=\"arch\" type=\"xml\">\n  216                  <search string=\"Search Challenges\">\n  217:                     <filter name=\"inprogress\" string=\"Running Challenges\"\n  218                          domain=\"[('state', '=', 'inprogress')]\"/>\n  219:                     <filter name=\"hr_challenges\" string=\"HR Challenges\"\n  220                          domain=\"[('category', '=', 'hr')]\"/>\n  221                      <field name=\"name\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\gamification\\views\\goal.xml:\n   96              <field name=\"arch\" type=\"xml\">\n   97                  <search string=\"Search Goals\">\n   98:                     <filter name=\"my\" string=\"My Goals\" domain=\"[('user_id', '=', uid)]\"/>\n   99                      <separator/>\n  100:                     <filter name=\"draft\" string=\"Draft\" domain=\"[('state', '=', 'draft')]\"/>\n  101:                     <filter name=\"inprogress\" string=\"Running\"\n  102                          domain=\"[\n  103                              '|',\n  ...\n  107                                      ('end_date', '>=', context_today().strftime('%%Y-%%m-%%d'))\n  108                          ]\"/>\n  109:                     <filter name=\"closed\" string=\"Done\"\n  110                          domain=\"[\n  111                              ('state', 'in', ('reached', 'failed')),\n  ...\n  120                      <field name=\"challenge_id\"/>\n  121                      <group expand=\"0\" string=\"Group By\">\n  122:                         <filter name=\"group_by_user\" string=\"User\" domain=\"[]\" context=\"{'group_by':'user_id'}\"/>\n  123:                         <filter name=\"group_by_definition\" string=\"Goal Definition\" domain=\"[]\" context=\"{'group_by':'definition_id'}\"/>\n  124                          <filter string=\"State\" domain=\"[]\" context=\"{'group_by':'state'}\"/>\n  125                          <filter string=\"End Date\" domain=\"[]\" context=\"{'group_by':'end_date'}\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_attendance\\hr_attendance_view.xml:\n   58                      <field name=\"employee_id\"/>\n   59                      <group expand=\"0\" string=\"Group By\">\n   60:                         <filter name=\"employee\" string=\"Employee\" context=\"{'group_by':'employee_id'}\"/>\n   61                          <separator/>\n   62:                         <filter name=\"groupby_name\" string=\"Month\" context=\"{'group_by':'name'}\"/>\n   63                      </group>\n   64                  </search>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_holidays\\hr_holidays_view.xml:\n   27                      <filter domain=\"[('state','=','validate')]\" string=\"Validated\" name=\"validated\"/>\n   28                      <separator/>\n   29:                     <filter name=\"year\" string=\"Year\" domain=\"[('holiday_status_id.active','=',True)]\" help=\"Filters only on allocations and requests that belong to an holiday type that is 'active' (active field is True)\"/>\n   30                      <separator/>\n   31                      <filter string=\"My Requests\" name=\"my_leaves\" domain=\"[('employee_id.user_id','=', uid)]\" help=\"My Leave Requests\"/>\n   ..\n   36                      <field name=\"holiday_status_id\"/>\n   37                      <group expand=\"0\" string=\"Group By\">\n   38:                         <filter name=\"group_name\" string=\"Description\" context=\"{'group_by':'name'}\"/>\n   39:                         <filter name=\"group_employee\" string=\"Employee\" context=\"{'group_by':'employee_id'}\"/>\n   40:                         <filter name=\"group_category\" string=\"Category\" context=\"{'group_by':'category_id'}\"/>\n   41                          <filter string=\"Manager\" context=\"{'group_by':'manager_id'}\"/>\n   42:                         <filter name=\"group_type\" string=\"Type\" context=\"{'group_by':'holiday_status_id'}\"/>\n   43                          <separator/>\n   44:                         <filter name=\"group_date_from\" string=\"Start Month\" context=\"{'group_by':'date_from:month'}\"/>\n   45                      </group>\n   46                  </search>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_payroll\\hr_payroll_view.xml:\n  679                      <field name=\"date_end\"/>\n  680                      <filter icon=\"terp-document-new\" string=\"Draft\" domain=\"[('state','=','draft')]\" help=\"Draft Payslip Batches\"/>\n  681:                     <filter name=\"done_filter\" icon=\"terp-camera_test\" string=\"Done\" domain=\"[('state','=','close')]\" help=\"Done Payslip Batches\"/>\n  682                  </search>\n  683              </field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_payroll_account\\hr_payroll_account_view.xml:\n   59              <field name=\"inherit_id\" ref=\"hr_payroll.hr_payslip_run_filter\"/>\n   60              <field name=\"arch\" type=\"xml\">\n   61:                 <filter name='done_filter' position=\"after\">\n   62                      <field name=\"journal_id\"/>\n   63                  </filter>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_timesheet_invoice\\hr_timesheet_invoice_view.xml:\n   85                  <xpath expr=\"//filter[@name='others']\" position=\"after\">\n   86                      <separator/>\n   87:                     <filter name=\"to_invoice\" string=\"To Invoice\" context=\"{'to_invoice': 1}\" domain=\"[('invoice_id','=',False), ('to_invoice','&lt;&gt;',False)]\" icon=\"terp-dolar\"/>\n   88:                     <filter name=\"invoiced\" string=\"Invoiced\" domain=\"[('invoice_id','!=',False), ('to_invoice','&lt;&gt;',False)]\" icon=\"terp-dolar\"/> \n   89                  </xpath>\n   90              </field>\n   ..\n   98                  <xpath expr=\"//field[@name='account_id']\" position=\"after\">\n   99                      <separator/>\n  100:                     <filter name=\"to_invoice\" string=\"To Invoice\" context=\"{'to_invoice': 1}\" domain=\"[('invoice_id','=',False), ('to_invoice','&lt;&gt;',False)]\" icon=\"terp-dolar\"/>\n  101:                     <filter name=\"invoiced\" string=\"Invoiced\" domain=\"[('invoice_id','!=',False), ('to_invoice','&lt;&gt;',False)]\" icon=\"terp-dolar\"/> \n  102                  </xpath>\n  103              </field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_timesheet_sheet\\hr_timesheet_sheet_view.xml:\n  181                  <search string=\"Search Timesheet\">\n  182                      <field name=\"date_from\"/>\n  183:                     <filter name=\"new\" string=\"In Draft\" domain=\"[('state','in',('draft', 'new'))]\" help=\"Unvalidated Timesheets\"/>\n  184:                     <filter name=\"to_approve\" string=\"To Approve\" domain=\"[('state','=','confirm')]\" help=\"Confirmed Timesheets\"/>\n  185                      <field name=\"employee_id\"/>\n  186                      <field name=\"department_id\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_timesheet_sheet\\report\\hr_timesheet_report_view.xml:\n   50                      <field name=\"date_from\"/>\n   51                  </field>\n   52:                 <filter name=\"group_user_id\" position=\"after\">\n   53                      <filter string=\"Department\" context=\"{'group_by':'department_id'}\"/>\n   54                      <filter string=\"Type of Invoicing\" context=\"{'group_by':'to_invoice'}\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\im_livechat\\views\\im_livechat_view.xml:\n  149              <field name=\"arch\" type=\"xml\">\n  150                  <search string=\"Search history\">\n  151:                     <filter name=\"to_id\" string=\"My Sessions\" domain=\"[('to_id.user_ids','in', uid)]\"/>\n  152                      <field name=\"from_id\"/>\n  153                      <field name=\"to_id\"/>\n  154                      <group expand=\"0\" string=\"Group By...\">\n  155:                         <filter name=\"group_by_to_id\" string=\"Session\" domain=\"[]\" context=\"{'group_by':'to_id'}\"/>\n  156:                         <filter name=\"group_by_date\" string=\"Date\" domain=\"[]\" context=\"{'group_by':'create_date'}\"/>\n  157                      </group>\n  158                  </search>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\l10n_be_coda\\l10n_be_coda_view.xml:\n   58  			<search string=\"Search Bank Transactions\">\n   59  				<field name=\"name\" filter_domain=\"['|', ('name','ilike',self), ('ref','ilike',self)]\" string=\"Bank Transaction\"/>\n   60: 				<filter name=\"debit\" string=\"Debit\" domain=\"[('amount','&gt;',0)]\" icon=\"terp-folder-green\" help=\"Debit Transactions.\"/>\n   61: 				<filter name=\"credit\" string=\"Credit\" domain=\"[('amount','&lt;',0)]\" icon=\"terp-folder-orange\" help=\"Credit Transactions.\"/>\n   62  				<field name=\"statement_id\"/>\n   63  				<group expand=\"0\" string=\"Extended Filters...\">\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\lunch\\lunch_view.xml:\n   16                  <search string=\"Search\">\n   17                      <field name=\"name\" filter_domain=\"['|', ('name', 'ilike', self), ('note', 'ilike', self)]\"/>\n   18:                     <filter name=\"not_confirmed\" string=\"Not Received\" domain=\"[('state','!=',('confirmed'))]\"/>\n   19:                     <filter name=\"comfirmed\" string=\"Received\" domain=\"[('state','=','confirmed')]\"/>\n   20:                     <filter name=\"cancelled\" string=\"Cancelled\" domain=\"[('state','=','cancelled')]\"/>\n   21                      <separator/>\n   22:                     <filter name=\"today\" string=\"Today\" domain=\"[('date','=',time.strftime('%%Y-%%m-%%d'))]\"/>\n   23                      <field name=\"user_id\"/>\n   24                      <group expand=\"0\" string=\"Group By\">\n   25:                         <filter name=\"group_by_supplier\" string=\"By Supplier\" context=\"{'group_by':'supplier'}\"/>\n   26:                         <filter name=\"group_by_date\" string=\"Order Month\" context=\"{'group_by':'date'}\" help=\"Supplier Order by Month\"/>\n   27                      </group>\n   28                  </search>\n   ..\n   38                      <field name=\"description\"/>\n   39                      <field name=\"user_id\"/>\n   40:                     <filter name='is_payment' string=\"Payment\" domain=\"[('state','=','payment')]\"/>\n   41                      <separator/>\n   42:                     <filter name='is_mine_group' string=\"My Account grouped\" domain=\"[('user_id','=',uid)]\" context=\"{'group_by':'user_id'}\"/>\n   43:                     <filter name=\"group_by_user\" string=\"By User\" context=\"{'group_by':'user_id'}\"/>\n   44                  </search>\n   45              </field>\n   ..\n   54                      <field name=\"user_id\"/>\n   55                      <group expand=\"0\" string=\"Group By\">\n   56:                         <filter name='group_by_user' string=\"By Employee\" context=\"{'group_by':'user_id'}\"/>\n   57                      </group>\n   58                  </search>\n   ..\n   69                      <field name=\"date\"/>\n   70                      <field name=\"order_line_ids\"/>\n   71:                     <filter name='is_mine' string=\"My Orders\" domain=\"[('user_id','=',uid)]\"/>\n   72:                     <filter name='by_users' string=\"Users\" context=\"{'group_by':'user_id'}\"/>\n   73                  </search>\n   74              </field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\view\\akun.xml:\n   69  					<field name=\"nomorakun\"/>\n   70  					<field name=\"namaakun\"/>\n   71: 					<filter name=\"akun_aktif\" string=\"Aktif\" help=\"Akun Aktif\" domain=\"[('aktif','=',True)]\"/>\n   72  				</search>\n   73  			</field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\view\\pembelian.xml:\n  226  					<field name=\"namaproduk\"/>\n  227  					<group expand=\"1\" string=\"Group By\">\n  228: 						<filter name=\"group_by_supplier\" string=\"Supplier\" help=\"Group By Supplier\" context=\"{'group_by':'supplier'}\"/>\n  229: 						<filter name=\"group_by_merk\" string=\"Merk\" help=\"Group By Merk\" context=\"{'group_by':'merk'}\"/>\n  230: 						<filter name=\"group_by_namaproduk\" string=\"Produk\" help=\"Group By Produk\" context=\"{'group_by':'namaproduk'}\"/>\n  231  					</group>\n  232  				</search>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\view\\penjualan.xml:\n  156  					<field name=\"sales\"/>\n  157  					<group expand=\"1\" string=\"Filter Proses By\">\n  158: 						<filter name=\"dalam_proses\" string=\"Dalam Proses\" help=\"Filter PO yang masih perlu ditindak\" domain=\"['|','|',('status','!=','Valid, Penyetuju Lengkap'),('statussj','!=','Barang Lengkap Dikirim'),('statusfaktur','!=','Faktur lengkap')]\"/>\n  159: 						<filter name=\"selesai\" string=\"Selesai\" help=\"Filter PO yang sudah selesai\" domain=\"[('status','=','Valid, Penyetuju Lengkap'),('statussj','=','Barang Lengkap Dikirim'),('statusfaktur','=','Faktur lengkap')]\"/>\n  160  					</group>\n  161  					<group expand=\"0\" string=\"Filter PO By\">\n  162: 						<filter name=\"belum_valid\" string=\"Belum Valid\" help=\"Filter PO yang masih belum valid\" domain=\"[('status','!=','Belum Valid')]\"/>\n  163: 						<filter name=\"valid_belum_lengkap\" string=\"Valid, Penyetuju Belum Lengkap\" help=\"Filter PO yang sudah valid, tapi belum lengkap disetujui\" domain=\"[('status','!=','Valid, Penyetuju Belum Lengkap')]\"/>\n  164: 						<filter name=\"valid_lengkap\" string=\"Valid, Penyetuju Lengkap\" help=\"Filter PO yang sudah valid dan lengkap disetujui\" domain=\"[('status','!=','Valid, Penyetuju Lengkap')]\"/>\n  165: 						<filter name=\"batal\" string=\"Batal\" help=\"Filter PO yang batal\" domain=\"[('status','!=','Batal')]\"/>\n  166  					</group>\n  167  					<group expand=\"0\" string=\"Filter SJ By\">\n  168: 						<filter name=\"terlambat\" string=\"Pengiriman Terlambat\" help=\"Filter PO dengan SJ yang sudah terlambat.\" domain=\"[('status','!=','Barang Terlambat')]\"/>\n  169: 						<filter name=\"belum_dikirim\" string=\"Barang Belum Dikirim\" help=\"Filter PO dengan SJ yang belum dikirim.\" domain=\"[('status','!=','Barang Belum Dikirim')]\"/>\n  170: 						<filter name=\"terkirim\" string=\"Barang terkirim\" help=\"Filter PO dengan SJ yang sudah lengkap dikirim\" domain=\"[('status','!=','Barang Lengkap Dikirim')]\"/>\n  171  					</group>\n  172  					<group expand=\"0\" string=\"Filter Faktur By\">\n  173: 						<filter name=\"tanpa_faktur\" string=\"Tanpa Faktur\" help=\"Filter PO khusus(tanpa faktur).\" domain=\"[('status','!=','Tanpa Faktur')]\"/>\n  174: 						<filter name=\"belum_sj\" string=\"Belum ada SJ\" help=\"Filter PO yang belum memiliki SJ.\" domain=\"[('status','!=','Belum ada SJ')]\"/>\n  175: 						<filter name=\"tidak_lengkap\" string=\"Faktur Belum Lengkap\" help=\"Filter PO dengan Faktur yang belum lengkap\" domain=\"[('status','!=','Faktur tidak lengkap')]\"/>\n  176: 						<filter name=\"lengkap\" string=\"Faktur Lengkap\" help=\"Filter PO dengan Faktur yang sudah lengkap\" domain=\"[('status','!=','Faktur lengkap')]\"/>\n  177  					</group>\n  178  				</search>\n  ...\n  307  					<field name=\"namaproduk\"/>\n  308  					<group expand=\"1\" string=\"Group By\">\n  309: 						<filter name=\"group_by_customer\" string=\"Customer\" help=\"Group By Customer\" context=\"{'group_by':'customerpo'}\"/>\n  310: 						<filter name=\"group_by_merk\" string=\"Merk\" help=\"Group By Merk\" context=\"{'group_by':'merk'}\"/>\n  311: 						<filter name=\"group_by_namaproduk\" string=\"Produk\" help=\"Group By Produk\" context=\"{'group_by':'namaproduk'}\"/>\n  312  					</group>\n  313  				</search>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\note\\note_view.xml:\n  134            <field name=\"memo\" string=\"Note\"/>\n  135            <field name=\"tag_ids\"/>\n  136:           <filter name=\"open_true\" string=\"Active\" domain=\"[('open', '=', True)]\"/>\n  137:           <filter name=\"open_false\" string=\"Archive\" domain=\"[('open', '=', False)]\"/>\n  138            <group expand=\"0\" string=\"Group By\">\n  139              <filter icon=\"terp-stock_symbol-selection\" string=\"Stage\" help=\"By sticky note Category\" context=\"{'group_by':'stage_id'}\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\portal\\portal_view.xml:\n  122              <field name=\"arch\" type=\"xml\">\n  123                  <field name=\"name\" position=\"after\">\n  124:                     <filter name=\"portal\" string=\"Portal Groups\" domain=\"[('is_portal','=',True)]\"/>\n  125:                     <filter name=\"no_portal\" string=\"Non-Portal Groups\" domain=\"[('is_portal','=',False)]\"/>\n  126                      <separator orientation=\"vertical\"/>\n  127                  </field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\project\\report\\project_cumulative.xml:\n   26                      <field name=\"project_id\"/>\n   27                      <field name=\"user_id\"/>\n   28:                     <filter name=\"new\" string=\"New\" domain=\"[('type_id.sequence', '=', 1)]\"/>\n   29                      <separator/>\n   30:                     <filter name=\"kanban_blocked\" string=\"Blocked\" domain=\"[('kanban_state','=','blocked')]\"/>\n   31:                     <filter name=\"kanban_ready\" string=\"Ready\" domain=\"[('kanban_state','=','done')]\"/>\n   32                      <separator/>\n   33                      <filter string=\"My Tasks\" domain=\"[('user_id','=',uid)]\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\purchase\\purchase_view.xml:\n  308                      <field name=\"product_id\"/>\n  309                      <field name=\"create_uid\"/>\n  310:                     <filter name=\"draft\" string=\"Quotations\" domain=\"[('state','=','draft')]\"/>\n  311:                     <filter name=\"approved\" string=\"Approved\" domain=\"[('state','in',('approved','done'))]\"/>\n  312:                     <filter name=\"exception\" string=\"Exception\" domain=\"[('state','in',('except_invoice','except_picking'))]\"/>\n  313                      <separator/>\n  314:                     <filter name=\"not_invoiced\" string=\"Not Invoiced\" domain=\"[('invoice_ids','=', False)]\" help=\"Purchase orders that include lines not invoiced.\"/>\n  315                      <group expand=\"0\" string=\"Group By\">\n  316                          <filter string=\"Supplier\" icon=\"terp-partner\" domain=\"[]\" context=\"{'group_by':'partner_id'}\"/>\n  ...\n  331                      <field name=\"product_id\"/>\n  332                      <field name=\"create_uid\"/>\n  333:                     <filter name=\"draft\" string=\"Quotations\" domain=\"[('state','in',('draft','sent'))]\"/>\n  334:                     <filter name=\"approved\" string=\"Purchase Orders\" domain=\"[('state','not in',('draft','cancel'))]\"/>\n  335:                     <filter name=\"exception\" string=\"Exception\" domain=\"[('state','in',('except_invoice','except_picking'))]\"/>\n  336                      <separator/>\n  337:                     <filter name=\"not_invoiced\" string=\"Not Invoiced\" domain=\"[('invoice_ids','=', False)]\"/>\n  338                      <separator/>\n  339                      <filter string=\"New Mail\" name=\"message_unread\" domain=\"[('message_unread','=',True)]\"/>\n  ...\n  519                      <field name=\"product_id\"/>\n  520                      <field name=\"partner_id\" string=\"Supplier\" filter_domain=\"[('partner_id', 'child_of', self)]\"/>\n  521:                     <filter name=\"hide_cancelled\" string=\"Hide cancelled lines\" domain=\"[('state', '!=', 'cancel')]\"/>\n  522                      <group expand=\"0\" string=\"Group By\">\n  523:                         <filter name=\"groupby_supplier\" string=\"Supplier\" icon=\"terp-partner\" domain=\"[]\" context=\"{'group_by' : 'partner_id'}\" />\n  524:                         <filter name=\"groupby_product\" string=\"Product\" icon=\"terp-accessories-archiver\" domain=\"[]\" context=\"{'group_by' : 'product_id'}\" />\n  525                          <filter icon=\"terp-gtk-jump-to-rtl\" string=\"Order Reference\" domain=\"[]\" context=\"{'group_by' :'order_id'}\"/>\n  526                          <filter string=\"Status\" icon=\"terp-stock_effects-object-colorize\" domain=\"[]\" context=\"{'group_by' : 'state'}\" />\n  ...\n  600              <field name=\"inherit_id\" ref=\"product.product_template_search_view\"/>\n  601              <field name=\"arch\" type=\"xml\">\n  602:                 <filter name=\"filter_to_sell\" position=\"after\">\n  603:                    <filter name=\"filter_to_purchase\" string=\"Can be Purchased\" icon=\"terp-accessories-archiver+\" domain=\"[('purchase_ok', '=', 1)]\"/>\n  604                  </filter>\n  605              </field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\purchase\\stock_view.xml:\n   19              <field name=\"arch\" type=\"xml\">\n   20                  <xpath expr=\"//field[@name='product_id']\" position=\"before\">\n   21:                     <filter name=\"reception_to_invoice\" string=\"Incoming Shipments to Invoice\" domain=\"[('reception_to_invoice', '=', True)]\"/>\n   22                  </xpath>\n   23              </field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\sale\\report\\invoice_report_view.xml:\n    7  			<field name=\"inherit_id\" ref=\"account.view_account_invoice_report_search\" />\n    8  			<field name=\"arch\" type=\"xml\">\n    9: 				<filter name=\"user\" position=\"after\">\n   10  					<filter string=\"Sales Team\" domain=\"[]\"\n   11  						context=\"{'group_by':'section_id'}\" groups=\"base.group_multi_salesteams\" />\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\sale\\report\\sale_report_view.xml:\n   50                  <field name=\"date_confirm\"/>\n   51                  <filter string=\"This Year\" name=\"year\" invisible=\"1\" domain=\"[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]\"/>\n   52:                 <filter name=\"Quotations\" domain=\"[('state','in',('draft','sent'))]\"/>\n   53:                 <filter name=\"Sales\" string=\"Sales\" domain=\"[('state','not in',('draft','sent','cancel'))]\"/>\n   54                  <separator/>\n   55                  <filter string=\"My Sales\" help=\"My Sales\" domain=\"[('user_id','=',uid)]\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\sale_stock\\report\\sale_report_view.xml:\n    8              <field name=\"inherit_id\" ref=\"sale.view_order_product_search\"/>\n    9              <field name=\"arch\" type=\"xml\">\n   10:                 <filter name=\"Sales\" position=\"after\">\n   11                      <separator/>\n   12                      <filter icon=\"terp-accessories-archiver\" string=\"Picked\" domain=\"[('shipped','=',True)]\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\sales_team\\sales_team.xml:\n   78              <field name=\"arch\" type=\"xml\">\n   79                  <search string=\"Salesteams Search\">\n   80:                     <filter name=\"personal\" string=\"My Salesteams\" domain=\"['|', ('member_ids', '=', uid), ('user_id', '=', uid)]\"/>\n   81                      <field name=\"name\"/>\n   82                      <field name=\"parent_id\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\share\\res_users_view.xml:\n    8              <field name=\"arch\" type=\"xml\">\n    9                  <xpath expr=\"//field[@name='company_ids']\" position=\"after\">\n   10:                     <filter name=\"no_share\" string=\"Regular users only (no share user)\" icon=\"terp-partner\"\n   11                          domain=\"[('share','=',False)]\"/>\n   12                  </xpath>\n   ..\n   29              <field name=\"arch\" type=\"xml\">\n   30                  <field name=\"name\" position=\"after\">\n   31:                     <filter name=\"share\" string=\"Share Groups\" domain=\"[('share','=',True)]\"/>\n   32:                     <filter name=\"no_share\" string=\"Non-Share Groups\" domain=\"[('share','=',False)]\"/>\n   33                      <separator orientation=\"vertical\"/>\n   34                  </field>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\stock\\product_view.xml:\n   83                  <field name=\"product_variant_ids\" position=\"before\">\n   84                      <separator/>\n   85:                     <filter name=\"real_stock_available\" string=\"Available Products\" domain=\"[('qty_available','&gt;',0)]\"/>\n   86:                     <filter name=\"virtual_stock_available\" string=\"Forecast Available Products\" domain=\"[('virtual_available','&gt;',0)]\"/>\n   87:                     <filter name=\"real_stock_exhausted\" string=\"Exhausted Stock\" domain=\"[('qty_available','&lt;=',0)]\"/>\n   88:                     <filter name=\"virtual_stock_exhausted\" string=\"Forecast Exhausted Stock\" domain=\"[('virtual_available','&lt;=',0)]\"/>\n   89:                     <filter name=\"real_stock_negative\" string=\"Negative Stock\" domain=\"[('qty_available','&lt;',0)]\"/>\n   90:                     <filter name=\"virtual_stock_negative\" string=\"Forecast Negative Stock\" domain=\"[('virtual_available','&lt;',0)]\"/>\n   91                  </field>\n   92:                 <filter name=\"consumable\" position=\"before\">\n   93                     <filter string=\"Products\" icon=\"terp-accessories-archiver\" domain=\"[('type','=','product')]\" help=\"Stockable products\"/>\n   94                  </filter>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\stock\\stock_view.xml:\n  748                      <filter icon=\"terp-dialog-close\" name=\"done\" string=\"Done\" domain=\"[('state','=','done')]\" help=\"Pickings already processed\"/>\n  749                      <separator/>\n  750:                     <filter name=\"late\" string=\"Late\" domain=\"[('min_date','&lt;', time.strftime('%%Y-%%m-%%d %%H:%%M:%%S'))]\" help=\"Pickings that are late on scheduled time\"/>\n  751                      <separator/>\n  752:                     <filter name=\"backorder\" string=\"Backorders\" domain=\"[('backorder_id','&lt;&gt;', False)]\" help=\"Remaining parts of picking partially processed\"/>\n  753                      <field name=\"partner_id\" filter_domain=\"[('partner_id','child_of',self)]\"/>\n  754                      <field name=\"product_id\"/>\n  ...\n 1637                      <field name=\"owner_id\" groups=\"stock.group_tracking_owner\"/>\n 1638                      <group expand='0' string='Filters'>\n 1639:                         <filter name='internal_loc' string=\"Internal Locations\" domain=\"[('location_id.usage','=', 'internal')]\"/>\n 1640                      </group>\n 1641                      <group expand='0' string='Group by...'>\n 1642:                        <filter name=\"productgroup\" string='Product' context=\"{'group_by' : 'product_id'}\"/>\n 1643                         <filter string='Owner' context=\"{'group_by' : 'owner_id'}\" groups=\"stock.group_tracking_owner\"/>\n 1644                         <filter string='Lot' context=\"{'group_by' : 'lot_id'}\" groups=\"stock.group_production_lot\"/>\n 1645:                        <filter name=\"locationgroup\" string='Location' icon=\"terp-stock_symbol-selection\" domain=\"[]\" context=\"{'group_by' : 'location_id'}\"/>\n 1646                         <filter string='Package' icon=\"terp-stock_symbol-selection\" domain=\"[]\" context=\"{'group_by' : 'package_id'}\" groups=\"stock.group_tracking_lot\"/>\n 1647                         <filter string='Packaging' icon=\"terp-stock_symbol-selection\" domain=\"[]\" context=\"{'group_by' : 'packaging_type_id'}\" groups=\"stock.group_tracking_lot\"/>\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\stock_picking_wave\\stock_picking_wave_view.xml:\n   62                  <search string=\"Search Picking Waves\">\n   63                      <field name=\"name\" string=\"Picking Wave\"/>\n   64:                     <filter name=\"in_progress\" string=\"In Progress\" domain=\"[('state','=', 'in_progress')]\" help=\"Picking Waves not finished\"/>\n   65                      <field name=\"user_id\"/>\n   66                      <group expand=\"0\" string=\"Group By\">\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\survey\\views\\survey_views.xml:\n   17                      <filter string=\"Test\" domain=\"[('state','=', 'test')]\"/>\n   18                      <group expand=\"0\" string=\"Group By\">\n   19:                         <filter name=\"group_by_survey\" string=\"Survey\" domain=\"[]\" context=\"{'group_by': 'survey_id'}\"/>\n   20                          <filter string=\"Email\" domain=\"[]\" context=\"{'group_by': 'email'}\"/>\n   21                          <filter string=\"Partner\" domain=\"[]\" context=\"{'group_by': ['partner_id']}\"/>\n   ..\n  273                      <field name=\"survey_id\" string=\"Survey\"/>\n  274                      <group expand=\"0\" string=\"Group By\">\n  275:                         <filter name=\"group_by_survey\" string=\"Survey\" domain=\"[]\"  context=\"{'group_by':'survey_id'}\"/>\n  276                      </group>\n  277                  </search>\n  ...\n  382                      <field name=\"type\" string=\"Type\"/>\n  383                      <group expand=\"1\" string=\"Group By\">\n  384:                         <filter name=\"group_by_page\" string=\"Page\" domain=\"[]\"  context=\"{'group_by':'page_id'}\"/>\n  385:                         <filter name=\"group_by_type\" string=\"Type\" domain=\"[]\"  context=\"{'group_by':'type'}\"/>\n  386                      </group>\n  387                  </search>\n  ...\n  418                  <search string=\"Search Label\">\n  419                      <field name=\"question_id\" string=\"Question\"/>\n  420:                     <filter name=\"group_by_question\" string=\"Question\" domain=\"[]\" context=\"{'group_by':'question_id'}\"/>\n  421                  </search>\n  422              </field>\n  ...\n  483                      <field name=\"survey_id\"/>\n  484                      <group expand=\"1\" string=\"Group By\">\n  485:                         <filter name=\"group_by_survey\" string=\"Survey\" domain=\"[]\"  context=\"{'group_by':'survey_id'}\"/>\n  486:                         <filter name=\"group_by_user_input\" string=\"User Input\" domain=\"[]\"  context=\"{'group_by':'user_input_id'}\"/>\n  487                      </group>\n  488                  </search>\n\n156 matches across 44 files\n\n\nSearching 3083 files for \"'&'\"\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account\\account.py:\n  604                      ids = self.search(cr, user, [('code', operator, operand1), ('name', operator, operand2)]+ args, limit=limit)\n  605              else:\n  606:                 ids = self.search(cr, user, ['&','!', ('code', '=like', name+\"%\"), ('name', operator, name)]+args, limit=limit)\n  607                  # as negation want to restric, do if already have results\n  608                  if ids and len(name.split()) >= 2:\n  ...\n 2579          children_acc_criteria = [('chart_template_id','=', chart_template_id)]\n 2580          if template.account_root_id.id:\n 2581:             children_acc_criteria = ['|'] + children_acc_criteria + ['&',('parent_id','child_of', [template.account_root_id.id]),('chart_template_id','=', False)]\n 2582          children_acc_template = self.search(cr, uid, [('nocreate','!=',True)] + children_acc_criteria, order='id')\n 2583          for account_template in self.browse(cr, uid, children_acc_template, context=context):\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account_analytic_analysis\\account_analytic_analysis.py:\n  271              #Search all invoice lines not in cancelled state that refer to this analytic account\n  272              inv_line_obj = self.pool.get(\"account.invoice.line\")\n  273:             inv_lines = inv_line_obj.search(cr, uid, ['&', ('account_analytic_id', 'in', child_ids), ('invoice_id.state', 'not in', ['draft', 'cancel']), ('invoice_id.type', 'in', ['out_invoice', 'out_refund'])], context=context)\n  274              for line in inv_line_obj.browse(cr, uid, inv_lines, context=context):\n  275                  if line.invoice_id.type == 'out_refund':\n  ...\n  627  \n  628          # Expires now\n  629:         fill_remind(\"new\", [('state', 'in', ['draft', 'open']), '|', '&', ('date', '!=', False), ('date', '<=', time.strftime('%Y-%m-%d')), ('is_overdue_quantity', '=', True)], True)\n  630  \n  631          # Expires in less than 30 days\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account_followup\\account_followup.py:\n  449                                           \"Can be practical to set manually e.g. to see if he keeps \"\n  450                                           \"his promises.\"),\n  451:         'unreconciled_aml_ids':fields.one2many('account.move.line', 'partner_id', domain=['&', ('reconcile_id', '=', False), '&', \n  452:                             ('account_id.active','=', True), '&', ('account_id.type', '=', 'receivable'), ('state', '!=', 'draft')]), \n  453          'latest_followup_date':fields.function(_get_latest, method=True, type='date', string=\"Latest Follow-up Date\", \n  454                              help=\"Latest date that the follow-up level of the partner was changed\", \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\account_followup\\wizard\\account_followup_print.py:\n  201          # Will clear the actions of partners that have no due payments anymore\n  202          partner_list_ids = [partner.partner_id.id for partner in self.pool.get('account_followup.stat.by.partner').browse(cr, uid, partner_list, context=context)]\n  203:         ids = self.pool.get('res.partner').search(cr, uid, ['&', ('id', 'not in', partner_list_ids), '|', \n  204                                                               ('payment_responsible_id', '!=', False), \n  205                                                               ('payment_next_action_date', '!=', False)], context=context)\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\auth_oauth\\controllers\\main.py:\n   32                  var r = l.pathname + l.search;\n   33                  if(q.length !== 0) {\n   34:                     var s = l.search ? (l.search === '?' ? '' : '&') : '?';\n   35                      r = l.pathname + l.search + s + q;\n   36                  }\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\auth_oauth\\res_users.py:\n   29          params = werkzeug.url_encode({'access_token': access_token})\n   30          if urlparse.urlparse(endpoint)[4]:\n   31:             url = endpoint + '&' + params\n   32          else:\n   33              url = endpoint + '?' + params\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\auth_openid\\controllers\\main.py:\n  196                  Modules = registry.get('ir.module.module')\n  197  \n  198:                 installed = Modules.search_count(cr, SUPERUSER_ID, ['&', ('name', '=', 'auth_openid'), ('state', '=', 'installed')]) == 1\n  199                  if installed:\n  200  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\ir\\ir_sequence.py:\n  265          self.check_access_rights(cr, uid, 'read')\n  266          company_ids = self.pool.get('res.company').search(cr, uid, [], context=context) + [False]\n  267:         ids = self.search(cr, uid, ['&',('id','=', sequence_id),('company_id','in',company_ids)])\n  268          return self._next(cr, uid, ids, context)\n  269  \n  ...\n  282          self.check_access_rights(cr, uid, 'read')\n  283          company_ids = self.pool.get('res.company').search(cr, uid, [], context=context) + [False]\n  284:         ids = self.search(cr, uid, ['&', ('code', '=', sequence_code), ('company_id', 'in', company_ids)])\n  285          return self._next(cr, uid, ids, context)\n  286  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\ir\\ir_translation.py:\n  396      def translate_fields(self, cr, uid, model, id, field=None, context=None):\n  397          trans_model = self.pool[model]\n  398:         domain = ['&', ('res_id', '=', id), ('name', '=like', model + ',%')]\n  399          langs_ids = self.pool.get('res.lang').search(cr, uid, [('code', '!=', 'en_US')], context=context)\n  400          if not langs_ids:\n  ...\n  409                      translatable_fields.append({'name': k, 'id': parent_id, 'model': f.base_field.model_name})\n  410                      domain.insert(0, '|')\n  411:                     domain.extend(['&', ('res_id', '=', parent_id), ('name', '=', \"%s,%s\" % (f.base_field.model_name, k))])\n  412                  else:\n  413                      translatable_fields.append({'name': k, 'id': id, 'model': model })\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\module\\wizard\\base_update_translations.py:\n   29      def _get_languages(self, cr, uid, context):\n   30          lang_obj = self.pool.get('res.lang')\n   31:         ids = lang_obj.search(cr, uid, ['&', ('active', '=', True), ('translatable', '=', True),])\n   32          langs = lang_obj.browse(cr, uid, ids)\n   33          return [(lang.code, lang.name) for lang in langs]\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\res\\res_config.py:\n   78  \n   79          active_todos = Todos.browse(cr, uid,\n   80:             Todos.search(cr, uid, ['&', ('type', '=', 'automatic'), ('state','=','open')]),\n   81                                      context=context)\n   82  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\tests\\test_expression.py:\n  395          # Do: 2 cascaded one2many with _auto_join, test final leaf is an id\n  396          self._reinit_mock()\n  397:         partner_ids = partner_obj.search(cr, uid, ['&', (1, '=', 1), ('child_ids.bank_ids.id', 'in', [b_aa, b_ba])])\n  398          # Test result: at least one of our added data\n  399          self.assertTrue(set([p_a]).issubset(set(partner_ids)),\n  ...\n  413          partner_child_ids_col._domain = lambda self: [('name', '=', '__%s' % self._name)]\n  414          self._reinit_mock()\n  415:         partner_ids = partner_obj.search(cr, uid, ['&', (1, '=', 1), ('child_ids.bank_ids.id', 'in', [b_aa, b_ba])])\n  416          # Test result: no one\n  417          self.assertFalse(partner_ids,\n  ...\n  462      def test_30_normalize_domain(self):\n  463          expression = openerp.osv.expression\n  464:         norm_domain = domain = ['&', (1, '=', 1), ('a', '=', 'b')]\n  465          assert norm_domain == expression.normalize_domain(domain), \"Normalized domains should be left untouched\"\n  466          domain = [('x', 'in', ['y', 'z']), ('a.v', '=', 'e'), '|', '|', ('a', '=', 'b'), '!', ('c', '>', 'd'), ('e', '!=', 'f'), ('g', '=', 'h')]\n  467:         norm_domain = ['&', '&', '&'] + domain\n  468          assert norm_domain == expression.normalize_domain(domain), \"Non-normalized domains should be properly normalized\"\n  469          \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base\\tests\\test_orm.py:\n  150              main_domain = [('id', 'in', all_partners)]\n  151              if domain:\n  152:                 domain = ['&'] + main_domain + domain\n  153              else:\n  154                  domain = main_domain\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\base_gengo\\controller\\gengo_callback.py:\n   34                      '|',\n   35                      ('id', \"=\", int(tid)),\n   36:                     '&', '&', '&', '&', '&',\n   37                      ('state', '=', term.state),\n   38                      ('gengo_translation', '=', term.gengo_translation),\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\calendar\\calendar.py:\n 1191                              ok = r_date.strftime('%Y-%m-%d') <= arg[2]\n 1192                          pile.append(ok)\n 1193:                     elif str(arg) == str('&') or str(arg) == str('|'):\n 1194                          pile.append(arg)\n 1195                      else:\n ....\n 1200                      if not isinstance(item, basestring):\n 1201                          res = item\n 1202:                     elif str(item) == str('&'):\n 1203                          first = new_pile.pop()\n 1204                          second = new_pile.pop()\n ....\n 1456              if arg[0] in ('start_date', 'start_datetime', 'start',) and arg[1] == \">=\":\n 1457                  if context.get('virtual_id', True):\n 1458:                     new_args += ['|', '&', ('recurrency', '=', 1), ('final_date', arg[1], arg[2])]\n 1459              elif arg[0] == \"id\":\n 1460                  new_id = get_real_ids(arg[2])\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\crm\\crm_lead.py:\n  231          'date_closed': fields.datetime('Closed', readonly=True, copy=False),\n  232          'stage_id': fields.many2one('crm.case.stage', 'Stage', track_visibility='onchange', select=True,\n  233:                         domain=\"['&', ('section_ids', '=', section_id), '|', ('type', '=', type), ('type', '=', 'both')]\"),\n  234          'user_id': fields.many2one('res.users', 'Salesperson', select=True, track_visibility='onchange'),\n  235          'referred': fields.char('Referred By'),\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\fleet\\fleet.py:\n  627              last_cost_date = contract.start_date\n  628              if contract.generated_cost_ids:\n  629:                 last_autogenerated_cost_id = vehicle_cost_obj.search(cr, uid, ['&', ('contract_id','=',contract.id), ('auto_generated','=',True)], offset=0, limit=1, order='date desc',context=context, count=False)\n  630                  if last_autogenerated_cost_id:\n  631                      found = True\n  ...\n  652          datetime_today = datetime.datetime.strptime(fields.date.context_today(self, cr, uid, context=context), tools.DEFAULT_SERVER_DATE_FORMAT)\n  653          limit_date = (datetime_today + relativedelta(days=+15)).strftime(tools.DEFAULT_SERVER_DATE_FORMAT)\n  654:         ids = self.search(cr, uid, ['&', ('state', '=', 'open'), ('expiration_date', '<', limit_date)], offset=0, limit=None, order=None, context=context, count=False)\n  655          res = {}\n  656          for contract in self.browse(cr, uid, ids, context=context):\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_applicant_document\\models\\hr_applicant.py:\n   18          record_ids = set()\n   19          Attachment = self.pool.get('ir.attachment')\n   20:         args = ['&'] + args + [('res_model', '=', 'hr.applicant')]\n   21          att_ids = Attachment.search(cr, user, args, context=context)\n   22          record_ids = set(att.res_id for att in Attachment.browse(cr, user, att_ids, context=context))\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_gamification\\models\\gamification.py:\n   87                  '|',\n   88                      ('employee_id', '=', employee.id),\n   89:                     '&',\n   90                          ('employee_id', '=', False),\n   91                          ('user_id', '=', employee.user_id.id)\n   ..\n  100                  '|',\n  101                      ('employee_id', '=', employee.id),\n  102:                     '&',\n  103                          ('employee_id', '=', False),\n  104                          ('user_id', '=', employee.user_id.id)\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_holidays\\hr_holidays.py:\n  462          emp_obj = self.pool.get('hr.employee')\n  463          empids = emp_obj.search(cr, uid, [('parent_id.user_id', '=', uid)], context=context)\n  464:         dom = ['&', ('state', '=', 'confirm'), ('employee_id', 'in', empids)]\n  465          # if this user is a hr.manager, he should do second validations\n  466          if self.pool.get('res.users').has_group(cr, uid, 'base.group_hr_manager'):\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_payroll\\hr_payroll.py:\n  365          clause = []\n  366          #a contract is valid if it ends between the given dates\n  367:         clause_1 = ['&',('date_end', '<=', date_to),('date_end','>=', date_from)]\n  368          #OR if it starts between the given dates\n  369:         clause_2 = ['&',('date_start', '<=', date_to),('date_start','>=', date_from)]\n  370          #OR if it starts before the date_from and finish after the date_end (or never finish)\n  371:         clause_3 = ['&',('date_start','<=', date_from),'|',('date_end', '=', False),('date_end','>=', date_to)]\n  372          clause_final =  [('employee_id', '=', employee.id),'|','|'] + clause_1 + clause_2 + clause_3\n  373          contract_ids = contract_obj.search(cr, uid, clause_final, context=context)\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_recruitment\\hr_recruitment.py:\n  365          action = self.pool.get(model).read(cr, uid, action_id, context=context)\n  366          action['context'] = {'default_res_model': self._name, 'default_res_id': ids[0]}\n  367:         action['domain'] = str(['&', ('res_model', '=', self._name), ('res_id', 'in', ids)])\n  368          return action\n  369  \n  ...\n  539                  cr, uid, [\n  540                      '|',\n  541:                     '&', ('res_model', '=', 'hr.job'), ('res_id', '=', job_id),\n  542:                     '&', ('res_model', '=', 'hr.applicant'), ('res_id', 'in', applicant_ids)\n  543                  ], context=context)\n  544          return res\n  ...\n  608          applicant_ids = self.pool.get('hr.applicant').search(cr, uid, [('job_id', 'in', ids)], context=context)\n  609          action['context'] = {'default_res_model': self._name, 'default_res_id': ids[0]}\n  610:         action['domain'] = str(['|', '&', ('res_model', '=', 'hr.job'), ('res_id', 'in', ids), '&', ('res_model', '=', 'hr.applicant'), ('res_id', 'in', applicant_ids)])\n  611          return action\n  612  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\hr_timesheet_sheet\\hr_timesheet_sheet.py:\n  277          if not empids:\n  278              return False\n  279:         dom = ['&', ('state', '=', 'confirm'), ('employee_id', 'in', empids)]\n  280          return dom\n  281  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\mail\\mail_message.py:\n   95          \"\"\" Search for messages to read by the current user. Condition is\n   96              inversed because we search unread message on a is_read column. \"\"\"\n   97:         return ['&', ('notification_ids.partner_id.user_ids', 'in', [uid]), ('notification_ids.is_read', '=', not domain[0][2])]\n   98  \n   99      def _get_starred(self, cr, uid, ids, name, arg, context=None):\n  ...\n  113      def _search_starred(self, cr, uid, obj, name, domain, context=None):\n  114          \"\"\" Search for starred messages by the current user.\"\"\"\n  115:         return ['&', ('notification_ids.partner_id.user_ids', 'in', [uid]), ('notification_ids.starred', '=', domain[0][2])]\n  116  \n  117      _columns = {\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\mail\\mail_thread.py:\n  199          subtype_ids = subtype_obj.search(\n  200              cr, uid, [\n  201:                 '&', ('hidden', '=', False), '|', ('res_model', '=', self._name), ('res_model', '=', False)\n  202              ], context=context)\n  203          subtype_dict = OrderedDict(\n  ...\n 1636          # _mail_flat_thread: automatically set free messages to the first posted message\n 1637          if self._mail_flat_thread and model and not parent_id and thread_id:\n 1638:             message_ids = mail_message.search(cr, uid, ['&', ('res_id', '=', thread_id), ('model', '=', model), ('type', '=', 'email')], context=context, order=\"id ASC\", limit=1)\n 1639              if not message_ids:\n 1640:                 message_ids = message_ids = mail_message.search(cr, uid, ['&', ('res_id', '=', thread_id), ('model', '=', model)], context=context, order=\"id ASC\", limit=1)\n 1641              parent_id = message_ids and message_ids[0] or False\n 1642          # we want to set a parent: force to set the parent_id to the oldest ancestor, to avoid having more than 1 level of thread\n ....\n 1724  \n 1725          existing_pids_dict = {}\n 1726:         fol_ids = mail_followers_obj.search(cr, SUPERUSER_ID, ['&', '&', ('res_model', '=', self._name), ('res_id', 'in', ids), ('partner_id', 'in', partner_ids)])\n 1727          for fol in mail_followers_obj.browse(cr, SUPERUSER_ID, fol_ids, context=context):\n 1728              existing_pids_dict.setdefault(fol.res_id, set()).add(fol.partner_id.id)\n ....\n 1879              header_domain = ['|'] * (len(headers) - 1)\n 1880              for header in headers:\n 1881:                 header_domain += ['&', ('res_model', '=', header[0]), ('res_id', '=', header[1])]\n 1882              header_follower_ids = follower_obj.search(\n 1883                  cr, SUPERUSER_ID,\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\mass_mailing\\models\\mass_mailing_stats.py:\n   84              base_domain = [('id', 'in', ids or [])]\n   85          if domain:\n   86:             base_domain = ['&'] + domain + base_domain\n   87          return self.search(cr, uid, base_domain, context=context)\n   88  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\mrp\\mrp.py:\n  165          'product_tmpl_id': fields.many2one('product.template', 'Product', domain=\"[('type', '!=', 'service')]\", required=True),\n  166          'product_id': fields.many2one('product.product', 'Product Variant',\n  167:             domain=\"['&', ('product_tmpl_id','=',product_tmpl_id), ('type','!=', 'service')]\",\n  168              help=\"If a product variant is defined the BOM is available only for this product.\"),\n  169          'bom_line_ids': fields.one2many('mrp.bom.line', 'bom_id', 'BoM Lines', copy=True),\n  ...\n  209                  '|',\n  210                      ('product_id', '=', product_id),\n  211:                     '&',\n  212                          ('product_id', '=', False),\n  213                          ('product_tmpl_id', '=', product_tmpl_id)\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\mrp\\product.py:\n   89              '|',\n   90                  ('product_id', 'in', ids),\n   91:                 '&',\n   92                      ('product_id', '=', False),\n   93                      ('product_tmpl_id', 'in', list(products)),\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\mrp\\stock.py:\n   52          domain = [\n   53              '|', ('product_id', '=', move.product_id.id),\n   54:             '&', ('product_id', '=', False), ('product_tmpl_id.product_variant_ids', '=', move.product_id.id),\n   55              ('type', '=', 'phantom'),\n   56              '|', ('date_start', '=', False), ('date_start', '<=', time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)),\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\product\\product.py:\n 1082                  ids = list(ids)\n 1083              elif not ids and operator in expression.NEGATIVE_TERM_OPERATORS:\n 1084:                 ids = self.search(cr, user, args + ['&', ('default_code', operator, name), ('name', operator, name)], limit=limit, context=context)\n 1085              if not ids and operator in positive_operators:\n 1086                  ptrn = re.compile('(\\[(.*?)\\])')\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\project\\project.py:\n  206          domain = [\n  207               '|',\n  208:              '&', ('res_model', '=', 'project.project'), ('res_id', 'in', ids),\n  209:              '&', ('res_model', '=', 'project.task'), ('res_id', 'in', task_ids)]\n  210          res_id = ids and ids[0] or False\n  211          return {\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\report_webkit\\data.xml:\n   14              function subst() {\n   15              var vars={};\n   16:             var x=document.location.search.substring(1).split('&');\n   17              for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}\n   18              var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];\n   ..\n   40              function subst() {\n   41              var vars={};\n   42:             var x=document.location.search.substring(1).split('&');\n   43              for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}\n   44              var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\share\\wizard\\share_wizard.py:\n   92              extra = context and context.get('share_url_template_extra_arguments')\n   93              if extra:\n   94:                 base_url += '&' + '&'.join('%s=%%(%s)s' % (x,x) for x in extra)\n   95              hash_ = context and context.get('share_url_template_hash_arguments')\n   96              if hash_:\n   97:                 base_url += '#' + '&'.join('%s=%%(%s)s' % (x,x) for x in hash_)\n   98          return base_url\n   99  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\stock\\product.py:\n   93  \n   94          operator = context.get('compute_child', True) and 'child_of' or 'in'\n   95:         domain = context.get('force_company', False) and ['&', ('company_id', '=', context['force_company'])] or []\n   96          return (\n   97              domain + [('location_id', operator, location_ids)],\n   98:             domain + ['&', ('location_dest_id', operator, location_ids), '!', ('location_id', operator, location_ids)],\n   99:             domain + ['&', ('location_id', operator, location_ids), '!', ('location_dest_id', operator, location_ids)]\n  100          )\n  101  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\stock\\stock.py:\n 2332                  prefered_domain = [('reservation_id', '=', move.id)]\n 2333                  fallback_domain = [('reservation_id', '=', False)]\n 2334:                 fallback_domain2 = ['&', ('reservation_id', '!=', move.id), ('reservation_id', '!=', False)]\n 2335                  prefered_domain_list = [prefered_domain] + [fallback_domain] + [fallback_domain2]\n 2336                  dom = main_domain + self.pool.get('stock.move.operation.link').get_specific_domain(cr, uid, record, context=context)\n ....\n 2361                  prefered_domain = [('reservation_id', '=', move.id)]\n 2362                  fallback_domain = [('reservation_id', '=', False)]\n 2363:                 fallback_domain2 = ['&', ('reservation_id', '!=', move.id), ('reservation_id', '!=', False)]\n 2364                  prefered_domain_list = [prefered_domain] + [fallback_domain] + [fallback_domain2]\n 2365                  self.check_tracking(cr, uid, move, move.restrict_lot_id.id, context=context)\n ....\n 3079          pull_obj = self.pool.get('procurement.rule')\n 3080          mto_route_id = self._get_mto_route(cr, uid, context=context)\n 3081:         rules = pull_obj.search(cr, uid, ['&', ('location_src_id', '=', warehouse.lot_stock_id.id), ('location_id.usage', '=', 'transit')], context=context)\n 3082          pull_obj.unlink(cr, uid, rules, context=context)\n 3083  \n ....\n 3421          pull_obj = self.pool.get(\"procurement.rule\")\n 3422          routes = route_obj.search(cr, uid, [('supplier_wh_id','=', warehouse.id)], context=context)\n 3423:         pulls = pull_obj.search(cr, uid, ['&', ('route_id', 'in', routes), ('location_id.usage', '=', 'transit')], context=context)\n 3424          if pulls:\n 3425              pull_obj.write(cr, uid, pulls, {'location_src_id': new_location, 'procure_method': change_to_multiple and \"make_to_order\" or \"make_to_stock\"}, context=context)\n ....\n 3428          if not change_to_multiple:\n 3429              # If single delivery we should create the necessary MTO rules for the resupply \n 3430:             # pulls = pull_obj.search(cr, uid, ['&', ('route_id', '=', mto_route_id), ('location_id.usage', '=', 'transit'), ('location_src_id', '=', warehouse.lot_stock_id.id)], context=context)\n 3431              pull_recs = pull_obj.browse(cr, uid, pulls, context=context)\n 3432              transfer_locs = list(set([x.location_id for x in pull_recs]))\n ....\n 3437          else:\n 3438              # We need to delete all the MTO pull rules, otherwise they risk to be used in the system\n 3439:             pulls = pull_obj.search(cr, uid, ['&', ('route_id', '=', mto_route_id), ('location_id.usage', '=', 'transit'), ('location_src_id', '=', warehouse.lot_stock_id.id)], context=context)\n 3440              if pulls:\n 3441                  pull_obj.unlink(cr, uid, pulls, context=context)\n ....\n 3449          pull_obj = self.pool.get(\"procurement.rule\")\n 3450          routes = route_obj.search(cr, uid, [('supplied_wh_id','=', warehouse.id)], context=context)\n 3451:         pulls= pull_obj.search(cr, uid, ['&', ('route_id', 'in', routes), ('location_src_id.usage', '=', 'transit')])\n 3452          if pulls:\n 3453              pull_obj.write(cr, uid, pulls, {'location_id': new_location}, context=context)\n ....\n 3946          new_lot_id = False\n 3947          if name:\n 3948:             lots = self.pool.get('stock.production.lot').search(cr, uid, ['&', ('name', '=', name), ('product_id', '=', product_id)], context=context)\n 3949              if lots:\n 3950                  new_lot_id = lots[0]\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\stock\\wizard\\stock_transfer_details.py:\n   99                      processed_ids.append(packop_id.id)\n  100          # Delete the others\n  101:         packops = self.env['stock.pack.operation'].search(['&', ('picking_id', '=', self.picking_id.id), '!', ('id', 'in', processed_ids)])\n  102          for packop in packops:\n  103              packop.unlink()\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\survey\\survey.py:\n  110          for id in ids:\n  111              res[id] = sur_res_obj.search(cr, uid,  # SUPERUSER_ID,\n  112:                 ['&', ('survey_id', '=', id), '|', ('state', '=', 'skip'), ('state', '=', 'done')],\n  113                  context=context, count=True)\n  114          return res\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\website_blog\\controllers\\main.py:\n   40              path += '/' + key + '/%s' % value\n   41          if fragments:\n   42:             path += '?' + '&'.join(fragments)\n   43          return path\n   44  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\website_blog\\models\\website_blog.py:\n   97              'mail.message', 'res_id',\n   98              domain=lambda self: [\n   99:                 '&', '&', ('model', '=', self._name), ('type', '=', 'comment'), ('path', '=', False)\n  100              ],\n  101              string='Website Messages',\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\website_event\\models\\event.py:\n  101              'mail.message', 'res_id',\n  102              domain=lambda self: [\n  103:                 '&', ('model', '=', self._name), ('type', '=', 'comment')\n  104              ],\n  105              string='Website Messages',\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\website_event_sale\\models\\website.py:\n    8      def sale_product_domain(self, cr, uid, ids, context=None):\n    9          # remove product event from the website content grid and list view (not removed in detail view)\n   10:         return ['&'] + super(Website, self).sale_product_domain(cr, uid, ids, context=context) + [('event_ok', '=', False)]\n   11  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\website_forum\\models\\forum.py:\n  262              'mail.message', 'res_id',\n  263              domain=lambda self: [\n  264:                 '&', ('model', '=', self._name), ('type', 'in', ['email', 'comment'])\n  265              ],\n  266              string='Post Messages', help=\"Comments on forum post\",\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\website_mail\\models\\mail_thread.py:\n   30              'mail.message', 'res_id',\n   31              domain=lambda self: [\n   32:                 '&', ('model', '=', self._name), ('type', '=', 'comment')\n   33              ],\n   34              string='Website Messages',\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\website_sale\\controllers\\main.py:\n  100                      l.append(werkzeug.url_encode([(k,v)]))\n  101          if l:\n  102:             path += '?' + '&'.join(l)\n  103          return path\n  104  \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\website_sale\\models\\product.py:\n  118              'mail.message', 'res_id',\n  119              domain=lambda self: [\n  120:                 '&', ('model', '=', self._name), ('type', '=', 'comment')\n  121              ],\n  122              string='Website Comments',\n\n91 matches across 45 files\n",
 			"settings":
 			{
-				"buffer_size": 33628,
+				"buffer_size": 75342,
 				"line_ending": "Windows",
 				"name": "Find Results",
 				"scratch": true
 			}
 		},
 		{
-			"file": "report/laporanneracareport.xml",
+			"file": "pembelian.py",
 			"settings":
 			{
-				"buffer_size": 7304,
+				"buffer_size": 47290,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "akun.py",
+			"file": "view/pembelian.xml",
 			"settings":
 			{
-				"buffer_size": 66983,
+				"buffer_size": 34006,
 				"line_ending": "Windows"
 			}
 		}
@@ -428,23 +440,24 @@
 	],
 	"file_history":
 	[
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/penjualan.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/pembayaran.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/penjualan.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/pembelian.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/pembelian.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/akun.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/akun.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanneracareport.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanneracalajurdisesuaikanreport.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanlrreport.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanbukubesarreport.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/cetakbackupreport.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/fakturpenjualanreport.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanneracalajurreport.xml",
-		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanneracareport.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/menu/menu_master.xml",
-		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/penjualan.xml",
-		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/pembelian.xml",
-		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/penjualan.py",
-		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/pembelian.py",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/account/account_invoice_view.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/crm_partner_assign/report/crm_lead_report_view.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/sjpenjualanreport.xml",
-		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/pembayaran.py",
-		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/akun.py",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/sales.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/pembayaran.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/sales.py",
@@ -456,7 +469,6 @@
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/smart.py",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/stok.py",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/supplier.py",
-		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/akun.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/customer.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/produk.xml",
 		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/smart.xml",
@@ -566,6 +578,8 @@
 		"height": 91.0,
 		"where_history":
 		[
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR,*.py,*.xml",
 			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report,*.py,*.xml",
 			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR,*.py,*.xml",
 			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MM,*.py,*.xml",
@@ -691,9 +705,7 @@
 			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
 			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.js",
 			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
-			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
-			"xmls",
-			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.js"
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml"
 		]
 	},
 	"find_state":
@@ -701,6 +713,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"'&'",
+			"<filter name=",
+			"<filter name=\"akun_aktif\" string=\"Aktif\" help=\"Akun Aktif\" domain=\"[('aktif','=',True)]\"/>",
+			"<filter name=",
+			"search",
+			"_set_statusfaktur",
+			"disetujui",
+			"valid",
+			"_set_status",
+			"aktif",
+			"mmr.aturanakun",
+			"mmr.biaya",
+			"('model', '=', namamodel)",
+			"mmr.aturanakun",
 			"aturanakun",
 			"nomorakun",
 			"'nomorakun'",
@@ -814,21 +840,7 @@
 			"order",
 			"fields.related",
 			"idakun",
-			"object",
-			"idsaveakun",
-			"mmr.akundummy",
-			"mmr.akun",
-			"saldoawal",
-			"laporanjurnal",
-			"save",
-			"multi_action_master_mmr_saveakun",
-			"account",
-			",  ",
-			",",
-			"	",
-			" :",
-			",  ",
-			","
+			"object"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -886,7 +898,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -894,7 +906,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 33628,
+						"buffer_size": 75342,
 						"regions":
 						{
 							"match":
@@ -903,692 +915,1036 @@
 								"regions":
 								[
 									[
-										304,
-										313
+										211,
+										224
 									],
 									[
-										828,
-										837
+										531,
+										544
 									],
 									[
-										1255,
-										1264
+										656,
+										669
 									],
 									[
-										1718,
-										1727
+										765,
+										778
 									],
 									[
-										2165,
-										2174
+										1104,
+										1117
 									],
 									[
-										2256,
-										2265
+										1231,
+										1244
 									],
 									[
-										2738,
-										2747
+										1340,
+										1353
 									],
 									[
-										2832,
-										2841
+										1601,
+										1614
 									],
 									[
-										2923,
-										2932
+										1728,
+										1741
 									],
 									[
-										3347,
-										3356
+										1837,
+										1850
 									],
 									[
-										3765,
-										3774
+										2588,
+										2601
 									],
 									[
-										4190,
-										4199
+										2708,
+										2721
 									],
 									[
-										4650,
-										4659
+										2882,
+										2895
 									],
 									[
-										5096,
-										5105
+										3037,
+										3050
 									],
 									[
-										5188,
-										5197
+										3431,
+										3444
 									],
 									[
-										5708,
-										5717
+										4012,
+										4025
 									],
 									[
-										5800,
-										5809
+										4638,
+										4651
 									],
 									[
-										5892,
-										5901
+										4802,
+										4815
 									],
 									[
-										6326,
-										6335
+										4982,
+										4995
 									],
 									[
-										6418,
-										6427
+										5477,
+										5490
 									],
 									[
-										6510,
-										6519
+										5633,
+										5646
 									],
 									[
-										6602,
-										6611
+										5763,
+										5776
 									],
 									[
-										7067,
-										7076
+										5887,
+										5900
 									],
 									[
-										7535,
-										7544
+										6411,
+										6424
 									],
 									[
-										7627,
-										7636
+										6555,
+										6568
 									],
 									[
-										7719,
-										7728
+										6739,
+										6752
 									],
 									[
-										7811,
-										7820
+										6888,
+										6901
 									],
 									[
-										7915,
-										7924
+										7356,
+										7369
 									],
 									[
-										8128,
-										8137
+										7763,
+										7776
 									],
 									[
-										8222,
-										8231
+										8257,
+										8270
 									],
 									[
-										8313,
-										8322
+										8354,
+										8367
 									],
 									[
-										8526,
-										8535
+										8494,
+										8507
 									],
 									[
-										8618,
-										8627
+										9124,
+										9137
 									],
 									[
-										8710,
-										8719
+										9672,
+										9685
 									],
 									[
-										8802,
-										8811
+										9789,
+										9802
 									],
 									[
-										8906,
-										8915
+										10254,
+										10267
 									],
 									[
-										9006,
-										9015
+										10371,
+										10384
 									],
 									[
-										9100,
-										9109
+										10865,
+										10878
 									],
 									[
-										9191,
-										9200
+										11244,
+										11257
 									],
 									[
-										9372,
-										9381
+										11705,
+										11718
 									],
 									[
-										9466,
-										9475
+										12218,
+										12231
 									],
 									[
-										9557,
-										9566
+										12641,
+										12654
 									],
 									[
-										10032,
-										10041
+										12930,
+										12943
 									],
 									[
-										10126,
-										10135
+										13167,
+										13180
 									],
 									[
-										10217,
-										10226
+										13282,
+										13295
 									],
 									[
-										10310,
-										10319
+										13581,
+										13594
 									],
 									[
-										10402,
-										10411
+										13901,
+										13914
 									],
 									[
-										10494,
-										10503
+										14192,
+										14205
 									],
 									[
-										10586,
-										10595
+										14309,
+										14322
 									],
 									[
-										10690,
-										10699
+										14495,
+										14508
 									],
 									[
-										11121,
-										11130
+										14616,
+										14629
 									],
 									[
-										11594,
-										11603
+										14752,
+										14765
 									],
 									[
-										11688,
-										11697
+										14873,
+										14886
 									],
 									[
-										11779,
-										11788
+										15035,
+										15048
 									],
 									[
-										12019,
-										12028
+										15178,
+										15191
 									],
 									[
-										12113,
-										12122
+										15561,
+										15574
 									],
 									[
-										12204,
-										12213
+										15715,
+										15728
 									],
 									[
-										12386,
-										12395
+										16107,
+										16120
 									],
 									[
-										12480,
-										12489
+										16245,
+										16258
 									],
 									[
-										12571,
-										12580
+										16345,
+										16358
 									],
 									[
-										13127,
-										13136
+										16641,
+										16654
 									],
 									[
-										13221,
-										13230
+										16950,
+										16963
 									],
 									[
-										13312,
-										13321
+										17071,
+										17084
 									],
 									[
-										13626,
-										13635
+										17640,
+										17653
 									],
 									[
-										13720,
-										13729
+										17796,
+										17809
 									],
 									[
-										13811,
-										13820
+										18214,
+										18227
 									],
 									[
-										13998,
-										14007
+										18764,
+										18777
 									],
 									[
-										14092,
-										14101
+										18874,
+										18887
 									],
 									[
-										14183,
-										14192
+										18992,
+										19005
 									],
 									[
-										14568,
-										14577
+										19204,
+										19217
 									],
 									[
-										15117,
-										15126
-									],
-									[
-										15243,
-										15252
-									],
-									[
-										15337,
-										15346
-									],
-									[
-										15428,
-										15437
-									],
-									[
-										15709,
-										15718
-									],
-									[
-										15799,
-										15808
-									],
-									[
-										15893,
-										15902
-									],
-									[
-										15984,
-										15993
-									],
-									[
-										16161,
-										16170
-									],
-									[
-										16255,
-										16264
-									],
-									[
-										16346,
-										16355
-									],
-									[
-										16865,
-										16874
-									],
-									[
-										17337,
-										17346
-									],
-									[
-										17431,
-										17440
-									],
-									[
-										17522,
-										17531
-									],
-									[
-										17750,
-										17759
-									],
-									[
-										17844,
-										17853
-									],
-									[
-										17935,
-										17944
-									],
-									[
-										18112,
-										18121
-									],
-									[
-										18206,
-										18215
-									],
-									[
-										18297,
-										18306
-									],
-									[
-										18906,
-										18915
-									],
-									[
-										19000,
-										19009
-									],
-									[
-										19091,
-										19100
-									],
-									[
-										19184,
-										19193
-									],
-									[
-										19276,
-										19285
-									],
-									[
-										19368,
+										19364,
 										19377
 									],
 									[
-										19460,
-										19469
+										19842,
+										19855
 									],
 									[
-										19564,
-										19573
+										20301,
+										20314
 									],
 									[
-										19714,
-										19723
+										20696,
+										20709
 									],
 									[
-										19808,
-										19817
+										20886,
+										20899
 									],
 									[
-										19899,
-										19908
+										21235,
+										21248
 									],
 									[
-										20233,
-										20242
+										21425,
+										21438
 									],
 									[
-										20327,
-										20336
+										21868,
+										21881
 									],
 									[
-										20418,
-										20427
+										22007,
+										22020
 									],
 									[
-										20511,
-										20520
+										22458,
+										22471
 									],
 									[
-										20603,
-										20612
+										22938,
+										22951
 									],
 									[
-										20695,
-										20704
+										23220,
+										23233
 									],
 									[
-										20787,
-										20796
+										23343,
+										23356
 									],
 									[
-										20891,
-										20900
+										23795,
+										23808
 									],
 									[
-										21005,
-										21014
+										23927,
+										23940
 									],
 									[
-										21099,
-										21108
+										24432,
+										24445
 									],
 									[
-										21190,
-										21199
-									],
-									[
-										21368,
-										21377
-									],
-									[
-										21462,
-										21471
-									],
-									[
-										21553,
-										21562
-									],
-									[
-										22028,
-										22037
-									],
-									[
-										22240,
-										22249
-									],
-									[
-										22334,
-										22343
-									],
-									[
-										22425,
-										22434
-									],
-									[
-										22643,
-										22652
-									],
-									[
-										22742,
-										22751
-									],
-									[
-										22836,
-										22845
-									],
-									[
-										22927,
-										22936
-									],
-									[
-										23104,
-										23113
-									],
-									[
-										23198,
-										23207
-									],
-									[
-										23289,
-										23298
-									],
-									[
-										23898,
-										23907
-									],
-									[
-										23992,
-										24001
-									],
-									[
-										24083,
-										24092
-									],
-									[
-										24176,
-										24185
-									],
-									[
-										24268,
-										24277
-									],
-									[
-										24360,
-										24369
-									],
-									[
-										24452,
-										24461
-									],
-									[
-										24556,
+										24552,
 										24565
 									],
 									[
-										24672,
-										24681
+										24661,
+										24674
 									],
 									[
-										24808,
-										24817
+										24811,
+										24824
 									],
 									[
-										24902,
-										24911
+										25048,
+										25061
 									],
 									[
-										24993,
-										25002
+										25169,
+										25182
 									],
 									[
-										25327,
-										25336
+										25490,
+										25503
 									],
 									[
-										25421,
-										25430
+										25637,
+										25650
 									],
 									[
-										25512,
-										25521
+										25787,
+										25800
 									],
 									[
-										25605,
-										25614
+										26081,
+										26094
 									],
 									[
-										25697,
-										25706
+										26374,
+										26387
 									],
 									[
-										25789,
-										25798
+										26476,
+										26489
 									],
 									[
-										25881,
-										25890
+										26781,
+										26794
 									],
 									[
-										25985,
-										25994
+										27101,
+										27114
 									],
 									[
-										26101,
-										26110
+										27226,
+										27239
 									],
 									[
-										26201,
-										26210
+										27335,
+										27348
 									],
 									[
-										26295,
-										26304
+										27681,
+										27694
 									],
 									[
-										26386,
-										26395
+										27933,
+										27946
 									],
 									[
-										26564,
-										26573
+										28231,
+										28244
 									],
 									[
-										26658,
-										26667
+										28375,
+										28388
 									],
 									[
-										26749,
-										26758
-									],
-									[
-										27199,
-										27208
-									],
-									[
-										27727,
-										27736
-									],
-									[
-										28263,
-										28272
+										28589,
+										28602
 									],
 									[
 										28777,
-										28786
+										28790
 									],
 									[
-										29329,
-										29338
+										28965,
+										28978
 									],
 									[
-										29863,
-										29872
+										29130,
+										29143
 									],
 									[
-										30468,
-										30477
+										29301,
+										29314
 									],
 									[
-										30839,
-										30848
+										29549,
+										29562
 									],
 									[
-										30878,
-										30887
+										29695,
+										29708
 									],
 									[
-										31216,
-										31225
+										29839,
+										29852
 									],
 									[
-										31421,
-										31430
+										30013,
+										30026
 									],
 									[
-										31520,
-										31529
+										30305,
+										30318
 									],
 									[
-										32048,
-										32057
+										30432,
+										30445
 									],
 									[
-										32430,
-										32439
+										30541,
+										30554
 									],
 									[
-										32591,
-										32600
+										30889,
+										30902
 									],
 									[
-										33297,
-										33306
+										30980,
+										30993
 									],
 									[
-										33499,
-										33508
+										31480,
+										31493
 									],
 									[
-										33628,
-										33628
+										31588,
+										31601
+									],
+									[
+										32007,
+										32020
+									],
+									[
+										32148,
+										32161
+									],
+									[
+										32266,
+										32279
+									],
+									[
+										32703,
+										32716
+									],
+									[
+										32806,
+										32819
+									],
+									[
+										32923,
+										32936
+									],
+									[
+										33098,
+										33111
+									],
+									[
+										33576,
+										33589
+									],
+									[
+										33689,
+										33702
+									],
+									[
+										33816,
+										33829
+									],
+									[
+										33991,
+										34004
+									],
+									[
+										34447,
+										34460
+									],
+									[
+										34641,
+										34654
+									],
+									[
+										34795,
+										34808
+									],
+									[
+										35383,
+										35396
+									],
+									[
+										35457,
+										35470
+									],
+									[
+										35899,
+										35912
+									],
+									[
+										36323,
+										36336
+									],
+									[
+										36853,
+										36866
+									],
+									[
+										36947,
+										36960
+									],
+									[
+										37435,
+										37448
+									],
+									[
+										37859,
+										37872
+									],
+									[
+										38324,
+										38337
+									],
+									[
+										38651,
+										38664
+									],
+									[
+										38753,
+										38766
+									],
+									[
+										39162,
+										39175
+									],
+									[
+										39293,
+										39306
+									],
+									[
+										39440,
+										39453
+									],
+									[
+										39569,
+										39582
+									],
+									[
+										39714,
+										39727
+									],
+									[
+										39840,
+										39853
+									],
+									[
+										40010,
+										40023
+									],
+									[
+										40542,
+										40555
+									],
+									[
+										40766,
+										40779
+									],
+									[
+										41258,
+										41271
+									],
+									[
+										41498,
+										41511
+									],
+									[
+										41863,
+										41876
+									],
+									[
+										42630,
+										42643
+									],
+									[
+										43143,
+										43156
+									],
+									[
+										43619,
+										43632
+									],
+									[
+										43948,
+										43961
+									],
+									[
+										44070,
+										44083
+									],
+									[
+										44387,
+										44400
+									],
+									[
+										44704,
+										44717
+									],
+									[
+										44832,
+										44845
+									],
+									[
+										45369,
+										45372
+									],
+									[
+										45806,
+										45809
+									],
+									[
+										46480,
+										46483
+									],
+									[
+										46928,
+										46931
+									],
+									[
+										47469,
+										47472
+									],
+									[
+										47504,
+										47507
+									],
+									[
+										47578,
+										47581
+									],
+									[
+										48324,
+										48327
+									],
+									[
+										48875,
+										48878
+									],
+									[
+										49225,
+										49228
+									],
+									[
+										49554,
+										49557
+									],
+									[
+										49962,
+										49965
+									],
+									[
+										50299,
+										50302
+									],
+									[
+										50681,
+										50684
+									],
+									[
+										51101,
+										51104
+									],
+									[
+										51579,
+										51582
+									],
+									[
+										51946,
+										51949
+									],
+									[
+										52342,
+										52345
+									],
+									[
+										52735,
+										52738
+									],
+									[
+										53026,
+										53029
+									],
+									[
+										53364,
+										53367
+									],
+									[
+										53369,
+										53372
+									],
+									[
+										53374,
+										53377
+									],
+									[
+										53746,
+										53749
+									],
+									[
+										54057,
+										54060
+									],
+									[
+										54062,
+										54065
+									],
+									[
+										54067,
+										54070
+									],
+									[
+										54072,
+										54075
+									],
+									[
+										54077,
+										54080
+									],
+									[
+										54475,
+										54478
+									],
+									[
+										54747,
+										54750
+									],
+									[
+										55067,
+										55070
+									],
+									[
+										55538,
+										55541
+									],
+									[
+										56070,
+										56073
+									],
+									[
+										56614,
+										56617
+									],
+									[
+										57071,
+										57074
+									],
+									[
+										57528,
+										57531
+									],
+									[
+										57785,
+										57788
+									],
+									[
+										58187,
+										58190
+									],
+									[
+										58634,
+										58637
+									],
+									[
+										58779,
+										58782
+									],
+									[
+										58973,
+										58976
+									],
+									[
+										59582,
+										59585
+									],
+									[
+										59779,
+										59782
+									],
+									[
+										59866,
+										59869
+									],
+									[
+										60272,
+										60275
+									],
+									[
+										60330,
+										60333
+									],
+									[
+										60632,
+										60635
+									],
+									[
+										61005,
+										61008
+									],
+									[
+										61380,
+										61383
+									],
+									[
+										61708,
+										61711
+									],
+									[
+										62131,
+										62134
+									],
+									[
+										62374,
+										62377
+									],
+									[
+										62804,
+										62807
+									],
+									[
+										62809,
+										62812
+									],
+									[
+										63244,
+										63247
+									],
+									[
+										63637,
+										63640
+									],
+									[
+										64068,
+										64071
+									],
+									[
+										64465,
+										64468
+									],
+									[
+										64779,
+										64782
+									],
+									[
+										65097,
+										65100
+									],
+									[
+										65628,
+										65631
+									],
+									[
+										66001,
+										66004
+									],
+									[
+										66088,
+										66091
+									],
+									[
+										66456,
+										66459
+									],
+									[
+										66801,
+										66804
+									],
+									[
+										67248,
+										67251
+									],
+									[
+										67254,
+										67257
+									],
+									[
+										67458,
+										67461
+									],
+									[
+										67782,
+										67785
+									],
+									[
+										67964,
+										67967
+									],
+									[
+										68091,
+										68094
+									],
+									[
+										68486,
+										68489
+									],
+									[
+										69003,
+										69006
+									],
+									[
+										69472,
+										69475
+									],
+									[
+										69881,
+										69884
+									],
+									[
+										70377,
+										70380
+									],
+									[
+										70874,
+										70877
+									],
+									[
+										71344,
+										71347
+									],
+									[
+										71689,
+										71692
+									],
+									[
+										72105,
+										72108
+									],
+									[
+										72469,
+										72472
+									],
+									[
+										72843,
+										72846
+									],
+									[
+										73108,
+										73111
+									],
+									[
+										73113,
+										73116
+									],
+									[
+										73465,
+										73468
+									],
+									[
+										73897,
+										73900
+									],
+									[
+										74217,
+										74220
+									],
+									[
+										74592,
+										74595
+									],
+									[
+										74936,
+										74939
+									],
+									[
+										75188,
+										75191
+									],
+									[
+										75342,
+										75342
 									]
 								],
 								"scope": ""
@@ -1597,8 +1953,8 @@
 						"selection":
 						[
 							[
-								29334,
-								29334
+								52544,
+								52544
 							]
 						],
 						"settings":
@@ -1617,55 +1973,55 @@
 								},
 								"unmatched":
 								{
+									"1":
+									[
+										52499,
+										52500
+									]
 								}
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
@@ -1675,12 +2031,17 @@
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_single_quote_content"
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
 							],
 							"default_dir": "C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR",
 							"detect_indentation": false,
 							"line_numbers": false,
-							"output_tag": 20,
+							"output_tag": 27,
 							"result_base_dir": "",
 							"result_file_regex": "^([^ 	].*):$",
 							"result_line_regex": "^ +([0-9]+):",
@@ -1688,7 +2049,7 @@
 							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 7668.0,
+						"translation.y": 1404.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -1696,19 +2057,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "report/laporanneracareport.xml",
+					"file": "pembelian.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7304,
+						"buffer_size": 47290,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7121,
-								7121
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1718,27 +2079,12 @@
 							{
 								"close":
 								{
-									"1":
-									[
-										7125,
-										7126
-									]
 								},
 								"icon":
 								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"brackethighlighter.default"
-									]
 								},
 								"open":
 								{
-									"1":
-									[
-										7050,
-										7051
-									]
 								},
 								"unmatched":
 								{
@@ -1746,189 +2092,179 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
-							],
-							"syntax": "Packages/XML/XML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1043.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "akun.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 66983,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								55622,
-								55622
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										55621,
-										55622
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										55620,
-										55621
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
-								"bh_tag_content"
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
 							],
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 13597.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "view/pembelian.xml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 34006,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+									"1":
+									[
+										1,
+										8
+									]
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

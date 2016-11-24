@@ -6,10 +6,11 @@
 			<field name="name">mmr.penjualanpo.list</field>
 			<field name="model">mmr.penjualanpo</field>
 			<field name="arch" type="xml">
-				<tree string="Penjualan PO" version="7.0" colors="red:((status!='Valid, Penyetuju Lengkap' and status!='Batal') or (statussj!='Barang Lengkap Dikirim') or (statusfaktur!='Faktur lengkap' and statusfaktur!='Tanpa Faktur'))" default_order="tanggal desc">
+				<tree string="Penjualan PO" version="7.0" colors="red:((status!='Valid, Penyetuju Lengkap' and status!='Batal') or (statussj!='Barang Lengkap Dikirim') or (statusfaktur!='Faktur lengkap' and statusfaktur!='Tanpa Faktur') or (statuspembayaran!='Lunas'))" default_order="tanggal desc">
 					<field name="status" />
 					<field name="statussj"/>
 					<field name="statusfaktur" groups="MMR.akunting"/>
+					<field name="statuspembayaran" groups="MMR.akunting"/>
 					<field name="tanggal" />
 					<field name="customer" />
 					<field name="rayon" />
@@ -50,6 +51,7 @@
 								<field name="status" />
 								<field name="statussj"/>
 								<field name="statusfaktur" groups="MMR.akunting"/>
+								<field name="statuspembayaran" groups="MMR.akunting"/>
 							</group>
 							<group string="Ijin Khusus">
 								<field name="hargabebas" attrs="{'readonly':[('disetujui','!=',False)]}"/>
@@ -145,6 +147,46 @@
                 </graph>
             </field>
         </record>
+
+        <record id="mmr_penjualanpo_search" model="ir.ui.view">
+			<field name="name">mmr.penjualanpo.search</field>
+			<field name="model">mmr.penjualanpo</field>
+			<field name="arch" type="xml">
+				<search string="Penjualan PO" version="7.0">
+					<field name="customer"/>
+					<field name="tanggal"/>
+					<field name="nomorpo"/>
+					<field name="kota"/>
+					<field name="rayon"/>
+					<field name="sales"/>
+					<group expand="1" string="Filter Proses By">
+						<filter name="dalam_proses" string="Dalam Proses" help="Filter PO yang masih perlu ditindak" domain="['|','|','|',('status','!=','Valid, Penyetuju Lengkap'),('statussj','!=','Barang Lengkap Dikirim'),('statuspembayaran','!=','Lunas'),'&amp;',('statusfaktur','!=','Faktur lengkap'),('statusfaktur','!=','Tanpa Faktur')]"/>
+						<filter name="selesai" string="Selesai" help="Filter PO yang sudah selesai" domain="[('status','=','Valid, Penyetuju Lengkap'),('statussj','=','Barang Lengkap Dikirim'),('statusfaktur','=','Faktur lengkap'),('statuspembayaran','=','Lunas')]"/>
+					</group>
+					<group expand="0" string="Filter PO By">
+						<filter name="belum_valid" string="Belum Valid" help="Filter PO yang masih belum valid" domain="[('status','=','Belum Valid')]"/>
+						<filter name="valid_belum_lengkap" string="Valid, Penyetuju Belum Lengkap" help="Filter PO yang sudah valid, tapi belum lengkap disetujui" domain="[('status','=','Valid, Penyetuju Belum Lengkap')]"/>
+						<filter name="valid_lengkap" string="Valid, Penyetuju Lengkap" help="Filter PO yang sudah valid dan lengkap disetujui" domain="[('status','=','Valid, Penyetuju Lengkap')]"/>
+						<filter name="batal" string="Batal" help="Filter PO yang batal" domain="[('status','=','Batal')]"/>
+					</group>
+					<group expand="0" string="Filter SJ By">
+						<filter name="terlambat" string="Pengiriman Terlambat" help="Filter PO dengan SJ yang sudah terlambat." domain="[('statussj','=','Barang Terlambat')]"/>
+						<filter name="belum_dikirim" string="Barang Belum Dikirim" help="Filter PO dengan SJ yang belum dikirim." domain="[('statussj','=','Barang Belum Dikirim')]"/>
+						<filter name="terkirim" string="Barang terkirim" help="Filter PO dengan SJ yang sudah lengkap dikirim" domain="[('statussj','=','Barang Lengkap Dikirim')]"/>
+					</group>
+					<group expand="0" string="Filter Faktur By">
+						<filter name="tanpa_faktur" string="Tanpa Faktur" help="Filter PO khusus(tanpa faktur)." domain="[('statusfaktur','=','Tanpa Faktur')]"/>
+						<filter name="belum_sj" string="Belum ada SJ" help="Filter PO yang belum memiliki SJ." domain="[('statusfaktur','=','Belum ada SJ')]"/>
+						<filter name="tidak_lengkap" string="Faktur Belum Lengkap" help="Filter PO dengan Faktur yang belum lengkap" domain="[('statusfaktur','=','Faktur tidak lengkap')]"/>
+						<filter name="lengkap" string="Faktur Lengkap" help="Filter PO dengan Faktur yang sudah lengkap" domain="[('statusfaktur','=','Faktur lengkap')]"/>
+					</group>
+					<group expand="0" string="Filter Pembayaran By">
+						<filter name="lunas" string="Lunas" help="Filter PO yang sudah lunas." domain="[('statuspembayaran','=','Lunas')]"/>
+						<filter name="belum_lunas" string="Belum Lunas" help="Filter PO yang belum lunas." domain="[('statuspembayaran','!=','Lunas')]"/>
+					</group>
+				</search>
+			</field>
+		</record>
 		
 		-----------PenjualanPODetil----------
 		<record id="mmr_penjualanpodetil_list" model="ir.ui.view">
@@ -235,7 +277,7 @@
 			<field name="name">mmr.penjualanpodetil.list.standalone</field>
 			<field name="model">mmr.penjualanpodetil</field>
 			<field name="arch" type="xml">
-				<tree string="Penjualan PO Detil" version="7.0" create="false" edit="false">
+				<tree string="Penjualan PO Detil" version="7.0" create="false" edit="false" default_order="waktu desc">
 					<field name="idpenjualanpo" string="PO Penjualan"/>
 					<field name="customerpo" />
 					<field name="waktu" />
@@ -269,18 +311,29 @@
 			<field name="model">mmr.penjualanpodetil</field>
 			<field name="arch" type="xml">
 				<search string="Penjualan PO Detil" version="7.0">
+					<field name="idpenjualanpo"/>
 					<field name="customerpo"/>
 					<field name="merk"/>
 					<field name="namaproduk"/>
+					<field name="sales"/>
+					<field name="rayon"/>
+					<field name="kota"/>
+					<filter name="filter_by_barang_terkirim_semua" string="Lengkap Dikirim" help="Filter barang yang telah lengkap dikirim" domain="[('jumlah', '=', 'jumlahdikirim')]"/>
+					<filter name="filter_by_barang_belum_terkirim_semua" string="Belum Lengkap Dikirim" help="Filter barang yang belum lengkap dikirim" domain="[('jumlah', '!=', 'jumlahdikirim')]"/>
 					<group expand="1" string="Group By">
 						<filter name="group_by_customer" string="Customer" help="Group By Customer" context="{'group_by':'customerpo'}"/>
 						<filter name="group_by_merk" string="Merk" help="Group By Merk" context="{'group_by':'merk'}"/>
 						<filter name="group_by_namaproduk" string="Produk" help="Group By Produk" context="{'group_by':'namaproduk'}"/>
 					</group>
+					<group expand="1" string="Group By">
+						<filter name="group_by_po" string="PO Penjualan" help="Group By PO Penjualan" context="{'group_by':'idpenjualanpo'}"/>
+						<filter name="group_by_sales" string="Sales" help="Group By Sales" context="{'group_by':'sales'}"/>
+						<filter name="group_by_rayon" string="Rayon" help="Group By Rayon" context="{'group_by':'rayon'}"/>
+					</group>
 				</search>
 			</field>
 		</record>
-		
+
 		-----------PenjualanSJ----------
 		<record id="mmr_penjualansj_list" model="ir.ui.view">
 			<field name="name">mmr.penjualansj.list</field>
@@ -386,7 +439,7 @@
 			<field name="name">mmr.penjualansj.list.no.edit</field>
 			<field name="model">mmr.penjualansj</field>
 			<field name="arch" type="xml">
-				<tree string="Penjualan SJ" version="7.0" create="false" edit="false" colors="red:(statusfaktur=='Belum Terfaktur')">
+				<tree string="Penjualan SJ" version="7.0" create="false" edit="false" colors="red:(statusfaktur=='Belum Terfaktur')" default_order="tanggalterbit desc">
 					<field name="statusfaktur" />
 					<field name="idpenjualanpo" string="Nomor PO"/>
 					<field name="nomorsj" />
@@ -474,7 +527,25 @@
 				</form>
 			</field>
 		</record>
-		
+
+		<record id="mmr_penjualansj_search" model="ir.ui.view">
+			<field name="name">mmr.penjualansj.search</field>
+			<field name="model">mmr.penjualansj</field>
+			<field name="arch" type="xml">
+				<search string="Penjualan PO Detil" version="7.0">
+					<field name="statusfaktur"/>
+					<field name="idpenjualanpo" string="Nomor PO"/>
+					<field name="nomorsj"/>
+					<field name="tanggalterbit"/>
+					<group expand="1" string="Group By">
+						<filter name="group_by_status" string="Status" help="Group By Status" context="{'group_by':'statusfaktur'}"/>
+						<filter name="group_by_tanggal_terbit" string="Tanggal Terbit" help="Group By Tanggal Terbit" context="{'group_by':'tanggalterbit'}"/>
+						<filter name="group_by_idpenjualanpo" string="PO Penjualan" help="Group By PO Penjualan" context="{'group_by':'idpenjualanpo'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
 		-----------PenjualanSJDetil----------
 		<record id="mmr_penjualansjdetil_list" model="ir.ui.view">
 			<field name="name">mmr.penjualansjdetil.list</field>

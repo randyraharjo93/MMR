@@ -226,7 +226,22 @@ class mmr_penjualanpo(osv.osv):
             if penjualanpo.tanpafaktur or penjualanpo.tukarbarang:
                 res[penjualanpo.id] = "Tanpa Faktur"    
         return res
-    
+
+    # Milestone PO Penjualan ( Belum ada SJ, Faktur Lengkap, Faktur tidak lengkap, Tanpa Faktur (hanya po khusus) )
+    def _set_statuspembayaran(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for penjualanpo in self.browse(cr, uid, ids):
+            totalpembayaran = 0
+            # Catat seluruh SJ, Lalu baca seluruh faktur, apabila ada SJ yang tidak ada difaktur, maka set tidak lengkap
+            for semuapenjualanfaktur in penjualanpo.penjualanfaktur:
+                for semuapembayaran in semuapenjualanfaktur.listpembayaran:
+                    totalpembayaran += semuapembayaran.bayar
+            if totalpembayaran == penjualanpo.netto:
+                res[penjualanpo.id] = "Lunas"
+            else:
+                res[penjualanpo.id] = "Belum Lunas"
+        return res
+
     # Isi rayon, kota, nomor po berdasarkan customer yang dipilih
     # Penomoran PO dibuat berdasarkan, bulan & tahun
     # PO dengan ijin tanpa faktur dan tukar barang jangan diberi nomor
@@ -340,9 +355,10 @@ class mmr_penjualanpo(osv.osv):
         'rayon': fields.many2one("mmr.rayon", "Rayon"), 
         'kota': fields.many2one("mmr.kota", "Kota"), 
         'tanggal': fields.date("Tanggal Terbit", required=True), 
-        'status': fields.function(_set_status, type="char", method=True, string="Status PO"),
-        'statussj': fields.function(_set_statussj, type="char", method=True, string="Status SJ"), 
-        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur"), 
+        'status': fields.function(_set_status, type="char", method=True, string="Status PO", store=True),
+        'statussj': fields.function(_set_statussj, type="char", method=True, string="Status SJ", store=True), 
+        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur", store=True),
+        'statuspembayaran': fields.function(_set_statuspembayaran, type="char", method=True, string="Status Pembayaran", store=True),
         'syaratpembayaran': fields.many2one("mmr.syaratpembayaran", "Syarat Pembayaran"), 
         'tanggaldijanjikan': fields.date("Tanggal Dijanjikan"), 
         "via": fields.selection([('sms', 'SMS'), ('telepon', 'Telepon'), ('sales', 'Sales'), ('langsung', 'Langsung'), ('tukar', 'Tukar Barang')], "Via", required=True), 
@@ -480,7 +496,10 @@ class mmr_penjualanpodetil(osv.osv):
                 
     _columns = {
         'waktu': fields.date("Waktu PO", related="idpenjualanpo.tanggal", required=True),
-        'customerpo': fields.many2one("mmr.customer", "Customer PO", related="idpenjualanpo.customer"), 
+        'customerpo': fields.many2one("mmr.customer", "Customer PO", related="idpenjualanpo.customer"),
+        'sales': fields.many2one("mmr.sales", "Sales PO", related='idpenjualanpo.sales'),
+        'rayon': fields.many2one("mmr.rayon", "Rayon PO", related='idpenjualanpo.rayon'),
+        'kota': fields.many2one("mmr.kota", "Kota PO", related='idpenjualanpo.kota'), 
         'idpenjualanpo': fields.many2one("mmr.penjualanpo", "idpopenjualan", ondelete='cascade'), 
         'merk': fields.many2one("mmr.merk", "Merk", required=True), 
         'namaproduk': fields.many2one("mmr.produk", "Nama Produk", required=True, domain="[('merk', '=', merk)]"), 

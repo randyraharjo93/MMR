@@ -219,7 +219,7 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 			<field name="view_ids" eval="[(6,0,[]), (0, 0, {'sequence': 1, 'view_mode': 'tree', 'view_id': ref('MMR.mmr_penjualansj_list_no_edit')}), (0, 0, {'sequence': 2, 'view_mode': 'form', 'view_id': ref('MMR.mmr_penjualansj_form_no_edit')})]"/>
-			<field name="context">{'group_by': 'tanggalterbit'}</field>
+			<field name="context">{'search_default_group_by_tanggal_terbit': 1}</field>
 			<field name="limit">9999</field>
 		</record>
 

@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons"
 		}
 	]
 }
