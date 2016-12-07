@@ -138,7 +138,9 @@
 			<field name="model">mmr.rayon</field>
 			<field name="arch" type="xml">
 				<tree string="Rayon" version="7.0">
+					<field name="aktif" />
 					<field name="kode" />
+					<field name="periode" />
 					<field name="listcustomer" />
 					<field name="target" groups="MMR.sales"/>
 					<field name="pencapaian" groups="MMR.sales"/>
@@ -154,8 +156,10 @@
 				<form string="Rayon" version="7.0" >
 					<group string="Informasi Dasar">
 						<field name="kode" />
+						<field name="periode" />
 						<field name="target" groups="MMR.sales"/>
 						<field name="pencapaian" groups="MMR.sales"/>
+						<field name="aktif" />
 					</group>
 					<notebook>
 						<page string="List Penjualan">

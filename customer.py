@@ -28,7 +28,7 @@ class mmr_customer(osv.osv):
 		'kode': fields.char("Kode", required=True, size=15),
 		'nama': fields.char("Nama", required=True, size=27),
 		'alamat': fields.char("Alamat", size=60),
-		'rayon': fields.many2one("mmr.rayon", "Rayon", required=True),
+		'rayon': fields.many2one("mmr.rayon", "Rayon", required=True, domain="[('aktif', '=', True)]"),
 		'kota': fields.many2one("mmr.kota", "Kota", required=True),
 		'telp': fields.char("Telepon"),
 		'hutang': fields.function(_hitung_hutang, type="float", method=True, string="Hutang", digits=(12,2)),
@@ -117,7 +117,13 @@ class mmr_rayon(osv.osv):
 		'pencapaian': fields.function(_isi_pencapaian,string="Pencapaian Bulan Ini",method=True,type="float", digits=(12,2)),
 		'laporansales' : fields.one2many("mmr.laporansales","rayon","Laporan Sales"),
 		'notes' : fields.text("Notes"),
+		'periode': fields.text("Periode", required=True),
+		'aktif': fields.boolean("Aktif"),
 	}	
+
+	_defaults = {
+				'aktif' : True,
+				}
 	
 	_sql_constraints = [
         ('name_uniq', 'unique(kode)', 'Kode Rayon Sudah Ada!')

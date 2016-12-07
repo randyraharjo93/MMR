@@ -303,7 +303,7 @@ class mmr_stokkeluar(osv.osv):
         'idpenjualanfaktur': fields.many2one("mmr.penjualanfaktur", "IDFAKTURPENJUALAN"),
         'customer': fields.many2one("mmr.customer", "Customer", related="idpenjualanpo.customer"),
         'teknisi': fields.boolean("Teknisi (P)"),
-        'rayon': fields.many2one("mmr.rayon", "Rayon", related="idpenjualanpo.rayon"),
+        'rayon': fields.many2one("mmr.rayon", "Rayon", related="idpenjualanpo.rayon", domain="[('aktif', '=', True)]"),
         'tanggal': fields.date("Tanggal", related="idpenjualansj.tanggalterbit"),
         'merk': fields.many2one("mmr.merk", "Merk", related="idstok.merk", store=True),
         'namaproduk': fields.many2one("mmr.produk", "Nama Produk", related="idstok.namaproduk"),

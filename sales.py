@@ -85,7 +85,7 @@ class mmr_laporansales(osv.osv):
     _columns = {
         'sales': fields.many2one("mmr.sales", "Sales", required=True),
         'customer' : fields.many2one("mmr.customer", "Customer", required=True),
-        'rayon' : fields.many2one("mmr.rayon","Rayon"),
+        'rayon' : fields.many2one("mmr.rayon","Rayon", domain="[('aktif', '=', True)]"),
         'kota' : fields.many2one("mmr.kota","Kota"),
         'tanggal' : fields.date("Tanggal Kunjungan", required=True),
         'laporan' : fields.text("Laporan"),
@@ -334,7 +334,7 @@ class mmr_laporanmarketing(osv.osv):
         
     _columns = {
         'customer': fields.many2one("mmr.customer", "Customer"),
-        'rayon': fields.many2one("mmr.rayon", "Rayon"),
+        'rayon': fields.many2one("mmr.rayon", "Rayon", domain="[('aktif', '=', True)]"),
         'kota': fields.many2one("mmr.kota", "Kota"),
         'starttanggal' : fields.date("Start"),
         'endtanggal' : fields.date("End"),
