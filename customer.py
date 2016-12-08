@@ -94,7 +94,7 @@ mmr_kota()
 class mmr_rayon(osv.osv):
 	_name = "mmr.rayon"
 	_description = "Modul rayon untuk PT. MMR."
-	_rec_name = "kode"
+	_rec_name = "display_name"
 	
 	# Hitung total penjualan rayon bulan berjalan
 	def _isi_pencapaian(self, cr, uid, ids, field_name, arg, context):
@@ -107,6 +107,15 @@ class mmr_rayon(osv.osv):
 						total+=semuafaktur.hppembelian		
 			res[rayon.id] = total
 		return res
+
+	# Buat display Name
+	def _get_display_name(self, cr, uid, ids, field_name, arg, context):
+		res = {}
+		for rayon in self.browse(cr,uid,ids):
+			kode = rayon.kode or "-"
+			periode = rayon.periode or "Non Periodic"
+			res[rayon.id] = kode + " " + periode
+		return res
 	
 	_columns = {
 		'kode': fields.char("Kode", required=True),
@@ -117,8 +126,9 @@ class mmr_rayon(osv.osv):
 		'pencapaian': fields.function(_isi_pencapaian,string="Pencapaian Bulan Ini",method=True,type="float", digits=(12,2)),
 		'laporansales' : fields.one2many("mmr.laporansales","rayon","Laporan Sales"),
 		'notes' : fields.text("Notes"),
-		'periode': fields.text("Periode", required=True),
+		'periode': fields.char("Periode", required=True),
 		'aktif': fields.boolean("Aktif"),
+		'display_name': fields.function(_get_display_name, type="char", method=True, string="Nama"),
 	}	
 
 	_defaults = {

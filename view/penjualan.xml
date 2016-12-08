@@ -318,8 +318,8 @@
 					<field name="sales"/>
 					<field name="rayon"/>
 					<field name="kota"/>
-					<filter name="filter_by_barang_terkirim_semua" string="Lengkap Dikirim" help="Filter barang yang telah lengkap dikirim" domain="[('jumlah', '=', 'jumlahdikirim')]"/>
-					<filter name="filter_by_barang_belum_terkirim_semua" string="Belum Lengkap Dikirim" help="Filter barang yang belum lengkap dikirim" domain="[('jumlah', '!=', 'jumlahdikirim')]"/>
+					<filter name="filter_by_barang_terkirim_semua" string="Lengkap Dikirim" help="Filter barang yang telah lengkap dikirim" domain="[('terkirimsemua', '=', True)]"/>
+					<filter name="filter_by_barang_belum_terkirim_semua" string="Belum Lengkap Dikirim" help="Filter barang yang belum lengkap dikirim" domain="[('terkirimsemua', '=', False)]"/>
 					<group expand="1" string="Group By">
 						<filter name="group_by_customer" string="Customer" help="Group By Customer" context="{'group_by':'customerpo'}"/>
 						<filter name="group_by_merk" string="Merk" help="Group By Merk" context="{'group_by':'merk'}"/>
@@ -537,10 +537,17 @@
 					<field name="idpenjualanpo" string="Nomor PO"/>
 					<field name="nomorsj"/>
 					<field name="tanggalterbit"/>
+					<filter name="filter_by_status_terfaktur" string="Terfaktur" help="Filter SJ yang lengkap difaktur" domain="[('statusfaktur', '=', 'Terfaktur')]"/>
+					<filter name="filter_by_status_belum_terfaktur" string="Belum Terfaktur" help="Filter SJ yang belum lengkap difaktur" domain="[('statusfaktur', '=', 'Belum Terfaktur')]"/>
+					<filter name="filter_by_status_tidak_faktur" string="Tidak Perlu Faktur" help="Filter SJ yang tidak perlu difaktur" domain="[('statusfaktur', '=', 'Tidak Perlu Faktur')]"/>
+					<separator/>
+					<filter name="filter_by_belum_disetujui" string="Belum Disetujui" help="Filter SJ yang telah belum disetujui" domain="[('disetujui', '=', False)]"/>
+					<filter name="filter_by_telah_disetujui" string="Telah Disetujui" help="Filter SJ yang telah telah disetujui" domain="[('disetujui', '!=', False)]"/>
 					<group expand="1" string="Group By">
 						<filter name="group_by_status" string="Status" help="Group By Status" context="{'group_by':'statusfaktur'}"/>
 						<filter name="group_by_tanggal_terbit" string="Tanggal Terbit" help="Group By Tanggal Terbit" context="{'group_by':'tanggalterbit'}"/>
 						<filter name="group_by_idpenjualanpo" string="PO Penjualan" help="Group By PO Penjualan" context="{'group_by':'idpenjualanpo'}"/>
+						<filter name="group_by_disetujui" string="Disetujui" help="Group By Disetujui" context="{'group_by':'disetujui'}"/>
 					</group>
 				</search>
 			</field>

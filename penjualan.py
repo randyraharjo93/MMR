@@ -355,10 +355,10 @@ class mmr_penjualanpo(osv.osv):
         'rayon': fields.many2one("mmr.rayon", "Rayon", domain="[('aktif', '=', True)]"), 
         'kota': fields.many2one("mmr.kota", "Kota"), 
         'tanggal': fields.date("Tanggal Terbit", required=True), 
-        'status': fields.function(_set_status, type="char", method=True, string="Status PO", store=True),
-        'statussj': fields.function(_set_statussj, type="char", method=True, string="Status SJ", store=True), 
-        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur", store=True),
-        'statuspembayaran': fields.function(_set_statuspembayaran, type="char", method=True, string="Status Pembayaran", store=True),
+        'status': fields.function(_set_status, type="char", method=True, string="Status PO"),
+        'statussj': fields.function(_set_statussj, type="char", method=True, string="Status SJ"), 
+        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur"),
+        'statuspembayaran': fields.function(_set_statuspembayaran, type="char", method=True, string="Status Pembayaran"),
         'syaratpembayaran': fields.many2one("mmr.syaratpembayaran", "Syarat Pembayaran"), 
         'tanggaldijanjikan': fields.date("Tanggal Dijanjikan"), 
         "via": fields.selection([('sms', 'SMS'), ('telepon', 'Telepon'), ('sales', 'Sales'), ('langsung', 'Langsung'), ('tukar', 'Tukar Barang')], "Via", required=True), 
@@ -449,9 +449,19 @@ class mmr_penjualanpodetil(osv.osv):
         for seluruhsjpenjualan in self.idpenjualanpo.penjualansj:
             for seluruhsjpenjualandetil in seluruhsjpenjualan.penjualansjdetil:
                 if seluruhsjpenjualandetil.pilihanproduk == self:
-                    jumlah+= seluruhsjpenjualandetil.jumlah
-        self.jumlahdikirim = jumlah    
-    
+                    jumlah += seluruhsjpenjualandetil.jumlah
+        self.jumlahdikirim = jumlah
+
+    # Isi informasi jumlah yang telah dikirim berdasarkan SJ Penjualan
+    @api.multi
+    @api.depends("jumlah", "jumlahdikirim")
+    def _hitung_terkirimsemua(self):
+        for penjualanpodetil in self:
+            if penjualanpodetil.jumlah == penjualanpodetil.jumlahdikirim:
+                penjualanpodetil.terkirimsemua = True
+            else:
+                penjualanpodetil.terkirimsemua = False
+
     # Apabila merk berubah, pilihan produk juga diubah    
     def onchange_merk(self, cr, uid, ids, context=None):
         hasil = {}
@@ -506,6 +516,7 @@ class mmr_penjualanpodetil(osv.osv):
         'satuan': fields.many2one("mmr.satuan", "Satuan", related="namaproduk.satuan", readonly=True), 
         'jumlah': fields.integer("Jumlah", required=True), 
         'jumlahdikirim': fields.integer("Jumlah Diterima", compute="_hitung_jumlahditerima"), 
+        'terkirimsemua': fields.boolean(string="Terkirim Semua", compute="_hitung_terkirimsemua"), 
         'harga': fields.float("Harga", required=True, digits=(12, 2)), 
         'bruto': fields.float("Bruto", digits=(12, 2)), 
         'diskon': fields.float("Diskon(%)", required=True, digits=(12, 2)), 
@@ -632,7 +643,7 @@ class mmr_penjualansj(osv.osv):
         'diedit': fields.char("Diedit", readonly=True), 
         'disetujui': fields.char("Disetujui", readonly=True), 
         'disetujuigudang': fields.char("Disetujui Gudang", readonly=True), 
-        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur", store=True), 
+        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur"), 
     }    
     
     _defaults = {
