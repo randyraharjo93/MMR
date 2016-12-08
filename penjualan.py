@@ -632,7 +632,7 @@ class mmr_penjualansj(osv.osv):
         'diedit': fields.char("Diedit", readonly=True), 
         'disetujui': fields.char("Disetujui", readonly=True), 
         'disetujuigudang': fields.char("Disetujui Gudang", readonly=True), 
-        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur"), 
+        'statusfaktur': fields.function(_set_statusfaktur, type="char", method=True, string="Status Faktur", store=True), 
     }    
     
     _defaults = {
