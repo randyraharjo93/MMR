@@ -1,262 +1,377 @@
 <openerp>
-	<data>
-		
-		-----------Customer----------
-		<record id="mmr_customer_list" model="ir.ui.view">
-			<field name="name">mmr.customer.list</field>
-			<field name="model">mmr.customer</field>
-			<field name="arch" type="xml">
-				<tree string="Customer" version="7.0">
-					<field name="kode" />
-					<field name="nama" />
-					<field name="alamat" />
-					<field name="kota" />
-					<field name="rayon" />
-					<field name="telp" />
-					<field name="npwp" />
-					<field name="syaratpembayaran" />	
-					<field name="hutang" groups="MMR.akunting"/>
-					<field name="batashutang" groups="MMR.otoritas"/>
-					<field name="notes" />
-				</tree>
-			</field>
-		</record>
-		
-		<record id="mmr_customer_form" model="ir.ui.view">
-			<field name="name">mmr.customer.form</field>
-			<field name="model">mmr.customer</field>
-			<field name="arch" type="xml">
-				<form string="Customer" version="7.0" >
-					<group>
-						<group string="Informasi Dasar">
-							<field name="kode" />
-							<field name="nama" />
-							<field name="telp" />
-							<field name="alamat" />
-							<field name="kota" options="{'no_create': True, 'no_open':True}"/>
-							<field name="rayon" options="{'no_create': True, 'no_open':True}"/>
-						</group>
-						<group string="Informasi Akunting">
-							<field name="npwp" />
-							<field name="syaratpembayaran" options="{'no_create': True, 'no_open':True}"/>
-							<field name="hutang" groups="MMR.akunting"/>
-							<field name="batashutang" groups="MMR.akunting"/>
-						</group>
-					</group>
-					<notebook>
-						<page string="List Rekening">
-							<field name="listrekening"/>
-						</page>	
-						<page string="List Contact Person">
-							<field name="listcp"/>
-						</page>	
-						<page string="Laporan">
-							<field name="laporansales">
-								<tree string="Laporan Sales" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
-									<field name="tanggal" />
-									<field name="sales" />
-									<field name="laporan"/>					
-								</tree>
-							</field>	
-						</page>	
-						<page string="Notes">
-							<field name="notes"/>
-						</page>	
-					</notebook>
-				</form>
-			</field>
-		</record>
+    <data>
 
-		-----------Kota----------
-		<record id="mmr_kota_list" model="ir.ui.view">
-			<field name="name">mmr.kota.list</field>
-			<field name="model">mmr.kota</field>
-			<field name="arch" type="xml">
-				<tree string="Kota" version="7.0">
-					<field name="nama" />
-					<field name="listcustomer"/>
-					<field name="pencapaian" groups="MMR.sales"/>
-					<field name="notes" />
-				</tree>
-			</field>
-		</record>
-		
-		<record id="mmr_kota_form" model="ir.ui.view">
-			<field name="name">mmr.kota.form</field>
-			<field name="model">mmr.kota</field>
-			<field name="arch" type="xml">
-				<form string="Kota" version="7.0" >
-					<group string="Informasi Dasar">
-						<field name="nama" />
-						<field name="pencapaian" groups="MMR.sales"/>
-					</group>
-					<notebook>
-						<page string="List Penjualan">
-							<field name="listpopenjualan">
-								<tree string="Penjualan PO" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
-									<field name="status" />
-									<field name="nomorpo" />
-									<field name="tanggal" />
-									<field name="customer" />
-									<field name="sales" />
-									<field name="bruto" groups="MMR.akunting"/>					
-									<field name="diskon" groups="MMR.akunting"/>
-									<field name="hppembelian" groups="MMR.akunting"/>
-									<field name="pajak" groups="MMR.akunting"/>
-									<field name="netto" groups="MMR.akunting"/>
-									<field name="dibuat" />
-									<field name="disetujui" />
-									<field name="notes" />
-								</tree>
-							</field>	
-						</page>	
-						<page string="List Customer">
-							<field name="listcustomer"/>
-						</page>	
-						<page string="Laporan">
-							<field name="laporansales">
-								<tree string="Laporan Sales" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
-									<field name="tanggal" />
-									<field name="sales" />
-									<field name="customer" />
-									<field name="rayon" />
-									<field name="laporan"/>					
-								</tree>
-							</field>	
-						</page>	
-						<page string="Notes">
-							<field name="notes"/>
-						</page>	
-					</notebook>
-				</form>
-			</field>
-		</record>
-		
-		-----------Rayon----------
-		<record id="mmr_rayon_list" model="ir.ui.view">
-			<field name="name">mmr.rayon.list</field>
-			<field name="model">mmr.rayon</field>
-			<field name="arch" type="xml">
-				<tree string="Rayon" version="7.0">
-					<field name="aktif" />
-					<field name="kode" />
-					<field name="periode" />
-					<field name="listcustomer" />
-					<field name="target" groups="MMR.sales"/>
-					<field name="pencapaian" groups="MMR.sales"/>
-					<field name="notes" />
-				</tree>
-			</field>
-		</record>
-		
-		<record id="mmr_rayon_form" model="ir.ui.view">
-			<field name="name">mmr.rayon.form</field>
-			<field name="model">mmr.rayon</field>
-			<field name="arch" type="xml">
-				<form string="Rayon" version="7.0" >
-					<group string="Informasi Dasar">
-						<field name="kode" />
-						<field name="periode" />
-						<field name="target" groups="MMR.sales"/>
-						<field name="pencapaian" groups="MMR.sales"/>
-						<field name="aktif" />
-					</group>
-					<notebook>
-						<page string="List Penjualan">
-							<field name="listpopenjualan">
-								<tree string="Penjualan PO" version="7.0" create="false" edit="false" delete="false">
-									<field name="status" />
-									<field name="nomorpo" />
-									<field name="tanggal" />
-									<field name="customer" />
-									<field name="sales" />
-									<field name="bruto" groups="MMR.akunting"/>					
-									<field name="diskon" groups="MMR.akunting"/>
-									<field name="hppembelian" groups="MMR.akunting"/>
-									<field name="pajak" groups="MMR.akunting"/>
-									<field name="netto" groups="MMR.akunting"/>
-									<field name="dibuat" />
-									<field name="disetujui" />
-									<field name="notes" />
-								</tree>
-							</field>	
-						</page>
-						<page string="Customer">
-							<field name="listcustomer"/>
-						</page>	
-						<page string="Sales">
-							<field name="listsales"/>
-						</page>	
-						<page string="Laporan">
-							<field name="laporansales">
-								<tree string="Laporan Sales" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
-									<field name="tanggal" />
-									<field name="sales" />
-									<field name="customer" />
-									<field name="kota" />
-									<field name="laporan"/>					
-								</tree>
-							</field>	
-						</page>	
-						<page string="Notes">
-							<field name="notes"/>
-						</page>	
-					</notebook>
-				</form>
-			</field>
-		</record>
-		
-		<record id="mmr_rayon_graph" model="ir.ui.view">
-			<field name="name">mmr.rayon.graph</field>
-			<field name="model">mmr.rayon</field>
-			<field name="arch" type="xml">
-				<graph string="Rayon" type="pivot" stacked="True">
-					<field name="pencapaian" type="row"/>
-				</graph>
-			</field>
-		</record>
-		
-		-----------Daftar Harga Customer----------
-		<record id="mmr_daftarhargacustomer_list" model="ir.ui.view">
-			<field name="name">mmr.daftarhargacustomer.list</field>
-			<field name="model">mmr.daftarhargacustomer</field>
-			<field name="arch" type="xml">
-				<tree string="Daftar Harga Customer" version="7.0">
-					<field name="tanggalefektif" />
-					<field name="customer" />
-					<field name="harga" />
-					<field name="diskon" />
-					<field name="netto" />
-					<field name="notes" />
-				</tree>
-			</field>
-		</record>
-		
-		<record id="mmr_daftarhargacustomer_form" model="ir.ui.view">
-			<field name="name">mmr.daftarhargacustomer.form</field>
-			<field name="model">mmr.daftarhargacustomer</field>
-			<field name="arch" type="xml">
-				<form string="Daftar Harga Customer" version="7.0" >
-					<group>
-						<group string="Informasi Dasar">
-							<field name="customer"  options="{'no_create': True, 'no_open':True}"/>
-							<field name="tanggalefektif" />
-						</group>
-						<group string="Informasi Harga">
-							<field name="harga"/>
-							<field name="diskon"/>
-							<field name="netto"/>
-						</group>
-					</group>
-					<notebook>
-						<page string="Notes">
-							<field name="notes"/>
-						</page>	
-					</notebook>
-				</form>
-			</field>
-		</record>
-		
-		
-	</data>
+        -----------Customer----------
+        <record id="mmr_customer_list" model="ir.ui.view">
+            <field name="name">mmr.customer.list</field>
+            <field name="model">mmr.customer</field>
+            <field name="arch" type="xml">
+                <tree string="Customer" version="7.0">
+                    <field name="kode" />
+                    <field name="nama" />
+                    <field name="alamat" />
+                    <field name="kota" />
+                    <field name="rayon" />
+                    <field name="telp" />
+                    <field name="npwp" />
+                    <field name="syaratpembayaran" />
+                    <field name="hutang" groups="MMR.akunting"/>
+                    <field name="batashutang" groups="MMR.otoritas"/>
+                    <field name="notes" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mmr_customer_form" model="ir.ui.view">
+            <field name="name">mmr.customer.form</field>
+            <field name="model">mmr.customer</field>
+            <field name="arch" type="xml">
+                <form string="Customer" version="7.0" >
+                    <group>
+                        <group string="Informasi Dasar">
+                            <field name="kode" />
+                            <field name="nama" />
+                            <field name="telp" />
+                            <field name="alamat" />
+                            <field name="kota" options="{'no_create': True, 'no_open':True}"/>
+                            <field name="rayon" options="{'no_create': True, 'no_open':True}"/>
+                        </group>
+                        <group string="Informasi Akunting">
+                            <field name="npwp" />
+                            <field name="syaratpembayaran" options="{'no_create': True, 'no_open':True}"/>
+                            <field name="hutang" groups="MMR.akunting"/>
+                            <field name="batashutang" groups="MMR.akunting"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="List Rekening">
+                            <field name="listrekening"/>
+                        </page>
+                        <page string="List Contact Person">
+                            <field name="listcp"/>
+                        </page>
+                        <page string="Laporan">
+                            <field name="laporansales">
+                                <tree string="Laporan Sales" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+                                    <field name="tanggal" />
+                                    <field name="sales" />
+                                    <field name="laporan"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        -----------Kota----------
+        <record id="mmr_kota_list" model="ir.ui.view">
+            <field name="name">mmr.kota.list</field>
+            <field name="model">mmr.kota</field>
+            <field name="arch" type="xml">
+                <tree string="Kota" version="7.0">
+                    <field name="nama" />
+                    <field name="listcustomer"/>
+                    <field name="pencapaian" groups="MMR.sales"/>
+                    <field name="notes" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mmr_kota_form" model="ir.ui.view">
+            <field name="name">mmr.kota.form</field>
+            <field name="model">mmr.kota</field>
+            <field name="arch" type="xml">
+                <form string="Kota" version="7.0" >
+                    <group string="Informasi Dasar">
+                        <field name="nama" />
+                        <field name="pencapaian" groups="MMR.sales"/>
+                    </group>
+                    <notebook>
+                        <page string="List Penjualan">
+                            <field name="listpopenjualan">
+                                <tree string="Penjualan PO" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+                                    <field name="status" />
+                                    <field name="nomorpo" />
+                                    <field name="tanggal" />
+                                    <field name="customer" />
+                                    <field name="sales" />
+                                    <field name="bruto" groups="MMR.akunting"/>
+                                    <field name="diskon" groups="MMR.akunting"/>
+                                    <field name="hppembelian" groups="MMR.akunting"/>
+                                    <field name="pajak" groups="MMR.akunting"/>
+                                    <field name="netto" groups="MMR.akunting"/>
+                                    <field name="dibuat" />
+                                    <field name="disetujui" />
+                                    <field name="notes" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="List Customer">
+                            <field name="listcustomer"/>
+                        </page>
+                        <page string="Laporan">
+                            <field name="laporansales">
+                                <tree string="Laporan Sales" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+                                    <field name="tanggal" />
+                                    <field name="sales" />
+                                    <field name="customer" />
+                                    <field name="rayon" />
+                                    <field name="laporan"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        -----------Rayon----------
+        <record id="mmr_rayon_list" model="ir.ui.view">
+            <field name="name">mmr.rayon.list</field>
+            <field name="model">mmr.rayon</field>
+            <field name="arch" type="xml">
+                <tree string="Rayon" version="7.0">
+                    <field name="aktif" />
+                    <field name="kode" />
+                    <field name="periode" />
+                    <field name="listcustomer" />
+                    <field name="target" groups="MMR.sales"/>
+                    <field name="pencapaian" groups="MMR.sales"/>
+                    <field name="notes" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mmr_rayon_form" model="ir.ui.view">
+            <field name="name">mmr.rayon.form</field>
+            <field name="model">mmr.rayon</field>
+            <field name="arch" type="xml">
+                <form string="Rayon" version="7.0" >
+                    <group string="Informasi Dasar">
+                        <field name="kode" />
+                        <field name="periode" />
+                        <field name="target" groups="MMR.sales"/>
+                        <field name="pencapaian" groups="MMR.sales"/>
+                        <field name="aktif" />
+                    </group>
+                    <notebook>
+                        <page string="List Penjualan">
+                            <field name="listpopenjualan">
+                                <tree string="Penjualan PO" version="7.0" create="false" edit="false" delete="false">
+                                    <field name="status" />
+                                    <field name="nomorpo" />
+                                    <field name="tanggal" />
+                                    <field name="customer" />
+                                    <field name="sales" />
+                                    <field name="bruto" groups="MMR.akunting"/>
+                                    <field name="diskon" groups="MMR.akunting"/>
+                                    <field name="hppembelian" groups="MMR.akunting"/>
+                                    <field name="pajak" groups="MMR.akunting"/>
+                                    <field name="netto" groups="MMR.akunting"/>
+                                    <field name="dibuat" />
+                                    <field name="disetujui" />
+                                    <field name="notes" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Customer">
+                            <field name="listcustomer"/>
+                        </page>
+                        <page string="Sales">
+                            <field name="listsales"/>
+                        </page>
+                        <page string="Laporan">
+                            <field name="laporansales">
+                                <tree string="Laporan Sales" version="7.0" create="false" edit="false" delete="false" default_order="tanggal desc">
+                                    <field name="tanggal" />
+                                    <field name="sales" />
+                                    <field name="customer" />
+                                    <field name="kota" />
+                                    <field name="laporan"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="mmr_rayon_graph" model="ir.ui.view">
+            <field name="name">mmr.rayon.graph</field>
+            <field name="model">mmr.rayon</field>
+            <field name="arch" type="xml">
+                <graph string="Rayon" type="pivot" stacked="True">
+                    <field name="pencapaian" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        -----------Rayon Dummy----------
+        <record id="mmr_rayon_dummy_list" model="ir.ui.view">
+            <field name="name">mmr.rayon.dummy.list</field>
+            <field name="model">mmr.rayon_dummy</field>
+            <field name="arch" type="xml">
+                <tree string="Rayon" version="7.0" editable="bottom">
+                    <field name="kode" />
+                    <field name="listkota" widget="many2many_tags"/>
+                    <field name="listcustomer" widget="many2many_tags"/>
+                    <field name="listpopenjualan" widget="many2many_tags" invisible="1"/>
+                    <field name="target" groups="MMR.sales"/>
+                    <field name="pencapaian" groups="MMR.sales"/>
+                    <field name="notes" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mmr_rayon_dummy_form" model="ir.ui.view">
+            <field name="name">mmr.rayon.dummy.form</field>
+            <field name="model">mmr.rayon_dummy</field>
+            <field name="arch" type="xml">
+                <form string="Rayon" version="7.0" >
+                    <group string="Informasi Dasar">
+                        <field name="kode" />
+                        <field name="target" groups="MMR.sales"/>
+                        <field name="pencapaian" groups="MMR.sales"/>
+                    </group>
+                    <notebook>
+                        <page string="List Penjualan">
+                            <field name="listpopenjualan">
+                                <tree string="Penjualan PO" version="7.0" create="false" edit="false" delete="false">
+                                    <field name="status" />
+                                    <field name="nomorpo" />
+                                    <field name="tanggal" />
+                                    <field name="customer" />
+                                    <field name="sales" />
+                                    <field name="bruto" groups="MMR.akunting"/>
+                                    <field name="diskon" groups="MMR.akunting"/>
+                                    <field name="hppembelian" groups="MMR.akunting"/>
+                                    <field name="pajak" groups="MMR.akunting"/>
+                                    <field name="netto" groups="MMR.akunting"/>
+                                    <field name="dibuat" />
+                                    <field name="disetujui" />
+                                    <field name="notes" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Customer">
+                            <field name="listcustomer"/>
+                        </page>
+                        <page string="Sales">
+                            <field name="listsales"/>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        -----------Template Rayon----------
+        <record id="mmr_template_rayon_list" model="ir.ui.view">
+            <field name="name">mmr.template.rayon.list</field>
+            <field name="model">mmr.template_rayon</field>
+            <field name="arch" type="xml">
+                <tree string="Template Rayon" version="7.0">
+                    <field name="aktif" />
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mmr_template_rayon_form" model="ir.ui.view">
+            <field name="name">mmr.template.rayon.form</field>
+            <field name="model">mmr.template_rayon</field>
+            <field name="arch" type="xml">
+                <form string="Rayon" version="7.0" >
+                    <header>
+                        <button name="terapkanrayon" string="Terapkan Rayon" type="object" groups="MMR.otoritas"  class="oe_highlight"/>
+                    </header>
+                    <group string="Informasi Dasar">
+                        <field name="aktif" />
+                        <field name="name" />
+                    </group>
+                    <notebook>
+                        <page string="List Rayon">
+                            <field name="rayon_ids"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        -----------Simulasi Rayon----------
+        <record id="simulasi_rayon_view" model="ir.ui.view">
+            <field name="name">Simulasi Rayon View</field>
+            <field name="model">mmr.simulasi_rayon</field>
+            <field name="arch" type="xml">
+                <form string="Simulasi Rayon">
+                    <header>
+                        <button name="buatrayon" string="Buat Rayon" type="object" groups="MMR.otoritas"  class="oe_highlight"/>
+                    </header>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="template_rayon"/>
+                        <field name="rayon"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        -----------Daftar Harga Customer----------
+        <record id="mmr_daftarhargacustomer_list" model="ir.ui.view">
+            <field name="name">mmr.daftarhargacustomer.list</field>
+            <field name="model">mmr.daftarhargacustomer</field>
+            <field name="arch" type="xml">
+                <tree string="Daftar Harga Customer" version="7.0">
+                    <field name="tanggalefektif" />
+                    <field name="customer" />
+                    <field name="harga" />
+                    <field name="diskon" />
+                    <field name="netto" />
+                    <field name="notes" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="mmr_daftarhargacustomer_form" model="ir.ui.view">
+            <field name="name">mmr.daftarhargacustomer.form</field>
+            <field name="model">mmr.daftarhargacustomer</field>
+            <field name="arch" type="xml">
+                <form string="Daftar Harga Customer" version="7.0" >
+                    <group>
+                        <group string="Informasi Dasar">
+                            <field name="customer"  options="{'no_create': True, 'no_open':True}"/>
+                            <field name="tanggalefektif" />
+                        </group>
+                        <group string="Informasi Harga">
+                            <field name="harga"/>
+                            <field name="diskon"/>
+                            <field name="netto"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
 </openerp>

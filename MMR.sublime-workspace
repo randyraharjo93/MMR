@@ -1,0 +1,1509 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"jumlah",
+				"jumlahdikirim"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
+				"sem",
+				"semuapenjualanfaktur"
+			],
+			[
+				"tanpa",
+				"tanpafaktur"
+			],
+			[
+				"penjualansj",
+				"penjualansj"
+			],
+			[
+				"view",
+				"view_id"
+			],
+			[
+				"nila",
+				"nilaisetelahkoma"
+			],
+			[
+				"Nilai",
+				"nilaisebelumkoma"
+			],
+			[
+				"total",
+				"total_terbilang"
+			],
+			[
+				"penjualan",
+				"penjualansj"
+			],
+			[
+				"nilai",
+				"nilaisebelumkoma"
+			],
+			[
+				"fa",
+				"False	(instance)"
+			],
+			[
+				"s",
+				"stokid"
+			],
+			[
+				"list",
+				"listproduk2"
+			],
+			[
+				"semua",
+				"semuahasilsearch	(forstmt)"
+			],
+			[
+				"D",
+				"DEFAULT_SERVER_DATE_FORMAT	(instance)"
+			],
+			[
+				"a",
+				"akundetil"
+			],
+			[
+				"mut",
+				"multi	(function)"
+			],
+			[
+				"tan",
+				"tanggalterbit"
+			],
+			[
+				"idak",
+				"idakun"
+			],
+			[
+				"akun",
+				"akundetil	(statement)"
+			],
+			[
+				"jurnal",
+				"jurnaldisesuaikan	(statement)"
+			],
+			[
+				"many2",
+				"many2one	(class)"
+			],
+			[
+				"all",
+				"all_fixed_days	(forstmt)"
+			],
+			[
+				"fal",
+				"fal_ending_date"
+			],
+			[
+				"fal_",
+				"fal_fixed_days	(statement)"
+			],
+			[
+				"in_",
+				"in_invoice_forecast"
+			],
+			[
+				"in",
+				"in_sales_forecast"
+			],
+			[
+				"holiday",
+				"holiday_remaining	(statement)"
+			],
+			[
+				"time",
+				"timedelta	(class)"
+			],
+			[
+				"job",
+				"job_id"
+			],
+			[
+				"contr",
+				"contract"
+			],
+			[
+				"empl",
+				"employee_id"
+			],
+			[
+				"emp",
+				"employee"
+			],
+			[
+				"depar",
+				"department_id"
+			],
+			[
+				"pro",
+				"probability"
+			],
+			[
+				"team",
+				"team_id"
+			],
+			[
+				"com",
+				"company_list	(statement)"
+			],
+			[
+				"att",
+				"attribute"
+			],
+			[
+				"oppor",
+				"opportunity_id"
+			],
+			[
+				"user",
+				"user_timezone	(statement)"
+			],
+			[
+				"nama",
+				"namaproduk"
+			],
+			[
+				"tim",
+				"timesheet_id	(statement)"
+			],
+			[
+				"ti",
+				"timesheet_id	(statement)"
+			],
+			[
+				"timeshee",
+				"timesheet_id	(statement)"
+			],
+			[
+				"accou",
+				"account_analytic_list	(statement)"
+			],
+			[
+				"acco",
+				"account_analytic_list	(statement)"
+			],
+			[
+				"selec",
+				"selection"
+			],
+			[
+				"parent",
+				"parent_id"
+			],
+			[
+				"web",
+				"website"
+			],
+			[
+				"re",
+				"record_options"
+			],
+			[
+				"recor",
+				"record_options"
+			],
+			[
+				"vale",
+				"values	(param)"
+			],
+			[
+				"tracking",
+				"tracking_value_ids"
+			],
+			[
+				"c",
+				"company_ids"
+			],
+			[
+				"Many2",
+				"Many2many"
+			],
+			[
+				"fal_cem",
+				"fal_crm_project"
+			],
+			[
+				"gleize",
+				"gleize_field_ext"
+			],
+			[
+				"st",
+				"string"
+			],
+			[
+				"attrib",
+				"attributes"
+			],
+			[
+				"fal_tech",
+				"fal_technical_contact"
+			],
+			[
+				"fal_t",
+				"fal_technical_contact"
+			],
+			[
+				"par",
+				"partner_id"
+			],
+			[
+				"at",
+				"attrs"
+			],
+			[
+				"req",
+				"required"
+			],
+			[
+				"child",
+				"child_ids"
+			],
+			[
+				"paren",
+				"parent_id"
+			],
+			[
+				"pa",
+				"parent_id"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"get",
+				"get_context"
+			],
+			[
+				"partner",
+				"partner_id"
+			],
+			[
+				"parnter",
+				"partner_id"
+			],
+			[
+				"le",
+				"margin-left"
+			],
+			[
+				"col",
+				"col-md-3"
+			],
+			[
+				"survey",
+				"survey_form_question"
+			],
+			[
+				"t-",
+				"t-call"
+			],
+			[
+				"id",
+				"parent_id"
+			],
+			[
+				"mu",
+				"multi"
+			],
+			[
+				"fal_account_per",
+				"fal_account_periods_lock	(class)"
+			],
+			[
+				"fis",
+				"fiscalyear_id"
+			],
+			[
+				"compan",
+				"company_id"
+			],
+			[
+				"g",
+				"gleize_web_ext"
+			],
+			[
+				"field",
+				"field_name	(forstmt)"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"bor",
+				"border-style"
+			],
+			[
+				"border-riht",
+				"border-right-width"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"form",
+				"form_two"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"r",
+				"row"
+			],
+			[
+				"text-al",
+				"text-align"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "\n\nSearching 3083 files for \"fields.many2one(\"mmr.rayon\"\"\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\customer.py:\n   29  		'nama': fields.char(\"Nama\", required=True, size=27),\n   30  		'alamat': fields.char(\"Alamat\", size=60),\n   31: 		'rayon': fields.many2one(\"mmr.rayon\", \"Rayon\", required=True, domain=\"[('aktif', '=', True)]\"),\n   32  		'kota': fields.many2one(\"mmr.kota\", \"Kota\", required=True),\n   33  		'telp': fields.char(\"Telepon\"),\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\penjualan.py:\n  353          'nomorpocustomer': fields.char(\"Nomor PO Customer\", help=\"Nomor PO dari Customer\"), \n  354          'customer': fields.many2one(\"mmr.customer\", \"Customer\", required=True), \n  355:         'rayon': fields.many2one(\"mmr.rayon\", \"Rayon\", domain=\"[('aktif', '=', True)]\"), \n  356          'kota': fields.many2one(\"mmr.kota\", \"Kota\"), \n  357          'tanggal': fields.date(\"Tanggal Terbit\", required=True), \n  ...\n  499          'customerpo': fields.many2one(\"mmr.customer\", \"Customer PO\", related=\"idpenjualanpo.customer\"),\n  500          'sales': fields.many2one(\"mmr.sales\", \"Sales PO\", related='idpenjualanpo.sales'),\n  501:         'rayon': fields.many2one(\"mmr.rayon\", \"Rayon PO\", related='idpenjualanpo.rayon', domain=\"[('aktif', '=', True)]\"),\n  502          'kota': fields.many2one(\"mmr.kota\", \"Kota PO\", related='idpenjualanpo.kota'), \n  503          'idpenjualanpo': fields.many2one(\"mmr.penjualanpo\", \"idpopenjualan\", ondelete='cascade'), \n  ...\n  972          'idpenjualanpo':fields.many2one(\"mmr.penjualanpo\", \"IDPOPENJUALAN\"),    \n  973          'customer': fields.many2one(\"mmr.customer\", \"Customer\", related=\"idpenjualanpo.customer\", required=True), \n  974:         'rayon': fields.many2one(\"mmr.rayon\", \"Rayon\", related=\"idpenjualanpo.rayon\", domain=\"[('aktif', '=', True)]\"), \n  975          'kota': fields.many2one(\"mmr.kota\", \"Kota\", related=\"idpenjualanpo.kota\"), \n  976          'teknisi': fields.boolean(\"Teknisi(P)\", help=\"Centang apabila alat dirawat Teknisi.\"), \n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\sales.py:\n   86          'sales': fields.many2one(\"mmr.sales\", \"Sales\", required=True),\n   87          'customer' : fields.many2one(\"mmr.customer\", \"Customer\", required=True),\n   88:         'rayon' : fields.many2one(\"mmr.rayon\",\"Rayon\", domain=\"[('aktif', '=', True)]\"),\n   89          'kota' : fields.many2one(\"mmr.kota\",\"Kota\"),\n   90          'tanggal' : fields.date(\"Tanggal Kunjungan\", required=True),\n   ..\n  335      _columns = {\n  336          'customer': fields.many2one(\"mmr.customer\", \"Customer\"),\n  337:         'rayon': fields.many2one(\"mmr.rayon\", \"Rayon\", domain=\"[('aktif', '=', True)]\"),\n  338          'kota': fields.many2one(\"mmr.kota\", \"Kota\"),\n  339          'starttanggal' : fields.date(\"Start\"),\n\nC:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\stok.py:\n  304          'customer': fields.many2one(\"mmr.customer\", \"Customer\", related=\"idpenjualanpo.customer\"),\n  305          'teknisi': fields.boolean(\"Teknisi (P)\"),\n  306:         'rayon': fields.many2one(\"mmr.rayon\", \"Rayon\", related=\"idpenjualanpo.rayon\", domain=\"[('aktif', '=', True)]\"),\n  307          'tanggal': fields.date(\"Tanggal\", related=\"idpenjualansj.tanggalterbit\"),\n  308          'merk': fields.many2one(\"mmr.merk\", \"Merk\", related=\"idstok.merk\", store=True),\n\n7 matches across 4 files\n",
+			"settings":
+			{
+				"buffer_size": 3414,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "penjualan.py",
+			"settings":
+			{
+				"buffer_size": 78577,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "customer.py",
+			"settings":
+			{
+				"buffer_size": 7305,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/penjualan.xml",
+			"settings":
+			{
+				"buffer_size": 48045,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 150.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 464.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/customer.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/penjualan.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/sales.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/stok.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/account/account.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/customer.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/menu/menu_master.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/penjualan.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/account/views/report_agedpartnerbalance.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/account/views/account.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/pembelian.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/pembelian.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/pembayaran.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/akun.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/akun.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanneracareport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanneracalajurdisesuaikanreport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanlrreport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanbukubesarreport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/cetakbackupreport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/fakturpenjualanreport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/laporanneracalajurreport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/account/account_invoice_view.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/crm_partner_assign/report/crm_lead_report_view.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/sjpenjualanreport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/sales.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/pembayaran.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/produk.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/popembelianreport.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/report/popembelianreporttanpaharga.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/smart.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/supplier.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/produk.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/smart.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/stok.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/MMR/view/groups.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/account/account_invoice.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/base/ir/ir_ui_view.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/base/ir/ir_actions.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/account/account_installer.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/base/ir/ir_ui_menu_view.xml",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/addons/decimal_precision/decimal_precision.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account/models/account_invoice.py",
+		"/C/Program Files (x86)/Odoo 8.0-20150121/server/openerp/osv/fields.py",
+		"/G/Software/Work/falinwa_module/fal_convention/wizard/fal_convention_wizard_view.xml",
+		"/G/Software/Work/falinwa_module/fal_convention/wizard/fal_convention_wizard.py",
+		"/G/Software/Work/falinwa_module/fal_convention/models/fal_convention.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/hr_holidays/hr_holidays.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/base/res/res_company.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/auth_ldap/users_ldap.py",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/models/sale.py",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/data/scheduler.xml",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/data/data.xml",
+		"/G/Software/Work/falinwa_module/fal_convention/__openerp__.py",
+		"/G/Software/Work/falinwa_branch/fal_convention/__openerp__.py",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/models/hr.py",
+		"/G/Software/Work/falinwa_branch/fal_convention/__init__.py",
+		"/G/Software/Work/falinwa_module/fal_convention/__init__.py",
+		"/G/Software/Work/falinwa_module/fal_convention/security/ir.model.access.csv",
+		"/G/Software/Work/falinwa_module/fal_weekday/security/ir.model.access.csv",
+		"/G/Software/Work/falinwa_module/fal_weekday/__openerp__.py",
+		"/G/Software/Work/falinwa_module/fal_convention/views/fal_convention_view.xml",
+		"/G/Software/Work/falinwa_module/fal_bom_reader/wizard/bom_reader_wizard.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/sales_team/static/src/xml/sales_team_dashboard.xml",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/static/src/xml/gleize_field_ext.xml",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/sales_team/sales_team.py",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/security/ir.model.access.csv",
+		"/G/Software/Work/falinwa_module/gleize_leave_ext/views/hr_holidays_view.xml",
+		"/G/Software/Work/falinwa_module/fal_weekday/models/fal_weekday.py",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/views/sale_view.xml",
+		"/G/Software/Work/falinwa_module/fal_weekday/data/weekday_data.xml",
+		"/G/Software/Work/falinwa_module/fal_convention/wizard/__init__.py",
+		"/G/Software/Work/falinwa_module/fal_convention/models/__init__.py",
+		"/G/Software/Work/falinwa_module/fal_deduplicate_leads/wizard/fal_deduplicate_leads_wizard.py",
+		"/G/Software/Work/falinwa_module/fal_easy_reporting/wizard/easy_exporting_wizard.py",
+		"/G/Software/Work/falinwa_module/fal_invoice_balance_date/wizard/invoice_balance_wizard.py",
+		"/G/Software/Work/falinwa_module/l10n_cn_fapiao/fapiao.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account/models/res_config.py",
+		"/G/Software/Work/falinwa_module/procurement_request/wizard/procurement_request_wizard.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/hr_holidays/hr_holidays_view.xml",
+		"/G/Software/Work/falinwa_module/fal_bom_reader/wizard/bom_reader_wizard_view.xml",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/__openerp__.py",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/views/hr_view.xml",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/website_sale_options/views/templates.xml",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/website_sale_digital/views/website_sale_digital_view.xml",
+		"/G/Software/Work/falinwa_module/gleize_leave_ext/models/hr_holidays.py",
+		"/G/Software/Work/falinwa_module/fal_convention/wizard/convention_line_wizard.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account/models/account.py",
+		"/G/Software/Work/falinwa_module/fal_convention_company/__openerp__.py",
+		"/G/Software/Work/falinwa_module/fal_convention_company/views/fal_convention_view.xml",
+		"/G/Software/Work/falinwa_module/fal_convention_company/models/fal_convention.py",
+		"/G/Software/Work/falinwa_module/fal_convention_company/models/__init__.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account/report/account_invoice_report_view.xml",
+		"/G/Software/Work/falinwa_module/fal_weekday/models/__init__.py",
+		"/G/Software/Work/falinwa_module/fal_convention/data/scheduler.xml",
+		"/G/Software/Work/falinwa_module/gleize_leave_ext/__openerp__.py",
+		"/G/Software/Work/falinwa_module/gleize_leave_ext/data/scheduler.xml",
+		"/G/Software/Work/falinwa_module/fal_france_leave_ext/__init__.py",
+		"/G/Software/Work/falinwa_module/fal_france_leave_ext/__openerp__.py",
+		"/G/Software/Work/falinwa_module/fal_france_leave_ext/data/scheduler.xml",
+		"/G/Software/Work/falinwa_module/fal_france_leave_ext/models/hr_holidays.py",
+		"/G/Software/Work/falinwa_module/fal_france_leave_ext/views/hr_holidays_view.xml",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/analytic/models/analytic.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account_voucher/account_voucher.py",
+		"/G/Software/Work/falinwa_module/fal_france_leave_ext/data/hr_holidays_data.xml",
+		"/G/Software/Work/falinwa_module/fal_leave_timesheet/models/hr_holidays.py",
+		"/G/Software/Work/falinwa_module/fal_france_leave_ext/models/__init__.py",
+		"/G/Software/Work/falinwa_module/fal_crm_probability_ext/models/crm.py",
+		"/G/Software/Work/falinwa_branch/gleize_field_ext/views/sale_view.xml",
+		"/G/Software/Work/falinwa_module/fal_invoice_reminder/data/cron_configuration.xml",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/hr_holidays/hr_holidays_workflow.xml",
+		"/G/Software/Work/falinwa_branch/gleize_field_ext/security/security.xml",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account/models/partner.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/base/res/res_partner.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/hr/hr.py",
+		"/G/Software/Work/falinwa_module/fal_crm_project/models/crm_lead.py",
+		"/G/Software/Work/falinwa_module/gleize_field_ext/security/security.xml",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/base/res/res_users.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/hr_contract/hr_contract.py",
+		"/G/Software/Work/falinwa_branch/fal_sql_query_field_store/models/account.py",
+		"/G/Software/Work/falinwa_branch/analytic_multicurrency/analytic.py",
+		"/C/Program Files (x86)/Odoo 9.0-20160210/server/openerp/addons/account/models/account_move.py",
+		"/G/Software/Work/falinwa_branch/account_budget/account_budget.py",
+		"/G/Software/Work/falinwa_module/project_long_term/project_long_term.py",
+		"/G/Software/Work/falinwa_module/hpg_field_ext/project.py",
+		"/G/Software/Work/falinwa_module/falinwa_field_ext/models/account.py",
+		"/G/Software/Work/falinwa_module/fal_project_summary/models/project.py",
+		"/G/Software/Work/falinwa_module/fal_project_ext/models/project.py"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 91.0,
+		"where_history":
+		[
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR\\report,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MM,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons,C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR,C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addonsde,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons, *.xml, *.py",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons, *.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons, *.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons, *.py,",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons, *.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR, *.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module,*.py,*.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module,*.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module,*.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module,*.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, G:\\Software\\Work\\falinwa_branch,*.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, G:\\Software\\Work\\falinwa_branch,*.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py, *.xml",
+			"C:\\Program Files (x86)\\Odoo 8.0-20160503\\server\\openerp\\addons, C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py,",
+			"G:\\Software\\Work\\falinwa_module, *.py,",
+			"G:\\Software\\Work\\falinwa_module, *.py, *.xml",
+			"G:\\Software\\Work\\falinwa_branch, *.py,",
+			"G:\\Software\\Work\\falinwa_branch, *.xml,",
+			"G:\\Software\\Work\\falinwa_branch, *.py,",
+			"G:\\Software\\Work\\falinwa_branch, *.py, *.xml",
+			"G:\\Software\\Work\\falinwa_branch, *.py,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, G:\\Software\\Work\\falinwa_module, G:\\Software\\Work\\falinwa_branch, *.py,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, G:\\Software\\Work\\falinwa_module, *.py,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, G:\\Software\\Work\\falinwa_module, *.xml,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, G:\\Software\\Work\\falinwa_module, *.xml, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, G:\\Software\\Work\\falinwa_module, *.xml, &.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.js",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.js",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server, C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.js",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server, C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server, C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp, C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py, *.xml, *.csv",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.js",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module,",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.js",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.xml",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.py",
+			"C:\\Program Files (x86)\\Odoo 9.0-20160210\\server\\openerp\\addons, G:\\Software\\Work\\falinwa_module, *.js"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"function",
+			"_set_statussj",
+			"_set_status",
+			"function",
+			"_hitung_terkirimsemua",
+			"jumlahdikirim",
+			"terkirimsemua",
+			"function",
+			"Lengkap Dikirim",
+			"mmr.penjualansj",
+			"penjualansj",
+			"function",
+			"mmr.rayon",
+			"fields.many2one(\"mmr.rayon\"",
+			"domain",
+			"fields.many2one(\"mmr.rayon\"",
+			"\"mmr.rayon\"",
+			"mmr.rayon",
+			"'mmr.rayon'",
+			"fields.one2many('mmr.rayon'",
+			"fields.one2many(\"mmr.rayon\"",
+			"mmr.rayon",
+			"desc",
+			"ir.actions.act_window",
+			"multi_action_master_mmr_penjualansj",
+			"mmr_penjualansj_list_no_edit",
+			"'&'",
+			"<filter name=",
+			"<filter name=\"akun_aktif\" string=\"Aktif\" help=\"Akun Aktif\" domain=\"[('aktif','=',True)]\"/>",
+			"<filter name=",
+			"search",
+			"_set_statusfaktur",
+			"disetujui",
+			"valid",
+			"_set_status",
+			"aktif",
+			"mmr.aturanakun",
+			"mmr.biaya",
+			"('model', '=', namamodel)",
+			"mmr.aturanakun",
+			"aturanakun",
+			"nomorakun",
+			"'nomorakun'",
+			"8.4",
+			"1.1.05",
+			"5.3",
+			"5.2",
+			"5.1",
+			"4.3",
+			"4.2",
+			"4.1",
+			"filter",
+			"view_id",
+			"view_report_crm_lead_assign_graph",
+			"action_report_crm_lead_assign_graph",
+			"view_report_crm_lead_assign_graph",
+			"pivot",
+			"print",
+			"Terbilang",
+			"_hitung_harga",
+			"nilaisetelahkoma",
+			"nilaisebelumkoma",
+			"_hitung_harga",
+			"“",
+			",",
+			"”",
+			"\"",
+			"penjualanfaktur",
+			"_get_totalbayar",
+			"idfakturpembelian",
+			"pembayaranpembeliandetil",
+			"	",
+			"execute",
+			"mmr.biaya",
+			"	",
+			"laporanmarketing",
+			"tanggal2",
+			"tanggal",
+			"bebasexpdate",
+			"tanpafaktur",
+			"hargabebas",
+			"tukarbarang",
+			"tanpafaktur",
+			"stokkhusus",
+			"pokhusus",
+			"mmr.penjualanpo",
+			"	",
+			"mmr.laporanmarketing",
+			"semuaakun",
+			"mmr.laporanmarketing",
+			"mmr.laporansales",
+			"save",
+			"stokdipakai",
+			"permintaan",
+			"mmr.penjualansjdetil",
+			"validasipenjualansj",
+			"penjualansjdetil",
+			"listproduk2",
+			"yang Akan Dikeluarkan Tidak Sesua",
+			"Tidak sesuai",
+			"print",
+			"penjualanfaktur",
+			"search",
+			"'penjualanfaktur'",
+			"SUPERUSER",
+			"        ",
+			",  ",
+			",",
+			" :",
+			"def create",
+			"default",
+			"	",
+			"float",
+			"integer",
+			"/",
+			"*",
+			"nilaikredit",
+			"self.jurnalpenyesuaian",
+			"self.tahun",
+			"self.bulan",
+			"self.",
+			"akundetildummy",
+			"mmr.akundummy",
+			"self.bulan",
+			"tanggal",
+			"int",
+			"nilaidebit",
+			"saldoawal"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"8.01.03",
+			"1.01.08",
+			"5.01.03",
+			"5.01.02",
+			"5.01.01",
+			"4.01.03",
+			"4.01.02",
+			"4.01.01",
+			"\"",
+			", ",
+			"\"",
+			"    ",
+			"tanggal",
+			"tanggal2",
+			"    ",
+			"semuaakundetil",
+			", ",
+			":",
+			"    ",
+			"tahun",
+			"bulan",
+			"akundetil_id",
+			").date()",
+			"datetime",
+			": ",
+			"semuaakundetilkredit",
+			": ",
+			"akun",
+			", ",
+			"    ",
+			":",
+			", ",
+			"string",
+			"    ",
+			"fal_net_margin",
+			"fal_planned_revenue",
+			"fal_gross_margin",
+			"    ",
+			"'fal_stage_in_qualification'",
+			"gleize_website_ext"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3414,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										269,
+										296
+									],
+									[
+										760,
+										787
+									],
+									[
+										1205,
+										1232
+									],
+									[
+										1751,
+										1778
+									],
+									[
+										2318,
+										2345
+									],
+									[
+										2651,
+										2678
+									],
+									[
+										3101,
+										3128
+									],
+									[
+										3414,
+										3414
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								2,
+								2
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"default_dir": "C:\\Program Files (x86)\\Odoo 8.0-20150121\\server\\openerp\\addons\\MMR",
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 40,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ 	].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 486.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "penjualan.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 78577,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								36659,
+								36667
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										36735,
+										36736
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										36667,
+										36668
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 11275.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "customer.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7305,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4382,
+								4382
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1814.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "view/penjualan.xml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 48045,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16999,
+								16999
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										16999,
+										17000
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										16971,
+										16972
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6893.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "MMR.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"fal_leave_timesheethr_holida",
+				"falinwa_module\\fal_leave_timesheet\\models\\hr_holidays.py"
+			],
+			[
+				"fal_total_amount_hkd_storemodelsaccount_invoice",
+				"falinwa_branch\\fal_total_amount_hkd_store\\models\\account_invoice.py"
+			],
+			[
+				"gleize",
+				"falinwa_module\\gleize_field_ext\\static\\src\\js\\gleize_field_ext.js"
+			],
+			[
+				"sale_timesheetsale_timesheet.py",
+				"addons\\sale_timesheet\\models\\sale_timesheet.py"
+			],
+			[
+				"crmcrm_lead_view",
+				"addons\\crm\\crm_lead_view.xml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 357.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
