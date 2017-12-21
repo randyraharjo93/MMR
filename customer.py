@@ -54,7 +54,7 @@ class mmr_customer(osv.osv):
         return super(mmr_customer,self).write(cr, uid, ids, vals, context=context)
 
     _defaults = {
-                'batashutang' : 50000000,
+                'batashutang' : 10000000,
                 }
 
 mmr_customer()

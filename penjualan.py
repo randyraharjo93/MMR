@@ -1289,7 +1289,10 @@ def validasipenjualanpo(self, cr, uid, id, context=None):
     for semuapembayaran in pembayaranpenjualanClass.browse(cr, uid, pembayaranpenjualanClass.search(cr, uid, [('customer', '=', thisObj.customer.id)])):
         total-=semuapembayaran.bayar
 
-    if total > customerobj.batashutang:
+    totalpoini = thisObj.netto
+    if total > 0:
+        totalpoini = 0
+    if (total + totalpoini) > customerobj.batashutang:
         raise osv.except_osv(_('Tidak Dapat Melanjutkan'), _("Melebihi Batas Piutang Kepada Customer!"))
 
     # Pastikan apabila menukar barang, barang yang ditukar sama, dan jumlahnya sama

@@ -406,6 +406,8 @@ class mmr_laporanstok(osv.osv):
                 for semuastok in kartustok:
                     if semuastok[0][0:2] == "in":
                         stokobj = self.env['mmr.stok'].browse(int(semuastok[0][2:]))
+                        print ('stok mana', stokobj)
+                        print ('harga', stokobj.harga)
                         jumlah += stokobj.debit
                         nilai += round(stokobj.harga * stokobj.debit, 2) - round(round(stokobj.harga * stokobj.debit, 2) * stokobj.diskon / 100, 2)
                         self.laporanstokdetil += self.laporanstokdetil.new({
