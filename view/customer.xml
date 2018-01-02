@@ -157,8 +157,11 @@
                     <group string="Informasi Dasar">
                         <field name="kode" />
                         <field name="periode" />
+                        <field name="parent_id"/>
                         <field name="target" groups="MMR.sales"/>
+                        <field name="targetkumulatif" groups="MMR.sales"/>
                         <field name="pencapaian" groups="MMR.sales"/>
+                        <field name="pencapaiankumulatif" groups="MMR.sales"/>
                         <field name="aktif" />
                     </group>
                     <notebook>

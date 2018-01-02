@@ -1,6 +1,6 @@
 <openerp>
 	<data>
-		
+
 		-----------PenjualanPO----------
 		<record id="mmr_penjualanpo_list" model="ir.ui.view">
 			<field name="name">mmr.penjualanpo.list</field>
@@ -22,7 +22,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="mmr_penjualanpo_form" model="ir.ui.view">
 			<field name="name">mmr.penjualanpo.form</field>
 			<field name="model">mmr.penjualanpo</field>
@@ -41,7 +41,6 @@
 					<group>
 						<group >
 							<group string="Informasi Dasar">
-								<field name="rayon" attrs="{'invisible':True}"/>
 								<field name="kota" attrs="{'invisible':True}"/>
 								<field name="nomorpo" attrs="{'readonly':[('disetujui','!=',False)]}" groups="MMR.otoritas" placeholder="Otomatis"/>
 								<field name="customer" attrs="{'readonly':[('disetujui','!=',False)]}" on_change="onchange_customer(customer,tanggal,sales,tanpafaktur,tukarbarang)" options="{'no_create': True, 'no_open':True}"/>
@@ -65,22 +64,23 @@
 							<group string="Informasi Marketing">
 								<field name="via"  attrs="{'readonly':[('disetujui','!=',False)]}"/>
 								<field name="sales" options="{'no_create': True, 'no_open':True}"  attrs="{'readonly':[('disetujui','!=',False)]}" on_change="onchange_nopo(customer,tanggal,sales,tanpafaktur,tukarbarang)"/>
+								<field name="rayon" options="{'no_create': True, 'no_open':True}"/>
 								<field name="nomorposales"  attrs="{'readonly':[('disetujui','!=',False)]}"/>
 								<field name="nomorpocustomer"  attrs="{'readonly':[('disetujui','!=',False)]}"/>
 							</group>
 							<group string="Informasi Akunting">
-								<field name="bruto" />					
+								<field name="bruto" />
 								<field name="diskon"/>
 								<field name="hppembelian" />
 								<field name="pajak" />
 								<field name="netto" />
 							</group>
 						</group>
-					</group>	
+					</group>
 					<notebook>
 						<page string="List Produk">
 							<field name="penjualanpodetil"  attrs="{'readonly':[('disetujui','!=',False)]}" context="{'default_customer': customer}"/>
-						</page>	
+						</page>
 						<page string="List Surat Jalan">
 							<field name="penjualansj" attrs="{'readonly':[('disetujui','=',False)]}">
 								<tree create="false">
@@ -91,8 +91,8 @@
 									<field name="disetujui" groups="MMR.otoritas"/>
 									<field name="notes" />
 								</tree>
-							</field>	
-						</page>	
+							</field>
+						</page>
 						<page string="List Faktur">
 							<field name="penjualanfaktur" groups="MMR.akunting" attrs="{'readonly':[('disetujui','=',False)]}">
 								<tree create="false">
@@ -110,16 +110,16 @@
 									<field name="akunotomatis" string="Otomat?"/>
 									<field name="notes" />
 								</tree>
-							</field>	
-						</page>	
+							</field>
+						</page>
 						<page string="Notes">
 							<field name="notes"  attrs="{'readonly':[('disetujui','!=',False)]}"/>
-						</page>	
+						</page>
 					</notebook>
 					<group groups="MMR.otoritas" string="Informasi Otoritas">
 						<group>
 							<field name="dibuat" />
-							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/> 
+							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/>
 							<field name="diedit" />
 							<field name="dibatalkan" attrs="{'invisible':[('dibatalkan','=',False)]}"/>
 						</group>
@@ -187,7 +187,7 @@
 				</search>
 			</field>
 		</record>
-		
+
 		-----------PenjualanPODetil----------
 		<record id="mmr_penjualanpodetil_list" model="ir.ui.view">
 			<field name="name">mmr.penjualanpodetil.list</field>
@@ -209,7 +209,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="mmr_penjualanpodetil_form" model="ir.ui.view">
 			<field name="name">mmr.penjualanpodetil.form</field>
 			<field name="model">mmr.penjualanpodetil</field>
@@ -229,13 +229,13 @@
 						</group>
 						<group string="Informasi Akunting">
 							<field name="harga" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
-							<field name="bruto" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>					
+							<field name="bruto" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
 							<field name="diskon" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
 							<field name="hppembelian" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
 							<field name="pajak" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
 							<field name="netto" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
 						</group>
-					</group>	
+					</group>
 					<notebook>
 						<page string="History">
 							<field name="stokkeluar">
@@ -261,13 +261,13 @@
 											<field name="diskon"/>
 											<field name="pajak"/>
 										</group>
-									</group>	
+									</group>
 								</form>
-							</field>	
-						</page>	
+							</field>
+						</page>
 						<page string="Notes">
 							<field name="notes"/>
-						</page>	
+						</page>
 					</notebook>
 				</form>
 			</field>
@@ -349,7 +349,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="mmr_penjualansj_form" model="ir.ui.view">
 			<field name="name">mmr.penjualansj.form</field>
 			<field name="model">mmr.penjualansj</field>
@@ -393,7 +393,7 @@
 								<form string="Stok Keluar" version="7.0" >
 									<group>
 										<group string="Informasi Dasar">
-											<field name="pilihanproduk" on_change="onchange_pilihanproduk(pilihanproduk)" groups="MMR.gudang" options="{'no_create': True, 'no_open':True}"/>									
+											<field name="pilihanproduk" on_change="onchange_pilihanproduk(pilihanproduk)" groups="MMR.gudang" options="{'no_create': True, 'no_open':True}"/>
 											<field name="idstok" groups="MMR.gudang" on_change="onchange_idstok(pilihanproduk)" options="{'no_create': True, 'no_open':True}"/>
 											<field name="idpenjualanpo" attrs="{'invisible':True}"/>
 											<field name="merk"/>
@@ -411,19 +411,19 @@
 									<notebook>
 										<page string="Notes" >
 											<field name="notes"/>
-										</page>	
+										</page>
 									</notebook>
 								</form>
 							</field>
-						</page>		
+						</page>
 						<page string="Notes">
 							<field name="notes" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
-						</page>	
+						</page>
 					</notebook>
 					<group groups="MMR.otoritas" string="Informasi Otoritas">
 						<group>
 							<field name="dibuat" />
-							<field name="create_date" attrs="{'readonly':[('disetujuigudang','!=',False)]}" string="Waktu Pembuatan"/> 
+							<field name="create_date" attrs="{'readonly':[('disetujuigudang','!=',False)]}" string="Waktu Pembuatan"/>
 							<field name="diedit" />
 						</group>
 						<group>
@@ -450,7 +450,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="mmr_penjualansj_form_no_edit" model="ir.ui.view">
 			<field name="name">mmr.penjualansj.form.no.edit</field>
 			<field name="model">mmr.penjualansj</field>
@@ -504,19 +504,19 @@
 									<notebook>
 										<page string="Notes" >
 											<field name="notes"/>
-										</page>	
+										</page>
 									</notebook>
 								</form>
 							</field>
-						</page>		
+						</page>
 						<page string="Notes">
 							<field name="notes" attrs="{'readonly':[('disetujuigudang','!=',False)]}"/>
-						</page>	
+						</page>
 					</notebook>
 					<group groups="MMR.otoritas" string="Informasi Otoritas">
 						<group>
 							<field name="dibuat" />
-							<field name="create_date" attrs="{'readonly':[('disetujuigudang','!=',False)]}" string="Waktu Pembuatan"/> 
+							<field name="create_date" attrs="{'readonly':[('disetujuigudang','!=',False)]}" string="Waktu Pembuatan"/>
 							<field name="diedit" />
 						</group>
 						<group>
@@ -568,7 +568,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="mmr_penjualansjdetil_form" model="ir.ui.view">
 			<field name="name">mmr.penjualansjdetil.form</field>
 			<field name="model">mmr.penjualansjdetil</field>
@@ -590,12 +590,12 @@
 					<notebook>
 						<page string="Notes">
 							<field name="notes"/>
-						</page>	
+						</page>
 					</notebook>
 				</form>
 			</field>
 		</record>
-		
+
 		-----------PenjualanFaktur----------
 		<record id="mmr_penjualanfaktur_list" model="ir.ui.view">
 			<field name="name">mmr.penjualanfaktur.list</field>
@@ -610,7 +610,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="mmr_penjualanfaktur_form" model="ir.ui.view">
 			<field name="name">mmr.penjualanfaktur.form</field>
 			<field name="model">mmr.penjualanfaktur</field>
@@ -698,15 +698,15 @@
 									<notebook>
 										<page string="Notes">
 											<field name="notes"/>
-										</page>	
+										</page>
 									</notebook>
 								</form>
 							</field>
-						</page>	
+						</page>
 						<page string="Cetak Faktur">
 							<field name="cetakfaktur">
 							</field>
-						</page>	
+						</page>
 						<page string="Jurnal" >
 							<field name="akunterkena" attrs="{'readonly':[('disetujui','!=',False)]}">
 								<tree >
@@ -730,11 +730,11 @@
 									<notebook>
 										<page string="Notes">
 											<field name="notes" string = "Notes"/>
-										</page>	
+										</page>
 									</notebook>
 								</form>
 							</field>
-						</page>	
+						</page>
 						<page string="List Pembayaran">
 							<field name="listpembayaran" attrs="{'readonly':True}">
 								<tree >
@@ -750,16 +750,16 @@
 										<field name="notes"/>
 									</group>
 								</form>
-							</field>	
-						</page>	
+							</field>
+						</page>
 						<page string="Notes">
 							<field name="notes" attrs="{'readonly':[('disetujui','!=',False)]}"/>
-						</page>	
+						</page>
 					</notebook>
 					<group groups="MMR.otoritas" string="Informasi Otoritas">
 						<group>
 							<field name="dibuat"/>
-							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/> 
+							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/>
 							<field name="diedit"/>
 						</group>
 						<group>
@@ -784,7 +784,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="mmr_penjualanfaktur_form_no_edit" model="ir.ui.view">
 			<field name="name">mmr.penjualanfaktur.form.no.edit</field>
 			<field name="model">mmr.penjualanfaktur</field>
@@ -863,15 +863,15 @@
 									<notebook>
 										<page string="Notes">
 											<field name="notes"/>
-										</page>	
+										</page>
 									</notebook>
 								</form>
 							</field>
-						</page>	
+						</page>
 						<page string="Cetak Faktur">
 							<field name="cetakfaktur">
 							</field>
-						</page>	
+						</page>
 						<page string="Jurnal" >
 							<field name="akunterkena" attrs="{'readonly':[('disetujui','!=',False)]}">
 								<tree >
@@ -895,11 +895,11 @@
 									<notebook>
 										<page string="Notes">
 											<field name="notes" string = "Notes"/>
-										</page>	
+										</page>
 									</notebook>
 								</form>
 							</field>
-						</page>	
+						</page>
 						<page string="List Pembayaran">
 							<field name="listpembayaran" attrs="{'readonly':True}">
 								<tree >
@@ -915,16 +915,16 @@
 										<field name="notes"/>
 									</group>
 								</form>
-							</field>	
-						</page>	
+							</field>
+						</page>
 						<page string="Notes">
 							<field name="notes" attrs="{'readonly':[('disetujui','!=',False)]}"/>
-						</page>	
+						</page>
 					</notebook>
 					<group groups="MMR.otoritas" string="Informasi Otoritas">
 						<group>
 							<field name="dibuat"/>
-							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/> 
+							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/>
 							<field name="diedit"/>
 						</group>
 						<group>
@@ -934,7 +934,7 @@
 				</form>
 			</field>
 		</record>
-		
+
 		-----------PenjualanRetur----------
 		<record id="mmr_penjualanretur_list" model="ir.ui.view">
 			<field name="name">mmr.penjualanretur.list</field>
@@ -954,7 +954,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="mmr_penjualanretur_form" model="ir.ui.view">
 			<field name="name">mmr.penjualanretur.form</field>
 			<field name="model">mmr.penjualanretur</field>
@@ -990,7 +990,7 @@
 								<field name="hppembelian"/>
 								<field name="pajak" />
 								<field name="netto" />
-								
+
 							</group>
 							<group string="Informasi Jurnal dan Pembayaran">
 								<field name="dibayar" attrs="{'readonly':[('disetujui','!=',False)]}"/>
@@ -1026,7 +1026,7 @@
 										<group string="Informasi Saldo">
 											<field name="jumlah" />
 											<field name="harga" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
-											<field name="bruto" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>					
+											<field name="bruto" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
 											<field name="diskon" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
 											<field name="hppembelian" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
 											<field name="pajak" on_change="onchange_harga(jumlah,harga,diskon,pajak)"/>
@@ -1036,19 +1036,19 @@
 									<notebook>
 										<page string="Notes">
 											<field name="notes"/>
-										</page>	
+										</page>
 									</notebook>
 								</form>
 							</field>
-						</page>	
+						</page>
 						<page string="Notes">
 							<field name="notes" attrs="{'readonly':[('disetujui','!=',False)]}"/>
-						</page>	
+						</page>
 					</notebook>
 					<group groups="MMR.otoritas" string="Informasi Otoritas">
 						<group>
 							<field name="create_uid" string="Dibuat"/>
-							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/> 
+							<field name="create_date" attrs="{'readonly':[('disetujui','!=',False)]}" string="Waktu Pembuatan"/>
 							<field name="write_uid" string="Diedit"/>
 						</group>
 						<group>
@@ -1058,6 +1058,6 @@
 				</form>
 			</field>
 		</record>
-		
+
 	</data>
 </openerp>

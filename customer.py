@@ -108,6 +108,30 @@ class mmr_rayon(osv.osv):
             res[rayon.id] = total
         return res
 
+    def _isi_pencapaian_kumulatif(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for rayon in self.browse(cr,uid,ids):
+            total = 0
+            rayon_ids = self.search(cr,uid,["|",('id', 'child_of', [rayon.id]),('id', '=', rayon.id)])
+            for semuarayon in self.browse(cr,uid,rayon_ids):
+                for semuapo in semuarayon.listpopenjualan:
+                    for semuafaktur in semuapo.penjualanfaktur:
+                        if datetime.datetime.strptime(semuafaktur.tanggalterbit,'%Y-%m-%d').strftime("%m") == datetime.datetime.today().strftime("%m"):
+                            total+=semuafaktur.hppembelian
+            res[rayon.id] = total
+        return res
+
+    # Target Kumulatif
+    def _isi_target_kumulatif(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for rayon in self.browse(cr,uid,ids):
+            total = 0
+            rayon_ids = self.search(cr,uid,["|",('id', 'child_of', [rayon.id]),('id', '=', rayon.id)])
+            for semuarayon in self.browse(cr,uid,rayon_ids):
+                total+=semuarayon.target
+            res[rayon.id] = total
+        return res
+
     # Buat display Name
     def _get_display_name(self, cr, uid, ids, field_name, arg, context):
         res = {}
@@ -123,12 +147,15 @@ class mmr_rayon(osv.osv):
         'listpopenjualan' : fields.one2many("mmr.penjualanpo","rayon","List Penjualan PO"),
         'listsales' : fields.many2many("mmr.sales","rayon_sales","listsales","listrayon","List Sales"),
         'target': fields.float("Target", digits=(12,2)),
+        'targetkumulatif': fields.function(_isi_target_kumulatif, type="float", method=True, string="Target Kumulatif"),
         'pencapaian': fields.function(_isi_pencapaian,string="Pencapaian Bulan Ini",method=True,type="float", digits=(12,2)),
+        'pencapaiankumulatif': fields.function(_isi_pencapaian_kumulatif,string="Pencapaian Kumulatif Bulan Ini",method=True,type="float", digits=(12,2)),
         'laporansales' : fields.one2many("mmr.laporansales","rayon","Laporan Sales"),
         'notes' : fields.text("Notes"),
         'periode': fields.char("Periode", required=True),
         'aktif': fields.boolean("Aktif"),
         'display_name': fields.function(_get_display_name, type="char", method=True, string="Nama"),
+        'parent_id': fields.many2one("mmr.rayon", string="Parent Rayon")
     }
 
     _defaults = {
