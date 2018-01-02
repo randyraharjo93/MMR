@@ -297,6 +297,61 @@ class mmr_penjualanpo(osv.osv):
             hasil['kota'] = customerobj.kota
         return {'value': hasil}
 
+    # Isi rayon, kota, nomor po berdasarkan customer yang dipilih
+    # Penomoran PO dibuat berdasarkan, bulan & tahun
+    # PO dengan ijin tanpa faktur dan tukar barang jangan diberi nomor
+    def onchange_rayon(self, cr, uid, ids, customer, tanggal, sales, tanpafaktur, tukarbarang, rayon, context=None):
+        hasil = {}
+        customerClass = self.pool.get("mmr.customer")
+        customerobj = customerClass.browse(cr, uid, customer)
+        hasil['syaratpembayaran'] = customerobj.syaratpembayaran.id
+        rayonClass = self.pool.get("mmr.rayon")
+        rayonObj = rayonClass.browse(cr,uid, rayon)
+        if customer!= False and tanggal!= False and sales!= False:
+            customerClass = self.pool.get("mmr.customer")
+            customerobj = customerClass.browse(cr, uid, customer)
+            salesClass = self.pool.get("mmr.sales")
+            salesobj = salesClass.browse(cr, uid, sales)
+            sqlQuery = """
+            SELECT ID
+            FROM mmr_penjualanpo
+            WHERE date_part('year', tanggal) = %s AND date_part('month', tanggal) = %s AND tanpafaktur = %s AND tukarbarang = %s
+            """% (tanggal[0:4], tanggal[5:7], tanpafaktur, tukarbarang)
+            cr.execute(sqlQuery)
+            hasilquery = cr.dictfetchall()
+
+            nomorterbesar = 0
+            for semuahasilquery in hasilquery:
+                if self.browse(cr, uid, semuahasilquery['id']).nomorpo != False and self.browse(cr, uid, semuahasilquery['id']).nomorpo[1:5].isdigit():
+                    if int(self.browse(cr, uid, semuahasilquery['id']).nomorpo[1:5]) > nomorterbesar:
+                        nomorterbesar = int(self.browse(cr, uid, semuahasilquery['id']).nomorpo[1:5])
+            nomorpo = nomorterbesar + 1
+            if len(ids) == 0:
+                if nomorpo < 10:
+                    nomorpo = "000" + str(nomorpo)
+                elif nomorpo < 100:
+                    nomorpo = "00" + str(nomorpo)
+                elif nomorpo+1 < 1000:
+                    nomorpo = "0" + str(nomorpo)
+                else:
+                    nomorpo = str(nomorpo)
+                hasil['nomorpo'] = "P" + nomorpo + "/" + "MMR/" + str(salesobj.nama) + "/" + str(rayonObj.kode) + "/" + tanggal[5:7] + "/" + tanggal[0:4]
+            else:
+                if self.browse(cr, uid, ids).tanggal[0:4] != tanggal[0:4] or self.browse(cr, uid, ids).tanggal[5:7] != tanggal[5:7]  or not tanpafaktur or not tukarbarang:
+                    if nomorpo < 10:
+                        nomorpo = "000" + str(nomorpo)
+                    elif nomorpo < 100:
+                        nomorpo = "00" + str(nomorpo)
+                    elif nomorpo+1 < 1000:
+                        nomorpo = "0" + str(nomorpo)
+                    else:
+                        nomorpo = str(nomorpo)
+                    hasil['nomorpo'] = "P" + nomorpo + "/" + "MMR/" + str(salesobj.nama) + "/" + str(rayonObj.kode) + "/" + tanggal[5:7] + "/" + tanggal[0:4]
+
+            if tanpafaktur or tukarbarang:
+                hasil['nomorpo'] = "P - TanpaNomor/" + "MMR/" + str(salesobj.nama) + "/" + str(rayonObj.kode) + "/" + tanggal[5:7] + "/" + tanggal[0:4]
+        return {'value': hasil}
+
     def onchange_nopo(self, cr, uid, ids, customer, tanggal, sales, tanpafaktur, tukarbarang, context=None):
         hasil = {}
         if customer!= False and tanggal!= False and sales!= False:

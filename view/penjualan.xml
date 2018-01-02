@@ -64,7 +64,7 @@
 							<group string="Informasi Marketing">
 								<field name="via"  attrs="{'readonly':[('disetujui','!=',False)]}"/>
 								<field name="sales" options="{'no_create': True, 'no_open':True}"  attrs="{'readonly':[('disetujui','!=',False)]}" on_change="onchange_nopo(customer,tanggal,sales,tanpafaktur,tukarbarang)"/>
-								<field name="rayon" options="{'no_create': True, 'no_open':True}"/>
+								<field name="rayon" options="{'no_create': True, 'no_open':True}" on_change="onchange_rayon(customer,tanggal,sales,tanpafaktur,tukarbarang,rayon)"/>
 								<field name="nomorposales"  attrs="{'readonly':[('disetujui','!=',False)]}"/>
 								<field name="nomorpocustomer"  attrs="{'readonly':[('disetujui','!=',False)]}"/>
 							</group>
